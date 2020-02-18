@@ -47,11 +47,9 @@ namespace NoName.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(12, ErrorMessage = "4자리 이상 입력하세요.", MinimumLength = 4)]
             [DataType(DataType.Text)]
             [Display(Name = "아이디")]
-            public string ID { get; set; }
-
+            public string userID { get; set; }
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -71,11 +69,11 @@ namespace NoName.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.PhoneNumber)]
             [Display(Name = "전화번호")]
-            public string CellPhoneNumber { get; set; }
+            public string PhoneNumber { get; set; }
 
             [DataType(DataType.Date)]
             [Display(Name = "생년월일")]
-            public DateTime BirthDate { get; set; }
+            public DateTime DOB { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
@@ -87,8 +85,9 @@ namespace NoName.Areas.Identity.Pages.Account
             [Display(Name = "SMS수신여부")]
             public string ReciveSMS { get; set; }
 
-            [Required]
-            [DataType(DataType.Upload)]
+            //Need to Security considerations(20.02.19)
+            //[Required]
+            [DataType(DataType.Text)]
             [Display(Name = "직업인증")]
             public string Authentication { get; set; }
         }
@@ -106,11 +105,11 @@ namespace NoName.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser {
-                    ID = Input.ID,
+                    userID = Input.userID,
                     UserName = Input.Email,
                     Email = Input.Email,
-                    CellPhoneNumber = Input.CellPhoneNumber,
-                    BirthDate = Input.BirthDate,
+                    PhoneNumber = Input.PhoneNumber,
+                    DOB = Input.DOB,
                     Gender = Input.Gender,
                     ReciveSMS = Input.ReciveSMS,
                     Authentication = Input.Authentication

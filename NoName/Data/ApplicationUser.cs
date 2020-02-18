@@ -8,11 +8,15 @@ namespace NoName.Data
 {
     public class ApplicationUser : IdentityUser
     {
-        public string ID { get; set; }
-        public string CellPhoneNumber { get; set; }
-        public DateTime BirthDate { get; set; }
+        [PersonalData]
+        public string userID { get; set; }
+        [PersonalData]
+        public DateTime DOB { get; set; }
+        [PersonalData]
         public string Gender { get; set; }
+        [PersonalData]
         public string ReciveSMS { get; set; }
+        [PersonalData]
         public string Authentication { get; set; }
     }
 }

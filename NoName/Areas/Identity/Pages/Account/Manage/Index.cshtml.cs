@@ -33,9 +33,34 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "아이디")]
+            public string userID { get; set; }
+            [Required]
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "전화번호")]
             public string PhoneNumber { get; set; }
+
+            [DataType(DataType.Date)]
+            [Display(Name = "생년월일")]
+            public DateTime DOB { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "성별")]
+            public string Gender { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "SMS수신여부")]
+            public string ReciveSMS { get; set; }
+
+            //Need to Security considerations(20.02.19)
+            //[Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "직업인증")]
+            public string Authentication { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -47,7 +72,12 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                userID = user.userID,
+                PhoneNumber = phoneNumber,
+                DOB = user.DOB,
+                Gender = user.Gender,
+                ReciveSMS = user.ReciveSMS,
+                Authentication = user.Authentication
             };
         }
 
@@ -87,6 +117,33 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
+
+            if (Input.userID != user.userID)
+            {
+                user.userID = Input.userID;
+            }
+
+            if (Input.DOB != user.DOB)
+            {
+                user.DOB = Input.DOB;
+            }
+
+            if (Input.Gender != user.Gender)
+            {
+                user.Gender = Input.Gender;
+            }
+
+            if (Input.ReciveSMS != user.ReciveSMS)
+            {
+                user.ReciveSMS = Input.ReciveSMS;
+            }
+
+            if (Input.Authentication != user.Authentication)
+            {
+                user.Authentication = Input.Authentication;
+            }
+
+            await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

@@ -5,6 +5,17 @@
     <UserSecretsId>aspnet-NoName-ADDF4365-581A-436D-8FF5-A920AC34DE05</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200218185122_DOB.cs" />
+    <Compile Remove="Data\Migrations\20200218185122_DOB.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200218190308_CustomUserData.cs" />
+    <Compile Remove="Data\Migrations\20200218190308_CustomUserData.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200218190837_InitalCreate.cs" />
+    <Compile Remove="Data\Migrations\20200218190837_InitalCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200218191006_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20200218191006_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />

@@ -13,9 +13,9 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Input.ID"></label>
-                <input asp-for="Input.ID" class="form-control" />
-                <span asp-validation-for="Input.ID" class="text-danger"></span>
+                <label asp-for="Input.userID"></label>
+                <input asp-for="Input.userID" class="form-control" />
+                <span asp-validation-for="Input.userID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Password"></label>
@@ -33,12 +33,12 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.CellPhoneNumber"></label>
-                <input asp-for="Input.CellPhoneNumber" class="form-control" />
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Input.BirthDate"></label>
-                <input asp-for="Input.BirthDate" class="form-control" />
+                <label asp-for="Input.DOB"></label>
+                <input asp-for="Input.DOB" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Input.Gender"></label>
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Input.ReciveSMS"></label>
-                <input asp-for="Input.ReciveSMS" type="checkbox" checked="checked"/>
+                <input asp-for="Input.ReciveSMS" type="checkbox" checked="checked" />
             </div>
             <div class="form-group">
                 <label asp-for="Input.Authentication"></label>
