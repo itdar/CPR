@@ -9,7 +9,7 @@ using NoName.Data;
 
 namespace NoName.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(UserDbContext))]
     [Migration("20200217053908_init")]
     partial class init
     {
