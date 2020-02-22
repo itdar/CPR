@@ -16,7 +16,5 @@ namespace NoName.Data
         public string Gender { get; set; }
         [PersonalData]
         public string ReciveSMS { get; set; }
-        [PersonalData]
-        public string Authentication { get; set; }
     }
 }

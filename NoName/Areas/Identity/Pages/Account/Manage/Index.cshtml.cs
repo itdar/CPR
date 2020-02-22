@@ -55,12 +55,6 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             [Display(Name = "SMS수신여부")]
             public string ReciveSMS { get; set; }
-
-            //Need to Security considerations(20.02.19)
-            //[Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "직업인증")]
-            public string Authentication { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -76,8 +70,7 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
                 PhoneNumber = phoneNumber,
                 DOB = user.DOB,
                 Gender = user.Gender,
-                ReciveSMS = user.ReciveSMS,
-                Authentication = user.Authentication
+                ReciveSMS = user.ReciveSMS
             };
         }
 
@@ -136,11 +129,6 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
             if (Input.ReciveSMS != user.ReciveSMS)
             {
                 user.ReciveSMS = Input.ReciveSMS;
-            }
-
-            if (Input.Authentication != user.Authentication)
-            {
-                user.Authentication = Input.Authentication;
             }
 
             await _userManager.UpdateAsync(user);
