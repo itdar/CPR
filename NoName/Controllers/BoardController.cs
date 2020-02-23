@@ -28,7 +28,7 @@ namespace NoName.Controllers
         /// 글 상세페이지
         /// </summary>
         /// <returns></returns>
-        public IActionResult Post()
+        public IActionResult PostContents()
         {
             return View();
         }

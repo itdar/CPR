@@ -37,33 +37,31 @@
             max-height: 50%;
         }
 
-        #post-context {
+        #post-contents {
+            margin-top:10px;
             height: 450px;
         }
     </style>
 </head>
 <body>
-    <div id="content">
+    <div  id="content">
         <div class="card" >
             <div class="card-body">
                 전체게시판
             </div>
         </div>
-
-        <div id="post-area">
-            <div class="card">
-                <div class=" card-body" id="post-context">
-                    글 내용 블라블라
-                </div>
-                <div class="card-footer" >
-                    <form class="form-inline" id="search">
-                        <input class="form-control mr-sm-2" id="writeComment" type="text" placeholder="댓글을 입력하세요" />
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >쓰기</button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
+       
+       <div class="card" id="post-contents" >
+           <div class="card-header">
+               글 제목
+           </div>
+           <div class="card-body" >
+               글 내용
+           </div>
+           <div class="card-footer">
+               <input type="text" class="form-control" placeholder="댓글을 입력하시오" />
+           </div>
+       </div>
     </div>
     <div class="float-right" id="sideBar">
         <form class="form-inline" id="search">
