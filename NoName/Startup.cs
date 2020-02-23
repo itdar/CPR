@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SignalRChat.Hubs;
+using NoName.Data.DbData;
 
 namespace NoName
 {
@@ -30,7 +31,11 @@ namespace NoName
         {
             services.AddDbContext<UserDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("UserInfo")));
+                    Configuration.GetConnectionString("UserDb")));
+
+            services.AddDbContext<DataDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DataDb")));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<UserDbContext>()

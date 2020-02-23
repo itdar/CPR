@@ -49,7 +49,7 @@ namespace NoName.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "아이디")]
-            public string userID { get; set; }
+            public string Id { get; set; }
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -73,17 +73,15 @@ namespace NoName.Areas.Identity.Pages.Account
 
             [DataType(DataType.Date)]
             [Display(Name = "생년월일")]
-            public DateTime DOB { get; set; }
+            public DateTime DateOfBirth { get; set; }
 
             [Required]
-            [DataType(DataType.Text)]
             [Display(Name = "성별")]
-            public string Gender { get; set; }
+            public int Gender { get; set; }
 
             [Required]
-            [DataType(DataType.Text)]
             [Display(Name = "SMS수신여부")]
-            public string ReciveSMS { get; set; }
+            public bool ReceiveSMS { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -99,13 +97,13 @@ namespace NoName.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser {
-                    UserID = Input.userID,
+                    Id = Input.Id,
                     UserName = Input.Email,
                     Email = Input.Email,
                     PhoneNumber = Input.PhoneNumber,
-                    DOB = Input.DOB,
+                    DateOfBirth = Input.DateOfBirth,
                     Gender = Input.Gender,
-                    ReciveSMS = Input.ReciveSMS
+                    ReceiveSMS = Input.ReceiveSMS
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

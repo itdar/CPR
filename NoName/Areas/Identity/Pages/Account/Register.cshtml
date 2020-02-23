@@ -13,9 +13,9 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Input.userID"></label>
-                <input asp-for="Input.userID" class="form-control" />
-                <span asp-validation-for="Input.userID" class="text-danger"></span>
+                <label asp-for="Input.Id"></label>
+                <input asp-for="Input.Id" class="form-control" />
+                <span asp-validation-for="Input.Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Password"></label>
@@ -37,17 +37,17 @@
                 <input asp-for="Input.PhoneNumber" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Input.DOB"></label>
-                <input asp-for="Input.DOB" class="form-control" />
+                <label asp-for="Input.DateOfBirth"></label>
+                <input asp-for="Input.DateOfBirth" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Input.Gender"></label>
-                남자<input asp-for="Input.Gender" type="radio" value="Male" />
-                여자<input asp-for="Input.Gender" type="radio" value="Female" />
+                남자<input asp-for="Input.Gender" type="radio" value="1" />
+                여자<input asp-for="Input.Gender" type="radio" value="2" />
             </div>
             <div class="form-group">
-                <label asp-for="Input.ReciveSMS"></label>
-                <input asp-for="Input.ReciveSMS" type="checkbox" checked="checked" />
+                <label asp-for="Input.ReceiveSMS"></label>
+                <input asp-for="Input.ReceiveSMS" type="checkbox" checked="checked" />
             </div>
             <button type="submit" class="btn btn-primary">가입</button>
         </form>

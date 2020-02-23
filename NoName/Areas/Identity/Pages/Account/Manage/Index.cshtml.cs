@@ -36,7 +36,7 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "아이디")]
-            public string UserID { get; set; }
+            public string Id { get; set; }
             [Required]
             [Phone]
             [Display(Name = "전화번호")]
@@ -44,17 +44,15 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
 
             [DataType(DataType.Date)]
             [Display(Name = "생년월일")]
-            public DateTime DOB { get; set; }
+            public DateTime DateOfBirth { get; set; }
 
             [Required]
-            [DataType(DataType.Text)]
             [Display(Name = "성별")]
-            public string Gender { get; set; }
+            public int Gender { get; set; }
 
             [Required]
-            [DataType(DataType.Text)]
             [Display(Name = "SMS수신여부")]
-            public string ReciveSMS { get; set; }
+            public bool ReceiveSMS { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -66,11 +64,11 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                UserID = user.UserID,
+                Id = user.Id,
                 PhoneNumber = phoneNumber,
-                DOB = user.DOB,
+                DateOfBirth = user.DateOfBirth,
                 Gender = user.Gender,
-                ReciveSMS = user.ReciveSMS
+                ReceiveSMS = user.ReceiveSMS
             };
         }
 
@@ -111,14 +109,14 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            if (Input.UserID != user.UserID)
+            if (Input.Id != user.Id)
             {
-                user.UserID = Input.UserID;
+                user.Id = Input.Id;
             }
 
-            if (Input.DOB != user.DOB)
+            if (Input.DateOfBirth != user.DateOfBirth)
             {
-                user.DOB = Input.DOB;
+                user.DateOfBirth = Input.DateOfBirth;
             }
 
             if (Input.Gender != user.Gender)
@@ -126,9 +124,9 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
                 user.Gender = Input.Gender;
             }
 
-            if (Input.ReciveSMS != user.ReciveSMS)
+            if (Input.ReceiveSMS != user.ReceiveSMS)
             {
-                user.ReciveSMS = Input.ReciveSMS;
+                user.ReceiveSMS = Input.ReceiveSMS;
             }
 
             await _userManager.UpdateAsync(user);
