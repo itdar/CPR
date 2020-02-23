@@ -15,7 +15,7 @@ namespace NoName.Data
      */
     public class ApplicationUser : IdentityUser
     {
-        public string userID { get; set; }
+        public string UserID { get; set; }
         public DateTime DOB { get; set; }
         public string Gender { get; set; }
         public string ReciveSMS { get; set; }

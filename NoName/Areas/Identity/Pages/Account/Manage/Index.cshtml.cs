@@ -36,7 +36,7 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "아이디")]
-            public string userID { get; set; }
+            public string UserID { get; set; }
             [Required]
             [Phone]
             [Display(Name = "전화번호")]
@@ -66,7 +66,7 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                userID = user.userID,
+                UserID = user.UserID,
                 PhoneNumber = phoneNumber,
                 DOB = user.DOB,
                 Gender = user.Gender,
@@ -111,9 +111,9 @@ namespace NoName.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            if (Input.userID != user.userID)
+            if (Input.UserID != user.UserID)
             {
-                user.userID = Input.userID;
+                user.UserID = Input.UserID;
             }
 
             if (Input.DOB != user.DOB)

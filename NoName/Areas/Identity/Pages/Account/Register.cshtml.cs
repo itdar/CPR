@@ -99,7 +99,7 @@ namespace NoName.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser {
-                    userID = Input.userID,
+                    UserID = Input.userID,
                     UserName = Input.Email,
                     Email = Input.Email,
                     PhoneNumber = Input.PhoneNumber,

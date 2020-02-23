@@ -9,7 +9,7 @@ namespace NoName.Data
      */
     public class UserDbContext : IdentityDbContext
     {
-        public DbSet<ApplicationUser> UserTable { get; set; }
+        public DbSet<ApplicationUser> User { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Authentication> Authentication { get; set; }
         public DbSet<Permission> Permission { get; set; }
