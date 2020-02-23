@@ -7,7 +7,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/MessageBox">쪽지함</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Note" asp-action="Index">쪽지함</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="@User.Identity.Name">내정보</a>

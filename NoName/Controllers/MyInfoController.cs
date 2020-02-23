@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NoName.Controllers
 {
-    public class BoardController : Controller
+    public class MyInfoController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
@@ -16,22 +16,24 @@ namespace NoName.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 글 작성 페이지
-        /// </summary>
-        public IActionResult Write()
+        public IActionResult JobCertification()
         {
             return View();
         }
-        
-        /// <summary>
-        /// 글 상세페이지
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Post()
+
+        public IActionResult ChangeInfo()
         {
             return View();
         }
-        
+
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        public IActionResult Withdrawal()
+        {
+            return View();
+        }
     }
 }
