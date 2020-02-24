@@ -12,6 +12,7 @@ using NoName.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NoName.Data.DbData;
 
 namespace NoName
 {
@@ -27,11 +28,16 @@ namespace NoName
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<UserDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("UserDb")));
+            services.AddDbContext<DataDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DataDb")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<UserDbContext>();
+
             services.AddRazorPages();
         }
 
