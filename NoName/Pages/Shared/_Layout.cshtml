@@ -38,7 +38,14 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - NoName - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <form method="post">
+                &copy; 2020 - <a asp-page="/Index">NoName</a> -
+                <button class="btn btn-outline-dark" asp-page="/ServiceAgreement">이용약관</button>
+                <button class="btn btn-outline-dark" asp-page="/Privacy">개인정보처리방침</button>
+                <button class="btn btn-outline-dark" asp-page="/Rules">커뮤니티이용규칙</button>
+                <button class="btn btn-outline-dark" asp-page="/Notice">공지사항</button>
+                <button class="btn btn-outline-dark" asp-page="/FAQ">문의사항</button>
+            </form>
         </div>
     </footer>
 

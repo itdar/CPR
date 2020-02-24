@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace NoName.Pages
 {
-    public class PrivacyModel : PageModel
+    public class FAQModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILogger<FAQModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public FAQModel(ILogger<FAQModel> logger)
         {
             _logger = logger;
         }

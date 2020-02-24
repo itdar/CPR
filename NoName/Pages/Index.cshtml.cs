@@ -21,5 +21,9 @@ namespace NoName.Pages
         {
 
         }
+        public void OnPost()
+        {
+
+        }
     }
 }
