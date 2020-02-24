@@ -18,7 +18,26 @@ namespace NoName.Controllers
             _logger = logger;
         }
 
+        //NoteBox Main Page
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        //Note Sending Page
+        public IActionResult Send()
+        {
+            return View();
+        }
+
+        //Note Received Page
+        public IActionResult Received()
+        {
+            return View();
+        }
+
+        //Note Delete Function
+        public IActionResult Delete()
         {
             return View();
         }
