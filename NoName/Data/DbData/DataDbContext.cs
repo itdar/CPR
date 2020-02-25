@@ -13,6 +13,7 @@ namespace NoName.Data.DbData
     public class DataDbContext : DbContext
     {
         public DbSet<Job> Job { get; set; }
+        public DbSet<JobPage> JobPage { get; set; }
         public DbSet<Board> Board { get; set; }
         public DbSet<Post> Post { get; set; }
         public DbSet<Comment> Comment { get; set; }
@@ -22,5 +23,6 @@ namespace NoName.Data.DbData
         public DataDbContext(DbContextOptions<DataDbContext> options) : base(options)
         {
         }
+
     }
 }

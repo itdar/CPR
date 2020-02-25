@@ -1,4 +1,60 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NoName.Data.DbData.Job">
+    <Position X="13.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\DbData\ApplicationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoName.Data.DbData.JobPage">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAIAAAACAAAAA=</HashCode>
+      <FileName>Data\DbData\ApplicationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoName.Data.DbData.Board">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABEAAAABBAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\DbData\ApplicationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoName.Data.DbData.Post">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhJAAAAgAABEAAAAAAAAwAAAGAAAABAAAAAHAAIAA=</HashCode>
+      <FileName>Data\DbData\ApplicationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoName.Data.DbData.Comment">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAgAAAAAAAIAAAAAAACAAAA=</HashCode>
+      <FileName>Data\DbData\ApplicationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoName.Data.DbData.Salary">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCIAAACAAAAAAAACAAAAACAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\DbData\ApplicationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoName.Data.DbData.Message">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAABAAAAAAAABAAAAEA=</HashCode>
+      <FileName>Data\DbData\ApplicationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoName.Data.DbData.DataDbContext">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAEAAAAAAAAAAAAAAAACAACgAAAAAAAICAAAAA=</HashCode>
+      <FileName>Data\DbData\DataDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

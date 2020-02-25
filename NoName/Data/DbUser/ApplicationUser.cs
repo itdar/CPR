@@ -18,15 +18,21 @@ namespace NoName.Data
     public class MyJob
     {
         public int Id { get; set; }
-
+        /*
+         * 다대다 관계 (User - Job) 를 위한 커넥터 역할 Table
+         */
+        public UserJobConnector UserConnector { get; set; }
         /*
          * ApplicationUser 와 FK 연결, 하지만 이건 1:1 이고, 
          * 1:다수 (ApplicationUser 에서 IEnumeration<MyJob> 써야함)
          */
-        [ForeignKey("ApplicationUser")]
-        public virtual string UserName { get; set; }
+        //public ApplicationUser ApplicationUser { get; set; }
 
-        public ApplicationUser ApplicationUser { get; set; }
+    }
+
+    public class UserJobConnector
+    {
+        public int Id { get; set; }
 
     }
 
@@ -36,7 +42,10 @@ namespace NoName.Data
      */
     public class ApplicationUser : IdentityUser
     {
-        
+        /*
+         * 다대다 관계 (User - Job) 를 위한 커넥터 역할 Table
+         */
+        public UserJobConnector JobConnector { get; set; }
         /*
          * 계정 생성 날짜
          */

@@ -16,8 +16,25 @@ namespace NoName.Data.DbData
     public class Job
     {
         [Key]
+        public int JobPageId { get; set; }
+        public JobPage JobPage { get; set; }
+    }
+
+    /*
+     * 직업 페이지
+     */
+    public class JobPage
+    {
+        [Key]
         public int JobCode { get; set; }
         public string JobName { get; set; }
+
+        private ICollection<Board> boards;
+        public ICollection<Board> Boards
+        {
+            get => boards;
+            set => boards = value;
+        }
     }
 
     /*
@@ -36,8 +53,12 @@ namespace NoName.Data.DbData
         public int BoardCode { get; set; }
         public string BoardName { get; set; }
 
-        [ForeignKey("Job")]
-        public virtual int JobCode { get; set; }
+        private ICollection<Post> posts;
+        public ICollection<Post> Posts
+        {
+            get => posts;
+            set => posts = value;
+        }
     }
 
     /*
@@ -45,6 +66,13 @@ namespace NoName.Data.DbData
      */
     public class Post
     {
+        private ICollection<Comment> comments;
+        public ICollection<Comment> Comments
+        {
+            get => comments;
+            set => comments = value;
+        }
+
         [Key]
         public int PostNumber { get; set; }
 
@@ -91,8 +119,6 @@ namespace NoName.Data.DbData
          */
         public string UserId { get; set; }
 
-        [ForeignKey("Post")]
-        public int PostNumber { get; set; }
         public string Content { get; set; }
 
         /*
@@ -125,8 +151,7 @@ namespace NoName.Data.DbData
         public int Minimum { get; set; }
         public int Maximum { get; set; }
 
-        [ForeignKey("Job")]
-        public virtual int JobCode { get; set; }
+        public int JobCode { get; set; }
     }
 
     /*

@@ -15,6 +15,12 @@ namespace NoName.Data
         public DbSet<ApplicationUser> User { get; set; }
         public DbSet<MyJob> MyJob { get; set; }
 
+        /*
+         * 다대다 관계 (User - Job) 를 위한 커넥터 역할 Table
+         */
+        public DbSet<UserJobConnector> Connector {get;set;}
+
+
         public UserDbContext(DbContextOptions<UserDbContext> options)
             : base(options)
         {
