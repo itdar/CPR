@@ -9,3 +9,8 @@
     width: 20%;
     float: right;
 }
+
+#postContents{
+    margin-top:10px;
+    border:none;
+}
