@@ -1,0 +1,47 @@
+﻿@page
+@model NoName.Pages.BoardTemp.IndexModel
+@{
+}
+<head>
+    <link rel="stylesheet" href="~/css/container.css" />
+    
+</head>
+
+<body>
+    <div id="content">
+        <div class="card">
+            <div class="card-body">직업게시판</div>
+        </div>
+
+        <div class="card" style="margin-top:10px; border:none">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" style="margin-top:10px" placeholder="글을 작성하세요">
+
+            </div>
+            <div class="list-group">
+                @for (int i = 0; i < 10; i++)
+                {
+                    <a href="#" class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div  id="sidebar">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action disabled" style="color:white; background-color:blue;">실시간 인기글</a>
+            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action disabled"style="color:white; background-color:blue; margin-top:10px;">주간 인기글</a>
+            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action disabled" style="color:white; background-color:blue; margin-top:10px;">HOT 게시글</a>
+            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+
+        </div>
+    </div>
+</body>

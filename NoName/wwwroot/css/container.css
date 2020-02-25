@@ -1,0 +1,11 @@
+﻿
+#content {
+    width: 70%;
+    float: left;
+    margin-right: 5%;
+}
+
+#sidebar {
+    width: 20%;
+    float: right;
+}
