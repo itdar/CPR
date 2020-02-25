@@ -16,11 +16,10 @@ namespace NoName.Data.DbData
         public DbSet<Board> Board { get; set; }
         public DbSet<Post> Post { get; set; }
         public DbSet<Comment> Comment { get; set; }
-        public DbSet<Category> Category { get; set; }
         public DbSet<Salary> Salary { get; set; }
         public DbSet<Message> Message { get; set; }
 
-        public DataDbContext(DbContextOptions options) : base(options)
+        public DataDbContext(DbContextOptions<DataDbContext> options) : base(options)
         {
         }
     }

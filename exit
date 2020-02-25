@@ -1,0 +1,142 @@
+[33mcommit 90858d39c029b5c2b1dfe5c02ab1a041baf8a77a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: vamous <rlagudtn4510@naver.com>
+Date:   Sun Feb 23 19:07:28 2020 +0900
+
+    Modify Code in
+     Board/index, postContents, write
+
+[33mcommit 2faa339316e69e34734477aad9c858e9243ce8b8[m[33m ([m[1;31morigin/feature/UserDb_DataDb-initial_implementation[m[33m)[m
+Author: itdar <thesockerrr@gmail.com>
+Date:   Sun Feb 23 15:14:10 2020 +0900
+
+    - 기존 origin/master (수환팍 최종 작업본) 에서 실행 안되던 에러 수정 >> Authentication 은 더 봐야함
+    - Migration 안돼서 테스트 중
+
+[33mcommit 8ca67df5b8f37b34242e4f07722582a79f4ebd8c[m
+Merge: 481743d bee1a2b
+Author: itdar <thesockerrr@gmail.com>
+Date:   Sun Feb 23 14:41:39 2020 +0900
+
+    Merge branch 'master' of https://github.com/itdar/CPR
+    
+    # Conflicts:
+    #       NoName/Data/ApplicationUser.cs
+
+[33mcommit bee1a2bc3b864c3cda09cc36dd1a5cdf1b36dacc[m
+Author: Soo <teats@naver.com>
+Date:   Sat Feb 22 18:32:48 2020 +0900
+
+    Add SignalR(WebSocket) for note & Modify MessageBox -> Note
+
+[33mcommit 7bca1bbafed338812b2fbd2eb43e4ba9007b7f2e[m
+Author: Soo <teats@naver.com>
+Date:   Sat Feb 22 17:37:46 2020 +0900
+
+    Add Board nav-link
+
+[33mcommit a22f1576286041f0a33726d892a2a6a8154dd976[m
+Merge: 1f03cbf 1271675
+Author: Soo <teats@naver.com>
+Date:   Sat Feb 22 17:29:38 2020 +0900
+
+    Merge branch 'master' of https://github.com/itdar/CPR
+
+[33mcommit 1271675473f10d958d36bf8fe435c16a1c41d28f[m
+Merge: cad631b 850a2ea
+Author: mokasino <30840551+mokasino@users.noreply.github.com>
+Date:   Sat Feb 22 17:28:35 2020 +0900
+
+    Merge pull request #4 from rlagudtn/master
+    
+    MyInfo & ChangeInfo&pass&withdrawal
+
+[33mcommit 1f03cbf5813b9ef3592af23b544916620100c905[m
+Author: Soo <teats@naver.com>
+Date:   Sat Feb 22 17:26:52 2020 +0900
+
+    Delete "Authentication" column
+    -> wrong column name and not defined table yet
+
+[33mcommit 850a2eab36894ba8a2ea8c4834f3312137a02185[m
+Author: vamous_chick <rlagudtn4510@naver.com>
+Date:   Sat Feb 22 01:16:25 2020 +0900
+
+    MyInfo & ChangeInfo&pass&withdrawal
+
+[33mcommit 481743deef4f45b165e8e49d4fb44621adbc5eff[m
+Author: itdar <thesockerrr@gmail.com>
+Date:   Fri Feb 21 01:50:25 2020 +0900
+
+    On develop: - 기존에 스캐폴딩하여 사용된 로그인(Account) 관련 DB 수정
+    - 이 때, 클래스 이름도 수정되어 관련 cshtml 내의 이름 다 수정됨
+    - ClassDiagram 디렉토리 만듦 (DB, Data, Page)
+    - Data 내에 DB 용 디렉토리 만듦 (DbData - 웹어플리케이션 데이터 관리, DbUser - 유저관련정보 관리)
+    -
+
+[33mcommit cad631bbd29194c8b021f65cfe9a0e3cf89164ae[m
+Author: Soo <teats@naver.com>
+Date:   Thu Feb 20 11:35:12 2020 +0900
+
+    Correcting connetion with index page
+
+[33mcommit 2c626ddefbb9f3192f5b4c95068e7e0a024d6c6f[m
+Merge: f9b27d2 af70175
+Author: Soo <teats@naver.com>
+Date:   Thu Feb 20 10:53:20 2020 +0900
+
+    Merge branch 'master' of https://github.com/itdar/CPR
+
+[33mcommit af701759b0adacb182c24c6048b46d18e06f2c43[m
+Merge: 431d503 7601f6a
+Author: mokasino <30840551+mokasino@users.noreply.github.com>
+Date:   Thu Feb 20 10:52:38 2020 +0900
+
+    Merge pull request #2 from rlagudtn/master
+    
+    해당글 본문보기 & 글쓰기 페이지 생성 &
+
+[33mcommit 7601f6a909d55c6821403558eeae7abdfa1e3aeb[m
+Author: vamous_chick <rlagudtn4510@naver.com>
+Date:   Wed Feb 19 15:17:48 2020 +0900
+
+    해당글 본문보기 & 글쓰기 페이지 생성 &
+    사이드바 레이아웃에서 빼고 각각의 페이지로 넣음.
+
+[33mcommit f9b27d2343b9cc7b78854e09b2a3d27a535ac193[m
+Author: Soo <teats@naver.com>
+Date:   Wed Feb 19 05:01:15 2020 +0900
+
+    Correct Register, Login Page&cs
+
+[33mcommit 431d503b0d66057b6dd033dd9a2013fbab1f91fb[m
+Merge: f72acb6 28e4c82
+Author: mokasino <30840551+mokasino@users.noreply.github.com>
+Date:   Tue Feb 18 16:26:58 2020 +0900
+
+    Merge pull request #1 from rlagudtn/master
+    
+    Add MainPage SideBar
+
+[33mcommit 28e4c822b2358320c020cef227229ecaffdaa661[m
+Author: vamous_chick <rlagudtn4510@naver.com>
+Date:   Tue Feb 18 15:55:14 2020 +0900
+
+    게시판홈 생성ㅇ
+
+[33mcommit f72acb62491fb1a38263533edf80a8edb90be24c[m
+Author: Soo <teats@naver.com>
+Date:   Mon Feb 17 16:45:52 2020 +0900
+
+    Update Register(Add Account Folder)
+
+[33mcommit f1aa47843e4cadbc38e3fd3e8a72865affa47673[m
+Author: Soo <teats@naver.com>
+Date:   Sun Feb 16 23:36:10 2020 +0900
+
+    Init
+
+[33mcommit f51610d28e363a03d6fbf2cec61e215cd14d2967[m
+Author: Soo <teats@naver.com>
+Date:   Sun Feb 16 23:35:13 2020 +0900
+
+    Init
