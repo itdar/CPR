@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace NoName.Pages.Temp
 {
-    public class MyScapModel : PageModel
+    public class MyScrapModel : PageModel
     {
         public void OnGet()
         {
