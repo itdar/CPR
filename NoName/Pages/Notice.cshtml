@@ -2,56 +2,65 @@
 @page "{handler?}/{id?}"
 @model NoticeModel
 @{
-    ViewData["Title"] = "Notice";
-    NoticeModel.NoticeBoard noticeBoard = new NoticeModel.NoticeBoard
+    ViewData["Title"] = "공지사항";
+    NoticeModel.NoticeBoard[] noticeBoard = new NoticeModel.NoticeBoard[5];
+
+    @for (int i = 0; i < noticeBoard.Length; i++)
     {
-        PostNumber = 1,
-        UserId = "soohwan",
-        Category_Code = 12,
-        Title = "코로나19관련 공지합니다.",
-        Contents = "코로나19 복지 생활보건의료 코로나19 " +
-        "신천지예수교회 서울 교회 및 부속기관 주소지 현황" +
-        " 코로나19 관련 스미싱 등 피해 주의 코로나19 확진자 " +
-        "이동경로 코로나19 예방행동수칙 홍보물(국문, 외국어) " +
-        "코로나19 관련 취소·연기행사 현황(1월~2월) 코로나19",
-        Views = 123,
-        LikeCount = 100,
-        DislikeCount = 20,
-        IsNewComment = true,
-        CreateTime = new DateTime(20200220),
-        LastModifiedTime = new DateTime(20200224),
-        Deleted = false,
-        DeletedTime = new DateTime(0)
-    };
+        NoticeModel.NoticeBoard temp = new NoticeModel.NoticeBoard();
+        temp.Initialization();
+        noticeBoard[i] = temp;
+        noticeBoard[i].PostNumber = 1;
+        noticeBoard[i].UserId = "soohwan";
+        noticeBoard[i].Title = "코로나 확진자" + i + "명 입니다.";
+        noticeBoard[i].CreateTime = DateTime.Now;
+    }
+    //{
+    //    PostNumber = 1,
+    //    UserId = "soohwan",
+    //    Category_Code = 12,
+    //    Title = "코로나19관련 공지합니다.",
+    //    Contents = "코로나19 복지 생활보건의료 코로나19 " +
+    //    "신천지예수교회 서울 교회 및 부속기관 주소지 현황" +
+    //    " 코로나19 관련 스미싱 등 피해 주의 코로나19 확진자 " +
+    //    "이동경로 코로나19 예방행동수칙 홍보물(국문, 외국어) " +
+    //    "코로나19 관련 취소·연기행사 현황(1월~2월) 코로나19",
+    //    Views = 123,
+    //    LikeCount = 100,
+    //    DislikeCount = 20,
+    //    IsNewComment = true,
+    //    CreateTime = new DateTime(20200220),
+    //    LastModifiedTime = new DateTime(20200224),
+    //    Deleted = false,
+    //    DeletedTime = new DateTime(0)
+    //};
 }
 <head>
     <link rel="stylesheet" href="~/css/container.css" />
 </head>
 
 <body>
-    <h1>@ViewData["Title"]</h1>
-    <p>공지사항</p>
     <div id="content">
         <div class="card">
-            <div class="card-header">공지사항</div>
-            <div class="card-body" id="postContents">
-                <div class="list-group">
-                    @for (int i = 0; i < 1; i++)
-                    {
-                        <a asp-page="/Notice" asp-page-handler="Post" asp-route-postNUmber=@noticeBoard.PostNumber>
-                            @noticeBoard.Title
-                        </a>
-                    }
-                </div>
-                <div class="card-body text-right">
-                    <form method="post">
-                        @*글쓰기 페이지가 없는관계로 임시*@
-                        <button class="btn btn-outline-dark" asp-page="/FAQ">Write</button>
-                    </form>
-                </div>
+            <div class="card-body">@ViewData["Title"]</div>
+        </div>
+        <div class="card" id="postContents">
+            <div class="list-group">
+                @for (int i = 0; i < noticeBoard.Length ; i++)
+                {
+                <a class="list-group-item list-group-item-action"
+                    asp-page="/Notice" asp-page-handler="Post" asp-route-postNUmber=@noticeBoard[i].PostNumber>
+                    @noticeBoard[i].Title
+                </a>
+                }
+            </div>
+            <div class="card-body text-right">
+                <form method="post">
+                    @*글쓰기 페이지가 없는관계로 임시*@
+                    <button class="btn btn-outline-dark" asp-area="" asp-page="/Temp/Detail">Write</button>
+                </form>
             </div>
         </div>
-
     </div>
 
     <div id="sidebar">

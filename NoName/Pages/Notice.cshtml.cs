@@ -25,7 +25,25 @@ namespace NoName.Pages
             public DateTime LastModifiedTime { get; set; }
             public bool Deleted { get; set; }
             public DateTime DeletedTime { get; set; }
+            public bool Initialization()
+            {
+                PostNumber = 1;
+                UserId = "soohwan";
+                Category_Code = 12;
+                Title = "";
+                Contents = "";
+                Views = 123;
+                LikeCount = 100;
+                DislikeCount = 20;
+                IsNewComment = true;
+                CreateTime = DateTime.Now;
+                LastModifiedTime = DateTime.Now;
+                Deleted = false;
+                DeletedTime = DateTime.Now;
+                return true;
+            }
         }
+
 
         private readonly ILogger<NoticeModel> _logger;
 
