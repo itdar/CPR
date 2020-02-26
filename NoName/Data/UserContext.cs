@@ -10,20 +10,21 @@ namespace NoName.Data
      * 프로필 등 user 세부 내용 테이블로 빼려고 헀던 것들은 ApplicationUser로 통합되었고,
      * 다수 연관관계가 필요한 MyJob (직업코드들) 테이블만 별도로 살려두었다.
      */
-    public class UserDbContext : IdentityDbContext
+    public class UserContext : IdentityDbContext
     {
         public DbSet<ApplicationUser> User { get; set; }
         public DbSet<MyJob> MyJob { get; set; }
 
-        /*
-         * 다대다 관계 (User - Job) 를 위한 커넥터 역할 Table
-         */
-        public DbSet<UserJobConnector> Connector {get;set;}
-
-
-        public UserDbContext(DbContextOptions<UserDbContext> options)
+        public UserContext(DbContextOptions<UserContext> options)
             : base(options)
         {
         }
+
+        public UserContext()
+        {
+        }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //    => options.UseSqlServer("UserDb");
     }
 }

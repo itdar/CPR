@@ -19,10 +19,6 @@ namespace NoName.Data
     {
         public int Id { get; set; }
         /*
-         * 다대다 관계 (User - Job) 를 위한 커넥터 역할 Table
-         */
-        public UserJobConnector UserConnector { get; set; }
-        /*
          * ApplicationUser 와 FK 연결, 하지만 이건 1:1 이고, 
          * 1:다수 (ApplicationUser 에서 IEnumeration<MyJob> 써야함)
          */
@@ -42,10 +38,17 @@ namespace NoName.Data
      */
     public class ApplicationUser : IdentityUser
     {
+        private ICollection<MyJob> myJobCodes;
+
         /*
-         * 다대다 관계 (User - Job) 를 위한 커넥터 역할 Table
+         * myJobs property
+         * 해당 유저가 갖고 있는 직업들 코드번호
          */
-        public UserJobConnector JobConnector { get; set; }
+        public ICollection<MyJob> MyJobCodes
+        {
+            get => myJobCodes;
+            set => myJobCodes = value; 
+        }
         /*
          * 계정 생성 날짜
          */
@@ -54,7 +57,7 @@ namespace NoName.Data
         /*
          * 하루에 올라갈 수 있는 방문수 최대는 1
          */
-        public int visitCount { get; set; }
+        public int VisitCount { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 
@@ -64,6 +67,7 @@ namespace NoName.Data
          * SMS 관련 수신 여부 (필요한지?)
          */
         public bool ReceiveSMS { get; set; }
+        
 
         /*
          * 인증 서류 업로드된 파일들 서버에서의 경로

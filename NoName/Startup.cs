@@ -28,15 +28,15 @@ namespace NoName
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UserDbContext>(options =>
+            services.AddDbContext<UserContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("UserDb")));
-            services.AddDbContext<DataDbContext>(options =>
+            services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DataDb")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<UserDbContext>();
+                .AddEntityFrameworkStores<UserContext>();
 
             services.AddRazorPages();
         }

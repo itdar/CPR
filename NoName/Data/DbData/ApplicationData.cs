@@ -15,9 +15,20 @@ namespace NoName.Data.DbData
      */
     public class Job
     {
-        [Key]
-        public int JobPageId { get; set; }
+        private Salary salary;
+
         public JobPage JobPage { get; set; }
+
+        [Key]
+        public int JobCode { get; set; }
+
+        public string JobName { get; set; }
+
+        public Salary Salary
+        {
+            get => salary;
+            set => salary = value;
+        }
     }
 
     /*
@@ -25,16 +36,15 @@ namespace NoName.Data.DbData
      */
     public class JobPage
     {
-        [Key]
-        public int JobCode { get; set; }
-        public string JobName { get; set; }
-
         private ICollection<Board> boards;
         public ICollection<Board> Boards
         {
             get => boards;
             set => boards = value;
         }
+
+        [Key]
+        public int JobPageId { get; set; }
     }
 
     /*
@@ -42,6 +52,8 @@ namespace NoName.Data.DbData
      */
     public class Board
     {
+        private ICollection<Post> posts;
+
         /*
          * 전체웹에서의 게시판 고유번호?
          * 직업홈에서의 게시판 코드?
@@ -52,8 +64,6 @@ namespace NoName.Data.DbData
         public int BoardNumber { get; set; }
         public int BoardCode { get; set; }
         public string BoardName { get; set; }
-
-        private ICollection<Post> posts;
         public ICollection<Post> Posts
         {
             get => posts;
@@ -91,7 +101,7 @@ namespace NoName.Data.DbData
         //싫어요
         public int DislikeCount { get; set; }
         //새로운 댓글 달렸는지 여부
-        public bool hasNewComment { get; set; }
+        public bool HasNewComment { get; set; }
 
         // 최초 생성 시간
         public DateTime CreateTime { get; set; }
@@ -101,7 +111,7 @@ namespace NoName.Data.DbData
         public DateTime LastModifiedTime { get; set; }
 
         // 삭제된 글인지
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         // 삭제 시각
         public DateTime DeletedTime { get; set; }
     }
@@ -159,6 +169,7 @@ namespace NoName.Data.DbData
      */
     public class Message
     {
+
         [Key]
         public int MessageNumber { get; set; }
         public string Content { get; set; }
@@ -168,6 +179,12 @@ namespace NoName.Data.DbData
          */
         public string SenderId { get; set; }
         public string ReceiverId { get; set; }
+
+        /*
+         * 보낸시간, 읽었는지 여부 - 안읽은 메시지만 해당 ReceiverId 유저에 뿌려준다.
+         */
+        public DateTime CreateTime { get; set; }
+        public bool IsChekced { get; set; }
     }
 
 
