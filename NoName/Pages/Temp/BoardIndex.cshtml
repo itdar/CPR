@@ -1,8 +1,8 @@
 ﻿@page
 @model NoName.Pages.Temp.BoardIndexModel
 @{
-    string[] posts = new string[10];
-    @for (int i = 0; i < 10; i++)
+    string[] posts = new string[14];
+    @for (int i = 0; i < 14; i++)
     {
         posts[i] = "글" + (i+1) + "번째 입니다";
 
@@ -25,7 +25,7 @@
 
             </div>
             <div class="list-group">
-                @for (int i = 0; i < 10; i++)
+                @for (int i = 0; i < 14; i++)
                 {
                     <a asp-page="/temp/detail" asp-page-handler="Post" asp-route-postNumber="@(i+1)" class="list-group-item list-group-item-action">@posts[i]</a>
                 }

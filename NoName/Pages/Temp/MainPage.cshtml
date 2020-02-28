@@ -8,8 +8,8 @@
 
 <body>
     <div id="content">
-        <div id="aboutMe" style="float:left">
-            <div class="card"  style="width:15rem;">
+        <div  id="aboutMe">
+            <div class="card">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title" style="text-align:center">내 정보</h5>
@@ -25,24 +25,23 @@
                 <a class="list-group-item list-group-item-action" asp-area="" asp-page="/Temp/MyScrap">스크랩</a>
             </div>
         </div>
-
-        <div class="card" id="boardContents" style=" width:20%;">
+        <div class="card" id="boardContents">
             <div id="banner">
 
             </div>
             <div class="list-group" style="width:250px;">
-                <a href="#" class="list-group-item list-group-item-action" style="color:blue;">자유게시판</a>
+                <a asp-page="/temp/BoardIndex" class="list-group-item list-group-item-action" style="color:blue;">자유게시판</a>
                 <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
                 <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
             </div>
-            <div class="list-group" style="width:250px;margin-top:10px;">
+            <div asp-page="/temp/BoardIndex" class="list-group" style="width:250px;margin-top:10px;">
                 <a href="#" class="list-group-item list-group-item-action" style="color:blue;">정보게시판</a>
                 <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
                 <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
             </div>
         </div>
 
-       
+
     </div>
 
     <div id="sidebar">

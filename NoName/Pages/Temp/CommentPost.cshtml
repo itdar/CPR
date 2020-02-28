@@ -17,7 +17,7 @@
             <div class="list-group">
                 @for (int i = 0; i < 10; i++)
                 {
-                    <a href="#" class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
+                    <a asp-page="/temp/detail" asp-page-handler="Post" class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
                 }
             </div>
         </div>
