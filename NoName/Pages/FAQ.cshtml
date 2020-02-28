@@ -3,21 +3,26 @@
 @{
     ViewData["Title"] = "문의하기";
 }
+<head>
+    <link rel="stylesheet" href="~/css/container.css" />
+</head>
 
-<div id="container" class="faq">
-    <div class="card">
-        <div class="card-body"><h1>@ViewData["Title"]</h1></div>
-    </div>
-    <div class="card" id="postContents">
-        <div class="list-group">
-            @for (int i = 1; i >= 0; i--)
-            {
-                @*핸들러 사용*@
-                <a class="list-group-item list-group-item-action"
-                   asp-page="/FAQ" asp-page-handler="Post" asp-route-postNUmber=1>
-                    문의사항
-                </a>
-            }
+<body>
+    <div id="container" class="faq">
+        <div class="card">
+            <div class="card-body"><h1>@ViewData["Title"]</h1></div>
+        </div>
+        <div class="card" id="postContents">
+            <div class="list-group">
+                @for (int i = 1; i >= 0; i--)
+                {
+                    @*핸들러 사용*@
+                    <a class="list-group-item list-group-item-action"
+                       asp-page="/FAQ" asp-page-handler="Post" asp-route-postNUmber=1>
+                        문의사항
+                    </a>
+                }
+            </div>
         </div>
     </div>
-</div>
+</body>
