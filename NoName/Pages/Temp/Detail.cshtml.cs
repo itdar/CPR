@@ -9,8 +9,10 @@ namespace NoName.Pages.BoardTemp
 {
     public class WriteModel : PageModel
     {
-        public void OnGet()
+
+        public void OnGetPost(int postNumber)
         {
-        }
+            ViewData["PostId"] = postNumber;
+            }
     }
 }
