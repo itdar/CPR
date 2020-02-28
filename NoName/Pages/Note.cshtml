@@ -1,4 +1,63 @@
 ﻿@page
 @model NoName.Pages.NoteModel
 @{
+    ViewData["Title"] = "쪽지함";
 }
+<head>
+    <link rel="stylesheet" href="~/css/container.css" />
+</head>
+
+<body>
+    <div id="container" class="note">
+        <div class="card">
+            <div class="card-body"><h1>@ViewData["Title"]</h1></div>
+        </div>
+        </br>
+        <form method="post">
+            @*글쓰기 페이지가 없는관계로 임시*@
+            <button class="btn btn-outline-dark" asp-area="" asp-page="/Temp/Detail">작성하기</button>
+        </form>
+        </br>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-inbox-tab" data-toggle="tab" href="#nav-inbox" role="tab" aria-controls="nav-inbox" aria-selected="true">받은 쪽지함</a>
+                <a class="nav-item nav-link" id="nav-sent-tab" data-toggle="tab" href="#nav-sent" role="tab" aria-controls="nav-sent" aria-selected="false">보낸 쪽지함</a>
+                <a class="nav-item nav-link" id="nav-saved-tab" data-toggle="tab" href="#nav-saved" role="tab" aria-controls="nav-saved" aria-selected="false">쪽지 보관함</a>
+                <a class="nav-item nav-link" id="nav-banlist-tab" data-toggle="tab" href="#nav-banlist" role="tab" aria-controls="nav-banlist" aria-selected="false">차단 목록</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">...</div>
+            <div class="tab-pane fade" id="nav-sent" role="tabpanel" aria-labelledby="nav-sent-tab">...</div>
+            <div class="tab-pane fade" id="nav-saved" role="tabpanel" aria-labelledby="nav-saved-tab">...</div>
+            <div class="tab-pane fade" id="nav-banlist" role="tabpanel" aria-labelledby="nav-banlist-tab">...</div>
+        </div>
+        @*<div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-2">User</div>
+                <div class="col-4"><input type="text" id="userInput" /></div>
+            </div>
+            <div class="row">
+                <div class="col-2">Message</div>
+                <div class="col-4"><input type="text" id="messageInput" /></div>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-6">
+                    <input type="button" id="sendButton" value="Send Message" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <ul id="messagesList"></ul>
+            </div>*@
+    </div>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+</body>
