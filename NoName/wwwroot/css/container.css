@@ -2,15 +2,26 @@
 #content {
     width: 70%;
     float: left;
-    margin-right: 5%;
+    margin-bottom:70px;
 }
 
 #sidebar {
+    margin-left:10%;
     width: 20%;
     float: right;
 }
 
 #postContents{
     margin-top:10px;
+    border:none;
+}
+
+#aboutMe{
+    width:30%;
+    float:left;
+}
+#boardContents{
+    margin-left:10px;
+    width:50%;
     border:none;
 }

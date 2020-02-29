@@ -1,6 +1,13 @@
 ﻿@page
-@model NoName.Pages.BoardTemp.IndexModel
+@model NoName.Pages.Temp.BoardIndexModel
 @{
+    string[] posts = new string[14];
+    @for (int i = 0; i < 14; i++)
+    {
+        posts[i] = "글" + (i+1) + "번째 입니다";
+
+    }
+
 }
 <head>
     <link rel="stylesheet" href="~/css/container.css" />
@@ -18,22 +25,22 @@
 
             </div>
             <div class="list-group">
-                @for (int i = 0; i < 10; i++)
+                @for (int i = 0; i < 14; i++)
                 {
-                    <a href="#" class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
+                    <a asp-page="/temp/detail" asp-page-handler="Post" asp-route-postNumber="@(i+1)" class="list-group-item list-group-item-action">@posts[i]</a>
                 }
             </div>
         </div>
     </div>
 
-    <div  id="sidebar">
+    <div id="sidebar">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action disabled" style="color:white; background-color:blue;">실시간 인기글</a>
+            <a asp-ar class="list-group-item list-group-item-action disabled" style="color:white; background-color:blue;">실시간 인기글</a>
             <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
 
         </div>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action disabled"style="color:white; background-color:blue; margin-top:10px;">주간 인기글</a>
+            <a href="#" class="list-group-item list-group-item-action disabled" style="color:white; background-color:blue; margin-top:10px;">주간 인기글</a>
             <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
 
         </div>

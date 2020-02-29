@@ -1,7 +1,28 @@
 ﻿@page
 @model FAQModel
 @{
-    ViewData["Title"] = "FAQ";
+    ViewData["Title"] = "문의하기";
 }
-<h1>@ViewData["Title"]</h1>
-<p>문의사항</p>
+<head>
+    <link rel="stylesheet" href="~/css/container.css" />
+</head>
+
+<body>
+    <div id="container" class="faq">
+        <div class="card">
+            <div class="card-body"><h1>@ViewData["Title"]</h1></div>
+        </div>
+        <div class="card" id="postContents">
+            <div class="list-group">
+                @for (int i = 1; i >= 0; i--)
+                {
+                    @*핸들러 사용*@
+                    <a class="list-group-item list-group-item-action"
+                       asp-page="/FAQ" asp-page-handler="Post" asp-route-postNUmber=1>
+                        문의사항
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</body>
