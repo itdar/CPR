@@ -1,0 +1,36 @@
+﻿@page
+@model NoName.Pages.ScaffoldingTest.TableDataJobCRUD.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TableDataJob[0].JobName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TableDataJob) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.JobCode">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.JobCode">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.JobCode">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

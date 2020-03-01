@@ -12,13 +12,13 @@ namespace NoName.Data.DbData
      */
     public class DataContext : DbContext
     {
-        public DbSet<Job> Job { get; set; }
-        public DbSet<JobPage> JobPage { get; set; }
-        public DbSet<Board> Board { get; set; }
-        public DbSet<Post> Post { get; set; }
-        public DbSet<Comment> Comment { get; set; }
-        public DbSet<Salary> Salary { get; set; }
-        public DbSet<Message> Message { get; set; }
+        public DbSet<TableDataJob> Job { get; set; }
+        public DbSet<TableJobPage> JobPage { get; set; }
+        public DbSet<TableBoard> Board { get; set; }
+        public DbSet<TablePost> Post { get; set; }
+        public DbSet<TableComment> Comment { get; set; }
+        public DbSet<TableSalary> Salary { get; set; }
+        public DbSet<TableMessage> Message { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

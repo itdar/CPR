@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using NoName.Data.DbUser;
 
 /**
  * 유저와 관련된 각각의 Table 클래스들
@@ -15,22 +16,7 @@ namespace NoName.Data
      * 직업의 경우는 User 가 다수 직업코드를 가지고 있을 수 있어서
      * 추후에 foreign key 로드 확인해서 1:다수 연관관계로 저장/로드 해야함
      */
-    public class MyJob
-    {
-        public int Id { get; set; }
-        /*
-         * ApplicationUser 와 FK 연결, 하지만 이건 1:1 이고, 
-         * 1:다수 (ApplicationUser 에서 IEnumeration<MyJob> 써야함)
-         */
-        //public ApplicationUser ApplicationUser { get; set; }
 
-    }
-
-    public class UserJobConnector
-    {
-        public int Id { get; set; }
-
-    }
 
     /**
      * 로그인 관련 페이지를 Scaffolding 해서 identity 관련 페이지를 사용하기 때문에
@@ -38,13 +24,13 @@ namespace NoName.Data
      */
     public class ApplicationUser : IdentityUser
     {
-        private ICollection<MyJob> myJobCodes;
+        private ICollection<TableUserJob> myJobCodes;
 
         /*
          * myJobs property
          * 해당 유저가 갖고 있는 직업들 코드번호
          */
-        public ICollection<MyJob> MyJobCodes
+        public ICollection<TableUserJob> MyJobCodes
         {
             get => myJobCodes;
             set => myJobCodes = value; 

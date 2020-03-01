@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data.DbUser;
+using NoName.Data.DbData;
 
 namespace NoName.Data
 {
@@ -13,7 +15,7 @@ namespace NoName.Data
     public class UserContext : IdentityDbContext
     {
         public DbSet<ApplicationUser> User { get; set; }
-        public DbSet<MyJob> MyJob { get; set; }
+        public DbSet<TableUserJob> UserJob { get; set; }
 
         public UserContext(DbContextOptions<UserContext> options)
             : base(options)
@@ -23,6 +25,8 @@ namespace NoName.Data
         public UserContext()
         {
         }
+
+        public DbSet<NoName.Data.DbData.TableDataJob> TableDataJob { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
         //    => options.UseSqlServer("UserDb");

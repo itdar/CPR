@@ -1,9 +1,10 @@
 ﻿@*asp-page-handler 앵커태그 사용시 handler와 id가 addressbar에 드러나는것을 숨기고 '/'로 대체*@
 @page "{handler?}/{id?}"
-@model NoticeModel
+@model NoName.Pages.NoticeModel
+@namespace NoName.Pages
 @{
     ViewData["Title"] = "공지사항";
-    NoticeModel.NoticeBoard[] noticeBoard = new NoticeModel.NoticeBoard[5];
+    NoName.Pages.NoticeModel.NoticeBoard[] noticeBoard = new NoticeModel.NoticeBoard[5];
 
     @for (int i = 0; i < noticeBoard.Length; i++)
     {

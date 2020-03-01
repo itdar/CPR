@@ -36,7 +36,7 @@ namespace NoName
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DataDb")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<UserContext>();
 
             services.AddRazorPages();
