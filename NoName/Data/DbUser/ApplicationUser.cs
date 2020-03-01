@@ -79,6 +79,7 @@ namespace NoName.Data
         public int ManagerNumber { get; set; }
 
 
+
         /*
          * 위의 IdentityUser 에 이미 있어서 따로 안만들고 사용하는 속성들 및 세부내용
          * EmailAddress, PhoneNumber, EmailConfirmed, Id(PK)

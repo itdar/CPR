@@ -33,7 +33,6 @@
     <Folder Include="Migrations\DbData\" />
     <Folder Include="Migrations\DbUser\" />
     <Folder Include="Pages\NewFolder\" />
-    <Folder Include="Pages\ScaffoldingTest\TableUserJobCRUD\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,103 @@
+﻿@page
+@model NoName.CreateModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<h4>TablePost</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TablePost.UserId" class="control-label"></label>
+                <input asp-for="TablePost.UserId" class="form-control" />
+                <span asp-validation-for="TablePost.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.CategoryNumber" class="control-label"></label>
+                <input asp-for="TablePost.CategoryNumber" class="form-control" />
+                <span asp-validation-for="TablePost.CategoryNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.Title" class="control-label"></label>
+                <input asp-for="TablePost.Title" class="form-control" />
+                <span asp-validation-for="TablePost.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.Content" class="control-label"></label>
+                <input asp-for="TablePost.Content" class="form-control" />
+                <span asp-validation-for="TablePost.Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.ViewCount" class="control-label"></label>
+                <input asp-for="TablePost.ViewCount" class="form-control" />
+                <span asp-validation-for="TablePost.ViewCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.LikeCount" class="control-label"></label>
+                <input asp-for="TablePost.LikeCount" class="form-control" />
+                <span asp-validation-for="TablePost.LikeCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.DislikeCount" class="control-label"></label>
+                <input asp-for="TablePost.DislikeCount" class="form-control" />
+                <span asp-validation-for="TablePost.DislikeCount" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TablePost.HasNewComment" /> @Html.DisplayNameFor(model => model.TablePost.HasNewComment)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.CreateTime" class="control-label"></label>
+                <input asp-for="TablePost.CreateTime" class="form-control" />
+                <span asp-validation-for="TablePost.CreateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.InitialContent" class="control-label"></label>
+                <input asp-for="TablePost.InitialContent" class="form-control" />
+                <span asp-validation-for="TablePost.InitialContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.LastModifiedTime" class="control-label"></label>
+                <input asp-for="TablePost.LastModifiedTime" class="form-control" />
+                <span asp-validation-for="TablePost.LastModifiedTime" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TablePost.IsDeleted" /> @Html.DisplayNameFor(model => model.TablePost.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.DeletedTime" class="control-label"></label>
+                <input asp-for="TablePost.DeletedTime" class="form-control" />
+                <span asp-validation-for="TablePost.DeletedTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

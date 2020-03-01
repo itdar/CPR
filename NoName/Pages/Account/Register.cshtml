@@ -27,6 +27,31 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            <!-- 생년월일 -->
+            <div class="form-group">
+                <label asp-for="Input.BirthDate"></label>
+                <input asp-for="Input.BirthDate" class="form-control" />
+                <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+            </div>
+            <!-- 성별 -->
+            <div class="form-group">
+                <label asp-for="Input.Gender"></label>
+                <input asp-for="Input.Gender" class="form-control" />
+                <span asp-validation-for="Input.Gender" class="text-danger"></span>
+            </div>
+            <!-- 직업 -->
+            <div class="form-group">
+                <label asp-for="Input.Job"></label>
+                <input asp-for="Input.Job" class="form-control" />
+                <span asp-validation-for="Input.Job" class="text-danger"></span>
+            </div>
+            <!-- SMS 수신여부 -->
+            <div class="form-group">
+                <label asp-for="Input.ReceiveSMS"></label>
+                <input asp-for="Input.ReceiveSMS" class="form-control" />
+                <span asp-validation-for="Input.ReceiveSMS" class="text-danger"></span>
+            </div>
+
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>

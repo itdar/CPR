@@ -43,7 +43,10 @@ namespace NoName.Areas.Identity.Pages.Account
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
+            
+        /*
+         * Email / Password / PasswordConfirm / BirthDate / Gender / ReceiveSMS / Job
+         */
         public class InputModel
         {
             [Required]
@@ -54,13 +57,26 @@ namespace NoName.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "비밀번호")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "비밀번호 재입력")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [DataType(DataType.DateTime)]
+            [Display(Name = "생년월일")]
+            public DateTime BirthDate { get; set; }
+
+            [Display(Name = "성별")]
+            public int Gender { get; set; }
+
+            [Display(Name = "직업")]
+            public int Job { get; set; }
+
+            [Display(Name = "SMS 수신여부")]
+            public bool ReceiveSMS { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -75,7 +91,13 @@ namespace NoName.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { 
+                    UserName = Input.Email, 
+                    Email = Input.Email,
+                    DateOfBirth = Input.BirthDate,
+                    Gender = Input.Gender,
+                    ReceiveSMS = Input.ReceiveSMS
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
