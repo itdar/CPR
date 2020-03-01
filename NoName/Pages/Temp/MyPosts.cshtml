@@ -3,29 +3,32 @@
 @{
 }
 
-    <head>
-        <link rel="stylesheet" href="~/css/container.css" />
-    </head>
+<head>
+    <link rel="stylesheet" href="~/css/container.css" />
+</head>
 
-    <body>
-        <div id="content">
+<body>
+    <div class="row">
+        <div class="col-lg-9">
+
             <div class="card">
                 <div class="card-body">내가 쓴 글</div>
             </div>
 
             <div class="card" id="postContents">
-               
+
                 <div class="list-group">
                     @for (int i = 0; i < 10; i++)
                     {
-                        <a asp-page="/temp/detail"  class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
+                        <a asp-page="/temp/detail" class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
                     }
                 </div>
             </div>
         </div>
-
-        <div id="sidebar">
-            @*사이드 바 Partial 써서 파일 따로 만듬*@
+        <div class="col-lg-3">
+            @*사이드 바 Partial 써서 파일 따로 만듦*@
             <partial name="Sidebar.cshtml" />
         </div>
-    </body>
+    </div>
+
+</body>

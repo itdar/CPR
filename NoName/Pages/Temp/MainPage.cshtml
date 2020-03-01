@@ -9,7 +9,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-2 bg-success">
+            <div class="col-lg-3 bg-success">
                 <div class="card">
                     <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
@@ -28,22 +28,29 @@
 
                 <div id="banner"></div>
             </div>
-            <div class="col-sm-6 bg-warning">
-                <div class="card">
-                    <div class="list-group" style="width:250px;">
-                        <a asp-page="/temp/BoardIndex" class="list-group-item list-group-item-action" style="color:blue;">자유게시판</a>
-                        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+            <div class="col-lg-6 bg-warning">
+                <div class="row">
+                    <div class="col-lg-6 bg-danger">
+                        <div class="card">
+                            <div class="list-group">
+                                <a asp-page="/temp/BoardIndex" class="list-group-item list-group-item-action" style="color:blue;">자유게시판</a>
+                                <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                                <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="list-group" style="width:250px;margin-top:10px;">
-                        <a href="#" class="list-group-item list-group-item-action" style="color:blue;">정보게시판</a>
-                        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                    <div class="col-lg-6 bg-secondary">
+
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action" style="color:blue;">정보게시판</a>
+                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-4 bg-success">
+            <div class="col-lg-3 bg-success">
                 <partial name="Sidebar.cshtml" />
             </div>
         </div>

@@ -4,7 +4,7 @@
     string[] posts = new string[14];
     @for (int i = 0; i < 14; i++)
     {
-        posts[i] = "글" + (i+1) + "번째 입니다";
+        posts[i] = "글" + (i + 1) + "번째 입니다";
 
     }
 
@@ -14,27 +14,28 @@
 </head>
 
 <body>
-    <div id="content">
-        <div class="card">
-            <div class="card-body">직업게시판</div>
-        </div>
-
-        <div class="card" id="postContents">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" style="margin-top:10px" placeholder="글을 작성하세요">
-
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">직업게시판</div>
             </div>
-            <div class="list-group">
-                @for (int i = 0; i < 14; i++)
-                {
-                    <a asp-page="/temp/detail" asp-page-handler="Post" asp-route-postNumber="@(i+1)" class="list-group-item list-group-item-action">@posts[i]</a>
-                }
+
+            <div class="card" id="postContents">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" style="margin-top:10px" placeholder="글을 작성하세요">
+
+                </div>
+                <div class="list-group">
+                    @for (int i = 0; i < 14; i++)
+                    {
+                        <a asp-page="/temp/detail" asp-page-handler="Post" asp-route-postNumber="@(i+1)" class="list-group-item list-group-item-action">@posts[i]</a>
+                    }
+                </div>
             </div>
         </div>
-    </div>
-
-    <div id="sidebar">
-        @*사이드 바 Partial 써서 파일 따로 만듬*@
-        <partial name="Sidebar.cshtml" />
+        <div class="col-lg-3 bg-danger">
+            @*사이드 바 Partial 써서 파일 따로 만듬*@
+            <partial name="Sidebar.cshtml" />
+        </div>
     </div>
 </body>
