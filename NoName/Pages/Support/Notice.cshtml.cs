@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace NoName.Pages
+namespace NoName.Pages.Support
 {
     public class NoticeModel : PageModel
     {
@@ -61,7 +61,7 @@ namespace NoName.Pages
         //함수 형태를 Async(비동기)로 변경가능.(await 사용)
         public IActionResult OnGetPost()
         {
-            return RedirectToPage("Temp/Detail");
+            return Page();
         }
         public void OnPost()
         {

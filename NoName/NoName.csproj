@@ -37,6 +37,7 @@
 
 
   <ItemGroup>
+    <Folder Include="Areas\" />
     <Folder Include="Migrations\DbData\" />
     <Folder Include="Migrations\DbUser\" />
     <Folder Include="Pages\CRUD\" />

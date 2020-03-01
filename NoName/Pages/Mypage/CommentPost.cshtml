@@ -1,5 +1,5 @@
 ﻿@page
-@model NoName.Pages.Temp.CommentPostModel
+@model NoName.Pages.Mypage.CommentPostModel
 @{
 }
 <head>
@@ -17,7 +17,7 @@
                 <div class="list-group">
                     @for (int i = 0; i < 10; i++)
                     {
-                        <a asp-page="/temp/detail" asp-page-handler="Post" class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
+                        <a asp-page="/Board/Detail" asp-page-handler="Post" class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
                     }
                 </div>
             </div>
@@ -25,7 +25,7 @@
         <div class="col-lg-3">
 
             @*사이드 바 Partial 써서 파일 따로 만듬*@
-            <partial name="Sidebar.cshtml" />
+            <partial name="Sidebar" />
         </div>
     </div>
 </body>

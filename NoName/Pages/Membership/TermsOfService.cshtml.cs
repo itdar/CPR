@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace NoName.Pages
+namespace NoName.Pages.Membership
 {
     public class TermsOfServiceModel : PageModel
     {

@@ -1,5 +1,5 @@
-﻿@page
-@model NoName.Pages.Temp.BoardIndexModel
+﻿@page 
+@model NoName.Pages.Board.IndexModel
 @{
     string[] posts = new string[14];
     @for (int i = 0; i < 14; i++)
@@ -28,14 +28,13 @@
                 <div class="list-group">
                     @for (int i = 0; i < 14; i++)
                     {
-                        <a asp-page="/temp/detail" asp-page-handler="Post" asp-route-postNumber="@(i+1)" class="list-group-item list-group-item-action">@posts[i]</a>
+                        <a asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@(i+1)" class="list-group-item list-group-item-action">@posts[i]</a>
                     }
                 </div>
             </div>
         </div>
         <div class="col-lg-3 bg-danger">
-            @*사이드 바 Partial 써서 파일 따로 만듬*@
-            <partial name="Sidebar.cshtml" />
+            <partial name="Sidebar" />
         </div>
     </div>
 </body>

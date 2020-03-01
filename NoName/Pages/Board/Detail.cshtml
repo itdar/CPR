@@ -1,5 +1,6 @@
-﻿@page
-@model NoName.Pages.BoardTemp.WriteModel
+﻿@*asp-page-handler 앵커태그 사용시 handler와 id가 addressbar에 드러나는것을 숨기고 '/'로 대체*@
+@page "{handler?}/{id?}"
+@model NoName.Pages.Board.DetailModel
 @{
 }
 
@@ -14,9 +15,6 @@
             <div class="card">
                 <div class="card-body">직업게시판</div>
             </div>
-            @*<div class="col-sm-2 bg-success">
-                    <p>Lorem ipsum...</p>
-                </div>*@
             <div class="card">
                 <div class="card-header">
                     글 제목
@@ -34,8 +32,7 @@
             <button>글 목록</button>
         </div>
         <div class="col-lg-3">
-            @*사이드 바 Partial 써서 파일 따로 만듬*@
-            <partial name="Sidebar.cshtml" />
+            <partial name="Sidebar" />
         </div>
     </div>
     @**@

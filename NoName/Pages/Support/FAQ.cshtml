@@ -1,5 +1,5 @@
 ﻿@page
-@model NoName.Pages.FAQModel
+@model NoName.Pages.Support.FAQModel
 @{
     ViewData["Title"] = "문의하기";
 }
@@ -21,7 +21,7 @@
                             {
                                 @*핸들러 사용*@
                                 <a class="list-group-item list-group-item-action"
-                                   asp-page="/FAQ" asp-page-handler="Post" asp-route-postNUmber=1>
+                                   asp-page="Supprt/FAQ" asp-page-handler="Post" asp-route-postNUmber=1>
                                     문의사항
                                 </a>
                             }
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-sm-3 bg-success">
-                    <partial name="Temp/Sidebar" />
+                    <partial name="Sidebar" />
                 </div>
             </div>
         </div>

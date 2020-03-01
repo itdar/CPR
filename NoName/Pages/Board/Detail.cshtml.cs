@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace NoName.Pages.BoardTemp
+namespace NoName.Pages.Board
 {
-    public class WriteModel : PageModel
+    public class DetailModel : PageModel
     {
 
         public void OnGetPost(int postNumber)

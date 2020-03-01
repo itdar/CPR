@@ -1,10 +1,9 @@
-﻿@*asp-page-handler 앵커태그 사용시 handler와 id가 addressbar에 드러나는것을 숨기고 '/'로 대체*@
-@page "{handler?}/{id?}"
-@model NoName.Pages.NoticeModel
-@namespace NoName.Pages
+﻿@page 
+@model NoName.Pages.Support.NoticeModel
+@namespace NoName.Pages.Support
 @{
     ViewData["Title"] = "공지사항";
-    NoName.Pages.NoticeModel.NoticeBoard[] noticeBoard = new NoticeModel.NoticeBoard[5];
+    NoticeModel.NoticeBoard[] noticeBoard = new NoticeModel.NoticeBoard[5];
 
     @for (int i = 0; i < noticeBoard.Length; i++)
     {
@@ -31,7 +30,7 @@
                             {
                                 @*핸들러 사용*@
                                 <a class="list-group-item list-group-item-action"
-                                   asp-page="/Notice" asp-page-handler="Post" asp-route-postNUmber=@noticeBoard[i].PostNumber>
+                                   asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber=@noticeBoard[i].PostNumber>
                                     @noticeBoard[i].Title
                                 </a>
                             }
@@ -39,13 +38,13 @@
                         <div class="card-body text-right">
                             <form method="post">
                                 @*글쓰기 페이지가 없는관계로 임시*@
-                                <button class="btn btn-outline-dark" asp-area="" asp-page="/Temp/Detail">Write</button>
+                                <button class="btn btn-outline-dark" asp-page="/Board/Detail">Write</button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3 bg-success">
-                    <partial name="Temp/Sidebar" />
+                    <partial name="Sidebar" />
                 </div>
             </div>
         </div>

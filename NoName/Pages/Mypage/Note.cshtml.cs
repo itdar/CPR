@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace NoName.Pages
+namespace NoName.Pages.Mypage
 {
     public class NoteModel : PageModel
     {
