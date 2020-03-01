@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using NoName.Data.DbUser;
 
 /**
  * 유저와 관련된 각각의 Table 클래스들
@@ -15,26 +16,7 @@ namespace NoName.Data
      * 직업의 경우는 User 가 다수 직업코드를 가지고 있을 수 있어서
      * 추후에 foreign key 로드 확인해서 1:다수 연관관계로 저장/로드 해야함
      */
-    public class MyJob
-    {
-        public int Id { get; set; }
-        /*
-         * 다대다 관계 (User - Job) 를 위한 커넥터 역할 Table
-         */
-        public UserJobConnector UserConnector { get; set; }
-        /*
-         * ApplicationUser 와 FK 연결, 하지만 이건 1:1 이고, 
-         * 1:다수 (ApplicationUser 에서 IEnumeration<MyJob> 써야함)
-         */
-        //public ApplicationUser ApplicationUser { get; set; }
 
-    }
-
-    public class UserJobConnector
-    {
-        public int Id { get; set; }
-
-    }
 
     /**
      * 로그인 관련 페이지를 Scaffolding 해서 identity 관련 페이지를 사용하기 때문에
@@ -42,10 +24,17 @@ namespace NoName.Data
      */
     public class ApplicationUser : IdentityUser
     {
+        private ICollection<TableUserJob> myJobCodes;
+
         /*
-         * 다대다 관계 (User - Job) 를 위한 커넥터 역할 Table
+         * myJobs property
+         * 해당 유저가 갖고 있는 직업들 코드번호
          */
-        public UserJobConnector JobConnector { get; set; }
+        public ICollection<TableUserJob> MyJobCodes
+        {
+            get => myJobCodes;
+            set => myJobCodes = value; 
+        }
         /*
          * 계정 생성 날짜
          */
@@ -54,7 +43,7 @@ namespace NoName.Data
         /*
          * 하루에 올라갈 수 있는 방문수 최대는 1
          */
-        public int visitCount { get; set; }
+        public int VisitCount { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 
@@ -64,6 +53,7 @@ namespace NoName.Data
          * SMS 관련 수신 여부 (필요한지?)
          */
         public bool ReceiveSMS { get; set; }
+        
 
         /*
          * 인증 서류 업로드된 파일들 서버에서의 경로
