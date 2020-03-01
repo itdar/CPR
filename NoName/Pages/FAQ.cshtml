@@ -8,20 +8,29 @@
 </head>
 
 <body>
-    <div id="content" class="faq">
-        <div class="card">
-            <div class="card-body"><h1>@ViewData["Title"]</h1></div>
-        </div>
-        <div class="card" id="postContents">
-            <div class="list-group">
-                @for (int i = 1; i >= 0; i--)
-                {
-                    @*핸들러 사용*@
-                    <a class="list-group-item list-group-item-action"
-                       asp-page="/FAQ" asp-page-handler="Post" asp-route-postNUmber=1>
-                        문의사항
-                    </a>
-                }
+    <div class="faq">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8 bg-warning">
+                    <div class="card">
+                        <div class="card-body"><h1>@ViewData["Title"]</h1></div>
+                    </div>
+                    <div class="card" id="postContents">
+                        <div class="list-group">
+                            @for (int i = 1; i >= 0; i--)
+                            {
+                                @*핸들러 사용*@
+                                <a class="list-group-item list-group-item-action"
+                                   asp-page="/FAQ" asp-page-handler="Post" asp-route-postNUmber=1>
+                                    문의사항
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 bg-success">
+                    <partial name="Temp/Sidebar" />
+                </div>
             </div>
         </div>
     </div>

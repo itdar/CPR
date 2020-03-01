@@ -16,33 +16,37 @@
         noticeBoard[i].CreateTime = DateTime.Now;
     }
 }
-<head>
-    <link rel="stylesheet" href="~/css/container.css" />
-</head>
-
 <body>
-    <div id="content">
-        <div class="card">
-            <div class="card-body">@ViewData["Title"]</div>
-        </div>
-        <div class="card" id="postContents">
-            <div class="list-group">
-                @for (int i = noticeBoard.Length - 1; i >= 0; i--)
-                {
-                    @*핸들러 사용*@
-                    <a class="list-group-item list-group-item-action"
-                       asp-page="/Notice" asp-page-handler="Post" asp-route-postNUmber=@noticeBoard[i].PostNumber>
-                        @noticeBoard[i].Title
-                    </a>
-                }
-            </div>
-            <div class="card-body text-right">
-                <form method="post">
-                    @*글쓰기 페이지가 없는관계로 임시*@
-                    <button class="btn btn-outline-dark" asp-area="" asp-page="/Temp/Detail">Write</button>
-                </form>
+    <div class="notice">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8 bg-warning">
+                    <div class="card">
+                        <div class="card-body">@ViewData["Title"]</div>
+                    </div>
+                    <div class="card" id="postContents">
+                        <div class="list-group">
+                            @for (int i = noticeBoard.Length - 1; i >= 0; i--)
+                            {
+                                @*핸들러 사용*@
+                                <a class="list-group-item list-group-item-action"
+                                   asp-page="/Notice" asp-page-handler="Post" asp-route-postNUmber=@noticeBoard[i].PostNumber>
+                                    @noticeBoard[i].Title
+                                </a>
+                            }
+                        </div>
+                        <div class="card-body text-right">
+                            <form method="post">
+                                @*글쓰기 페이지가 없는관계로 임시*@
+                                <button class="btn btn-outline-dark" asp-area="" asp-page="/Temp/Detail">Write</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 bg-success">
+                    <partial name="Temp/Sidebar" />
+                </div>
             </div>
         </div>
     </div>
-    <partial name="SideBar" />
 </body>
