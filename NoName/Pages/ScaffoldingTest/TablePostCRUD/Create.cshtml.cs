@@ -36,7 +36,7 @@ namespace NoName
                 return Page();
             }
 
-            DataDbManager.GetInstance().DataDB.
+            //DataDbManager.GetInstance().DataDB. 
 
             _context.Post.Add(TablePost);
             await _context.SaveChangesAsync();

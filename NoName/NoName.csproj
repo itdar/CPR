@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\**" />
+    <Compile Remove="Pages\NewFolder\**" />
+    <Content Remove="Areas\**" />
+    <Content Remove="Pages\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <EmbeddedResource Remove="Pages\NewFolder\**" />
+    <None Remove="Areas\**" />
+    <None Remove="Pages\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Data\DbUser\Create.cshtml.cs" />
   </ItemGroup>
 
@@ -32,7 +43,6 @@
   <ItemGroup>
     <Folder Include="Migrations\DbData\" />
     <Folder Include="Migrations\DbUser\" />
-    <Folder Include="Pages\NewFolder\" />
   </ItemGroup>
 
 </Project>
