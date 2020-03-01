@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace NoName.Pages
 {
-    public class ServiceAgreementModel : PageModel
+    public class TermsOfServiceModel : PageModel
     {
-        private readonly ILogger<ServiceAgreementModel> _logger;
+        private readonly ILogger<TermsOfServiceModel> _logger;
 
-        public ServiceAgreementModel(ILogger<ServiceAgreementModel> logger)
+        public TermsOfServiceModel(ILogger<TermsOfServiceModel> logger)
         {
             _logger = logger;
         }
