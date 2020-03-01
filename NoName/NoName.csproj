@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Board\TableUserJobCRUD\**" />
+    <Content Remove="Pages\Board\TableUserJobCRUD\**" />
+    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />
+    <None Remove="Pages\Board\TableUserJobCRUD\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Data\DbUser\Create.cshtml.cs" />
   </ItemGroup>
 
@@ -32,8 +39,51 @@
   <ItemGroup>
     <Folder Include="Migrations\DbData\" />
     <Folder Include="Migrations\DbUser\" />
-    <Folder Include="Pages\NewFolder\" />
-    <Folder Include="Pages\ScaffoldingTest\TableUserJobCRUD\" />
+    <Folder Include="Pages\CRUD\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Pages\CRUD\TableDataJobCRUD\Create.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableDataJobCRUD\Delete.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableDataJobCRUD\Details.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableDataJobCRUD\Edit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableDataJobCRUD\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableJobPageCRUD\Create.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableJobPageCRUD\Delete.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableJobPageCRUD\Details.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableJobPageCRUD\Edit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Pages\CRUD\TableJobPageCRUD\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
