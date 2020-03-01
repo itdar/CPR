@@ -27,13 +27,13 @@
         </div>
         <div class="card" id="postContents">
             <div class="list-group">
-                @for (int i = noticeBoard.Length - 1; i >= 0 ; i--)
+                @for (int i = noticeBoard.Length - 1; i >= 0; i--)
                 {
                     @*핸들러 사용*@
-                <a class="list-group-item list-group-item-action"
-                    asp-page="/Notice" asp-page-handler="Post" asp-route-postNUmber=@noticeBoard[i].PostNumber>
-                    @noticeBoard[i].Title
-                </a>
+                    <a class="list-group-item list-group-item-action"
+                       asp-page="/Notice" asp-page-handler="Post" asp-route-postNUmber=@noticeBoard[i].PostNumber>
+                        @noticeBoard[i].Title
+                    </a>
                 }
             </div>
             <div class="card-body text-right">
@@ -44,22 +44,5 @@
             </div>
         </div>
     </div>
-
-    <div id="sidebar">
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action disabled" style="color:white; background-color:blue;">실시간 인기글</a>
-            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action disabled" style="color:white; background-color:blue; margin-top:10px;">주간 인기글</a>
-            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action disabled" style="color:white; background-color:blue; margin-top:10px;">HOT 게시글</a>
-            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-
-        </div>
-    </div>
+    <partial name="SideBar" />
 </body>
