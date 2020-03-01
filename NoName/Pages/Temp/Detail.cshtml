@@ -9,32 +9,41 @@
 </head>
 
 <body>
-    <div id="content">
+    <div>
         <div class="card">
             <div class="card-body">직업게시판</div>
         </div>
-
-        <div class="card" id="postContents">
-            <div class="card">
-                <div class="card-header">
-                    글 제목
+        </br>
+        <div class="container-fluid">
+            <div class="row">
+                @*<div class="col-sm-2 bg-success">
+                    <p>Lorem ipsum...</p>
+                </div>*@
+                <div class="col-sm-8 bg-warning">
+                    <div class="card" id="postContents">
+                        <div class="card">
+                            <div class="card-header">
+                                글 제목
+                            </div>
+                            <div class=" card-body" id="post-context" style="height:200px;">
+                                @ViewData["postId"];
+                            </div>
+                            <div class="card-footer">
+                                <form class="form-inline" id="search">
+                                    <input class="form-control mr-sm-2" id="writeComment" type="text" placeholder="댓글을 입력하세요" />
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">쓰기</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <button>글 목록</button>
                 </div>
-                <div class=" card-body" id="post-context" style="height:200px;">
-                    @ViewData["postId"];
-                </div>
-                <div class="card-footer">
-                    <form class="form-inline" id="search">
-                        <input class="form-control mr-sm-2" id="writeComment" type="text" placeholder="댓글을 입력하세요" />
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">쓰기</button>
-                    </form>
+                <div class="col-sm-4 bg-success">
+                    @*사이드 바 Partial 써서 파일 따로 만듬*@
+                    <partial name="Sidebar.cshtml" />
                 </div>
             </div>
         </div>
-        <button>글 목록</button>
-    </div>
-
-    <div id="sidebar">
-        @*사이드 바 Partial 써서 파일 따로 만듬*@
-        <partial name="Sidebar.cshtml" />
+        @**@
     </div>
 </body>

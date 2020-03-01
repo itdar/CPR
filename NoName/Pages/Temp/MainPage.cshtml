@@ -7,46 +7,45 @@
 </head>
 
 <body>
-    <div id="content">
-        <div  id="aboutMe">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align:center">내 정보</h5>
-                    <p class="card-text" style="text-align:center">홍길동</p>
-                    <p class="card-text" style="text-align:center">hgd111</p>
-                    <a class="btn btn-dark" asp-area="" asp-page="/Index" style="float:right;width:6rem; border:thin;">로그아웃</a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 bg-success">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align:center">내 정보</h5>
+                        <p class="card-text" style="text-align:center">홍길동</p>
+                        <p class="card-text" style="text-align:center">hgd111</p>
+                        <a class="btn btn-dark" asp-area="" asp-page="/Index" style="float:right;width:6rem; border:thin;">로그아웃</a>
+                    </div>
+                </div>
+
+                <div class="list-group" style="margin-top:10px">
+                    <a class="list-group-item list-group-item-action" asp-area="" asp-page="/Temp/MyPosts">내가 쓴 글</a>
+                    <a class="list-group-item lis   t-group-item-action" asp-area="" asp-page="/Temp/CommentPost">댓글 단 글</a>
+                    <a class="list-group-item list-group-item-action" asp-area="" asp-page="/Temp/MyScrap">스크랩</a>
+                </div>
+
+                <div id="banner"></div>
+            </div>
+            <div class="col-sm-6 bg-warning">
+                <div class="card">
+                    <div class="list-group" style="width:250px;">
+                        <a asp-page="/temp/BoardIndex" class="list-group-item list-group-item-action" style="color:blue;">자유게시판</a>
+                        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                    </div>
+                    <div class="list-group" style="width:250px;margin-top:10px;">
+                        <a href="#" class="list-group-item list-group-item-action" style="color:blue;">정보게시판</a>
+                        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="list-group" style="margin-top:10px">
-                <a class="list-group-item list-group-item-action" asp-area="" asp-page="/Temp/MyPosts">내가 쓴 글</a>
-                <a class="list-group-item list-group-item-action" asp-area="" asp-page="/Temp/CommentPost">댓글 단 글</a>
-                <a class="list-group-item list-group-item-action" asp-area="" asp-page="/Temp/MyScrap">스크랩</a>
+            <div class="col-sm-4 bg-success">
+                <partial name="Sidebar.cshtml" />
             </div>
         </div>
-        <div class="card" id="boardContents">
-            <div id="banner">
-
-            </div>
-            <div class="list-group" style="width:250px;">
-                <a asp-page="/temp/BoardIndex" class="list-group-item list-group-item-action" style="color:blue;">자유게시판</a>
-                <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-            </div>
-            <div asp-page="/temp/BoardIndex" class="list-group" style="width:250px;margin-top:10px;">
-                <a href="#" class="list-group-item list-group-item-action" style="color:blue;">정보게시판</a>
-                <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-            </div>
-        </div>
-
-
-    </div>
-
-    <div id="sidebar">
-        @*사이드 바 Partial 써서 파일 따로 만듬*@
-        <partial name="Sidebar.cshtml" />
-
     </div>
 </body>
