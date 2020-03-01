@@ -6,14 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\Board\TableUserJobCRUD\**" />
-    <Content Remove="Pages\Board\TableUserJobCRUD\**" />
-    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />
-    <None Remove="Pages\Board\TableUserJobCRUD\**" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Data\DbUser\Create.cshtml.cs" />
+    <Compile Remove="Areas\**" />
+    <Compile Remove="Pages\NewFolder\**" />    <Compile Remove="Pages\Board\TableUserJobCRUD\**" />
+    <Content Remove="Pages\Board\TableUserJobCRUD\**" />    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />
+    <None Remove="Pages\Board\TableUserJobCRUD\**" />    <Compile Remove="Data\DbUser\Create.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>

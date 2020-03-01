@@ -71,7 +71,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="NoName.Data.DbData.TableMessage">
-    <Position X="13" Y="0.5" Width="2" />
+    <Position X="3" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIgAAAAAAAAAAAAAAAAEBAAAAAAAABAAAAEA=</HashCode>
       <FileName>Data\DbData\TableMessage.cs</FileName>

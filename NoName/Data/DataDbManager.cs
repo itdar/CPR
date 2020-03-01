@@ -9,7 +9,7 @@ namespace NoName.Data
 	/// </summary>
 	public class DataDbManager
 	{
-		private DataDbManager instance;
+		private static DataDbManager instance;
 
 		public DataContext DataDB { get; }
 
@@ -18,7 +18,7 @@ namespace NoName.Data
 			DataDB = new DataContext();
 		}
 
-		public DataDbManager GetInstance()
+		public static DataDbManager GetInstance()
 		{
 			if (instance == null)
 				instance = new DataDbManager();
