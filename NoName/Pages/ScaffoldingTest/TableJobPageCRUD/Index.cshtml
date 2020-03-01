@@ -1,0 +1,38 @@
+﻿@page
+@model NoName.Pages.ScaffoldingTest.TableJobPageCRUD.IndexModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TableJobPage) {
+        <tr>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.JobPageId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.JobPageId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.JobPageId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
