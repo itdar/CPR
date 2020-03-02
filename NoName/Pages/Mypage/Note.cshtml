@@ -22,132 +22,87 @@
                         <a class="nav-item nav-link active" id="nav-inbox-tab" data-toggle="tab" href="#nav-inbox" role="tab" aria-controls="nav-inbox" aria-selected="true">받은 쪽지함</a>
                         <a class="nav-item nav-link" id="nav-sent-tab" data-toggle="tab" href="#nav-sent" role="tab" aria-controls="nav-sent" aria-selected="false">보낸 쪽지함</a>
                         <a class="nav-item nav-link" id="nav-saved-tab" data-toggle="tab" href="#nav-saved" role="tab" aria-controls="nav-saved" aria-selected="false">보관한 쪽지함</a>
-                        <a class="nav-item nav-link" id="nav-banlist-tab" data-toggle="tab" href="#nav-banlist" role="tab" aria-controls="nav-banlist" aria-selected="false">차단 목록</a>
                     </div>
                 </nav>
                 @*코드 중복을 없애고 싶었는데 잘안됨...20.2.29
                     Grid System 적용하여 테이블 크기 고정 해야함*@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">
-                        <table class="table table-hover">
+                        <table class="table table-bordered table-hover">
+                            <colgroup>
+                                <col width="10%" />
+                                <col width="60%" />
+                                <col width="20%" />
+                                <col width="10%" />
+                            </colgroup>
                             <thead>
                                 <tr>
-                                    <th>번호</th>
-                                    <th>제목</th>
-                                    <th>보낸 사람</th>
-                                    <th>날짜</th>
+                                    <th class="text-sm-center">#</th>
+                                    <th class="text-sm-center">제목</th>
+                                    <th class="text-sm-center">보낸 사람</th>
+                                    <th class="text-sm-center">날짜</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>코로나</td>
-                                    <td>형수</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>19</td>
-                                    <td>형진</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>제발 사라져</td>
-                                    <td>수환</td>
-                                    <td>@DateTime.Now</td>
+                                    <td class="text-sm-center">1</t>
+                                    <td class="text-sm-center">코로나3</td>
+                                    <td class="text-sm-center">형수</td>
+                                    <td class="text-sm-center">@DateTime.Now.ToString("MM.dd")</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="tab-pane fade" id="nav-sent" role="tabpanel" aria-labelledby="nav-sent-tab">
-                        <table class="table table-hover">
+                        <table class="table table-bordered table-hover">
+                            @*Grid형식으로 사용시 Table border가 overlap되는 현상때문에
+                                colgroup으로 테이블 고정. 추후 여유시 보완*@
+                            <colgroup>
+                                <col width="10%" />
+                                <col width="60%" />
+                                <col width="20%" />
+                                <col width="10%" />
+                            </colgroup>
                             <thead>
                                 <tr>
-                                    <th>번호</th>
-                                    <th>제목</th>
-                                    <th>날짜</th>
+                                    <th class="text-sm-center">#</th>
+                                    <th class="text-sm-center">제목</th>
+                                    <th class="text-sm-center">보낸 사람</th>
+                                    <th class="text-sm-center">날짜</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>코로나</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>19</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>제발 사라져</td>
-                                    <td>@DateTime.Now</td>
+                                    <td class="text-sm-center">1</t>
+                                    <td class="text-sm-center">코로나2</td>
+                                    <td class="text-sm-center">형수</td>
+                                    <td class="text-sm-center">@DateTime.Now.ToString("MM.dd")</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="tab-pane fade" id="nav-saved" role="tabpanel" aria-labelledby="nav-saved-tab">
-                        <table class="table table-hover">
+                        <table class="table table-bordered table-hover">
+                            <colgroup>
+                                <col width="10%" />
+                                <col width="60%" />
+                                <col width="20%" />
+                                <col width="10%" />
+                            </colgroup>
                             <thead>
                                 <tr>
-                                    <th>번호</th>
-                                    <th>제목</th>
-                                    <th>보낸 사람</th>
-                                    <td>날짜</td>
+                                    <th class="text-sm-center">#</th>
+                                    <th class="text-sm-center">제목</th>
+                                    <th class="text-sm-center">보낸 사람</th>
+                                    <th class="text-sm-center">날짜</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>코로나</td>
-                                    <td>형수</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>19</td>
-                                    <td>형진</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>제발 사라져</td>
-                                    <td>수환</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane fade" id="nav-banlist" role="tabpanel" aria-labelledby="nav-banlist-tab">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>메모</th>
-                                    <th>아이디</th>
-                                    <th>날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>욕함</td>
-                                    <td>익명</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>노잼</td>
-                                    <td>익명</td>
-                                    <td>@DateTime.Now</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>광고</td>
-                                    <td>익명</td>
-                                    <td>@DateTime.Now</td>
+                                    <td class="text-sm-center">1</t>
+                                    <td class="text-sm-center">코로나1</td>
+                                    <td class="text-sm-center">형수</td>
+                                    <td class="text-sm-center">@DateTime.Now.ToString("MM.dd")</td>
                                 </tr>
                             </tbody>
                         </table>
