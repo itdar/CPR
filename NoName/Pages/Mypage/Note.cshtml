@@ -3,6 +3,10 @@
 @namespace NoName.Pages
 @{
     ViewData["Title"] = "쪽지함";
+    string number = "1";
+    string content = "코로나3";
+    string name = "형수";
+    string today = DateTime.Now.ToString("MM.dd");
 }
 <body>
     <div class="row">
@@ -44,12 +48,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-sm-center">1</t>
-                                    <td class="text-sm-center">코로나3</td>
-                                    <td class="text-sm-center">형수</td>
-                                    <td class="text-sm-center">@DateTime.Now.ToString("MM.dd")</td>
-                                </tr>
+                                @for (int i = 0; i < 1; i++)
+                                {
+                                    @Html.Raw("<tr>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
+                                    @Html.Raw("</tr>");
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -72,12 +79,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-sm-center">1</t>
-                                    <td class="text-sm-center">코로나2</td>
-                                    <td class="text-sm-center">형수</td>
-                                    <td class="text-sm-center">@DateTime.Now.ToString("MM.dd")</td>
-                                </tr>
+                                @for (int i = 0; i < 1; i++)
+                                {
+                                    @Html.Raw("<tr>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
+                                    @Html.Raw("</tr>");
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -98,12 +108,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-sm-center">1</t>
-                                    <td class="text-sm-center">코로나1</td>
-                                    <td class="text-sm-center">형수</td>
-                                    <td class="text-sm-center">@DateTime.Now.ToString("MM.dd")</td>
-                                </tr>
+                                @for (int i = 0; i < 1; i++)
+                                {
+                                    @Html.Raw("<tr>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
+                                    @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
+                                    @Html.Raw("</tr>");
+                                }
                             </tbody>
                         </table>
                     </div>
