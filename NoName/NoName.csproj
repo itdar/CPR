@@ -8,8 +8,9 @@
   <ItemGroup>
 
     <Compile Remove="Areas\**" />
-    <Compile Remove="Pages\NewFolder\**" />    <Compile Remove="Pages\Board\TableUserJobCRUD\**" />
-    <Content Remove="Pages\Board\TableUserJobCRUD\**" />    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />
+    <Compile Remove="Pages\NewFolder\**" />    <Compile Remove="Pages\Board\TableUserJobCRUD\**" />    <Content Remove="Areas\**" />
+    <Content Remove="Pages\Board\TableUserJobCRUD\**" />
+    <EmbeddedResource Remove="Areas\**" />    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />    <None Remove="Areas\**" />
     <None Remove="Pages\Board\TableUserJobCRUD\**" />    <Compile Remove="Data\DbUser\Create.cshtml.cs" />
   </ItemGroup>
 
@@ -34,7 +35,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\" />
     <Folder Include="Migrations\DbData\" />
     <Folder Include="Migrations\DbUser\" />
     <Folder Include="Pages\CRUD\" />

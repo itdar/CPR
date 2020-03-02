@@ -7,7 +7,7 @@ using NoName.Data.DbData;
 /// </summary>
 public class UserDbManager
 {
-	private UserDbManager instance;
+	private static UserDbManager instance;
 
 	public UserContext UserDB { get; }
 
@@ -16,10 +16,10 @@ public class UserDbManager
 		this.UserDB = new UserContext();
 	}
 
-	public UserDbManager GetInstance()
+	public static UserDbManager GetInstance()
 	{
-		if (this.instance == null)
-			this.instance = new UserDbManager();
-		return this.instance;
+		if (instance == null)
+			instance = new UserDbManager();
+		return instance;
 	}
 }

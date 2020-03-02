@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using NoName.Data;
 
-namespace NoName.Areas.Identity.Pages.Account
+namespace NoName.Pages.Account
 {
     [AllowAnonymous]
     public class ForgotPasswordModel : PageModel

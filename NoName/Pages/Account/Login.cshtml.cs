@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NoName.Data;
 
-namespace NoName.Areas.Identity.Pages.Account
+namespace NoName.Pages.Account
 {
     [AllowAnonymous]
     public class LoginModel : PageModel
