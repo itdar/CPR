@@ -20,12 +20,18 @@
                 <div class="card">
                     <div class="card-body">직업게시판</div>
                 </div>
-
-                <div class="card" id="postContents">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" style="margin-top:10px" placeholder="글을 작성하세요">
-
+                </br>
+                <form method="post">
+                    <input type="text" class="form-control" placeholder="글을 작성하세요"
+                           data-toggle="collapse" data-target="#collapseNote">
+                    @*placeholder line break code = &#13;&#10;*@
+                    <div id="collapseNote" class="form-group collapse">
+                        <textarea class="form-control"
+                                  placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요."
+                                  id="note" rows="7"></textarea>
                     </div>
+                </form>
+                <div class="card" id="postContents">
                     <div class="list-group">
                         @for (int i = 0; i < 14; i++)
                         {
