@@ -9,116 +9,132 @@
     string today = DateTime.Now.ToString("MM.dd");
 }
 <body>
+    @*레이아웃에 의미부여를 위해 설정. 기능X*@
     <div class="note">
+        @*The .container-fluid class provides a full width container, spanning the entire width of the viewport*@
         <div class="container-fluid">
+            @*Bootstrap 4 Grid System
+                컨테이너를 행과 열로 나누어 주며 반응형으로 만들어 줌
+                1개의 행에 12개의 열로 구분
+                3:9 비율로 나눌시 항목에 각각 col-3, col-9 클래스 사용
+                sm-md-lg-xl => 반응형이기 때문에 해상도의 기준이 정해져야 특정값에서 변하므로 그 기준을 잡아주기 위한 값 col-*-**@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="card">
                         <div class="card-body"><h1>@ViewData["Title"]</h1></div>
                     </div>
-                </br>
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-inbox-tab" data-toggle="tab" href="#nav-inbox" role="tab" aria-controls="nav-inbox" aria-selected="true">받은 쪽지함</a>
-                        <a class="nav-item nav-link" id="nav-sent-tab" data-toggle="tab" href="#nav-sent" role="tab" aria-controls="nav-sent" aria-selected="false">보낸 쪽지함</a>
-                        <a class="nav-item nav-link" id="nav-keep-tab" data-toggle="tab" href="#nav-keep" role="tab" aria-controls="nav-keep" aria-selected="false">보관한 쪽지함</a>
-                    </div>
-                </nav>
-                @*코드 중복을 없애고 싶었는데 잘안됨...20.2.29
-        Grid System 적용하여 테이블 크기 고정 해야함*@
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">
-                        <table class="table table-bordered table-hover">
-                            <colgroup>
-                                <col width="10%" />
-                                <col width="60%" />
-                                <col width="20%" />
-                                <col width="10%" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th class="text-sm-center">#</th>
-                                    <th class="text-sm-center">제목</th>
-                                    <th class="text-sm-center">보낸 사람</th>
-                                    <th class="text-sm-center">날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (int i = 0; i < 1; i++)
-                                {
-                                    @Html.Raw("<tr>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
-                                    @Html.Raw("</tr>");
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane fade" id="nav-sent" role="tabpanel" aria-labelledby="nav-sent-tab">
-                        <table class="table table-bordered table-hover">
-                            @*Grid형식으로 사용시 Table border가 overlap되는 현상때문에
-                    colgroup으로 테이블 고정. 추후 여유시 보완*@
-                            <colgroup>
-                                <col width="10%" />
-                                <col width="60%" />
-                                <col width="20%" />
-                                <col width="10%" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th class="text-sm-center">#</th>
-                                    <th class="text-sm-center">제목</th>
-                                    <th class="text-sm-center">보낸 사람</th>
-                                    <th class="text-sm-center">날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (int i = 0; i < 1; i++)
-                                {
-                                    @Html.Raw("<tr>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
-                                    @Html.Raw("</tr>");
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane fade" id="nav-keep" role="tabpanel" aria-labelledby="nav-keep-tab">
-                        <table class="table table-bordered table-hover">
-                            <colgroup>
-                                <col width="10%" />
-                                <col width="60%" />
-                                <col width="20%" />
-                                <col width="10%" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th class="text-sm-center">#</th>
-                                    <th class="text-sm-center">제목</th>
-                                    <th class="text-sm-center">보낸 사람</th>
-                                    <th class="text-sm-center">날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (int i = 0; i < 1; i++)
-                                {
-                                    @Html.Raw("<tr>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
-                                    @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
-                                    @Html.Raw("</tr>");
-                                }
-                            </tbody>
-                        </table>
+                    </br>
+                    <nav>
+                        @*탭리스트 생성*@
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-inbox-tab" data-toggle="tab" href="#nav-inbox" role="tab" aria-controls="nav-inbox" aria-selected="true">받은 쪽지함</a>
+                            <a class="nav-item nav-link" id="nav-sent-tab" data-toggle="tab" href="#nav-sent" role="tab" aria-controls="nav-sent" aria-selected="false">보낸 쪽지함</a>
+                            <a class="nav-item nav-link" id="nav-keep-tab" data-toggle="tab" href="#nav-keep" role="tab" aria-controls="nav-keep" aria-selected="false">보관한 쪽지함</a>
+                        </div>
+                    </nav>
+                    @*Grid형식으로 사용시 Table border가 overlap되는 현상때문에
+                colgroup으로 테이블 고정. 추후 여유시 보완*@
+                    @*받은 쪽지함의 탭 컨텐츠 생성*@
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">
+                            @*테이블 생성*@
+                            <table class="table table-bordered table-hover">
+                                @*탭 리스트의 크기를 고정해줌*@
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="60%" />
+                                    <col width="20%" />
+                                    <col width="10%" />
+                                </colgroup>
+                                <thead>
+                                    @*TableRow*@
+                                    <tr>
+                                        @*TalbeHead*@
+                                        <th class="text-sm-center">#</th>
+                                        <th class="text-sm-center">제목</th>
+                                        <th class="text-sm-center">보낸 사람</th>
+                                        <th class="text-sm-center">날짜</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*반복문으로 html문법 만듬
+                                        TableData*@
+                                    @for (int i = 0; i < 1; i++)
+                                    {
+                                        @Html.Raw("<tr>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
+                                        @Html.Raw("</tr>");
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        @*보낸 쪽지함의 탭 컨텐츠 생성*@
+                        <div class="tab-pane fade" id="nav-sent" role="tabpanel" aria-labelledby="nav-sent-tab">
+                            <table class="table table-bordered table-hover">
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="60%" />
+                                    <col width="20%" />
+                                    <col width="10%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class="text-sm-center">#</th>
+                                        <th class="text-sm-center">제목</th>
+                                        <th class="text-sm-center">보낸 사람</th>
+                                        <th class="text-sm-center">날짜</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < 1; i++)
+                                    {
+                                        @Html.Raw("<tr>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
+                                        @Html.Raw("</tr>");
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        @*보관한 쪽지함의 탭 컨텐츠 생성*@
+                        <div class="tab-pane fade" id="nav-keep" role="tabpanel" aria-labelledby="nav-keep-tab">
+                            <table class="table table-bordered table-hover">
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="60%" />
+                                    <col width="20%" />
+                                    <col width="10%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class="text-sm-center">#</th>
+                                        <th class="text-sm-center">제목</th>
+                                        <th class="text-sm-center">보낸 사람</th>
+                                        <th class="text-sm-center">날짜</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < 1; i++)
+                                    {
+                                        @Html.Raw("<tr>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
+                                        @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
+                                        @Html.Raw("</tr>");
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <div class="col-lg-3 bg-danger">
+                    @*부분 영역으로 Sidebar.cshtml 호출*@
                     <partial name="Sidebar" />
                 </div>
             </div>
