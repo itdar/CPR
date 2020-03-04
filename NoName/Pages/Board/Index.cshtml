@@ -1,16 +1,18 @@
-﻿@page 
+﻿@page
+
 @model NoName.Pages.Board.IndexModel
 @{
     string[] posts = new string[14];
     @for (int i = 0; i < 14; i++)
     {
         posts[i] = "글" + (i + 1) + "번째 입니다";
-
     }
-
 }
 <head>
     <link rel="stylesheet" href="~/css/container.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    @*사용안됨<link rel="stylesheet" href="~/lib/jquery/dist/jquery.min.js" />*@
 </head>
 
 <body>
@@ -24,29 +26,41 @@
                 @*text, textarea, button 세가지 input을 하나의 구조로 묶기위한 form-group*@
                 <form class="form-group" method="post">
                     @*text타입의 input, data-toggle로 확장-축소 가능, data-target으로 기능 적용할 태그 선택*@
-                    <input type="text" class="form-control" placeholder="글을 작성하세요" data-toggle="collapse" data-target="#collapseNote">
+                    <input type="text" id="postTitle" class="form-control" placeholder="글을 작성하세요">
                     @*placeholder line break code = &#13;&#10;*@
-                    <div id="collapseNote" class="form-group collapse">
-                        <textarea class="form-control" placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요." id="note" rows="7"></textarea>
+                    <div id="collapseArea" class="form-group collapse">
+                        <textarea class="form-control" placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요." rows="7"></textarea>
                     </div>
-                    <div id="collapseNote" class="form-group collapse">
+                    <div id="collapseBtn" class="form-group collapse">
                         <row>
-                            <button type="button" class="btn col-sm-12 btn-light" data-toggle="collapse" data-target="#collapseNote">게시</button>
+                            <button id="postBtn" type="button" class="btn col-sm-12 btn-light" @*data-toggle="collapse" data-target="#collapseNote"*@>게시</button>
                         </row>
                     </div>
-            </form>
-            <div class="card" id="postContents">
-                <div class="list-group">
-                    @for (int i = 0; i < 14; i++)
-                    {
-                        <a asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@(i+1)" class="list-group-item list-group-item-action">@posts[i]</a>
-                    }
+                </form>
+                <div class="card" id="postContents">
+                    <div class="list-group">
+                        @for (int i = 0; i < 14; i++)
+                        {
+                            <a asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@(i+1)" class="list-group-item list-group-item-action">@posts[i]</a>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
             <div class="col-lg-3 bg-danger">
                 <partial name="Sidebar" />
             </div>
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function () {
+        $("#postTitle").click(function () {
+            $("#collapseArea").collapse('show');
+            $("#collapseBtn").collapse('show');
+        });
+        $("#postBtn").click(function () {
+            $("#collapseArea").collapse('hide');
+            $("#collapseBtn").collapse('hide');
+        });
+    });
+</script>
