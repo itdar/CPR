@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace NoName.Hubs
 {
-    public class NoteHub : Hub
+    public class NotificationHub : Hub
     {
         public async Task SendMessage(string user, string message)
         {
