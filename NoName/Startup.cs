@@ -69,7 +69,7 @@ namespace NoName
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapHub<NoteHub>("/noteHub");
+                endpoints.MapHub<NotificationHub>("/notificationHub");
             });
         }
     }
