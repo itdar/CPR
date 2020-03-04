@@ -3,7 +3,7 @@
 @namespace NoName.Pages
 @{
     ViewData["Title"] = "쪽지함";
-    string number = "1";
+    int number = 1;
     string content = "코로나3";
     string name = "형수";
     string today = DateTime.Now.ToString("MM.dd");
@@ -33,7 +33,7 @@
                         </div>
                     </nav>
                     @*Grid형식으로 사용시 Table border가 overlap되는 현상때문에
-                colgroup으로 테이블 고정. 추후 여유시 보완*@
+        colgroup으로 테이블 고정. 추후 여유시 보완*@
                     @*받은 쪽지함의 탭 컨텐츠 생성*@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">
@@ -57,16 +57,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @*반복문으로 html문법 만듬
-                                        TableData*@
+                                    @*TableData*@
                                     @for (int i = 0; i < 1; i++)
                                     {
-                                        @Html.Raw("<tr>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
-                                        @Html.Raw("</tr>");
+                                        <tr>
+                                            <td class="text-sm-center">@number</td>
+                                            <td class="text-sm-center">@content</td>
+                                            <td class="text-sm-center">@name</td>
+                                            <td class="text-sm-center">@today</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
@@ -91,12 +90,12 @@
                                 <tbody>
                                     @for (int i = 0; i < 1; i++)
                                     {
-                                        @Html.Raw("<tr>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
-                                        @Html.Raw("</tr>");
+                                        <tr>
+                                            <td class="text-sm-center">@number</td>
+                                            <td class="text-sm-center">@content</td>
+                                            <td class="text-sm-center">@name</td>
+                                            <td class="text-sm-center">@today</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
@@ -121,17 +120,32 @@
                                 <tbody>
                                     @for (int i = 0; i < 1; i++)
                                     {
-                                        @Html.Raw("<tr>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @number + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @content + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @name + "</td>");
-                                        @Html.Raw("<td class=\"text-sm-center\">" + @today + "</td>");
-                                        @Html.Raw("</tr>");
+                                        <tr>
+                                            <td class="text-sm-center">@number</td>
+                                            <td class="text-sm-center">@content</td>
+                                            <td class="text-sm-center">@name</td>
+                                            <td class="text-sm-center">@today</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    @*Pagination*@
+                <div class="container">
+                    @*2페이지 이상부터 pagination 생성 //Partial로 빼는것 생각*@
+                    @if (number > 1)
+                    {
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+                        @for (int i = 0; i < number; i++)
+                        {
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">@(i + 1)</a></li>
+                        }
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+                    </ul>
+                    }
+                </div>
                 </div>
                 <div class="col-lg-3 bg-danger">
                     @*부분 영역으로 Sidebar.cshtml 호출*@
