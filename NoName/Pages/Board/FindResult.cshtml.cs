@@ -9,8 +9,13 @@ namespace NoName.Pages.Board
 {
     public class FindResultModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
         public void OnGet()
         {
+            SearchString = Request.Form["searchString"];
+
+         
         }
     }
 }

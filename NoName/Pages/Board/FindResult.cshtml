@@ -1,4 +1,4 @@
-﻿@page
+﻿@page  "{SearchString?}"
 @model NoName.Pages.Board.FindResultModel
 @{
 }
@@ -9,37 +9,37 @@
         posts[i] = "글" + (i + 1) + "번째 입니다";
     }
 }
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="card card-body">
-                        "" 검색 결과
-                    </div>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="card card-body">
+                    "@Model.SearchString" 검색 결과
+                </div>
 
-                    <div class="list-group mt-2">
-                        @for (int i = 0; i < 14; i++)
-                        {
-                            <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">@posts[i]</a>
-                        }
-                    </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center mt-2">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="list-group mt-2">
+                    @for (int i = 0; i < 14; i++)
+                    {
+                        <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">@posts[i]</a>
+                    }
                 </div>
-                <div class="col-lg-3 bg-danger">
-                    <partial name="Sidebar" />
-                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center mt-2">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 bg-danger">
+                <partial name="Sidebar" />
             </div>
         </div>
-    </body>
+    </div>
+</body>
