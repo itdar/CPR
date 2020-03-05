@@ -1,7 +1,7 @@
 ﻿@page
 @model NoName.Pages.Account.RegisterModel
 @{
-    ViewData["Title"] = "회원등록";
+    ViewData["Title"] = "회원가입";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -9,7 +9,6 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>새로운 계정을 만듭니다.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -47,14 +46,21 @@
             </div>
             <!-- SMS 수신여부 -->
             <div class="form-group">
-                <label asp-for="Input.ReceiveSMS"></label>
-                <input asp-for="Input.ReceiveSMS" class="form-control" />
-                <span asp-validation-for="Input.ReceiveSMS" class="text-danger"></span>
+                <div class="checkbox">
+                    <label asp-for="Input.ReceiveSMS">
+                        <input asp-for="Input.ReceiveSMS" />
+                        @Html.DisplayNameFor(m => m.Input.ReceiveSMS)
+                    </label>
+                </div>
+                @*<label asp-for="Input.ReceiveSMS"></label>
+            <input asp-for="Input.ReceiveSMS" class="form-control" />
+            <span asp-validation-for="Input.ReceiveSMS" class="text-danger"></span>*@
             </div>
 
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">가입</button>
         </form>
-    </div>
+</div>
+    @*다른 사이트 계정으로 회원가입*@
     <div class="col-md-6 col-md-offset-2">
         <section>
             <h4>Use another service to register.</h4>

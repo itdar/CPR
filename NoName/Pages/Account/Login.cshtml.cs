@@ -45,13 +45,15 @@ namespace NoName.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "이메일")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "비밀번호")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "아이디 저장")]
             public bool RememberMe { get; set; }
         }
 
