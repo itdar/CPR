@@ -6,13 +6,13 @@
     @for (int i = 0; i < 14; i++)
     {
         posts[i] = "글" + (i + 1) + "번째 입니다";
+        
     }
 }
 <head>
     <link rel="stylesheet" href="~/css/container.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    @*사용안됨<link rel="stylesheet" href="~/lib/jquery/dist/jquery.min.js" />*@
+    @*use javascript about boards*@
+    <script type="text/javascript" src="~/js/Board.js"></script>
 </head>
 
 <body>
@@ -52,15 +52,3 @@
         </div>
     </div>
 </body>
-<script>
-    $(document).ready(function () {
-        $("#postTitle").click(function () {
-            $("#collapseArea").collapse('show');
-            $("#collapseBtn").collapse('show');
-        });
-        $("#postBtn").click(function () {
-            $("#collapseArea").collapse('hide');
-            $("#collapseBtn").collapse('hide');
-        });
-    });
-</script>
