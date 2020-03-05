@@ -51,6 +51,7 @@ namespace NoName.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "이메일")]
             public string Email { get; set; }
         }
 

@@ -32,6 +32,7 @@ namespace NoName.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "비밀번호")]
             public string Password { get; set; }
         }
 
