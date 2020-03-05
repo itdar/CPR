@@ -1,0 +1,19 @@
+﻿@{
+    int number = 10;
+}
+<div id="pagination">
+    @*2페이지 이상부터 pagination 생성 //Partial로 빼는것 생각*@
+    @if (number > 1)
+    {
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+            @{ int i = 0; }
+            @while (i < 10 && i < number)
+            {
+                <li class="page-item"><a class="page-link" href="javascript:void(0);">@(i + 1)</a></li>
+                i++;
+            }
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+        </ul>
+    }
+</div>
