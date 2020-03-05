@@ -1,0 +1,33 @@
+﻿@page
+@model NoName.Pages.Board.FindResultModel
+@{
+}
+@{
+    string[] posts = new string[14];
+    @for (int i = 0; i < 14; i++)
+    {
+        posts[i] = "글" + (i + 1) + "번째 입니다";
+    }
+}
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="card card-body">
+                        "" 검색 결과
+                    </div>
+                    @*text, textarea, button 세가지 input을 하나의 구조로 묶기위한 form-group*@
+                    
+                        <div class="list-group mt-5" >
+                            @for (int i = 0; i < 14; i++)
+                            {
+                                <a asp-page="/Board/Detail"   class="list-group-item list-group-item-action">@posts[i]</a>
+                            }
+                        </div>
+                </div>
+                <div class="col-lg-3 bg-danger">
+                    <partial name="Sidebar" />
+                </div>
+            </div>
+        </div>
+    </body>
