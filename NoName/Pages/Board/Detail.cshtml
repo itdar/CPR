@@ -3,30 +3,47 @@
 @model NoName.Pages.Board.DetailModel
 @{
 }
-<head>
-    <script type="text/javascript" src="~/js/Board.js"></script>
-
-</head>
+    <head>
+        <script type="text/javascript" src="~/js/Board.js"></script>
+    </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-9">
-                <div class="card">
-                    <div class="card-body">직업게시판</div>
+                <div class="card card-body">
+                    <h3 class="font-weight-bold">직업게시판</h3>
                 </div>
                 <div class="card" style="margin-top:10px">
-                    <div class="card-header">
-                        글 제목
+                    <div class="card-header bg-white">
+                        <p>
+                            익명
+                            <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
+                            <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
+                        </p>
+                        <p>4분전</p>
                     </div>
                     <div class=" card-body" id="post-context" style="height:200px;">
-                        @ViewData["postId"];
+                        <div class="card-title ">
+                            <h5 class="font-weight-bold">
+                                글 제목
+                                @* 글 상세의 사진,좋아요,댓글 수 ,스크랩 *@
+                                <a class="badge badge-light float-right fas fa-bookmark text-warning">34</a>
+                                <span class="badge badge-light float-right fas fa-comment text-info">12</span>
+
+                                <a class="badge badge-light float-right fas fa-heart text-danger">22</a>
+                                <span class="badge badge-light float-right far fa-images text-success">3</span>
+                            </h5>
+                        </div>
+                        <div class="card-text">
+                            @ViewData["postId"];
+                        </div>
                     </div>
                     @*댓글 작성란 *@
-                    <div class="card-footer">
+                    <div class="card-footer bg-white">
                         <div class="input-group m-lg-0">
                             <input type="text" class="form-control" placeholder="댓글을 입력하세요.">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-dark" type="submit">쓰기</button>
+                                <button class="btn btn-outline-dark fas fa-pen-fancy text-primary" type="submit"></button>
                             </div>
                         </div>
                     </div>
@@ -51,7 +68,7 @@
                             </p>
                             <p class="text-primary">
                                 6분 전
-                                <i class="fas fa-thumbs-up text-danger">54</i>
+                                <i class="fas fa-heart text-danger">54</i>
                             </p>
                             <div class="card card-body border mt-4 ml-4">
                                 대댓글
@@ -59,7 +76,7 @@
                             <div class="input-group mb-2 mt-2 ml-4 collapse" id="childCommentArea" style="width:96%">
                                 <input type="text" class="form-control" placeholder="댓글을 입력하세요.">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-dark" type="submit">쓰기</button>
+                                    <button class="btn btn-outline-dark fas fa-pen-fancy text-primary" type="submit"></button>
                                 </div>
                             </div>
                             @*쪽지 modal*@
