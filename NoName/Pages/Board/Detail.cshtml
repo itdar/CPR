@@ -3,11 +3,14 @@
 @model NoName.Pages.Board.DetailModel
 @{
 }
+<head>
+    <script type="text/javascript" src="~/js/Board.js"></script>
 
+</head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-9 bg-warning">
+            <div class="col-lg-9">
                 <div class="card">
                     <div class="card-body">직업게시판</div>
                 </div>
@@ -20,43 +23,46 @@
                     </div>
                     @*댓글 작성란 *@
                     <div class="card-footer">
-                        <div class="row">
-                            <div class="col-10">
-                                <input class="form-control" type="text" placeholder="댓글을 입력하세요" />
-                            </div>
-                            <div class="col-2">
-                                <button class="btn btn-outline-success " type="submit" style="float:right;">쓰기</button>
+                        <div class="input-group m-lg-0">
+                            <input type="text" class="form-control" placeholder="댓글을 입력하세요.">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-dark" type="submit">쓰기</button>
                             </div>
                         </div>
                     </div>
                     @*댓글 목록*@
-                <div class="list-group">
-                    @for (int i = 0; i < 10; i++)
-                    {
-                    <div class="list-group-item border">
-                        <p class="text-muted">
-                            익명
-                            <span class="badge badge-light float-right">신고</span>
-                            <span class="badge badge-light float-right">쪽지</span>
-                            <span class="badge badge-light float-right">공감</span>
-                            <span class="badge badge-light float-right">대댓글</span>
-                        </p>
-                        <p>
-                            2019xxxx= 2020xxxx 이거!
-                            막 서로 챙겨주고 이런거 없지 않아? 숭실대!
-                            동의하면 베게좀 보내주라 학생회가 보게! 뻔선도 가져보고 싶고 나중에 뻔후 챙겨주고 싶어~~
-                        </p>
-                         
-                        <p class="text-primary">
-                            6분 전
-
-                            <i class="fas fa-thumbs-up text-danger">54</i>
-                        </p>
-                        <div class="card card-body border mt-4 ml-4">
-                                    대댓글
+                    <div class="list-group">
+                        @for (int i = 0; i < 10; i++)
+                        {
+                        <div class="list-group-item border">
+                            <p class="text-muted">
+                                익명
+                                <span class="badge badge-light float-right">신고</span>
+                                <span class="badge badge-light float-right">쪽지</span>
+                                <span class="badge badge-light float-right">공감</span>
+                                <a href="#childCommentArea" class="badge badge-light float-right" data-toggle="collapse">대댓글</a>
+                            </p>
+                            <p>
+                                2019xxxx= 2020xxxx 이거!
+                                막 서로 챙겨주고 이런거 없지 않아? 숭실대!
+                                동의하면 베게좀 보내주라 학생회가 보게! 뻔선도 가져보고 싶고 나중에 뻔후 챙겨주고 싶어~~
+                            </p>
+                            <p class="text-primary">
+                                6분 전
+                                <i class="fas fa-thumbs-up text-danger">54</i>
+                            </p>
+                            <div class="card card-body border mt-4 ml-4">
+                                대댓글
+                            </div>
+                            <div class="input-group mb-2 mt-2 ml-4 collapse" id="childCommentArea" style="width:96%" >
+                                <input type="text" class="form-control" placeholder="댓글을 입력하세요.">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-dark" type="submit">쓰기</button>
                                 </div>
                             </div>
-                            }
+
+                        </div>
+                        }
                     </div>
                 </div>
                 <a type="button" class="btn btn-outline-dark" asp-page="/Board/Index" style="margin-top:10px;">글 목록</a>
