@@ -46,7 +46,7 @@ namespace NoName.Pages.Account.Manage
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = "새 이메일")]
             public string NewEmail { get; set; }
         }
 

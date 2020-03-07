@@ -34,7 +34,7 @@ namespace NoName.Pages.Account.Manage
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "전화번호")]
             public string PhoneNumber { get; set; }
         }
 

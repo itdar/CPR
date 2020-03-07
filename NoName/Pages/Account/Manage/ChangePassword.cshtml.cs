@@ -37,18 +37,18 @@ namespace NoName.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "현재 비밀번호")]
             public string OldPassword { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "새 비밀번호")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "새 비밀번호 확인")]
+            [Compare("NewPassword", ErrorMessage = "비밀번호가 새 비밀번호와 일치하지 않습니다.")]
             public string ConfirmPassword { get; set; }
         }
 
