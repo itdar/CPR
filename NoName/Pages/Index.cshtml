@@ -1,71 +1,10 @@
 ﻿@page
-@model NoName.Pages.MainModel
+@model NoName.Pages.IndexModel
 @{
+    ViewData["Title"] = "Home page";
 }
-<head>
-</head>
 
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-header bg-white border-0 text-center">
-                        <i class="fas fa-user-alt " style="font-size:60px"></i>
-
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title mb-1" style="text-align:center">내 정보</h5>
-                        <p class="card-text mb-0" style="text-align:center">홍길동</p>
-                        <p class="card-text mb-1" style="text-align:center">hgd111</p>
-                        <a class="btn btn-outline-dark float-left px-xl-3 px-lg-2 ">내 정보</a>
-                        <a class="btn btn-outline-dark float-right px-xl-3 px-lg-2" asp-area="" asp-page="/Index">로그아웃</a>
-                    </div>
-                </div>
-
-                <div class="list-group mt-2">
-                    <a class="list-group-item list-group-item-action" asp-area="" asp-page="/MyPage/MyPosts">내가 쓴 글</a>
-                    <a class="list-group-item list-group-item-action" asp-area="" asp-page="/MyPage/CommentPost">댓글 단 글</a>
-                    <a class="list-group-item list-group-item-action" asp-area="" asp-page="/MyPage/MyScrap">스크랩</a>
-                </div>
-
-                <div id="banner"></div>
-            </div>
-            <div class="col-lg-6 ">
-                <div class="card card-body h-25 bg-warning">
-                    배너
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-
-                        <div class="card list-group mt-2">
-                            <a asp-page="/Board/Index" class="list-group-item list-group-item-action bg-primary text-white">자유게시판</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        </div>
-                        <div class="card list-group  mt-2">
-                            <a asp-page="/Board/Index" class="list-group-item list-group-item-action bg-primary text-white">홍보게시판</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card list-group  mt-2">
-                            <a asp-page="/Board/Index" class="list-group-item list-group-item-action bg-primary text-white">정보게시판</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        </div>
-                        <div class="card list-group  mt-2">
-                            <a asp-page="/Board/Index" class="list-group-item list-group-item-action bg-primary text-white">비밀게시판</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <partial name="Sidebar" />
-            </div>
-        </div>
-    </div>
-</body>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
