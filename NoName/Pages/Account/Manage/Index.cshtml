@@ -14,18 +14,9 @@
     <h4>Change your account settings</h4>
     <hr />
     <div class="row">
-        <div>
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item"><a class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile" asp-page="./Profile">프로필</a></li>
-                <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">이메일</a></li>
-                <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">비밀번호 변경</a></li>
-                @if (hasExternalLogins)
-                {
-                    <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
-                }
-                <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">2-Factor 인증</a></li>
-                <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">개인정보 관리</a></li>
-                @*<li class="nav-item"><a class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile" asp-page="./Profile">프로필</a></li>
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+             @*<li class="nav-item"><a class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile" asp-page="./Profile">프로필</a></li>
         <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">이메일</a></li>
         <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">비밀번호 변경</a></li>
         @if (hasExternalLogins)
@@ -34,11 +25,10 @@
         }
         <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">2-Factor 인증</a></li>
         <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">개인정보 관리</a></li>*@
-            </ul>
+            
         </div>
 
         <div class="col-md-9">
-            @*@ManageNavPages.PageNavClass(ViewContext, ManageNavPages.currentPage);*@
 
             @*@RenderBody()*@
         </div>
