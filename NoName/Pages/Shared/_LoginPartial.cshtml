@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@using Microsoft.AspNetCore.Identity;
+﻿@*@using Microsoft.AspNetCore.Identity;*@
 @namespace NoName.Data.DbUser
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -11,9 +6,9 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Manage/Index" title="내정보">@User.Identity.Name</a>
-        </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Account/Manage/Index" title="내정보">@User.Identity.Name</a>
+    </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
                 <button type="submit" class="nav-link btn btn-link text-dark">로그아웃</button>
@@ -22,12 +17,11 @@
     }
     else
     {
-
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-page="/Account/Register">쪽지</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-page="/Account/Login">내정보</a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Register">회원가입</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Login">로그인</a>
+        </li>
     }
 </ul>
