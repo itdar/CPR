@@ -21,21 +21,24 @@
             <div class="col-lg-9">
                 <div class="card card-body">
                     <h3 class="font-weight-bold">직업게시판</h3>
+                    @Model.Message
                 </div>
                 @{ var isJobBoard = 1;}
                 @if (isJobBoard == 1)
                 {
-                    @*text, textarea, button 세가지 input을 하나의 구조로 묶기위한 form-group*@
-                    <form class="form-group" method="post">
-                        @*text타입의 input, data-toggle로 확장-축소 가능, data-target으로 기능 적용할 태그 선택*@
-                        <input type="text" id="postTitle" class="form-control mt-3" placeholder="글을 작성하세요">
-                        @*placeholder line break code = &#13;&#10;*@
+                    @*ajax를 통해 post mothod를 실행*@
+                    <form method="post">
+                        <div class="form-group">
+                            @*text타입의 input, data-toggle로 확장-축소 가능, data-target으로 기능 적용할 태그 선택*@
+                            <input type="text" id="postTitle" class="form-control mt-3" placeholder="글을 작성하세요">
+                        </div>
                         <div id="collapseArea" class="form-group collapse">
+                            @*placeholder line break code = &#13;&#10;*@
                             <textarea class="form-control" placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요." rows="7"></textarea>
                         </div>
                         <div id="collapseBtn" class="form-group collapse">
                             <row>
-                                <button id="postBtn" type="button" class="btn col-sm-12 btn-light" @*data-toggle="collapse" data-target="#collapseNote"*@>게시</button>
+                                <input type="submit" id="postBtn" class="btn col-sm-12 btn-light" value="게시" />
                             </row>
                         </div>
                     </form>
