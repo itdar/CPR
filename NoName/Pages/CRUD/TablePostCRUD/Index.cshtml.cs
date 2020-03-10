@@ -18,7 +18,7 @@ namespace NoName
             _context = context;
         }
 
-        public IList<TablePost> TablePost { get;set; }
+        public IList<TablePost> TablePost { get; set; }
 
         public async Task OnGetAsync()
         {

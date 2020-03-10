@@ -24,7 +24,11 @@ namespace NoName.Pages.Board
         public IList<TablePost> Board { get; set; }
         public async void OnGetAsync()
         {
-            Board = await _context.Post.ToListAsync();
+            //try
+            //{
+            //    Board = await _context.Post.ToListAsync();
+            //}
+            //catch { }
         }
 
         public async Task<IActionResult> OnPostAsync() {
@@ -37,7 +41,7 @@ namespace NoName.Pages.Board
 
             _context.Post.Add(TablePost);
             await _context.SaveChangesAsync();
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Board/Index");
         }
     }
 }

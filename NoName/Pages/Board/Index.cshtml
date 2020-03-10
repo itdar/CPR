@@ -3,11 +3,11 @@
 @model NoName.Pages.Board.IndexModel
 @{
     @*string[] posts = new string[14];
-    @for (int i = 0; i < 14; i++)
-    {
-        posts[i] = "글" + (i + 1) + "번째 입니다";
+        @for (int i = 0; i < 14; i++)
+        {
+            posts[i] = "글" + (i + 1) + "번째 입니다";
 
-    }*@
+        }*@
 }
 <head>
     <link rel="stylesheet" href="~/css/container.css" />
@@ -26,26 +26,28 @@
                 @if (isJobBoard == 1)
                 {
                     @*text, textarea, button 세가지 input을 하나의 구조로 묶기위한 form-group*@
-            <form class="form-group" method="post">
-                @*text타입의 input, data-toggle로 확장-축소 가능, data-target으로 기능 적용할 태그 선택*@
-                <input type="text" asp-for="TablePost.Title" class="form-control mt-3" placeholder="글을 작성하세요">
-                <span asp-validation-for="TablePost.Title" class="text-danger"></span>
+                    <form class="form-group" method="post">
+                        @*text타입의 input, data-toggle로 확장-축소 가능, data-target으로 기능 적용할 태그 선택*@
+                        <input type="text" class="form-control mt-3" placeholder="글을 작성하세요">
+                        @*asp-for="TablePost.Title" <span asp-validation-for="TablePost.Title" class="text-danger"></span>*@
 
-                <div id="collapseArea" class="form-group collapse">
-                    <textarea class="form-control" asp-for="TablePost.Content" placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요." rows="7"></textarea>
-                    <span asp-validation-for="TablePost.Content" class="text-danger"></span>
-                </div>
-                <div id="collapseBtn" class="form-group collapse">
-                    <row>
-                        <button  type="submit" class="btn col-sm-12 btn-light" @*data-toggle="collapse" data-target="#collapseNote"*@>게시</button>
-                    </row>
-                </div>
-            </form>
+                        <div id="collapseArea" class="form-group collapse">
+                            <textarea class="form-control" placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요." rows="7"></textarea>
+                          @*  asp-for="TablePost.Content" <span asp-validation-for="TablePost.Content" class="text-danger"></span>*@
+                        </div>
+                        <div id="collapseBtn" class="form-group collapse">
+                            <row>
+                                <button type="submit" class="btn col-sm-12 btn-light" @*data-toggle="collapse" data-target="#collapseNote"*@>게시</button>
+                            </row>
+                        </div>
+                    </form>
                 }
-              @foreach(var item in Model.Board)
-              {
-                  @Html.DisplayFor(modelItem=>item.Title)
-              }
+                @*@if (Model.Board != null)
+                {
+                @foreach (var item in Model.Board)
+                {*@
+                   
+                @*}}*@
                 <div class="container mt-2">
                     <partial name="Pagination" />
                 </div>
