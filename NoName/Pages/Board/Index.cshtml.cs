@@ -18,19 +18,16 @@ namespace NoName.Pages.Board
         public  IndexModel(NoName.Data.DbData.DataContext context) {
             _context = context;
         }
-        [BindProperty]
-        public TablePost TablePost { get; set; }
+
 
         public IList<TablePost> Board { get; set; }
-        public async void OnGetAsync()
+        public async Task OnGetAsync()
         {
-            //try
-            //{
-            //    Board = await _context.Post.ToListAsync();
-            //}
-            //catch { }
+                Board = await _context.Post.ToListAsync();
         }
 
+        [BindProperty]
+        public TablePost TablePost { get; set; }
         public async Task<IActionResult> OnPostAsync() {
             if (!ModelState.IsValid)
             {
