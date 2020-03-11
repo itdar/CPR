@@ -35,18 +35,16 @@ namespace NoName.Pages.Board
             }
 
             //DataDbManager.GetInstance().DataDB. 
-            //글 작성 시간 저장
-            TablePost.CreateTime = DateTime.Now;
 
             _context.Post.Add(TablePost);
             await _context.SaveChangesAsync();
             return RedirectToPage("/Board/Index");
         }
-        //public void OnPost()
-        //{
-        //    //정상 호출시 직업 게시판 타이틀 하단에 Message => Message + DateTime.Now 출력
-        //    //Message += $" Server time is { DateTime.Now }";
+        public void OnPost()
+        {
+            //정상 호출시 직업 게시판 타이틀 하단에 Message => Message + DateTime.Now 출력
+            //Message += $" Server time is { DateTime.Now }";
 
-        //}
+        }
     }
 }

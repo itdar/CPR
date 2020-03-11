@@ -33,6 +33,8 @@ namespace NoName.Data.DbData
         public int ViewCount { get; set; }
         //좋아요
         public int LikeCount { get; set; }
+        //싫어요
+        public int DislikeCount { get; set; }
         //새로운 댓글 달렸는지 여부
         public bool HasNewComment { get; set; }
 
