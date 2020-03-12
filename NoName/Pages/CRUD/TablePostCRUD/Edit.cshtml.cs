@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NoName.Data.DbData;
 
-namespace NoName
+namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class EditModel : PageModel
     {

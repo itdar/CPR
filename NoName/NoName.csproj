@@ -37,7 +37,6 @@
   <ItemGroup>
     <Folder Include="Migrations\DbData\" />
     <Folder Include="Migrations\DbUser\" />
-    <Folder Include="Pages\CRUD\" />
   </ItemGroup>
 
 
