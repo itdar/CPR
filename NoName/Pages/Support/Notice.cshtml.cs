@@ -55,7 +55,7 @@ namespace NoName.Pages.Support
         public string Message { get; set; }
         public void OnGet()
         {
-
+            await Pagination<TablePost>.CreateAsync();
         }
         //Get이나 Post method 호출시 OnGet[Value]()와 OnPost[Value]() 형식으로 호출 됨. Value = Handler Name
         //함수 형태를 Async(비동기)로 변경가능.(await 사용)
