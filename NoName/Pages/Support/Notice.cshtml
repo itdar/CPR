@@ -1,20 +1,8 @@
-﻿@page 
+﻿@page
 @model NoName.Pages.Support.NoticeModel
 @namespace NoName.Pages.Support
 @{
     ViewData["Title"] = "공지사항";
-    NoticeModel.NoticeBoard[] noticeBoard = new NoticeModel.NoticeBoard[5];
-
-    @for (int i = 0; i < noticeBoard.Length; i++)
-    {
-        NoticeModel.NoticeBoard temp = new NoticeModel.NoticeBoard();
-        temp.Initialization();
-        noticeBoard[i] = temp;
-        noticeBoard[i].PostNumber = i + 1;
-        noticeBoard[i].UserId = "soohwan";
-        noticeBoard[i].Title = "코로나 확진자" + i + "명 입니다.";
-        noticeBoard[i].CreateTime = DateTime.Now;
-    }
 }
 <body>
     <div class="notice">
@@ -26,21 +14,35 @@
                     </div>
                     <div class="card" id="postContents">
                         <div class="list-group">
-                            @for (int i = noticeBoard.Length - 1; i >= 0; i--)
+                            @foreach (var item in Model.Pagination)
                             {
-                                @*핸들러 사용*@
                                 <a class="list-group-item list-group-item-action"
-                                   asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber=@noticeBoard[i].PostNumber>
-                                    @noticeBoard[i].Title
+                                   asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@item.PostNumber">
+                                    <div class="row">
+                                        <span class="col-sm-1">
+                                            @Html.DisplayFor(modelItem => item.PostNumber)
+                                        </span>
+                                        <span class="col-sm-9">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </span>
+                                        <span class="col-sm-2">
+                                            @Html.DisplayFor(modelItem => item.CreateTime)
+                                        </span>
+                                    </div>
                                 </a>
                             }
                         </div>
-                        <div class="card-body text-right">
-                            <form method="post">
-                                @*글쓰기 페이지가 없는관계로 임시*@
-                                <button class="btn btn-outline-dark" asp-page="/Board/Detail">Write</button>
-                            </form>
-                        </div>
+                    </div>
+                    <div class="card-body text-right">
+                        <form method="get">
+                            <button class="btn btn-outline-dark" asp-page="/Support/Write">글쓰기</button>
+                        </form>
+                    </div>
+                    <div class="container">
+                        @*동기식 Partial TagHelper
+                        <partial name="Pagination" model="Model.Pagination" />*@
+                        @*비동기식 Partial TagHelper*@
+                            @await Html.PartialAsync("Pagination", Model.Pagination)
                     </div>
                 </div>
                 <div class="col-sm-3 bg-success">
