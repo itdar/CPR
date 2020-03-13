@@ -11,10 +11,13 @@ namespace NoName.Pages
 {
     public class Pagination<T> : List<T>
     {
+        /****
+         * CurrentPage = 1~10 -> StartPage = 1 / CurrentPage = 10~19 -> StartPage = 11
+        ****/
         //CurrentBoard
         //Not Used
         public int BoardId { get; set; }
-        //Current Page
+        //Current Page => Defualt Index page = 0
         public int CurrentPage { get; private set; } = 1;
         //Number of Posting
         public int PostingCount { get; private set; }
@@ -23,25 +26,25 @@ namespace NoName.Pages
         //Paging Count on a View
         public int PageBarSize { get; private set; } = 10;
         //Start Page Number 1,11,21,31,41,51...
-        public int StartPage => CurrentPage - CurrentPage % PageSize + 1;
-
-
+        public int StartPage => CurrentPage - CurrentPage % 10 + 1 - (CurrentPage % 10 ==0 ? 10 : 0);
         //Total 'Page' Count => Ceiling(count = 25 / pageSize = 10) = Ceiling(2.5) = 3
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(PostingCount, PageSize));
-        //CurrentPage=35 => PreviousPage = 30
-        public int PreviousPage => CurrentPage - CurrentPage % 10;
-        //CurrentPage=35 => NextPage = 40
-        public int NextPage => CurrentPage + (PageSize - CurrentPage % 10);
-        
+        //CurrentPage=35 => PreviousPage = 31(CurrentPage = 30)
+        public int Previous => StartPage - 1;
+        //CurrentPage=35 => NextPage = 41(CurrentPage = 40)
+        public int Next => StartPage + PageBarSize;
 
-        public bool HasPreviousPage => CurrentPage > PageBarSize;
-        public bool HasNextPage => CurrentPage < TotalPages;
-
-
+        public bool HasPreviousPage => StartPage > 1;
+        public bool HasNextPage => StartPage * PageBarSize < TotalPages;
+        public bool IsCurrentPage(int current)
+        {
+            return CurrentPage == current;
+        }
         public Pagination(List<T> items, int postingCount, int currentPage, int pageSize)
         {
             PostingCount = postingCount;
-            CurrentPage = currentPage;
+            //indexPage에서 currentPage가 0을 반환함으로 강제변경.
+            CurrentPage = currentPage == 0 ? 1 : currentPage;
             PageSize = pageSize;
 
             this.AddRange(items);
@@ -57,11 +60,8 @@ namespace NoName.Pages
         public static async Task<Pagination<T>> CreateAsync(IQueryable<T> source, int currentPage, int pageSize = 10)
         {
             var postingCount = await source.CountAsync();
-            //Start Page Number 1,11,21,31,41,51...
-            int unitOfDigitPage = currentPage % 10;
-            int startPageNumber = currentPage - unitOfDigitPage;
             //CreateList. length is pageSize.
-            var items = await source.Skip(startPageNumber).Take(pageSize).ToListAsync();
+            var items = await source.Skip(currentPage * pageSize).Take(pageSize).ToListAsync();
             return new Pagination<T>(items, postingCount, currentPage, pageSize);
         }
     }

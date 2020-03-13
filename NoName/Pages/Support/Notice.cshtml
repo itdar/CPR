@@ -1,6 +1,5 @@
-﻿@page
+﻿@page "{handler?}/{id?}"
 @model NoName.Pages.Support.NoticeModel
-@namespace NoName.Pages.Support
 @{
     ViewData["Title"] = "공지사항";
 }
@@ -38,11 +37,11 @@
                             <button class="btn btn-outline-dark" asp-page="/Support/Write">글쓰기</button>
                         </form>
                     </div>
-                    <div class="container">
-                        @*동기식 Partial TagHelper
-                        <partial name="Pagination" model="Model.Pagination" />*@
-                        @*비동기식 Partial TagHelper*@
-                            @await Html.PartialAsync("Pagination", Model.Pagination)
+                    <div class="container" id="pagination">
+                        @*동기식 Partial TagHelper*@
+                        <partial name="Pagination" model="Model.Pagination" />
+                        @*비동기식 Partial TagHelper
+                            @await Html.PartialAsync("Pagination", Model.Pagination)*@
                     </div>
                 </div>
                 <div class="col-sm-3 bg-success">
