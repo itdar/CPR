@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NoName.Data.DbData;
 
 namespace NoName.Data
@@ -23,6 +24,11 @@ namespace NoName.Data
 			if (instance == null)
 				instance = new DataDbManager();
 			return instance;
+		}
+		public void AddPost(List<TablePost> post)
+		{
+			DataDB.AddAsync(post);
+			DataDB.SaveChangesAsync();
 		}
 	}
 }
