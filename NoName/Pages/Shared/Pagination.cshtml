@@ -12,7 +12,7 @@
 
 <ul class="pagination justify-content-center">
     <li class="page-item @prevDisabled">
-        <a class="page-link" asp-page="/Support/Notice" asp-page-handler="Page" asp-route-pages="@Model.Previous">Previous</a>
+        <a class="page-link" asp-page="/Support/Notice" asp-page-handler="Page" asp-route-pages="@Model.Previous">이전</a>
     </li>
     @{ int i = Model.StartPage;}
     @while (i < Model.StartPage + Model.PageBarSize && i < Model.TotalPages)
@@ -25,6 +25,6 @@
     }
 
     <li class="page-item @nextDisabled">
-        <a class="page-link" asp-page="/Support/Notice" asp-page-handler="Page" asp-route-pages="@Model.Next">Next</a>
+        <a class="page-link" asp-page="/Support/Notice" asp-page-handler="Page" asp-route-pages="@Model.Next">다음</a>
     </li>
 </ul>
