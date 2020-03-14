@@ -14,9 +14,6 @@ namespace NoName.Pages.Support
     {
         private readonly DataContext _context;
         private readonly ILogger<NoticeModel> _logger;
-        //public IList<TablePost> TablePost { get; set; }
-        //Test용 Message
-        public string Message { get; set; }
         public Pagination<TablePost> Pagination { get; set; }
         //Constructor
         public NoticeModel(DataContext context, ILogger<NoticeModel> logger)
@@ -24,19 +21,12 @@ namespace NoName.Pages.Support
             _context = context;
             _logger = logger;
         }
-        //이 함수만 호출됨 20.03.13 현재 -> 예상 호출 함수는 OnGetPage였음
         public async Task<IActionResult> OnGetAsync()
         {
             //외래키 참조 불가 -> 따로 설정해줘야 함 *20.03.11
-            //TablePost = await _context.Post.ToListAsync();
             Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, 1);
             return Page();
         }
-        /*
-        public async Task OnGetpages(int pages)
-        {
-            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, pages);
-        }*/
         //Pagination으로 생성된 페이지들 선택시 호출되는 함수
         public async Task<IActionResult> OnGetPageAsync(int pages)
         {

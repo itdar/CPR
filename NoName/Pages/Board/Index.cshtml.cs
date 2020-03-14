@@ -13,21 +13,27 @@ namespace NoName.Pages.Board
 {
     public class IndexModel : PageModel
     {
-        private readonly NoName.Data.DbData.DataContext _context;
-
-        public  IndexModel(NoName.Data.DbData.DataContext context) {
-            _context = context;
-        }
-
-
-        public IList<TablePost> Board { get; set; }
-        public async Task OnGetAsync()
-        {
-                Board = await _context.Post.ToListAsync();
-        }
-
+        private readonly DataContext _context;
+        private readonly ILogger<IndexModel> _logger;
+        public Pagination<TablePost> Pagination { get; set; }
         [BindProperty]
         public TablePost TablePost { get; set; }
+        public IndexModel(DataContext context, ILogger<IndexModel> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
+        public async Task<IActionResult> OnGetAsync()
+        {
+            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, 1);
+            return Page();
+        }
+        public async Task<IActionResult> OnGetPageAsync(int pages)
+        {
+            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, pages);
+            return Page();
+        }
+
         public async Task<IActionResult> OnPostAsync() {
             if (!ModelState.IsValid)
             {

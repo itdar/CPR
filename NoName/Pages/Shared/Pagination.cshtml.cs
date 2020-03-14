@@ -60,7 +60,7 @@ namespace NoName.Pages
         {
             var postingCount = await source.CountAsync();
             //CreateList. length is pageSize.
-            var items = await source.Skip(currentPage * pageSize).Take(pageSize).ToListAsync();
+            var items = await source.Skip((currentPage - 1) * pageSize).Take(pageSize).ToListAsync();
             return new Pagination<T>(items, postingCount, currentPage, pageSize);
         }
     }
