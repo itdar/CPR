@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using NoName.Data.DbData;
 
-namespace NoName.Data.DbData
+namespace NoName.Data
 {
     /*
      * 씨샾 entity 클래스에서 DB 를 DbContext 로 표현함

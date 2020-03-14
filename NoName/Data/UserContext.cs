@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NoName.Data.DbUser;
-using NoName.Data.DbData;
 
 namespace NoName.Data
 {

@@ -56,54 +56,55 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.TablePost) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ViewCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LikeCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DislikeCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HasNewComment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InitialContent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastModifiedTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeletedTime)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.PostNumber">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.PostNumber">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.PostNumber">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.TablePost)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ViewCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LikeCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DislikeCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HasNewComment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InitialContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModifiedTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeletedTime)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PostNumber">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PostNumber">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PostNumber">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
