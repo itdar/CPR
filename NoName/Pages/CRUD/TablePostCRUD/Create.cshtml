@@ -1,18 +1,11 @@
 ﻿@page
-@model NoName.CreateModel
+@model NoName.Pages.CRUD.TablePostCRUD.CreateModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Create";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
+<h1>Create</h1>
 
 <h4>TablePost</h4>
 <hr />
@@ -55,10 +48,10 @@
                 <input asp-for="TablePost.DislikeCount" class="form-control" />
                 <span asp-validation-for="TablePost.DislikeCount" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="TablePost.HasNewComment" /> @Html.DisplayNameFor(model => model.TablePost.HasNewComment)
-                </label>
+            <div class="form-group">
+                <label asp-for="TablePost.HasNewComment" class="control-label"></label>
+                <input asp-for="TablePost.HasNewComment" class="form-control" />
+                <span asp-validation-for="TablePost.HasNewComment" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TablePost.CreateTime" class="control-label"></label>
@@ -75,10 +68,10 @@
                 <input asp-for="TablePost.LastModifiedTime" class="form-control" />
                 <span asp-validation-for="TablePost.LastModifiedTime" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="TablePost.IsDeleted" /> @Html.DisplayNameFor(model => model.TablePost.IsDeleted)
-                </label>
+            <div class="form-group">
+                <label asp-for="TablePost.IsDeleted" class="control-label"></label>
+                <input asp-for="TablePost.IsDeleted" class="form-control" />
+                <span asp-validation-for="TablePost.IsDeleted" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TablePost.DeletedTime" class="control-label"></label>
@@ -99,5 +92,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>

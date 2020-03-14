@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using NoName.Data.DbData;
 
-namespace NoName
+namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class DetailsModel : PageModel
     {

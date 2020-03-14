@@ -91,12 +91,15 @@ namespace NoName.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    UserName = Input.Email, 
+                var user = new ApplicationUser {
+                    UserName = Input.Email,
                     Email = Input.Email,
                     DateOfBirth = Input.BirthDate,
                     Gender = Input.Gender,
-                    ReceiveSMS = Input.ReceiveSMS
+                    ReceiveSMS = Input.ReceiveSMS,
+                    ManagerNumber = -1,
+                    PermissionLevel = 0,
+                    VisitCount = 1
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

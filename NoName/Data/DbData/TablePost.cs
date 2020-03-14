@@ -20,7 +20,6 @@ namespace NoName.Data.DbData
 
         [Key]
         public int PostNumber { get; set; }
-
         public string UserId { get; set; }
         public int CategoryNumber { get; set; }
 
@@ -30,24 +29,24 @@ namespace NoName.Data.DbData
         public string Content { get; set; }
 
         //조회수
-        public int ViewCount { get; set; }
+        public int? ViewCount { get; set; } = 0;
         //좋아요
-        public int LikeCount { get; set; }
+        public int? LikeCount { get; set; } = 0;
         //싫어요
-        public int DislikeCount { get; set; }
+        public int? DislikeCount { get; set; } = 0;
         //새로운 댓글 달렸는지 여부
-        public bool HasNewComment { get; set; }
+        public bool? HasNewComment { get; set; } = false;
 
         // 최초 생성 시간
-        public DateTime CreateTime { get; set; }
+        public DateTime? CreateTime { get; set; } = DateTime.Now;
         // 내용 (최초 업로드 내용)
         public string InitialContent { get; set; }
-        // 최종 수정 시간
-        public DateTime LastModifiedTime { get; set; }
+        // 최종 수정 시간 initial value = null
+        public DateTime? LastModifiedTime { get; set; }
 
         // 삭제된 글인지
-        public bool IsDeleted { get; set; }
-        // 삭제 시각
-        public DateTime DeletedTime { get; set; }
+        public bool? IsDeleted { get; set; } = false;
+        // 삭제 시각 initial value = null
+        public DateTime? DeletedTime { get; set; }
     }
 }

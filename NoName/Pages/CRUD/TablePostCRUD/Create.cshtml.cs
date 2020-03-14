@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName
+namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class CreateModel : PageModel
     {
@@ -35,8 +34,6 @@ namespace NoName
             {
                 return Page();
             }
-
-            //DataDbManager.GetInstance().DataDB. 
 
             _context.Post.Add(TablePost);
             await _context.SaveChangesAsync();

@@ -1,18 +1,12 @@
 ﻿@page
-@model NoName.IndexModel
+@model NoName.Pages.CRUD.TablePostCRUD.IndexModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
+<h1>Index</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
     <a asp-page="Create">Create New</a>
 </p>
@@ -22,7 +16,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.TablePost[0].UserId)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.TablePost[0].CategoryNumber)
             </th>
             <th>
@@ -58,7 +52,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.TablePost[0].DeletedTime)
             </th>
-            <th></th>*@
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -112,5 +106,9 @@
 }
     </tbody>
 </table>
-</body>
-</html>
+
+<form method="get">
+    <div>
+        <a class="btn btn-outline-dark" asp-page-handler="Mock">Mock 데이터 생성</a>
+    </div>
+</form>

@@ -29,6 +29,12 @@ namespace NoName
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /********
+             * DbContext is not thread-safe.
+            If DbContextPool method is used at the time a DbContext instance is requested by a controller
+            we will first check if there is an instance available in the pool. Once the request processing finalizes,
+            any state on the instance is reset and the instance is itself returned to the pool. *
+            ********/
             services.AddDbContext<UserContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("UserDb")));
