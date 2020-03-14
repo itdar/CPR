@@ -43,8 +43,7 @@ namespace NoName.Pages
         public Pagination(List<T> items, int postingCount, int currentPage, int pageSize)
         {
             PostingCount = postingCount;
-            //indexPage에서 currentPage가 0을 반환함으로 강제변경.
-            CurrentPage = currentPage == 0 ? 1 : currentPage;
+            CurrentPage = currentPage;
             PageSize = pageSize;
 
             this.AddRange(items);
