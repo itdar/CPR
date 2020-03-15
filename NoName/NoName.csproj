@@ -13,13 +13,20 @@
     <Content Remove="Migrations\**" />
     <Content Remove="Pages\Board\TableUserJobCRUD\**" />
     <EmbeddedResource Remove="Areas\**" />
-    <EmbeddedResource Remove="Migrations\**" />    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />    <None Remove="Areas\**" />    <None Remove="Migrations\**" />
-    <None Remove="Pages\Board\TableUserJobCRUD\**" />    <Compile Remove="Data\DbUser\Create.cshtml.cs" />
+    <EmbeddedResource Remove="Migrations\**" />    
+    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />    
+    <None Remove="Areas\**" />    
+    <None Remove="Migrations\**" />
+    <None Remove="Pages\Board\TableUserJobCRUD\**" />    
+    <Compile Remove="Data\DbUser\Create.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migrations\DbUser\20200311153152_UserDbMigration.cs" />
-    <Compile Include="Migrations\DbUser\20200311153152_UserDbMigration.Designer.cs" />
+    <Compile Include="Migrations\DbData\20200314051853_DataDbMigration.cs" />
+    <Compile Include="Migrations\DbData\20200314051853_DataDbMigration.Designer.cs" />
+    <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
+    <Compile Include="Migrations\DbUser\20200314055847_UserDbMigration.cs" />
+    <Compile Include="Migrations\DbUser\20200314055847_UserDbMigration.Designer.cs" />
     <Compile Include="Migrations\DbUser\UserContextModelSnapshot.cs" />
   </ItemGroup>
 
@@ -36,10 +43,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
-  </ItemGroup>
-
-
-  <ItemGroup>
   </ItemGroup>
 
 

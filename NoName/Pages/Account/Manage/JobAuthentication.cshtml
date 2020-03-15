@@ -1,0 +1,10 @@
+﻿@page
+@model NoName.Pages.Account.Manage.JobAuthenticationModel
+@{
+    ViewData["Title"] = "직업 인증";
+}
+<form method="post">
+    @*<button type="submit" class="btn btn-primary" onclick="@{Model.MakeMockUser(); };">임시계정</button>*@
+    <input asp-for="UserJob.JobCode" class="form-group" />
+    <a class="btn btn-primary" type="submit" asp-page-handler="MakeMockUser">업로드</a>
+</form>

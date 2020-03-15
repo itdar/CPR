@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+//namespace NoName.Data로 경로에 맞게 변경하는게 좋음.20.3.14
 namespace NoName.Data.DbData
 {
     /*

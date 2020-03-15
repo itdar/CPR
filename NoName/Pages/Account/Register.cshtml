@@ -53,44 +53,60 @@
                     </label>
                 </div>
                 @*<label asp-for="Input.ReceiveSMS"></label>
-            <input asp-for="Input.ReceiveSMS" class="form-control" />
-            <span asp-validation-for="Input.ReceiveSMS" class="text-danger"></span>*@
+                    <input asp-for="Input.ReceiveSMS" class="form-control" />
+                    <span asp-validation-for="Input.ReceiveSMS" class="text-danger"></span>*@
             </div>
 
             <button type="submit" class="btn btn-primary">가입</button>
         </form>
-</div>
-    @*다른 사이트 계정으로 회원가입*@
+    </div>
+
+    <div>
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            @*<button type="submit" class="btn btn-primary" onclick="@{Model.MakeMockUser(); };">임시계정</button>*@
+            <a class="btn btn-primary" type="submit" asp-page-handler="MakeMockUser">임시계정</a>
+        </form>
+            
+            @*<a type="submit" class="btn btn-primary" asp-action="@{Model.MakeMockUser(); };" value="임시계정"></a>*@
+            @*<button type="submit" class="btn btn-primary" onclick="@{Model.MakeMockUser(); };">임시계정</button>*@
+    </div>
+
+    @*@
+            </div>
+        </div>
+
+
+        @*다른 사이트 계정으로 회원가입*@
     @*<div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to register.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <section>
+                <h4>Use another service to register.</h4>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
                         <div>
                             <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
+                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                for details on setting up this ASP.NET application to support logging in via external services.
                             </p>
                         </div>
-                    </form>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
                 }
-            }
-        </section>
-    </div>*@
+            </section>
+        </div>*@
 </div>
 
 @section Scripts {
