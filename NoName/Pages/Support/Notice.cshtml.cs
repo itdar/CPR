@@ -32,8 +32,8 @@ namespace NoName.Pages.Support
         }
         public async Task<IActionResult> OnGetAsync()
         {
-            //외래키 참조 불가 -> 따로 설정해줘야 함 *20.03.11
-            Pagination = await Pagination<TablePost>.CreateAsync(_manager.GetPosts(1), 1);
+            //외래키 참조 불가 -> 따로 설정해줘야 함 *20.03.11 CreateAsync(source, currentPage=1, pageSize =10)
+            Pagination = await Pagination<TablePost>.CreateAsync(_manager.GetPosts(1));
             return Page();
         }
         //Pagination으로 생성된 페이지들 선택시 호출되는 함수

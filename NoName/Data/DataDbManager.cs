@@ -34,7 +34,7 @@ namespace NoName.Data
 		}
 		public IQueryable<TablePost> GetPosts(int boardNumber)
 		{
-			return _dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardNumber == boardNumber);
+			return _dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardNumber == boardNumber).OrderByDescending(post => post.PostNumber);
 		}
 
 		/*
