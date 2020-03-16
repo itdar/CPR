@@ -20,10 +20,6 @@ namespace NoName.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        int callCountOnGet = 0;
-        int callCountOnPost = 0;
-        int callCount = 0;
-
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
@@ -43,6 +39,8 @@ namespace NoName.Pages.Account
 
         [BindProperty]
         public InputModel Input { get; set; }
+
+        public string DoneMockData { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -85,18 +83,20 @@ namespace NoName.Pages.Account
 
         public async Task<IActionResult> OnGetMakeMockUser(string returnUrl = null)
         {
-            System.Diagnostics.Debug.WriteLine("OnPostAsync()" + ++callCountOnPost);
+            System.Diagnostics.Debug.WriteLine("OnGetMakeMockUser()");
 
             returnUrl = returnUrl ?? Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 for (var i = 0; i < 100; i++)
                 {
+                    System.Diagnostics.Debug.WriteLine(i);
+
                     var user = new ApplicationUser
                     {
-                        UserName = "hyungsoo" + i.ToString(),
-                        Email = "hyungsoo" + i.ToString() + "@a.com",
+                        UserName = "noname" + i + "@noname.com",
+                        Email = "noname" + i + "@noname.com",
                         DateOfBirth = DateTime.Now,
                         Gender = 1,
                         ReceiveSMS = true,
@@ -106,46 +106,8 @@ namespace NoName.Pages.Account
                         EmailConfirmed = true
                     };
 
-                    var result = await _userManager.CreateAsync(user, "Q!w2e3");
+                    var result = await _userManager.CreateAsync(user, "Noname1234!@");
 
-                    if (result.Succeeded)
-                    {
-                        System.Diagnostics.Debug.WriteLine("222");
-
-                        _logger.LogInformation("User created a new account with password.");
-
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-
-                        System.Diagnostics.Debug.WriteLine("333");
-
-                        var callbackUrl = Url.Page(
-                            "/Account/ConfirmEmail",
-                            pageHandler: null,
-                            values: new { area = "Identity", userId = user.Id, code = code },
-                            protocol: Request.Scheme);
-
-                        System.Diagnostics.Debug.WriteLine("444");
-
-                        await _emailSender.SendEmailAsync("hyungsoo" + i.ToString() + "@a.com", "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                        System.Diagnostics.Debug.WriteLine("555");
-
-                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                        {
-                            System.Diagnostics.Debug.WriteLine("666");
-
-                            return RedirectToPage("RegisterConfirmation", new { email = "hyungsoo" + i.ToString() + "@a.com" });
-                        }
-                        else
-                        {
-                            System.Diagnostics.Debug.WriteLine("777");
-
-                            await _signInManager.SignInAsync(user, isPersistent: false);
-                            return LocalRedirect(returnUrl);
-                        }
-                    }
                     foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
@@ -160,7 +122,7 @@ namespace NoName.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            System.Diagnostics.Debug.WriteLine("OnGetAsync()" + ++callCountOnGet);
+            System.Diagnostics.Debug.WriteLine("OnGetAsync()");
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -168,8 +130,7 @@ namespace NoName.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            System.Diagnostics.Debug.WriteLine("OnPostAsync()" + ++callCountOnPost);
-
+            System.Diagnostics.Debug.WriteLine("OnPostAsync()");
 
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -186,20 +147,13 @@ namespace NoName.Pages.Account
                     VisitCount = 1,
                     EmailConfirmed = true
                 };
-
-                System.Diagnostics.Debug.WriteLine("111");
-
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    System.Diagnostics.Debug.WriteLine("222");
-
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-
-                    System.Diagnostics.Debug.WriteLine("333");
 
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
@@ -207,23 +161,15 @@ namespace NoName.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    System.Diagnostics.Debug.WriteLine("444");
-
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    System.Diagnostics.Debug.WriteLine("555");
-
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        System.Diagnostics.Debug.WriteLine("666");
-
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
                     }
                     else
                     {
-                        System.Diagnostics.Debug.WriteLine("777");
-
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }

@@ -62,13 +62,16 @@
     </div>
 
     <div>
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <form asp-route-returnUrl="@Model.ReturnUrl">
             @*<button type="submit" class="btn btn-primary" onclick="@{Model.MakeMockUser(); };">임시계정</button>*@
             <a class="btn btn-primary" type="submit" asp-page-handler="MakeMockUser">임시계정</a>
+            <div>
+                <label>아이디 : noname{0~99}@@noname.com</label>
+            </div>
+            <div>
+                <label>비번 : Noname1234!@@</label>
+            </div>
         </form>
-            
-            @*<a type="submit" class="btn btn-primary" asp-action="@{Model.MakeMockUser(); };" value="임시계정"></a>*@
-            @*<button type="submit" class="btn btn-primary" onclick="@{Model.MakeMockUser(); };">임시계정</button>*@
     </div>
 
     @*@

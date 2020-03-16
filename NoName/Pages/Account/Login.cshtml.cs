@@ -57,6 +57,18 @@ namespace NoName.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+        public void OnGetFillMockLogin()
+        {
+            if (Input == null)
+            {
+                Input = new InputModel();
+            }
+            Input.Email = "noname0@noname.com";
+
+            Input.RememberMe = true;
+        }
+       
+
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))

@@ -21,15 +21,6 @@
     <Compile Remove="Data\DbUser\Create.cshtml.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="Migrations\DbData\20200314051853_DataDbMigration.cs" />
-    <Compile Include="Migrations\DbData\20200314051853_DataDbMigration.Designer.cs" />
-    <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
-    <Compile Include="Migrations\DbUser\20200314055847_UserDbMigration.cs" />
-    <Compile Include="Migrations\DbUser\20200314055847_UserDbMigration.Designer.cs" />
-    <Compile Include="Migrations\DbUser\UserContextModelSnapshot.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
@@ -87,6 +78,11 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
