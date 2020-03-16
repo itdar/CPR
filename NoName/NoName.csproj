@@ -35,11 +35,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Migrations\DbUser\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <Content Update="Pages\CRUD\TableDataJobCRUD\Create.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

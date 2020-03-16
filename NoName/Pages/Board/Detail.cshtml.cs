@@ -4,24 +4,57 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using NoName.Data.DbData;
 
 namespace NoName.Pages.Board
 {
     public class DetailModel : PageModel
     {
 
-        public void OnGetPost(int postNumber)
+        private readonly NoName.Data.DbData.DataContext _context;
+
+        public DetailModel(NoName.Data.DbData.DataContext context)
         {
+            _context = context;
+        }
+        [BindProperty]
+        public TablePost TablePost { get; set; }
 
-            //postNumber의 매개변수는 asp-rout-[value] 의 value와 동일
-            //postNumber에 해당 글의 id 가 들어오고 ViewData["postTitle"]이런식으로 cshtml 에서 보여주면 될듯
+        public List<TableComment> CommentList { get; set; }
 
-            ViewData["PostId"] = postNumber;
+        public async Task<IActionResult> OnGetAsync(int? postNumber)
+        {
+            if (postNumber == null)
+            {
+                return NotFound();
+            }
+
+            TablePost = await _context.Post.FirstOrDefaultAsync(m => m.PostNumber == postNumber);
+
+            CommentList = _context.Comment.Where(i => i.PostNumber == TablePost.PostNumber && i.ParentNumber == 0).ToList();
+            if (TablePost == null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
 
-        public void OnGet()
+        [BindProperty]
+        public TableComment TableComment { get; set; }
+        public async Task<IActionResult> OnPostAsync()
         {
-            ViewData["PostId"] = "basic";
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            TableComment.CreatedTime = DateTime.Now;
+            TableComment.PostNumber = TablePost.PostNumber;
+
+            _context.Comment.Add(TableComment);
+            await _context.SaveChangesAsync();
+            return RedirectToPage(TablePost.PostNumber);
         }
     }
 }

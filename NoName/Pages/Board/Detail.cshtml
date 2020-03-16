@@ -1,5 +1,5 @@
 ﻿@*asp-page-handler 앵커태그 사용시 handler와 id가 addressbar에 드러나는것을 숨기고 '/'로 대체*@
-@page "{handler?}/{id?}"
+@page "{postNumber:int?}"
 @model NoName.Pages.Board.DetailModel
 @{
 }
@@ -19,13 +19,12 @@
                             익명
                             <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
                             <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
-                        </p>
-                        <p>4분전</p>
+                        </p>@Model.TablePost.CreateTime</p>
                     </div>
                     <div class=" card-body" id="post-context" style="height:200px;">
                         <div class="card-title ">
                             <h5 class="font-weight-bold">
-                                글 제목
+                                @Model.TablePost.Title
                                 @* 글 상세의 사진,좋아요,댓글 수 ,스크랩 *@
                                 <a class="badge badge-light float-right fas fa-bookmark text-warning">34</a>
                                 <span class="badge badge-light float-right fas fa-comment text-info">12</span>
@@ -35,21 +34,21 @@
                             </h5>
                         </div>
                         <div class="card-text">
-                            @ViewData["postId"];
+                            @Model.TablePost.Content
                         </div>
                     </div>
                     @*댓글 작성란 *@
                     <div class="card-footer bg-white">
-                        <div class="input-group m-lg-0">
-                            <input type="text" class="form-control" placeholder="댓글을 입력하세요.">
+                        <form class="input-group m-lg-0" method="post">
+                            <input type="text" asp-for="TableComment.Content" class="form-control" placeholder="댓글을 입력하세요.">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-dark fas fa-pen-fancy text-primary" type="submit"></button>
+                                <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary" type="submit"></button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     @*댓글 목록*@
                     <div class="list-group">
-                        @for (int i = 0; i < 10; i++)
+                        @for (int i = 0; i < Model.CommentList.Count; i++)
                         {
                         <div class="list-group-item border">
                             <p class="text-muted">
@@ -62,12 +61,12 @@
                             </p>
 
                             <p>
-                                2019xxxx= 2020xxxx 이거!
-                                막 서로 챙겨주고 이런거 없지 않아? 숭실대!
-                                동의하면 베게좀 보내주라 학생회가 보게! 뻔선도 가져보고 싶고 나중에 뻔후 챙겨주고 싶어~~
+                                @Model.CommentList[i].Content
+
                             </p>
                             <p class="text-primary">
-                                6분 전
+                                @Model.CommentList[i].CreatedTime
+
                                 <i class="fas fa-heart text-danger">54</i>
                             </p>
                             <div class="card card-body border mt-4 ml-4">
