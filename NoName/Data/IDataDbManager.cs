@@ -11,5 +11,7 @@ namespace NoName.Data
     {
         IQueryable<TablePost> GetPosts(int boardNumber);
         Task<EntityEntry<TablePost>> AddPostAsync(TablePost post);
+        IQueryable<TablePost> SearchInTitle(string searchString);
+        IQueryable<TablePost> SearchInContents(string searchString);
     }
 }

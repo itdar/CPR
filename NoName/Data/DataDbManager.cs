@@ -43,6 +43,29 @@ namespace NoName.Data
 			await _dataContext.SaveChangesAsync();
 			return ret;
 		}
+		public IQueryable<TablePost> SearchInTitle(string searchString)
+		{
+			// Use LINQ to get list of Job.
+			IQueryable<string> genreQuery = from m in _dataContext.Post
+											orderby m.PostNumber
+											select m.UserId;
+
+			var posts = from all in _dataContext.Post select all;
+			if (!string.IsNullOrEmpty(searchString))
+			{
+				posts = posts.Where(s => s.Title.Contains(searchString));
+			}
+			return posts;
+		}
+		public IQueryable<TablePost> SearchInContents(string searchString)
+		{
+			var posts = from all in _dataContext.Post select all;
+			if (!string.IsNullOrEmpty(searchString))
+			{
+				posts = posts.Where(s => s.Content.Contains(searchString));
+			}
+			return posts;
+		}
 
 		/*
 		private static DataDbManager instance;
