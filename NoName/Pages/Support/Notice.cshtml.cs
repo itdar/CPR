@@ -33,14 +33,14 @@ namespace NoName.Pages.Support
             return Page();
         }
         /*
-        public async Task OnGetpages(int currentPage)
+        public async Task OnGetpages(int pages)
         {
-            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, currentPage);
+            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, pages);
         }
         //Pagination으로 생성된 페이지들 선택시 호출되는 함수
-        public async Task<IActionResult> OnGetPagesAsync(int currentPage)
+        public async Task<IActionResult> OnGetPagesAsync(int pages)
         {
-            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, currentPage);
+            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, pages);
             return Page();
         }*/
         //Get이나 Post method 호출시 OnGet[Value]()와 OnPost[Value]() 형식으로 호출 됨. Value = Handler Name
