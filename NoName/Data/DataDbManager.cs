@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NoName.Data.DbData;
@@ -35,6 +36,12 @@ namespace NoName.Data
 		public IQueryable<TablePost> GetPosts(int boardNumber)
 		{
 			return _dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardNumber == boardNumber).OrderByDescending(post => post.PostNumber);
+		}
+		public async Task<EntityEntry<TablePost>> AddPostAsync(TablePost post)
+		{
+			var ret = _dataContext.Post.Add(post);
+			await _dataContext.SaveChangesAsync();
+			return ret;
 		}
 
 		/*
