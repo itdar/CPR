@@ -32,7 +32,7 @@ namespace NoName.Pages.Board
 
             TablePost = await _context.Post.FirstOrDefaultAsync(m => m.PostNumber == postNumber);
 
-            CommentList = _context.Comment.Where(i => i.PostNumber == TablePost.PostNumber && i.ParentNumber == 0).ToList();
+            CommentList =await _context.Comment.Where(i => i.PostNumber == TablePost.PostNumber).ToListAsync();
             if (TablePost == null)
             {
                 return NotFound();
@@ -42,6 +42,9 @@ namespace NoName.Pages.Board
 
         [BindProperty]
         public TableComment TableComment { get; set; }
+
+        [BindProperty]
+        public int ParentCommentNumber { get; set; }
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -51,10 +54,13 @@ namespace NoName.Pages.Board
 
             TableComment.CreatedTime = DateTime.Now;
             TableComment.PostNumber = TablePost.PostNumber;
+           // TableComment.ParentCommentNumber = ParentCommentNumber;
 
             _context.Comment.Add(TableComment);
             await _context.SaveChangesAsync();
-            return RedirectToPage(TablePost.PostNumber);
+            return RedirectToPage(TableComment.PostNumber);
         }
+
+       
     }
 }

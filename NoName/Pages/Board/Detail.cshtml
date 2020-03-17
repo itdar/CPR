@@ -3,9 +3,9 @@
 @model NoName.Pages.Board.DetailModel
 @{
 }
-    <head>
-        <script type="text/javascript" src="~/js/Board.js"></script>
-    </head>
+<head>
+    <script type="text/javascript" src="~/js/Board.js"></script>
+</head>
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -19,7 +19,8 @@
                             익명
                             <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
                             <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
-                        </p>@Model.TablePost.CreateTime</p>
+                        </p>
+                        @Model.TablePost.CreateTime
                     </div>
                     <div class=" card-body" id="post-context" style="height:200px;">
                         <div class="card-title ">
@@ -41,8 +42,9 @@
                     <div class="card-footer bg-white">
                         <form class="input-group m-lg-0" method="post">
                             <input type="text" asp-for="TableComment.Content" class="form-control" placeholder="댓글을 입력하세요.">
+                            <input type="hidden" asp-for="TableComment.ParentCommentNumber" value="0" />
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary" type="submit"></button>
+                                <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary" onclick="@Model.ParentCommentNumber=1;"></button>
                             </div>
                         </form>
                     </div>
@@ -50,43 +52,50 @@
                     <div class="list-group">
                         @for (int i = 0; i < Model.CommentList.Count; i++)
                         {
-                        <div class="list-group-item border">
-                            <p class="text-muted">
-                                익명
-                                <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
-                                <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
+                            
+                            <div class="list-group-item border">
+                                <p class="text-muted">
+                                    익명
+                                    <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
+                                    <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
 
-                                <a class="badge badge-light float-right">공감</a>
-                                <a href="#childCommentArea" class="badge badge-light float-right" data-toggle="collapse">대댓글</a>
-                            </p>
+                                    <a class="badge badge-light float-right">공감</a>
+                                    @{ var collapseId = "childComment" + i;}
+                                    <a class="badge badge-light float-right" data-toggle="collapse" href="#@collapseId">대댓글</a>
+                                </p>
 
-                            <p>
-                                @Model.CommentList[i].Content
+                                <p>
+                                    @Model.CommentList[i].Content
 
-                            </p>
-                            <p class="text-primary">
-                                @Model.CommentList[i].CreatedTime
+                                </p>
+                                <p class="text-primary">
+                                    @Model.CommentList[i].CreatedTime
 
-                                <i class="fas fa-heart text-danger">54</i>
-                            </p>
-                            <div class="card card-body border mt-4 ml-4">
-                                대댓글
-                            </div>
-                            <div class="input-group mb-2 mt-2 ml-4 collapse" id="childCommentArea" style="width:96%">
-                                <input type="text" class="form-control" placeholder="댓글을 입력하세요.">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-dark fas fa-pen-fancy text-primary" type="submit"></button>
+                                    <i class="fas fa-heart text-danger">54</i>
+                                </p>
+                                <div class="card card-body border mt-4 ml-4">
+                                    대댓글
+                                </div>
+                                <form class="input-group mb-2 mt-2 ml-4 collapse" method="post" id="@collapseId"style="width:96%">
+                                    
+                                    <input type="text" class="form-control" asp-for="TableComment.Content" placeholder="대댓글을 입력하세요.">
+                                    @{ var value = i + 1;}
+                                    <input type="hidden" asp-for="TableComment.ParentCommentNumber" value="@value" />
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary">
+                                        </button>
+                                    </div>
+                                </form>
+                                @*쪽지 modal*@
+                                <div class="modal" id="messageModal">
+                                    <partial name="MessageModal" />
+                                </div>
+                                @*신고 modal *@
+                                <div class="modal" id="reportModal">
+                                    <partial name="ReportModal" />
                                 </div>
                             </div>
-                            @*쪽지 modal*@
-                            <div class="modal" id="messageModal">
-                                <partial name="MessageModal" />
-                            </div>
-                            @*신고 modal *@
-                            <div class="modal" id="reportModal">
-                                <partial name="ReportModal" />
-                            </div>
-                        </div>
                         }
                     </div>
                 </div>

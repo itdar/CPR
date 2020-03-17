@@ -35,7 +35,7 @@ namespace NoName.Pages.Board
             }
 
             //DataDbManager.GetInstance().DataDB. 
-
+            TablePost.CreateTime = DateTime.Now;
             _context.Post.Add(TablePost);
             await _context.SaveChangesAsync();
             return RedirectToPage("/Board/Index");
