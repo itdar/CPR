@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.CRUD.TablePostCRUD
+namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace NoName.Pages.CRUD.TablePostCRUD
             _context = context;
         }
 
-        public TablePost TablePost { get; set; }
+        public TableBoard TableBoard { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,9 +27,9 @@ namespace NoName.Pages.CRUD.TablePostCRUD
                 return NotFound();
             }
 
-            TablePost = await _context.Post.FirstOrDefaultAsync(m => m.PostNumber == id);
+            TableBoard = await _context.Board.FirstOrDefaultAsync(m => m.BoardNumber == id);
 
-            if (TablePost == null)
+            if (TableBoard == null)
             {
                 return NotFound();
             }

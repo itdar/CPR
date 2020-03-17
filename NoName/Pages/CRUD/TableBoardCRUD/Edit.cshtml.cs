@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
+namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
         }
 
         [BindProperty]
-        public TableJobPage TableJobPage { get; set; }
+        public TableBoard TableBoard { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
                 return NotFound();
             }
 
-            TableJobPage = await _context.JobPage.FirstOrDefaultAsync(m => m.JobPageId == id);
+            TableBoard = await _context.Board.FirstOrDefaultAsync(m => m.BoardNumber == id);
 
-            if (TableJobPage == null)
+            if (TableBoard == null)
             {
                 return NotFound();
             }
@@ -47,7 +47,7 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
                 return Page();
             }
 
-            _context.Attach(TableJobPage).State = EntityState.Modified;
+            _context.Attach(TableBoard).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +55,7 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TableJobPageExists(TableJobPage.JobPageId))
+                if (!TableBoardExists(TableBoard.BoardNumber))
                 {
                     return NotFound();
                 }
@@ -68,9 +68,9 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
             return RedirectToPage("./Index");
         }
 
-        private bool TableJobPageExists(int id)
+        private bool TableBoardExists(int id)
         {
-            return _context.JobPage.Any(e => e.JobPageId == id);
+            return _context.Board.Any(e => e.BoardNumber == id);
         }
     }
 }

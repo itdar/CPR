@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.CRUD.TablePostCRUD
+namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class CreateModel : PageModel
     {
@@ -24,7 +24,7 @@ namespace NoName.Pages.CRUD.TablePostCRUD
         }
 
         [BindProperty]
-        public TablePost TablePost { get; set; }
+        public TableBoard TableBoard { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -35,7 +35,7 @@ namespace NoName.Pages.CRUD.TablePostCRUD
                 return Page();
             }
 
-            _context.Post.Add(TablePost);
+            _context.Board.Add(TableBoard);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

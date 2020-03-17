@@ -12,9 +12,9 @@ namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class EditModel : PageModel
     {
-        private readonly NoName.Data.DbData.DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public EditModel(NoName.Data.DbData.DataContext context)
+        public EditModel(NoName.Data.DataContext context)
         {
             _context = context;
         }

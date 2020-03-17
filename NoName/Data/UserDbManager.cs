@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NoName.Data;
 using NoName.Data.DbData;
 
@@ -7,6 +10,14 @@ using NoName.Data.DbData;
 /// </summary>
 public class UserDbManager
 {
+	private readonly ILogger<UserDbManager> _logger;
+	private readonly UserContext _userContext;
+
+	public UserDbManager(UserContext userContext, ILogger<UserDbManager> logger)
+	{
+		_userContext = userContext;
+		_logger = logger;
+	}
 	private static UserDbManager instance;
 
 	public UserContext UserDB { get; }
@@ -14,6 +25,7 @@ public class UserDbManager
     private UserDbManager()
 	{
 		this.UserDB = new UserContext();
+		//_userContext = userContext;
 	}
 
 	public static UserDbManager GetInstance()

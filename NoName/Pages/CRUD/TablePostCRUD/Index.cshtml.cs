@@ -11,9 +11,9 @@ namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class IndexModel : PageModel
     {
-        private readonly NoName.Data.DbData.DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public IndexModel(NoName.Data.DbData.DataContext context)
+        public IndexModel(NoName.Data.DataContext context)
         {
             _context = context;
         }
@@ -42,7 +42,8 @@ namespace NoName.Pages.CRUD.TablePostCRUD
                     InitialContent = "",
                     LastModifiedTime = DateTime.MinValue,
                     IsDeleted = false,
-                    DeletedTime = DateTime.MinValue
+                    DeletedTime = DateTime.MinValue,
+                    BoardNumber = 1
                 };
                 _context.Post.Add(mock);
             }

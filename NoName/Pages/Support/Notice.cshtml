@@ -11,26 +11,24 @@
                     <div class="card">
                         <div class="card-body">@ViewData["Title"]</div>
                     </div>
-                    <div class="card" id="postContents">
-                        <div class="list-group">
-                            @foreach (var item in Model.Pagination)
-                            {
-                                <a class="list-group-item list-group-item-action"
-                                   asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@item.PostNumber">
-                                    <div class="row">
-                                        <span class="col-sm-1">
-                                            @Html.DisplayFor(modelItem => item.PostNumber)
-                                        </span>
-                                        <span class="col-sm-9">
-                                            @Html.DisplayFor(modelItem => item.Title)
-                                        </span>
-                                        <span class="col-sm-2">
-                                            @Html.DisplayFor(modelItem => item.CreateTime)
-                                        </span>
-                                    </div>
-                                </a>
-                            }
-                        </div>
+                    <div class="list-group" id="postContents">
+                        @foreach (var item in Model.Pagination)
+                        {
+                            <a class="list-group-item list-group-item-action"
+                               asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@item.PostNumber">
+                                <div class="row">
+                                    <span class="col-sm-1">
+                                        @Html.DisplayFor(modelItem => item.PostNumber)
+                                    </span>
+                                    <span class="col-sm-9">
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </span>
+                                    <span class="col-sm-2">
+                                        @Html.DisplayFor(modelItem => item.CreateTime)
+                                    </span>
+                                </div>
+                            </a>
+                        }
                     </div>
                     <div class="card-body text-right">
                         <form method="get">

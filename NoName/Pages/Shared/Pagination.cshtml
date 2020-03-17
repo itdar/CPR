@@ -15,7 +15,7 @@
         <a class="page-link" asp-page="/Support/Notice" asp-page-handler="Page" asp-route-pages="@Model.Previous">이전</a>
     </li>
     @{ int i = Model.StartPage;}
-    @while (i < Model.StartPage + Model.PageBarSize && i < Model.TotalPages)
+    @while (i <= Model.StartPage + Model.PageBarSize && i <= Model.TotalPages)
     {
         var currentDisabled = Model.IsCurrentPage(i) ? "disabled" : "";
         <li class="page-item @currentDisabled">
