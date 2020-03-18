@@ -53,7 +53,7 @@ namespace NoName.Data
 			var posts = from all in _dataContext.Post select all;
 			if (!string.IsNullOrEmpty(searchString))
 			{
-				posts = posts.Where(s => s.Title.Contains(searchString));
+				posts = posts.Where(post => post.Title.Contains(searchString)).OrderByDescending(post => post.PostNumber);
 			}
 			return posts;
 		}
@@ -62,7 +62,16 @@ namespace NoName.Data
 			var posts = from all in _dataContext.Post select all;
 			if (!string.IsNullOrEmpty(searchString))
 			{
-				posts = posts.Where(s => s.Content.Contains(searchString));
+				posts = posts.Where(post => post.Content.Contains(searchString)).OrderByDescending(post => post.PostNumber);
+			}
+			return posts;
+		}
+		public IQueryable<TablePost> SearchInBoth(string searchString)
+		{
+			var posts = from all in _dataContext.Post select all;
+			if (!string.IsNullOrEmpty(searchString))
+			{
+				posts = posts.Where(post => post.Title.Contains(searchString) || post.Content.Contains(searchString)).OrderByDescending(post => post.PostNumber);
 			}
 			return posts;
 		}

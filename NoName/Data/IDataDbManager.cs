@@ -13,5 +13,6 @@ namespace NoName.Data
         Task<EntityEntry<TablePost>> AddPostAsync(TablePost post);
         IQueryable<TablePost> SearchInTitle(string searchString);
         IQueryable<TablePost> SearchInContents(string searchString);
+        IQueryable<TablePost> SearchInBoth(string searchString);
     }
 }
