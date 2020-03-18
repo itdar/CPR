@@ -1,5 +1,5 @@
 ﻿@*asp-page-handler 앵커태그 사용시 handler와 id가 addressbar에 드러나는것을 숨기고 '/'로 대체*@
-@page "{handler?}/{id?}"
+@page "{postNumber:int?}"
 @model NoName.Pages.Board.DetailModel
 @{
 }
@@ -20,12 +20,12 @@
                             <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
                             <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
                         </p>
-                        <p>4분전</p>
+                        <p>@Model.TablePost.CreateTime</p>
                     </div>
                     <div class=" card-body" id="post-context" style="height:200px;">
                         <div class="card-title ">
                             <h5 class="font-weight-bold">
-                                글 제목
+                                @Model.TablePost.Title
                                 @* 글 상세의 사진,좋아요,댓글 수 ,스크랩 *@
                                 <a class="badge badge-light float-right fas fa-bookmark text-warning">34</a>
                                 <span class="badge badge-light float-right fas fa-comment text-info">12</span>
@@ -35,7 +35,7 @@
                             </h5>
                         </div>
                         <div class="card-text">
-                            @ViewData["postId"];
+                            @Model.TablePost.Content
                         </div>
                     </div>
                     @*댓글 작성란 *@

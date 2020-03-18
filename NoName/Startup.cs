@@ -47,6 +47,7 @@ namespace NoName
 
             services.AddRazorPages();
             services.AddSignalR();
+
             //DataDbManager Dependency Injection.
             services.AddScoped<IDataDbManager, DataDbManager>();
         }
