@@ -39,6 +39,7 @@ namespace NoName.Pages.Board
             {
                 return Page();
             }
+            TablePost.CreateTime = DateTime.Now;
             await _manager.AddPostAsync(TablePost);
             return RedirectToPage("/Board/Index");
         }
