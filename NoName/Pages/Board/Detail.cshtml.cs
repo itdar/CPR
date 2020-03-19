@@ -22,7 +22,12 @@ namespace NoName.Pages.Board
         public TablePost TablePost { get; set; }
 
         public List<TableComment> CommentList { get; set; }
+        [BindProperty]
+        public List<TableComment> ParentCommentList { get; set; }
+        [BindProperty]
+        public List<TableComment> ChildCommentList { get; set; }
 
+        // public int ParentCommentCount { get; set; }
         public async Task<IActionResult> OnGetAsync(int? postNumber)
         {
             if (postNumber == null)
@@ -32,7 +37,14 @@ namespace NoName.Pages.Board
 
             TablePost = await _context.Post.FirstOrDefaultAsync(m => m.PostNumber == postNumber);
 
-            CommentList =await _context.Comment.Where(i => i.PostNumber == TablePost.PostNumber).ToListAsync();
+            ParentCommentList = _context.Comment.Where(comment => comment.PostNumber==postNumber &&comment.ParentCommentNumber==0).
+                OrderBy(comment=>comment.CreatedTime).ToList();
+            ChildCommentList = _context.Comment.Where(comment => comment.PostNumber==postNumber &&comment.ParentCommentNumber!=0).
+                OrderBy(comment=>comment.ParentCommentNumber).ThenBy(comment=>comment.CreatedTime).ToList();
+
+            //CommentList = _context.Comment.FromSqlRaw("SELECT * FROM dbo.Comment WHERE PostNumber= :postNumber").ToList();
+
+            //IF((ParentNumber = 0), CommentNumber, ParentCommentNumber),"ORDER BY CreatedTime")
             if (TablePost == null)
             {
                 return NotFound();

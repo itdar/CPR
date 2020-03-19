@@ -50,51 +50,57 @@
                     </div>
                     @*댓글 목록*@
                     <div class="list-group">
-                        @for (int i = 0; i < Model.CommentList.Count; i++)
+                        @for (int i = 0; i < Model.ParentCommentList.Count; i++)
                         {
-                            
-                            <div class="list-group-item border">
+                            var collapseId = "childComment" + i;
+                            <div class="list-group-item border-top">
                                 <p class="text-muted">
                                     익명
                                     <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
                                     <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
 
                                     <a class="badge badge-light float-right">공감</a>
-                                    @{ var collapseId = "childComment" + i;}
+
                                     <a class="badge badge-light float-right" data-toggle="collapse" href="#@collapseId">대댓글</a>
                                 </p>
 
                                 <p>
-                                    @Model.CommentList[i].Content
+                                    @Model.ParentCommentList[i].Content
 
                                 </p>
                                 <p class="text-primary">
-                                    @Model.CommentList[i].CreatedTime
-
+                                    @Model.ParentCommentList[i].CreatedTime
                                     <i class="fas fa-heart text-danger">54</i>
                                 </p>
-                                <div class="card card-body border mt-4 ml-4">
-                                    대댓글
-                                </div>
-                                <form class="input-group mb-2 mt-2 ml-4 collapse" method="post" id="@collapseId"style="width:96%">
-                                    
-                                    <input type="text" class="form-control" asp-for="TableComment.Content" placeholder="대댓글을 입력하세요.">
-                                    @{ var value = i + 1;}
-                                    <input type="hidden" asp-for="TableComment.ParentCommentNumber" value="@value" />
 
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary">
-                                        </button>
-                                    </div>
-                                </form>
-                                @*쪽지 modal*@
-                                <div class="modal" id="messageModal">
-                                    <partial name="MessageModal" />
+                                @for (var j = 0; j < Model.ChildCommentList.Count; j++)
+                                {
+                                    if (Model.ChildCommentList[j].ParentCommentNumber == (i + 1))
+                                    {
+                                        <div class="list-group-item ml-4 bg-light">
+                                            @Model.ChildCommentList[j].Content
+                                        </div>}
+
+                                }
+                            </div>
+                            <form class="input-group mb-2 mt-2 ml-4 collapse" method="post" id="@collapseId" style="width:96%">
+
+                                <input type="text" class="form-control" asp-for="TableComment.Content" placeholder="대댓글을 입력하세요.">
+                                @{ var value = i + 1;}
+                                <input type="hidden" asp-for="TableComment.ParentCommentNumber" value="@value" />
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary">
+                                    </button>
                                 </div>
-                                @*신고 modal *@
-                                <div class="modal" id="reportModal">
-                                    <partial name="ReportModal" />
-                                </div>
+                            </form>
+                            @*쪽지 modal*@
+                            <div class="modal" id="messageModal">
+                                <partial name="MessageModal" />
+                            </div>
+                            @*신고 modal *@
+                            <div class="modal" id="reportModal">
+                                <partial name="ReportModal" />
                             </div>
                         }
                     </div>
