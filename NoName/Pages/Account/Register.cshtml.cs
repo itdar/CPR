@@ -40,6 +40,8 @@ namespace NoName.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public string DoneMockData { get; set; }
+
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
@@ -79,24 +81,71 @@ namespace NoName.Pages.Account
             public bool ReceiveSMS { get; set; }
         }
 
+        public async Task<IActionResult> OnGetMakeMockUser(string returnUrl = null)
+        {
+            System.Diagnostics.Debug.WriteLine("OnGetMakeMockUser()");
+
+            returnUrl = returnUrl ?? Url.Content("~/");
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (ModelState.IsValid)
+            {
+                for (var i = 0; i < 100; i++)
+                {
+                    System.Diagnostics.Debug.WriteLine(i);
+
+                    var user = new ApplicationUser
+                    {
+                        UserName = "noname" + i + "@noname.com",
+                        Email = "noname" + i + "@noname.com",
+                        DateOfBirth = DateTime.Now,
+                        Gender = 1,
+                        ReceiveSMS = true,
+                        ManagerNumber = -1,
+                        PermissionLevel = 0,
+                        VisitCount = 1,
+                        EmailConfirmed = true
+                    };
+
+                    var result = await _userManager.CreateAsync(user, "Noname1234!@");
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+
+            }
+
+            // If we got this far, something failed, redisplay form
+            return Page();
+        }
+
         public async Task OnGetAsync(string returnUrl = null)
         {
+            System.Diagnostics.Debug.WriteLine("OnGetAsync()");
+
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            System.Diagnostics.Debug.WriteLine("OnPostAsync()");
+
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    UserName = Input.Email, 
+                var user = new ApplicationUser {
+                    UserName = Input.Email,
                     Email = Input.Email,
                     DateOfBirth = Input.BirthDate,
                     Gender = Input.Gender,
-                    ReceiveSMS = Input.ReceiveSMS
+                    ReceiveSMS = Input.ReceiveSMS,
+                    ManagerNumber = -1,
+                    PermissionLevel = 0,
+                    VisitCount = 1,
+                    EmailConfirmed = true
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
@@ -105,6 +154,7 @@ namespace NoName.Pages.Account
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,

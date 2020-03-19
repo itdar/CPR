@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.ScaffoldingTest.TableDataJobCRUD
+namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class IndexModel : PageModel
     {
@@ -18,12 +18,11 @@ namespace NoName.Pages.ScaffoldingTest.TableDataJobCRUD
         {
             _context = context;
         }
-
-        public IList<TableDataJob> TableDataJob { get; set; }
+        public IList<TableBoard> TableBoard { get;set; }
 
         public async Task OnGetAsync()
         {
-            TableDataJob = await _context.Job.ToListAsync();
+            TableBoard = await _context.Board.ToListAsync();
         }
     }
 }

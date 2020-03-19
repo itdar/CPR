@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -48,5 +49,9 @@ namespace NoName.Data.DbData
         public bool? IsDeleted { get; set; } = false;
         // 삭제 시각 initial value = null
         public DateTime? DeletedTime { get; set; }
+
+        [ForeignKey("BoardNumber")]
+        public TableBoard Board { get; set; }
+        public int BoardNumber { get; set; }
     }
 }

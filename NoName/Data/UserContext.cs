@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NoName.Data.DbUser;
-using NoName.Data.DbData;
 
 namespace NoName.Data
 {
@@ -25,8 +24,6 @@ namespace NoName.Data
         public UserContext()
         {
         }
-
-        public DbSet<NoName.Data.DbData.TableDataJob> TableDataJob { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
         //    => options.UseSqlServer("UserDb");

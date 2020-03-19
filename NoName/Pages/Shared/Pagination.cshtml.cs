@@ -18,7 +18,7 @@ namespace NoName.Pages
         //Not Used
         public int BoardId { get; set; }
         //Current Page => Defualt Index page = 0
-        public int CurrentPage { get; private set; } = 1;
+        public int CurrentPage { get; private set; }
         //Number of Posting
         public int PostingCount { get; private set; }
         //Posting Count on a Page
@@ -43,8 +43,7 @@ namespace NoName.Pages
         public Pagination(List<T> items, int postingCount, int currentPage, int pageSize)
         {
             PostingCount = postingCount;
-            //indexPage에서 currentPage가 0을 반환함으로 강제변경.
-            CurrentPage = currentPage == 0 ? 1 : currentPage;
+            CurrentPage = currentPage;
             PageSize = pageSize;
 
             this.AddRange(items);
@@ -57,11 +56,11 @@ namespace NoName.Pages
 
         //static method => instance member 사용불가
         //IQueryable<T> => 데이터 형식이 지정되지 않은 특정 데이터 소스에 대한 쿼리를 실행하는 기능을 제공합니다.
-        public static async Task<Pagination<T>> CreateAsync(IQueryable<T> source, int currentPage, int pageSize = 10)
+        public static async Task<Pagination<T>> CreateAsync(IQueryable<T> source, int currentPage = 1, int pageSize = 10)
         {
             var postingCount = await source.CountAsync();
             //CreateList. length is pageSize.
-            var items = await source.Skip(currentPage * pageSize).Take(pageSize).ToListAsync();
+            var items = await source.Skip((currentPage - 1) * pageSize).Take(pageSize).ToListAsync();
             return new Pagination<T>(items, postingCount, currentPage, pageSize);
         }
     }

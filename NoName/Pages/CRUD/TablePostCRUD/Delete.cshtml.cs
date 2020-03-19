@@ -11,9 +11,9 @@ namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class DeleteModel : PageModel
     {
-        private readonly NoName.Data.DbData.DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public DeleteModel(NoName.Data.DbData.DataContext context)
+        public DeleteModel(NoName.Data.DataContext context)
         {
             _context = context;
         }

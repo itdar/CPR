@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
+namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
         }
 
         [BindProperty]
-        public TableJobPage TableJobPage { get; set; }
+        public TableBoard TableBoard { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
                 return NotFound();
             }
 
-            TableJobPage = await _context.JobPage.FirstOrDefaultAsync(m => m.JobPageId == id);
+            TableBoard = await _context.Board.FirstOrDefaultAsync(m => m.BoardNumber == id);
 
-            if (TableJobPage == null)
+            if (TableBoard == null)
             {
                 return NotFound();
             }
@@ -44,11 +44,11 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
                 return NotFound();
             }
 
-            TableJobPage = await _context.JobPage.FindAsync(id);
+            TableBoard = await _context.Board.FindAsync(id);
 
-            if (TableJobPage != null)
+            if (TableBoard != null)
             {
-                _context.JobPage.Remove(TableJobPage);
+                _context.Board.Remove(TableBoard);
                 await _context.SaveChangesAsync();
             }
 

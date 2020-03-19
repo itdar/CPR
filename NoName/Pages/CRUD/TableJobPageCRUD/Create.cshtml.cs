@@ -11,9 +11,9 @@ namespace NoName.Pages.ScaffoldingTest.TableJobPageCRUD
 {
     public class CreateModel : PageModel
     {
-        private readonly NoName.Data.DbData.DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public CreateModel(NoName.Data.DbData.DataContext context)
+        public CreateModel(NoName.Data.DataContext context)
         {
             _context = context;
         }

@@ -47,6 +47,9 @@ namespace NoName
 
             services.AddRazorPages();
             services.AddSignalR();
+
+            //DataDbManager Dependency Injection.
+            services.AddScoped<IDataDbManager, DataDbManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
