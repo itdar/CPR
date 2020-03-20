@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,12 +22,12 @@ namespace NoName.Data.DbData
          */
         [Key]
         public int BoardNumber { get; set; }
-        public int BoardCode { get; set; }
+        public int BoardCode { get; set; } //자유/ 비밀/ 정보
+        //[ForeignKey("BoardCode")]
+        //public TableBoardCode TableBoardCode { get; set; }
         public string BoardName { get; set; }
-        public ICollection<TablePost> Posts
-        {
-            get => posts;
-            set => posts = value;
-        }
+        public int JobCode { get; set; }
+        [ForeignKey("JobCode")]
+        public TableDataJob Job { get; set; }
     }
 }

@@ -12,9 +12,9 @@ namespace NoName.Pages.Board
     public class DetailModel : PageModel
     {
 
-        private readonly NoName.Data.DbData.DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public DetailModel(NoName.Data.DbData.DataContext context)
+        public DetailModel(NoName.Data.DataContext context)
         {
             _context = context;
         }
