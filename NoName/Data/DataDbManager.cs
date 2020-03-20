@@ -9,6 +9,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NoName.Data.DbData;
 
+/*
+  Drop-Database -Context UserContext
+  Add-Migration -Context UserContext -OutputDir Migrations/DbUser/ UserDbMigration
+  Update-Database -Context UserContext
+
+  Drop-Database -Context DataContext
+  Add-Migration -Context DataContext -OutputDir Migrations/DbData/ DataDbMigration
+  Update-Database -Context DataContext
+*/
+
 namespace NoName.Data
 {
 
@@ -33,9 +43,9 @@ namespace NoName.Data
 
 			return Task.FromResult(0);
 		}
-		public IQueryable<TablePost> GetPosts(int boardNumber)
+		public IQueryable<TablePost> GetPosts(int boardCode)
 		{
-			return _dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardNumber == boardNumber).OrderByDescending(post => post.PostNumber);
+			return _dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardCode == boardCode).OrderByDescending(post => post.PostNumber);
 		}
 		public async Task<EntityEntry<TablePost>> AddPostAsync(TablePost post)
 		{

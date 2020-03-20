@@ -9,7 +9,7 @@ namespace NoName.Data
 {
     public interface IDataDbManager
     {
-        IQueryable<TablePost> GetPosts(int boardNumber);
+        IQueryable<TablePost> GetPosts(int boardCode);
         Task<EntityEntry<TablePost>> AddPostAsync(TablePost post);
         IQueryable<TablePost> SearchInTitle(string searchString);
         IQueryable<TablePost> SearchInContents(string searchString);

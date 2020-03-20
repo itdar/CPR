@@ -50,8 +50,8 @@ namespace NoName.Data.DbData
         // 삭제 시각 initial value = null
         public DateTime? DeletedTime { get; set; }
 
-        [ForeignKey("BoardNumber")]
+        [ForeignKey("BoardCode")]
         public TableBoard Board { get; set; }
-        public int BoardNumber { get; set; }
+        public int BoardCode { get; set; }
     }
 }
