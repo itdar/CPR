@@ -35,6 +35,10 @@ namespace NoName
             we will first check if there is an instance available in the pool. Once the request processing finalizes,
             any state on the instance is reset and the instance is itself returned to the pool. *
             ********/
+            /***
+             * DbContext 가 thread-safe 하지 않은거랑 scope 나 manager 쓰는거랑 무슨 관계가 있는건지
+             * service 에 등록해두면 thread 관리까지 해줌?
+             **/
             services.AddDbContext<UserContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("UserDb")));
@@ -49,7 +53,7 @@ namespace NoName
             services.AddSignalR();
 
             //DataDbManager Dependency Injection.
-            services.AddScoped<IDataDbManager, DataDbManager>();
+            //services.AddScoped<IDataDbManager, DataDbManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using NoName.Data;
 
 namespace NoName.Pages
 {
@@ -12,10 +13,20 @@ namespace NoName.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(DataContext dataContext)
         {
-            _logger = logger;
+            //_logger = logger;
+
+            System.Diagnostics.Debug.WriteLine("MainModel");
+
+            DataDbManager.InitInstance(dataContext);
+            //UserDbManager.InitInstance(userContext); // 만들 예정
         }
+
+        //public IndexModel(ILogger<IndexModel> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public void OnGet()
         {

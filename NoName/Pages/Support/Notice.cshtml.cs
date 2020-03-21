@@ -13,23 +13,24 @@ namespace NoName.Pages.Support
 {
     public class NoticeModel : PageModel
     {
-        /*
+        
         private readonly DataContext _context;
-        public NoticeModel(DataContext context, ILogger<NoticeModel> logger)
-        {
-            _context = context;
-            _logger = logger;
-        }
-        */
-        private readonly ILogger<NoticeModel> _logger;
-        private readonly IDataDbManager _manager;
+        //public NoticeModel(DataContext context, ILogger<NoticeModel> logger)
+        //{
+        //    _context = context;
+        //    //_logger = logger;
+        //}
+        
+        //private readonly ILogger<NoticeModel> _logger;
+
+        private readonly DataDbManager _manager = DataDbManager.GetInstance();
         public Pagination<TablePost> Pagination { get; set; }
+
         //Constructor
-        public NoticeModel(IDataDbManager manager, ILogger<NoticeModel> logger)
-        {
-            _manager = manager;
-            _logger = logger;
-        }
+        //public NoticeModel(ILogger<NoticeModel> logger)
+        //{
+        //    _logger = logger;
+        //}
         public async Task<IActionResult> OnGetAsync()
         {
             //외래키 참조 불가 -> 따로 설정해줘야 함 *20.03.11 CreateAsync(source, currentPage=1, pageSize =10)
