@@ -35,7 +35,6 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             //_context.BoardId.Add(boardCode);
             for (var i = 0; i < 7; i++)
             {
-
                 var moc = new TableBoard
                 {
                     BoardId = i + 1,
@@ -44,7 +43,6 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                 };
                 await _context.Board.AddAsync(moc);
                 await _context.SaveChangesAsync();
-
             }
             return RedirectToPage("./Index");
         }
