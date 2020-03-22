@@ -16,15 +16,16 @@ namespace NoName.Pages.Board
         private readonly ILogger<IndexModel> _logger;
         //private readonly IDataDbManager _manager;
         private DataDbManager _manager = DataDbManager.GetInstance();
+        private int boardCode;
 
         public Pagination<TablePost> Pagination { get; set; }
         [BindProperty]
         public TablePost TablePost { get; set; }
-        public IndexModel(IDataDbManager manager, ILogger<IndexModel> logger)
-        {
-            _manager = manager;
-            _logger = logger;
-        }
+        //public IndexModel(IDataDbManager manager, ILogger<IndexModel> logger)
+        //{
+        //    _manager = manager;
+        //    _logger = logger;
+        //}
         public async Task<IActionResult> OnGetAsync()
         {
             if (boardCode == null)
