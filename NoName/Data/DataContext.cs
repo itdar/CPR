@@ -17,6 +17,8 @@ namespace NoName.Data
         public DbSet<TableComment> Comment { get; set; }
         public DbSet<TableSalary> Salary { get; set; }
         public DbSet<TableMessage> Message { get; set; }
+        // public DbSet<TableBoardCode> BoardCode { get; set; }
+        public DbSet<TableBoardCode> BoardCode { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

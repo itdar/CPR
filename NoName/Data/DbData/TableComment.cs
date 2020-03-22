@@ -18,8 +18,6 @@ namespace NoName.Data.DbData
         public int PostNumber { get; set; }
         [ForeignKey("PostNumber")]
         public TablePost TablePost { get; set; }
-        public int ParentNumber { get; set; }
-        public int ChildNumber { get; set; }
         public string Content { get; set; }
 
         public DateTime CreatedTime { get; set; }

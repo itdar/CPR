@@ -20,13 +20,18 @@ namespace NoName.Pages.Board
         public Pagination<TablePost> Pagination { get; set; }
         [BindProperty]
         public TablePost TablePost { get; set; }
-        //public IndexModel(IDataDbManager manager, ILogger<IndexModel> logger)
-        //{
-        //    _manager = manager;
-        //    _logger = logger;
-        //}
+        public IndexModel(IDataDbManager manager, ILogger<IndexModel> logger)
+        {
+            _manager = manager;
+            _logger = logger;
+        }
         public async Task<IActionResult> OnGetAsync()
         {
+            if (boardCode == null)
+            {
+                return NotFound();
+
+            }
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
             Pagination = await Pagination<TablePost>.CreateAsync(_manager.GetPosts(1), 1);
             return Page();
@@ -42,11 +47,10 @@ namespace NoName.Pages.Board
                 return Page();
             }
             TablePost.CreateTime = DateTime.Now;
+            TablePost.BoardCode = 1;
             await _manager.AddPostAsync(TablePost);
             return RedirectToPage("/Board/Index");
         }
-        public void OnPost()
-        {
-        }
+       
     }
 }
