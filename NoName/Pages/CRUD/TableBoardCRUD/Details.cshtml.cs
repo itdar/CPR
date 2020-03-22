@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data;
 using NoName.Data.DbData;
 
 namespace NoName.Pages.CRUD.TableBoardCRUD
@@ -27,7 +28,8 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                 return NotFound();
             }
 
-            TableBoard = await _context.Board.FirstOrDefaultAsync(m => m.BoardNumber == id);
+            TableBoard = await _context.Board
+                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardId == id);
 
             if (TableBoard == null)
             {

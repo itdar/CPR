@@ -13,8 +13,8 @@
 <form class="form-inline" method="post">
     <div class="form-group">
         @*label의 for와 input의 id를 일치 시켜 포커스를 일치시킴*@
-        <label asp-for="@Model.CodeOfBoard" class="mr-sm-2">생성할 데이터의 게시판 번호(Code)</label>
-        <input asp-for="@Model.CodeOfBoard" class="form-control mr-sm-2" />
+        <label asp-for="@Model.IdOfBoard" class="mr-sm-2">생성할 데이터의 게시판 번호(Code)</label>
+        <input asp-for="@Model.IdOfBoard" class="form-control mr-sm-2" />
     </div>
     <button class="btn btn-outline-dark">Mock 데이터 생성</button>
 </form>
@@ -59,6 +59,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TablePost[0].DeletedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TablePost[0].Board)
             </th>
             <th></th>
         </tr>
@@ -105,6 +108,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DeletedTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Board.BoardId)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.PostNumber">Edit</a> |

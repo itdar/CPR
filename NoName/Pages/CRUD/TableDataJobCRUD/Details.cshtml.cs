@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.ScaffoldingTest.TableDataJobCRUD
+namespace NoName.Pages.CRUD.TableDataJobCRUD
 {
     public class DetailsModel : PageModel
     {
-        private readonly DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public DetailsModel(DataContext context)
+        public DetailsModel(NoName.Data.DataContext context)
         {
             _context = context;
         }

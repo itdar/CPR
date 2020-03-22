@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NoName.Data;
 using NoName.Data.DbData;
 
 namespace NoName.Pages.CRUD.TableBoardCRUD
@@ -20,6 +21,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 
         public IActionResult OnGet()
         {
+        ViewData["JobCode"] = new SelectList(_context.Job, "JobCode", "JobCode");
             return Page();
         }
 

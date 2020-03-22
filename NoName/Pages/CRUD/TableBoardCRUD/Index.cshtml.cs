@@ -22,23 +22,23 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 
         public async Task OnGetAsync()
         {
-
-            TableBoard = await _context.Board.ToListAsync();
+            TableBoard = await _context.Board
+                .Include(t => t.Job).ToListAsync();
         }
 
         public async Task<IActionResult> OnGetMakeBoardAsync()
         {
-            //TableBoardCode boardCode = new TableBoardCode
+            //TableBoardId boardCode = new TableBoardId
             //{
             //    BoardKindName = "자유게시판"
             //};
-            //_context.BoardCode.Add(boardCode);
+            //_context.BoardId.Add(boardCode);
             for (var i = 0; i < 7; i++)
             {
 
                 var moc = new TableBoard
                 {
-                    BoardCode = i + 1,
+                    BoardId = i + 1,
                     JobCode = 1,
                     BoardName="게시판 종류"+(i+1)
                     };

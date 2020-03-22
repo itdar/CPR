@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data;
 using NoName.Data.DbData;
 
 namespace NoName.Pages.CRUD.TableBoardCRUD
@@ -29,12 +30,14 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                 return NotFound();
             }
 
-            TableBoard = await _context.Board.FirstOrDefaultAsync(m => m.BoardNumber == id);
+            TableBoard = await _context.Board
+                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardId == id);
 
             if (TableBoard == null)
             {
                 return NotFound();
             }
+           ViewData["JobCode"] = new SelectList(_context.Job, "JobCode", "JobCode");
             return Page();
         }
 
@@ -55,7 +58,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TableBoardExists(TableBoard.BoardNumber))
+                if (!TableBoardExists(TableBoard.BoardId))
                 {
                     return NotFound();
                 }
@@ -70,7 +73,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 
         private bool TableBoardExists(int id)
         {
-            return _context.Board.Any(e => e.BoardNumber == id);
+            return _context.Board.Any(e => e.BoardId == id);
         }
     }
 }

@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <h1>Create</h1>
@@ -79,6 +80,10 @@
                 <span asp-validation-for="TablePost.DeletedTime" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="TablePost.BoardId" class="control-label"></label>
+                <select asp-for="TablePost.BoardId" class ="form-control" asp-items="ViewBag.BoardId"></select>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -89,6 +94,3 @@
     <a asp-page="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

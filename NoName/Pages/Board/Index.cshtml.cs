@@ -15,7 +15,6 @@ namespace NoName.Pages.Board
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
-        //private int boardCode;
 
         public Pagination<TablePost> Pagination { get; set; }
 
@@ -32,14 +31,14 @@ namespace NoName.Pages.Board
             UserDbManager.GetInstance();
         }
 
-        public async Task<IActionResult> OnGetAsync(int? boardCode)
+        public async Task<IActionResult> OnGetAsync(int? boardId)
         {
-            if (boardCode == null)
+            if (boardId == null)
             {
                 return NotFound();
 
             }
-            //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
+            //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardId 가져와야함
             //System.Diagnostics.Debug.WriteLine(manager.GetPosts(1));
             Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(1), 1);
             return Page();
@@ -55,7 +54,7 @@ namespace NoName.Pages.Board
                 return Page();
             }
             TablePost.CreateTime = DateTime.Now;
-            TablePost.BoardCode = 1;
+            TablePost.BoardId = 1;
             await manager.AddPostAsync(TablePost);
             return RedirectToPage("/Board/Index");
         }

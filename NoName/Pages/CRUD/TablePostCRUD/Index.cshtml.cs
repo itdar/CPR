@@ -20,24 +20,25 @@ namespace NoName.Pages.CRUD.TablePostCRUD
         }
 
         [BindProperty]
-        public int CodeOfBoard { get; set; }
+        public int IdOfBoard { get; set; }
         public IList<TablePost> TablePost { get; set; }
 
         public async Task OnGetAsync()
         {
-            TablePost = await _context.Post.ToListAsync();
+            TablePost = await _context.Post
+                .Include(t => t.Board).ToListAsync();
         }
         public async Task<IActionResult> OnPostAsync()
         {
             var board = from b in _context.Board
-                        where b.BoardCode.CompareTo(CodeOfBoard) == 0
+                        where b.BoardId.CompareTo(IdOfBoard) == 0
                         select b;
             if (board.Count() == 0)
             {
                 var newBoard = new TableBoard
                 {
-                    BoardName = "프로그래머" + CodeOfBoard.ToString(),
-                    BoardCode = CodeOfBoard
+                    BoardName = "프로그래머" + IdOfBoard.ToString(),
+                    BoardId = IdOfBoard
                 };
                 _context.Board.Add(newBoard);
                 _context.SaveChanges();
@@ -59,7 +60,7 @@ namespace NoName.Pages.CRUD.TablePostCRUD
                     LastModifiedTime = DateTime.MinValue,
                     IsDeleted = false,
                     DeletedTime = DateTime.MinValue,
-                    BoardCode = CodeOfBoard
+                    BoardId = IdOfBoard
                 };
                 _context.Post.Add(mock);
             }
