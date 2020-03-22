@@ -1,5 +1,4 @@
-﻿@page
-
+﻿@page "{boardCode:int?}"
 @model NoName.Pages.Board.IndexModel
 @{
 }
@@ -36,8 +35,8 @@
                     @foreach (var item in Model.Pagination)
                     {
                         <a class="list-group-item list-group-item-action"
-                           asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@item.PostNumber">
-                            <div class="row">
+                           asp-page="/Board/Detail" asp-route-postNumber="@item.PostNumber">
+                            <div class="row">d
                                 <span class="col-sm-1">
                                     @Html.DisplayFor(modelItem => item.PostNumber)
                                 </span>

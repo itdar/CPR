@@ -22,7 +22,8 @@ namespace NoName.Data.DbData
          */
         [Key]
         public int BoardNumber { get; set; }
-        public int BoardCode { get; set; } //자유/ 비밀/ 정보
+        public int BoardCode { get; set; } 
+        //핫게=1,실시간 인기글2, 주간 인기글 3, 자유게시판 4, 비밀게시판 5, 정보게시판 6
         //[ForeignKey("BoardCode")]
         //public TableBoardCode TableBoardCode { get; set; }
         public string BoardName { get; set; }

@@ -23,8 +23,13 @@ namespace NoName.Pages.Board
             _manager = manager;
             _logger = logger;
         }
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? boardCode)
         {
+            if (boardCode == null)
+            {
+                return NotFound();
+
+            }
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
             Pagination = await Pagination<TablePost>.CreateAsync(_manager.GetPosts(1), 1);
             return Page();
@@ -40,11 +45,10 @@ namespace NoName.Pages.Board
                 return Page();
             }
             TablePost.CreateTime = DateTime.Now;
+            TablePost.BoardNumber = 1;
             await _manager.AddPostAsync(TablePost);
             return RedirectToPage("/Board/Index");
         }
-        public void OnPost()
-        {
-        }
+       
     }
 }

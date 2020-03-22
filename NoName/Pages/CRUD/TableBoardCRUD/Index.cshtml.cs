@@ -33,28 +33,33 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             //    BoardKindName = "자유게시판"
             //};
             //_context.BoardCode.Add(boardCode);
-
-            for (var j = 0; j < 4; j++)
+            for (var i = 0; i < 7; i++)
             {
+
                 var moc = new TableBoard
                 {
-                    BoardCode = j+1,
-                    JobCode = 1
-                };
-                await _context.Board.AddAsync(moc);
+                    BoardCode = i + 1,
+                    JobCode = 1,
+                    BoardName="게시판 종류"+(i+1)
+                    };
+                    await _context.Board.AddAsync(moc);
+                
             }
-
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }
 
         public async Task<IActionResult> OnGetJobIdAsync()
         {
-            TableDataJob job = new TableDataJob
+            for (var i = 0; i < 4; i++)
             {
-                JobName = "프로그래머"
-            };
-            _context.Job.Add(job);
+                TableDataJob job = new TableDataJob
+                {
+                    JobName = "직업" + i
+                };
+               await _context.Job.AddAsync(job);
+            }
+            
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
 
