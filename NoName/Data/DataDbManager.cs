@@ -27,22 +27,33 @@ namespace NoName.Data
 	/// </summary>
 	public class DataDbManager
 	{
+		private static DataDbManager instance;
+
 		//private readonly ILogger<DataDbManager> _logger;
-		//private readonly DataContext _dataContext;
-		//public DataDbManager(DataContext dataContext)
+		private DataContext _dataContext;
+		public DataDbManager(DataContext dataContext)
+		{
+			_dataContext = dataContext;
+			//_logger = logger;
+		}
+
+		public static void InitInstance(DataContext dataContext)
+		{
+			instance = new DataDbManager(dataContext);
+		}
+		public static DataDbManager GetInstance()
+		{
+			return instance;
+		}
+		//public Task WriteMessage(string message)
 		//{
-		//	_dataContext = dataContext;
-		//	//_logger = logger;
+		//	_logger.LogInformation(
+		//		"MyDependency.WriteMessage called. Message: {MESSAGE}",
+		//		message);
+
+		//	return Task.FromResult(0);
 		//}
 
-		public Task WriteMessage(string message)
-		{
-			_logger.LogInformation(
-				"MyDependency.WriteMessage called. Message: {MESSAGE}",
-				message);
-
-			return Task.FromResult(0);
-		}
 		public IQueryable<TablePost> GetPosts(int boardCode)
 		{
 			return _dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardCode == boardCode).OrderByDescending(post => post.PostNumber);
@@ -86,37 +97,11 @@ namespace NoName.Data
 			return posts;
 		}
 
-		/*
-		private static DataDbManager instance;
 		
-		public DataContext DataDB { get; }
+		
+		
+		//public DataContext DataDB { get; }
 		//public object ServiceProviderFactory { get; }
 
-		private DataDbManager(DataContext dataContext)
-		{
-			DataDB = dataContext;
-		}
-		public static DataDbManager GetInstance()
-		{
-			return instance;
-		}
-		public static void InitInstance(DataContext dataContext)
-		{
-			instance = new DataDbManager(dataContext);
-		}
-
-		//public Task WriteMessage(string message)
-		//{
-		//	_logger.LogInformation(
-		//		"MyDependency.WriteMessage called. Message: {MESSAGE}",
-		//		message);
-
-		//	return Task.FromResult(0);
-		//}
-
-		public IQueryable<TablePost> GetPosts(int boardNumber)
-		{
-			return DataDB.Post.Include(post => post.Board).Where(post => post.Board.BoardNumber == boardNumber).OrderByDescending(post => post.PostNumber);
-		}
 	}
 }

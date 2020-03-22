@@ -20,6 +20,7 @@ namespace NoName.Pages
             System.Diagnostics.Debug.WriteLine("MainModel");
 
             DataDbManager.InitInstance(dataContext);
+            //DataDbManager.GetInstance().GetPosts(1);
             //UserDbManager.InitInstance(userContext); // 만들 예정
         }
 

@@ -14,15 +14,17 @@ namespace NoName.Pages.Board
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly IDataDbManager _manager;
+        //private readonly IDataDbManager _manager;
+        private DataDbManager _manager = DataDbManager.GetInstance();
+
         public Pagination<TablePost> Pagination { get; set; }
         [BindProperty]
         public TablePost TablePost { get; set; }
-        public IndexModel(IDataDbManager manager, ILogger<IndexModel> logger)
-        {
-            _manager = manager;
-            _logger = logger;
-        }
+        //public IndexModel(IDataDbManager manager, ILogger<IndexModel> logger)
+        //{
+        //    _manager = manager;
+        //    _logger = logger;
+        //}
         public async Task<IActionResult> OnGetAsync()
         {
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
