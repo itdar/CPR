@@ -11,7 +11,6 @@ namespace NoName.Data
     public class DataContext : DbContext
     {
         public DbSet<TableDataJob> Job { get; set; }
-        public DbSet<TableJobPage> JobPage { get; set; }
         public DbSet<TableBoard> Board { get; set; }
         public DbSet<TablePost> Post { get; set; }
         public DbSet<TableComment> Comment { get; set; }

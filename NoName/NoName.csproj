@@ -6,32 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-
-    <Compile Remove="Areas\**" />
-
-    <Compile Remove="Migrations\DbData\**" />
-
-    <Compile Remove="Migrations\DbUser\**" />
-    <Compile Remove="Pages\NewFolder\**" />    <Compile Remove="Pages\Board\TableUserJobCRUD\**" />    <Content Remove="Areas\**" />    <Content Remove="Migrations\DbData\**" />    <Content Remove="Migrations\DbUser\**" />
-    <Content Remove="Pages\Board\TableUserJobCRUD\**" />
-    <EmbeddedResource Remove="Areas\**" />
-    <EmbeddedResource Remove="Migrations\DbData\**" />
-    <EmbeddedResource Remove="Migrations\DbUser\**" />    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />    <None Remove="Areas\**" />    <None Remove="Migrations\DbData\**" />    <None Remove="Migrations\DbUser\**" />
-    <None Remove="Pages\Board\TableUserJobCRUD\**" />    <Compile Remove="Data\DbUser\Create.cshtml.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Data\DbUser\Create.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Migrations\DbData\20200322083322_DataDbMigration.cs" />
-    <Compile Include="Migrations\DbData\20200322083322_DataDbMigration.Designer.cs" />
-    <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
@@ -67,10 +41,6 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Update="Pages\CRUD\TableJobPageCRUD\Create.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Update="Pages\CRUD\TableJobPageCRUD\Delete.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -87,6 +57,11 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Pages\CRUD\TableJobPageCRUD\" />
   </ItemGroup>
 
 </Project>

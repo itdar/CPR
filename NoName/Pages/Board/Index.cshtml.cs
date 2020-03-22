@@ -40,6 +40,7 @@ namespace NoName.Pages.Board
 
             }
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
+            //System.Diagnostics.Debug.WriteLine(manager.GetPosts(1));
             Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(1), 1);
             return Page();
         }

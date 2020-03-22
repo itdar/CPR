@@ -14,9 +14,9 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
     {
         private readonly DataContext _context;
 
-        public IndexModel(DataContext context)
+        public IndexModel()
         {
-            _context = context;
+            _context = DataDbManager.GetInstance().dataContext;
         }
         public IList<TableBoard> TableBoard { get; set; }
 
