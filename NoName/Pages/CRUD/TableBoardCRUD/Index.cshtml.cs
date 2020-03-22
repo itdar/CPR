@@ -41,11 +41,11 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                     BoardCode = i + 1,
                     JobCode = 1,
                     BoardName="게시판 종류"+(i+1)
-                    };
-                    await _context.Board.AddAsync(moc);
-                
+                };
+                await _context.Board.AddAsync(moc);
+                await _context.SaveChangesAsync();
+
             }
-            await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }
 

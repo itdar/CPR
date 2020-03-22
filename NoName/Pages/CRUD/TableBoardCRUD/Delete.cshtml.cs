@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data;
 using NoName.Data.DbData;
 
 namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class DeleteModel : PageModel
     {
-        private readonly NoName.Data.DataContext _context;
+        private readonly DataContext _context;
 
-        public DeleteModel(NoName.Data.DataContext context)
+        public DeleteModel()
         {
-            _context = context;
+            _context = DataDbManager.GetInstance().dataContext;
         }
 
         [BindProperty]

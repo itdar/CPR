@@ -6,17 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data;
 using NoName.Data.DbData;
 
 namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class EditModel : PageModel
     {
-        private readonly NoName.Data.DataContext _context;
+        private readonly DataContext _context;
 
-        public EditModel(NoName.Data.DataContext context)
+        public EditModel()
         {
-            _context = context;
+            _context = DataDbManager.GetInstance().dataContext;
         }
 
         [BindProperty]

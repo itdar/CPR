@@ -14,9 +14,9 @@ namespace NoName.Pages.ScaffoldingTest.TableDataJobCRUD
     {
         private readonly DataContext _context;
 
-        public CreateModel(DataContext context)
+        public CreateModel()
         {
-            _context = context;
+            _context = DataDbManager.GetInstance().dataContext;
         }
 
         public IActionResult OnGet()

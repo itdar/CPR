@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data;
 using NoName.Data.DbData;
 
 namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class DetailsModel : PageModel
     {
-        private readonly NoName.Data.DataContext _context;
+        private readonly DataContext _context;
 
-        public DetailsModel(NoName.Data.DataContext context)
+        public DetailsModel()
         {
-            _context = context;
+            _context = DataDbManager.GetInstance().dataContext;
         }
 
         public TableBoard TableBoard { get; set; }

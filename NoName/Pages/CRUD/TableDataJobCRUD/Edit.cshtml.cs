@@ -15,9 +15,9 @@ namespace NoName.Pages.ScaffoldingTest.TableDataJobCRUD
     {
         private readonly DataContext _context;
 
-        public EditModel(DataContext context)
+        public EditModel()
         {
-            _context = context;
+            _context = DataDbManager.GetInstance().dataContext;
         }
 
         [BindProperty]
