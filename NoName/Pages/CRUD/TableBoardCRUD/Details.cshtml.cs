@@ -28,7 +28,8 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                 return NotFound();
             }
 
-            TableBoard = await _context.Board.FirstOrDefaultAsync(m => m.BoardNumber == id);
+            TableBoard = await _context.Board
+                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardId == id);
 
             if (TableBoard == null)
             {

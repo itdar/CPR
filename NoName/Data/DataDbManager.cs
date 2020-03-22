@@ -59,9 +59,9 @@ namespace NoName.Data
 		//	return Task.FromResult(0);
 		//}
 
-		public IQueryable<TablePost> GetPosts(int boardCode)
+		public IQueryable<TablePost> GetPosts(int boardId)
 		{
-			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardCode == boardCode).OrderByDescending(post => post.PostNumber);
+			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardId == boardId).OrderByDescending(post => post.PostNumber);
 		}
 		public async Task<EntityEntry<TablePost>> AddPostAsync(TablePost post)
 		{

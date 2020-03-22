@@ -42,9 +42,9 @@ namespace NoName
             services.AddDbContext<UserContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("UserDb")));
-            //services.AddDbContext<DataContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DataDb")));
+            services.AddDbContext<DataContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DataDb")));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<UserContext>();

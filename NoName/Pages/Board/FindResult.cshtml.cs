@@ -13,13 +13,13 @@ namespace NoName.Pages.Board
     public class FindResultModel : PageModel
     {
         private readonly ILogger<FindResultModel> _logger;
-        private readonly IDataDbManager _manager;
+        private readonly DataDbManager manager;
         public Pagination<TablePost> Pagination { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
-        public FindResultModel(IDataDbManager manager, ILogger<FindResultModel> logger)
+        public FindResultModel(ILogger<FindResultModel> logger)
         {
-            _manager = manager;
+            manager = DataDbManager.GetInstance();
             _logger = logger;
         }
         /*public async Task<IActionResult> OnGetAsync()
@@ -33,13 +33,13 @@ namespace NoName.Pages.Board
         public async Task<IActionResult> OnGetPageAsync(int pages)
         {
             SearchString = Request.Form["searchString"];
-            Pagination = await Pagination<TablePost>.CreateAsync(_manager.SearchInBoth(SearchString), pages);
+            Pagination = await Pagination<TablePost>.CreateAsync(manager.SearchInBoth(SearchString), pages);
             return Page();
         }
         public async Task<IActionResult> OnPostAsync()
         {
             SearchString = Request.Form["searchString"];
-            Pagination = await Pagination<TablePost>.CreateAsync(_manager.SearchInBoth(SearchString), 1);
+            Pagination = await Pagination<TablePost>.CreateAsync(manager.SearchInBoth(SearchString), 1);
             return Page();
         }
     }

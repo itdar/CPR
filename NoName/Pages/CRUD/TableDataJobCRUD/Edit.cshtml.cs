@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore;
 using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.ScaffoldingTest.TableDataJobCRUD
+namespace NoName.Pages.CRUD.TableDataJobCRUD
 {
     public class EditModel : PageModel
     {
-        private readonly DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public EditModel()
+        public EditModel(NoName.Data.DataContext context)
         {
-            _context = DataDbManager.GetInstance().dataContext;
+            _context = context;
         }
 
         [BindProperty]
