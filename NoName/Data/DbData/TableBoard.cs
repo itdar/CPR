@@ -14,6 +14,12 @@ namespace NoName.Data.DbData
     {
         private ICollection<TablePost> posts;
 
+        public ICollection<TablePost> Posts
+        {
+            get => posts;
+            set => posts = value;
+        }
+
         /*
          * 전체웹에서의 게시판 고유번호?
          * 직업홈에서의 게시판 코드?
@@ -28,7 +34,8 @@ namespace NoName.Data.DbData
         //public TableBoardCode TableBoardCode { get; set; }
         public string BoardName { get; set; }
         public int JobCode { get; set; }
-        [ForeignKey("JobCode")]
+
+        //[ForeignKey("JobCode")]
         public TableDataJob Job { get; set; }
     }
 }

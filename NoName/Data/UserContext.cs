@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NoName.Data.DbUser;
+using System;
 
 namespace NoName.Data
 {
@@ -21,8 +22,16 @@ namespace NoName.Data
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=UserDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+
         public UserContext()
         {
+        }
+
+        public static implicit operator UserContext(DataContext v)
+        {
+            throw new NotImplementedException();
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder options)

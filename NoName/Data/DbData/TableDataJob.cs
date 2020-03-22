@@ -11,12 +11,17 @@ namespace NoName.Data.DbData
      */
     public class TableDataJob
     {
-        private TableSalary salary;
-
-        public TableJobPage JobPage { get; set; }
+        private ICollection<TableBoard> boards;
+        public ICollection<TableBoard> Boards
+        {
+            get => boards;
+            set => boards = value;
+        }
 
         [Key]
         public int JobCode { get; set; }
+
+        private TableSalary salary;
 
         public string JobName { get; set; }
 

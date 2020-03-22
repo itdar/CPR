@@ -29,22 +29,27 @@ namespace NoName.Data
 	{
 		private static DataDbManager instance;
 
-		//private readonly ILogger<DataDbManager> _logger;
-		private DataContext _dataContext;
-		public DataDbManager(DataContext dataContext)
+		public DataContext dataContext;
+
+		public DataDbManager()
 		{
-			_dataContext = dataContext;
-			//_logger = logger;
+			if (dataContext == null)
+				dataContext = new DataContext();
 		}
 
-		public static void InitInstance(DataContext dataContext)
+		public DataDbManager(DataContext _dataContext)
 		{
-			instance = new DataDbManager(dataContext);
+			dataContext = _dataContext;
 		}
+
 		public static DataDbManager GetInstance()
 		{
+			if (instance == null)
+				instance = new DataDbManager();
+
 			return instance;
 		}
+
 		//public Task WriteMessage(string message)
 		//{
 		//	_logger.LogInformation(
@@ -56,22 +61,22 @@ namespace NoName.Data
 
 		public IQueryable<TablePost> GetPosts(int boardCode)
 		{
-			return _dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardCode == boardCode).OrderByDescending(post => post.PostNumber);
+			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardCode == boardCode).OrderByDescending(post => post.PostNumber);
 		}
 		public async Task<EntityEntry<TablePost>> AddPostAsync(TablePost post)
 		{
-			var ret = _dataContext.Post.Add(post);
-			await _dataContext.SaveChangesAsync();
+			var ret = dataContext.Post.Add(post);
+			await dataContext.SaveChangesAsync();
 			return ret;
 		}
 		public IQueryable<TablePost> SearchInTitle(string searchString)
 		{
 			// Use LINQ to get list of Job.
-			IQueryable<string> genreQuery = from m in _dataContext.Post
+			IQueryable<string> genreQuery = from m in dataContext.Post
 											orderby m.PostNumber
 											select m.UserId;
 
-			var posts = from all in _dataContext.Post select all;
+			var posts = from all in dataContext.Post select all;
 			if (!string.IsNullOrEmpty(searchString))
 			{
 				posts = posts.Where(post => post.Title.Contains(searchString)).OrderByDescending(post => post.PostNumber);
@@ -80,7 +85,7 @@ namespace NoName.Data
 		}
 		public IQueryable<TablePost> SearchInContents(string searchString)
 		{
-			var posts = from all in _dataContext.Post select all;
+			var posts = from all in dataContext.Post select all;
 			if (!string.IsNullOrEmpty(searchString))
 			{
 				posts = posts.Where(post => post.Content.Contains(searchString)).OrderByDescending(post => post.PostNumber);
@@ -89,19 +94,12 @@ namespace NoName.Data
 		}
 		public IQueryable<TablePost> SearchInBoth(string searchString)
 		{
-			var posts = from all in _dataContext.Post select all;
+			var posts = from all in dataContext.Post select all;
 			if (!string.IsNullOrEmpty(searchString))
 			{
 				posts = posts.Where(post => post.Title.Contains(searchString) || post.Content.Contains(searchString)).OrderByDescending(post => post.PostNumber);
 			}
 			return posts;
 		}
-
-		
-		
-		
-		//public DataContext DataDB { get; }
-		//public object ServiceProviderFactory { get; }
-
 	}
 }

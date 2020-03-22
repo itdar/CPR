@@ -8,14 +8,26 @@
   <ItemGroup>
 
     <Compile Remove="Areas\**" />
-    <Compile Remove="Pages\NewFolder\**" />    <Compile Remove="Pages\Board\TableUserJobCRUD\**" />    <Content Remove="Areas\**" />
+
+    <Compile Remove="Migrations\DbData\**" />
+
+    <Compile Remove="Migrations\DbUser\**" />
+    <Compile Remove="Pages\NewFolder\**" />    <Compile Remove="Pages\Board\TableUserJobCRUD\**" />    <Content Remove="Areas\**" />    <Content Remove="Migrations\DbData\**" />    <Content Remove="Migrations\DbUser\**" />
     <Content Remove="Pages\Board\TableUserJobCRUD\**" />
-    <EmbeddedResource Remove="Areas\**" />    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />    <None Remove="Areas\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <EmbeddedResource Remove="Migrations\DbData\**" />
+    <EmbeddedResource Remove="Migrations\DbUser\**" />    <EmbeddedResource Remove="Pages\Board\TableUserJobCRUD\**" />    <None Remove="Areas\**" />    <None Remove="Migrations\DbData\**" />    <None Remove="Migrations\DbUser\**" />
     <None Remove="Pages\Board\TableUserJobCRUD\**" />    <Compile Remove="Data\DbUser\Create.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Data\DbUser\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\DbData\20200322083322_DataDbMigration.cs" />
+    <Compile Include="Migrations\DbData\20200322083322_DataDbMigration.Designer.cs" />
+    <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
   </ItemGroup>
 
 

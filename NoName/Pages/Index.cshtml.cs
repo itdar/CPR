@@ -11,23 +11,16 @@ namespace NoName.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<IndexModel> logger;
 
-        public IndexModel(DataContext dataContext)
+        public IndexModel(UserContext userContext, ILogger<IndexModel> _logger)
         {
-            //_logger = logger;
+            // Manager 동작하는지 확인하고 지우거나 해야함
+            UserDbManager.SetContext(userContext);
+            UserDbManager.GetInstance().GetAllUserJob();
 
-            System.Diagnostics.Debug.WriteLine("MainModel");
-
-            DataDbManager.InitInstance(dataContext);
-            //DataDbManager.GetInstance().GetPosts(1);
-            //UserDbManager.InitInstance(userContext); // 만들 예정
+            logger = _logger;
         }
-
-        //public IndexModel(ILogger<IndexModel> logger)
-        //{
-        //    _logger = logger;
-        //}
 
         public void OnGet()
         {

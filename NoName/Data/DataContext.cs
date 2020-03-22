@@ -24,6 +24,9 @@ namespace NoName.Data
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=DataDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+
         public DataContext()
         {
         }

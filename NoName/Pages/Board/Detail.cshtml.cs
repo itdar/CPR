@@ -13,12 +13,15 @@ namespace NoName.Pages.Board
     public class DetailModel : PageModel
     {
 
-        private readonly DataContext _context;
+        private readonly DataContext context;
 
-        public DetailModel(DataContext context)
+        public DetailModel()
         {
-            _context = context;
+            // context 받아서 쓰던 코드 그대로 사용하려고 dataContext public 으로 바꿔뒀음
+            // manager 로 함수 옮기고 private 으로 바꿔야함
+            context = DataDbManager.GetInstance().dataContext;
         }
+
         [BindProperty]
         public TablePost TablePost { get; set; }
 
@@ -36,11 +39,11 @@ namespace NoName.Pages.Board
                 return NotFound();
             }
 
-            TablePost = await _context.Post.FirstOrDefaultAsync(m => m.PostNumber == postNumber);
+            TablePost = await context.Post.FirstOrDefaultAsync(m => m.PostNumber == postNumber);
 
-            ParentCommentList = _context.Comment.Where(comment => comment.PostNumber==postNumber &&comment.ParentCommentNumber==0).
+            ParentCommentList = context.Comment.Where(comment => comment.PostNumber==postNumber &&comment.ParentCommentNumber==0).
                 OrderBy(comment=>comment.CreatedTime).ToList();
-            ChildCommentList = _context.Comment.Where(comment => comment.PostNumber==postNumber &&comment.ParentCommentNumber!=0).
+            ChildCommentList = context.Comment.Where(comment => comment.PostNumber==postNumber &&comment.ParentCommentNumber!=0).
                 OrderBy(comment=>comment.ParentCommentNumber).ThenBy(comment=>comment.CreatedTime).ToList();
 
             //CommentList = _context.Comment.FromSqlRaw("SELECT * FROM dbo.Comment WHERE PostNumber= :postNumber").ToList();
@@ -67,10 +70,10 @@ namespace NoName.Pages.Board
 
             TableComment.CreatedTime = DateTime.Now;
             TableComment.PostNumber = TablePost.PostNumber;
-           // TableComment.ParentCommentNumber = ParentCommentNumber;
+            // TableComment.ParentCommentNumber = ParentCommentNumber;
 
-            _context.Comment.Add(TableComment);
-            await _context.SaveChangesAsync();
+            context.Comment.Add(TableComment);
+            await context.SaveChangesAsync();
             return RedirectToPage(TableComment.PostNumber);
         }
 

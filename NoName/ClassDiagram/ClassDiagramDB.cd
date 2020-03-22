@@ -2,44 +2,37 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
   <Class Name="NoName.Data.DbData.TableDataJob">
     <Position X="8.25" Y="0.75" Width="1.75" />
-    <AssociationLine Name="JobPage" Type="NoName.Data.DbData.TableJobPage" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Boards" Type="NoName.Data.DbData.TableBoard" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="8.25" Y="2.25" />
-        <Point X="7.625" Y="2.25" />
-        <Point X="7.625" Y="3.25" />
+        <Point X="9.125" Y="2.69" />
+        <Point X="9.125" Y="3.125" />
+        <Point X="6.875" Y="3.125" />
+        <Point X="6.875" Y="3.5" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAAAACAAAAAgAAAAAAAAAAAAAAAAgABAAAAAAAAAAAA=</HashCode>
+      <HashCode>IAAAACAAAAAgAAAAAAAAAAAAAAAAAABAIAAAACAAAAA=</HashCode>
       <FileName>Data\DbData\TableDataJob.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="JobPage" />
       <Property Name="Salary" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="NoName.Data.DbData.TableJobPage">
-    <Position X="5.75" Y="3.25" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAACAAAAA=</HashCode>
-      <FileName>Data\DbData\TableJobPage.cs</FileName>
-    </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Boards" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="NoName.Data.DbData.TableBoard">
-    <Position X="10.5" Y="3.25" Width="1.75" />
+    <Position X="6" Y="3.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <AssociationLine Name="Posts" Type="NoName.Data.DbData.TablePost">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.168" Y="0.147" />
+        <Position X="0.147" Y="0.168" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABEAAAABBAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABEAAAABBAAAAAAAAAKAABAAAAAAAAAAAA=</HashCode>
       <FileName>Data\DbData\TableBoard.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -47,9 +40,9 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="NoName.Data.DbData.TablePost">
-    <Position X="10" Y="5.75" Width="2.75" />
+    <Position X="10" Y="3.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAgJAAAAgAABEAAAAAAAAwAAAGAAAEAAAAAAXAAIAA=</HashCode>
+      <HashCode>AAAgJAAAAgAABEAAABAAAAwAAAGAAAEAAAAAAXAAIAA=</HashCode>
       <FileName>Data\DbData\TablePost.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -57,9 +50,9 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="NoName.Data.DbData.TableComment">
-    <Position X="5.5" Y="6" Width="2.25" />
+    <Position X="6" Y="6.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAAAAAAAAAAAgAAAAAAAIAAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAQAgAAAAAAAAAAAAwAAAAAAAIAAAAAABCAAAE=</HashCode>
       <FileName>Data\DbData\TableComment.cs</FileName>
     </TypeIdentifier>
   </Class>
