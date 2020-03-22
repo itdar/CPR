@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using NoName.Data.DbData;
 
 namespace NoName.Data
 {
     public interface IDataDbManager
     {
-        IQueryable<TablePost> GetPosts(int boardNumber);
+        IQueryable<TablePost> GetPosts(int boardCode);
+        Task<EntityEntry<TablePost>> AddPostAsync(TablePost post);
+        IQueryable<TablePost> SearchInTitle(string searchString);
+        IQueryable<TablePost> SearchInContents(string searchString);
+        IQueryable<TablePost> SearchInBoth(string searchString);
     }
 }

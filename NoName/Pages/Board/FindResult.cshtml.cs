@@ -12,14 +12,14 @@ namespace NoName.Pages.Board
 {
     public class FindResultModel : PageModel
     {
-        public Pagination<TablePost> Pagination { get; set; }
-        private readonly DataContext _context;
         private readonly ILogger<FindResultModel> _logger;
+        private readonly IDataDbManager _manager;
+        public Pagination<TablePost> Pagination { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
-        public FindResultModel(DataContext context, ILogger<FindResultModel> logger)
+        public FindResultModel(IDataDbManager manager, ILogger<FindResultModel> logger)
         {
-            _context = context;
+            _manager = manager;
             _logger = logger;
         }
         /*public async Task<IActionResult> OnGetAsync()
@@ -29,17 +29,17 @@ namespace NoName.Pages.Board
             Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, 1);
             return Page();
         }*/
-        //Pagination으로 생성된 페이지들 선택시 호출되는 함수
+        //User의 JobCode에 맞는 게시판에서 검색하는 기능 추가 필요 *20.03.18
         public async Task<IActionResult> OnGetPageAsync(int pages)
         {
             SearchString = Request.Form["searchString"];
-            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, pages);
+            Pagination = await Pagination<TablePost>.CreateAsync(_manager.SearchInBoth(SearchString), pages);
             return Page();
         }
         public async Task<IActionResult> OnPostAsync()
         {
             SearchString = Request.Form["searchString"];
-            Pagination = await Pagination<TablePost>.CreateAsync(_context.Post, 1);
+            Pagination = await Pagination<TablePost>.CreateAsync(_manager.SearchInBoth(SearchString), 1);
             return Page();
         }
     }

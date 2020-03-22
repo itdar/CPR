@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +19,29 @@ namespace NoName.Pages.CRUD.TablePostCRUD
             _context = context;
         }
 
-        public IList<TablePost> TablePost { get;set; }
+        [BindProperty]
+        public int CodeOfBoard { get; set; }
+        public IList<TablePost> TablePost { get; set; }
 
         public async Task OnGetAsync()
         {
             TablePost = await _context.Post.ToListAsync();
         }
-        public async Task<IActionResult> OnGetMockAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
+            var board = from b in _context.Board
+                        where b.BoardCode.CompareTo(CodeOfBoard) == 0
+                        select b;
+            if (board.Count() == 0)
+            {
+                var newBoard = new TableBoard
+                {
+                    BoardName = "프로그래머" + CodeOfBoard.ToString(),
+                    BoardCode = CodeOfBoard
+                };
+                _context.Board.Add(newBoard);
+                _context.SaveChanges();
+            }
             for (int i = 1; i <= 100; i++)
             {
                 var mock = new TablePost
@@ -43,12 +59,12 @@ namespace NoName.Pages.CRUD.TablePostCRUD
                     LastModifiedTime = DateTime.MinValue,
                     IsDeleted = false,
                     DeletedTime = DateTime.MinValue,
-                    BoardNumber = 1
+                    BoardCode = CodeOfBoard
                 };
                 _context.Post.Add(mock);
             }
-
             await _context.SaveChangesAsync();
+
             return RedirectToPage("./Index");
         }
     }
