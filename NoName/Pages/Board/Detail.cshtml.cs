@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data;
 using NoName.Data.DbData;
 
 namespace NoName.Pages.Board
@@ -12,9 +13,9 @@ namespace NoName.Pages.Board
     public class DetailModel : PageModel
     {
 
-        private readonly NoName.Data.DataContext _context;
+        private readonly DataContext _context;
 
-        public DetailModel(NoName.Data.DataContext context)
+        public DetailModel(DataContext context)
         {
             _context = context;
         }
