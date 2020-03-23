@@ -16,7 +16,7 @@ namespace NoName.Pages.Board
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
         //private int boardCode;
-
+       
         public Pagination<TablePost> Pagination { get; set; }
 
         [BindProperty]
@@ -31,7 +31,8 @@ namespace NoName.Pages.Board
             // UserManager 에서 context 안끊기고 동작하는지 확인하려고 만들어봄 확인 후 지워야함
             UserDbManager.GetInstance();
         }
-
+        [BindProperty]
+        public TableBoard CurrentBoard { get; set; }
         public async Task<IActionResult> OnGetAsync(int? boardCode)
         {
             if (boardCode == null)
@@ -41,12 +42,14 @@ namespace NoName.Pages.Board
             }
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
             //System.Diagnostics.Debug.WriteLine(manager.GetPosts(1));
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(1), 1);
+            CurrentBoard = manager.GetBoard(boardCode);
+            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardCode), 1);
             return Page();
         }
-        public async Task<IActionResult> OnGetPageAsync(int pages)
+        public async Task<IActionResult> OnGetPageAsync(int boardCode ,int pages)
         {
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(1), pages);
+            CurrentBoard = manager.GetBoard(boardCode);
+            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(boardCode), pages);
             return Page();
         }
         public async Task<IActionResult> OnPostAsync() {
@@ -55,7 +58,7 @@ namespace NoName.Pages.Board
                 return Page();
             }
             TablePost.CreateTime = DateTime.Now;
-            TablePost.BoardCode = 1;
+            TablePost.BoardCode = CurrentBoard.BoardCode;
             await manager.AddPostAsync(TablePost);
             return RedirectToPage("/Board/Index");
         }

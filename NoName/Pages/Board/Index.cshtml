@@ -1,6 +1,7 @@
 ﻿@page "{boardCode:int?}"
 @model NoName.Pages.Board.IndexModel
 @{
+    ViewData["CurrentBoard"] = Model.CurrentBoard.BoardCode;
 }
 <head>
     <link rel="stylesheet" href="~/css/container.css" />
@@ -52,7 +53,7 @@
                 </div>
                 <div class="container" id="pagination">
                     @*동기식 Partial TagHelper*@
-                    <partial name="Pagination" model="Model.Pagination" />
+                    <partial name="Pagination" model="Model.Pagination" view-data="ViewData" />
                     @*비동기식 Partial TagHelper
                         @await Html.PartialAsync("Pagination", Model.Pagination)*@
                 </div>

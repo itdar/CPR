@@ -101,5 +101,13 @@ namespace NoName.Data
 			}
 			return posts;
 		}
+
+		////////////////////////////////////////////////////////Board
+		public TableBoard GetBoard(int? boardCode)
+		{
+			return dataContext.Board.FirstOrDefault(board => board.BoardCode == boardCode);
+
+		}
+
 	}
 }
