@@ -114,7 +114,7 @@ namespace NoName.Data
 		////////////////////////////////////////////////////////Board
 		public TableBoard GetBoard(int? boardCode)
 		{
-			return dataContext.Board.FirstOrDefault(board => board.BoardCode == boardCode);
+			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardCode);
 
 		}
 		//////////////////////////////////////////////////Comment

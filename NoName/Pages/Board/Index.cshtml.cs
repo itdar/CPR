@@ -58,7 +58,7 @@ namespace NoName.Pages.Board
                 return Page();
             }
             TablePost.CreateTime = DateTime.Now;
-            TablePost.BoardCode = CurrentBoard.BoardCode;
+            TablePost.BoardId = CurrentBoard.BoardId;
             await manager.AddPostAsync(TablePost);
             return RedirectToPage("/Board/Index");
         }

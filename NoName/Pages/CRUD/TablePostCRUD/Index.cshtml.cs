@@ -20,7 +20,7 @@ namespace NoName.Pages.CRUD.TablePostCRUD
         }
 
         [BindProperty]
-        public int CodeOfBoard { get; set; }
+        public int IdOfBoard { get; set; }
         public IList<TablePost> TablePost { get; set; }
 
         public async Task OnGetAsync()
@@ -61,7 +61,7 @@ namespace NoName.Pages.CRUD.TablePostCRUD
                         LastModifiedTime = DateTime.MinValue,
                         IsDeleted = false,
                         DeletedTime = DateTime.MinValue,
-                        BoardCode = j
+                        BoardId = j
                     };
                     _context.Post.Add(mock);
                     await _context.SaveChangesAsync();

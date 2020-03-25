@@ -6,10 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\**" />
     <Compile Remove="Pages\CRUD\TableJobPageCRUD\**" />
+    <Content Remove="Migrations\**" />
     <Content Remove="Pages\CRUD\TableJobPageCRUD\**" />
+    <EmbeddedResource Remove="Migrations\**" />
     <EmbeddedResource Remove="Pages\CRUD\TableJobPageCRUD\**" />
+    <None Remove="Migrations\**" />
     <None Remove="Pages\CRUD\TableJobPageCRUD\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\DbData\20200325054907_DataDbMigration.cs" />
+    <Compile Include="Migrations\DbData\20200325054907_DataDbMigration.designer.cs" />
+    <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
+    <Compile Include="Migrations\DbUser\20200325054915_UserDbMigration.cs" />
+    <Compile Include="Migrations\DbUser\20200325054915_UserDbMigration.designer.cs" />
+    <Compile Include="Migrations\DbUser\UserContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>
