@@ -2,6 +2,7 @@
 @page "{postNumber:int?}"
 @model NoName.Pages.Board.DetailModel
 @{
+    ViewData["CurrentPost"] = Model.CurrentPost.BoardCode;
 }
 <head>
     <script type="text/javascript" src="~/js/Board.js"></script>
@@ -16,26 +17,30 @@
                 <div class="card" style="margin-top:10px">
                     <div class="card-header bg-white">
                         <p>
-                            익명
-                            <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
-                            <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
+                            <h5>
+                                익명
+                                <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
+                                <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
+                            </h5>
                         </p>
-                        @Model.TablePost.CreateTime
+                        @Model.CurrentPost.CreateTime
                     </div>
                     <div class=" card-body" id="post-context" style="height:200px;">
-                        <div class="card-title ">
+                        <div id="likeCount" class="card-title ">
+                           
                             <h5 class="font-weight-bold">
-                                @Model.TablePost.Title
+                                @{ var o = 1;}
+                                @Model.CurrentPost.Title
                                 @* 글 상세의 사진,좋아요,댓글 수 ,스크랩 *@
-                                <a class="badge badge-light float-right fas fa-bookmark text-warning">34</a>
-                                <span class="badge badge-light float-right fas fa-comment text-info">12</span>
-
-                                <a class="badge badge-light float-right fas fa-heart text-danger">22</a>
-                                <span class="badge badge-light float-right far fa-images text-success">3</span>
+                                <a href="#bookMarkModal"class="badge badge-light float-right fas fa-bookmark text-warning" data-toggle="modal">0</a>
+                                <span class="badge badge-light float-right fas fa-comment text-info">@(Model.ChildCommentList.Count + Model.ParentCommentList.Count)</span>
+                                
+                                    <a href="#likeModal" class="badge float-right fas fa-heart text-danger" data-toggle="modal">@Model.CurrentPost.LikeCount</a>
+                                    <span class="badge float-right far fa-images text-success">3</span>
                             </h5>
                         </div>
                         <div class="card-text">
-                            @Model.TablePost.Content
+                            @Model.CurrentPost.Content
                         </div>
                     </div>
                     @*댓글 작성란 *@
@@ -49,63 +54,72 @@
                         </form>
                     </div>
                     @*댓글 목록*@
-                    <div class="list-group">
-                        @for (int i = 0; i < Model.ParentCommentList.Count; i++)
-                        {
-                            var collapseId = "childComment" + i;
-                            <div class="list-group-item border-top">
-                                <p class="text-muted">
-                                    익명
-                                    <a href="#reportModal" class="badge badge-light float-right" data-toggle="modal">신고</a>
-                                    <a href="#messageModal" class="badge badge-light float-right" data-toggle="modal">쪽지</a>
+                <div class="list-group">
+                    @for (int i = 0; i < Model.ParentCommentList.Count; i++)
+                    {
+                        var collapseId = "childComment" + i;
+                        <div class="list-group-item border-top">
+                            <p class="text-muted">
+                                익명
+                                <a href="#reportModal" class="badge badge float-right" data-toggle="modal">신고</a>
+                                <a href="#messageModal" class="badge badge float-right" data-toggle="modal">쪽지</a>
 
-                                    <a class="badge badge-light float-right">공감</a>
+                                <a  href="#likeModal" class="badge badge float-right" data-toggle="modal">공감</a>
 
-                                    <a class="badge badge-light float-right" data-toggle="collapse" href="#@collapseId">대댓글</a>
-                                </p>
+                                <a class="badge badge float-right" data-toggle="collapse" href="#@collapseId">대댓글</a>
+                            </p>
 
-                                <p>
-                                    @Model.ParentCommentList[i].Content
+                            <p>
+                                @Model.ParentCommentList[i].Content
 
-                                </p>
-                                <p class="text-primary">
-                                    @Model.ParentCommentList[i].CreatedTime
-                                    <i class="fas fa-heart text-danger">54</i>
-                                </p>
+                            </p>
+                            <p class="text-primary">
+                                @Model.ParentCommentList[i].CreatedTime
+                                <i class="fas fa-heart text-danger">54</i>
+                            </p>
 
-                                @for (var j = 0; j < Model.ChildCommentList.Count; j++)
+                            @for (var j = 0; j < Model.ChildCommentList.Count; j++)
+                            {
+                                if (Model.ChildCommentList[j].ParentCommentNumber == (i + 1))
                                 {
-                                    if (Model.ChildCommentList[j].ParentCommentNumber == (i + 1))
-                                    {
-                                        <div class="list-group-item ml-4 bg-light">
-                                            @Model.ChildCommentList[j].Content
-                                        </div>}
+                                    <div class="list-group-item ml-4 bg-light">
+                                        @Model.ChildCommentList[j].Content
+                                    </div>}
 
-                                }
-                            </div>
-                            <form class="input-group mb-2 mt-2 ml-4 collapse" method="post" id="@collapseId" style="width:96%">
+                            }
+                        </div>
+                        <form class="input-group mb-2 mt-2 ml-4 collapse" method="post" id="@collapseId" style="width:96%">
 
-                                <input type="text" class="form-control" asp-for="TableComment.Content" placeholder="대댓글을 입력하세요.">
-                                @{ var value = i + 1;}
-                                <input type="hidden" asp-for="TableComment.ParentCommentNumber" value="@value" />
+                            <input type="text" class="form-control" asp-for="TableComment.Content" placeholder="대댓글을 입력하세요.">
+                            @{ var value = i + 1;}
+                            <input type="hidden" asp-for="TableComment.ParentCommentNumber" value="@value" />
 
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary">
-                                    </button>
-                                </div>
-                            </form>
-                            @*쪽지 modal*@
-                            <div class="modal" id="messageModal">
-                                <partial name="MessageModal" />
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary">
+                                </button>
                             </div>
-                            @*신고 modal *@
-                            <div class="modal" id="reportModal">
-                                <partial name="ReportModal" />
-                            </div>
-                        }
-                    </div>
+                        </form>
+                        @*쪽지 modal*@
+                        <div class="modal" id="messageModal">
+                            <partial name="MessageModal" />
+                        </div>
+                        @*신고 modal *@
+                        <div class="modal" id="reportModal">
+                            <partial name="ReportModal" />
+                        </div>
+                        //공감 modal
+                        <div class="modal" id="likeModal">
+                            <partial name="Like" />
+                        </div>
+                        //북마크 Modal
+                        <div class="modal" id="bookMarkModal">
+                            <partial name="BookMark" />
+                        </div>
+
+                    }
                 </div>
-                <a type="button" class="btn btn-outline-dark" asp-page="/Board/Index" style="margin-top:10px;">글 목록</a>
+                </div>
+                <a type="button" class="btn btn-outline-dark" asp-page="/Board/Index" asp-route-boardCode="@Model.CurrentPost.BoardCode" style="margin-top:10px;">글 목록</a>
             </div>
             <div class="col-lg-3">
                 <partial name="Sidebar" />
