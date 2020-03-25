@@ -21,6 +21,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 
         public IActionResult OnGet()
         {
+        ViewData["JobCode"] = new SelectList(_context.Job, "JobCode", "JobCode");
             return Page();
         }
 

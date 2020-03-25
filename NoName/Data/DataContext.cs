@@ -16,11 +16,30 @@ namespace NoName.Data
         public DbSet<TableComment> Comment { get; set; }
         public DbSet<TableSalary> Salary { get; set; }
         public DbSet<TableMessage> Message { get; set; }
-        // public DbSet<TableBoardCode> BoardCode { get; set; }
-        public DbSet<TableBoardCode> BoardCode { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TableDataJob>().ToTable("TableDataJob");
+            modelBuilder.Entity<TableBoard>().ToTable("TableBoard");
+            modelBuilder.Entity<TablePost>().ToTable("TablePost");
+            modelBuilder.Entity<TableComment>().ToTable("TableComment");
+            modelBuilder.Entity<TableSalary>().ToTable("TableSalary");
+            modelBuilder.Entity<TableMessage>().ToTable("TableMessage");
+
+            //Set Primary Key
+            modelBuilder.Entity<TableBoard>().HasKey(c => new { c.BoardNumber, c.BoardId });
+            //Set Auto-incresement
+            modelBuilder.Entity<TableBoard>().Property(f => f.BoardNumber).ValueGeneratedOnAdd();
+
+            //Set Alternate Key(BoardId) to ForeignKey
+            modelBuilder.Entity<TablePost>()
+                .HasOne(p => p.Board)
+                .WithMany(b => b.Posts)
+                .HasForeignKey(p => p.BoardId)
+                .HasPrincipalKey(b => b.BoardId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

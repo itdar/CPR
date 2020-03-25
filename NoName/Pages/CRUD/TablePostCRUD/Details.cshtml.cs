@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data;
 using NoName.Data.DbData;
 
 namespace NoName.Pages.CRUD.TablePostCRUD
@@ -27,7 +28,8 @@ namespace NoName.Pages.CRUD.TablePostCRUD
                 return NotFound();
             }
 
-            TablePost = await _context.Post.FirstOrDefaultAsync(m => m.PostNumber == id);
+            TablePost = await _context.Post
+                .Include(t => t.Board).FirstOrDefaultAsync(m => m.PostNumber == id);
 
             if (TablePost == null)
             {

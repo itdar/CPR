@@ -13,12 +13,12 @@ namespace NoName.Pages.Support
     public class WriteModel : PageModel
     {
         private readonly ILogger<WriteModel> _logger;
-        private readonly IDataDbManager _manager;
+        private readonly DataDbManager manager;
         [BindProperty]
         public TablePost TablePost { get; set; }
-        public WriteModel(IDataDbManager manager, ILogger<WriteModel> logger)
+        public WriteModel(ILogger<WriteModel> logger)
         {
-            _manager = manager;
+            manager = DataDbManager.GetInstance();
             _logger = logger;
         }
         public async Task<IActionResult> OnPostAsync()
@@ -27,7 +27,7 @@ namespace NoName.Pages.Support
             {
                 return Page();
             }
-            await _manager.AddPostAsync(TablePost);
+            await manager.AddPostAsync(TablePost);
             return RedirectToPage("./Notice");
         }
     }
