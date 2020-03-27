@@ -51,7 +51,7 @@ namespace NoName.Pages
              * 7. 홍보게시판
              * 4444. 공지사항
              * */
-            var TableBoard = NoName.Enumerator.Enumerator.GetAll<BoardType>();
+            var TableBoard = Enumerator.Enumerator.GetAll<BoardType>();
             int length = TableBoard.Count();
             for (var i = 0; i < length; i++)
             {
