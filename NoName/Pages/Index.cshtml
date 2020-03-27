@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">
@@ -40,16 +43,16 @@
                             var remainder = boardId % 2;
                             if (remainder == 0)
                             {
-                                var boardPreview = Model.PreviewBoards[boardId-1];
+                                var boardPreview = Model.PreviewBoards[boardId - 1];
                                 <partial name="BoardPreview" model="boardPreview" view-data="ViewData" />
 
                             }
                         }
                         @*<a asp-page="/Board/Index" asp-route-boardCode="4" class="list-group-item list-group-item-action bg-primary text-white">@Model.PreviewBoards[5].BoardName</a>
-        <a href="#" class="list-group-item list-group-item-action">@Model.PreviewBoards[5].PostList[1].Title</a>
-        <a href="#" class="list-group-item list-group-item-action">글 목록1</a>*@
+                            <a href="#" class="list-group-item list-group-item-action">@Model.PreviewBoards[5].PostList[1].Title</a>
+                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>*@
                     </div>
-                       
+
                     <div class="col-lg-6">
                         @for (int boardId = 4; boardId <= Model.PreviewBoards.Count(); boardId++)
                         {
@@ -65,7 +68,9 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <partial name="Sidebar" />
+                                @{ViewData["CurrentPage"] = "MainPage"; }
+                <partial name="Sidebar" model="@Model" view-data="ViewData" />
             </div>
         </div>
     </div>
+</body>

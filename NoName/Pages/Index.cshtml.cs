@@ -25,10 +25,16 @@ namespace NoName.Pages
         public void OnGet(int numberOfBoard=7)
         {
             PreviewBoards = new List<BoardPreview>();
-            for (int boardid = 1; boardid <= numberOfBoard; boardid++)
+            int boardId;
+            for (boardId = 1; boardId < 4; boardId++)
             {
-                var postlist = manager.GetPosts(boardid,5);
-                int count = postlist.Count();
+                var postlist = manager.GetPosts(boardId, 2);
+                var Preview = BoardPreview.CreatePreviewList(postlist, boardId, manager.GetBoardName(boardId));
+                PreviewBoards.Add(Preview);
+            }
+            for (int boardid = 4; boardid <= numberOfBoard; boardid++)
+            {
+                var postlist = manager.GetPosts(boardid,4);
                 var Preview= BoardPreview.CreatePreviewList(postlist, boardid, manager.GetBoardName(boardid));
                 PreviewBoards.Add(Preview);
             }
