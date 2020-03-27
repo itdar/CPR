@@ -6,25 +6,32 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NoName.Data;
+using NoName.Data.DbData;
+using NoName.Pages.Shared;
 
 namespace NoName.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> logger;
-
-        public IndexModel(UserContext userContext, ILogger<IndexModel> _logger)
+        private readonly ILogger<IndexModel> _logger;
+        private readonly DataDbManager manager;
+        public IndexModel(ILogger<IndexModel> logger)
         {
-            // Manager 동작하는지 확인하고 지우거나 해야함
-            UserDbManager.SetContext(userContext);
-            UserDbManager.GetInstance().GetAllUserJob();
-
-            logger = _logger;
+            _logger = logger;
+            manager= DataDbManager.GetInstance();
         }
-
-        public void OnGet()
+        [BindProperty]
+        public  List<BoardPreview> PreviewBoards { get; set; }
+        public void OnGet(int numberOfBoard=7)
         {
-
+            PreviewBoards = new List<BoardPreview>();
+            for (int boardid = 1; boardid <= numberOfBoard; boardid++)
+            {
+                var postlist = manager.GetPosts(boardid,5);
+                int count = postlist.Count();
+                var Preview= BoardPreview.CreatePreviewList(postlist, boardid, manager.GetBoardName(boardid));
+                PreviewBoards.Add(Preview);
+            }
         }
         public void OnPost()
         {
