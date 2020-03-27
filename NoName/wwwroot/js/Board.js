@@ -25,4 +25,8 @@ $(document).ready(function () {
             }
         });
     });
+    $("#addLikeCountBtn").click(function () {
+        $("#likeCount").load(window.location.href + "#likeCount");
+        
+    });
 });

@@ -101,5 +101,42 @@ namespace NoName.Data
 			}
 			return posts;
 		}
+		public TablePost GetPostDetail(int postNumber)
+		{
+			return dataContext.Post.FirstOrDefault(post => post.PostNumber == postNumber);
+		}
+		//public void EditPost(TablePost ModifiedPost)
+		//{
+		//	dataContext.Attach(ModifiedPost).State = EntityState.Modified;
+		//}
+
+
+		////////////////////////////////////////////////////////Board
+		public TableBoard GetBoard(int? boardCode)
+		{
+			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardCode);
+
+		}
+		//////////////////////////////////////////////////Comment
+		public List<TableComment> GetParentComments(int postNumber)
+		{
+			var parentComments = dataContext.Comment.Where(comment => comment.PostNumber == postNumber && comment.ParentCommentNumber == 0).
+				OrderBy(comment => comment.CreatedTime).ToList();
+
+			return parentComments;
+		}
+		public List<TableComment> GetChildComments(int postNumber)
+		{
+			var childComments = dataContext.Comment.Where(comment => comment.PostNumber == postNumber && comment.ParentCommentNumber != 0).
+				OrderBy(comment => comment.ParentCommentNumber).ThenBy(comment => comment.CreatedTime).ToList();
+
+			return childComments;
+		}
+		public async Task<EntityEntry<TableComment>> AddCommnetAsync(TableComment comment)
+		{
+			var ret = dataContext.Comment.Add(comment);
+			await dataContext.SaveChangesAsync();
+			return ret;
+		}
 	}
 }
