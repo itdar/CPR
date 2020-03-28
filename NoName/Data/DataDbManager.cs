@@ -31,16 +31,16 @@ namespace NoName.Data
 
 		public DataContext dataContext;
 
-		public DataDbManager()
+		private DataDbManager()
 		{
 			if (dataContext == null)
 				dataContext = new DataContext();
 		}
 
-		public DataDbManager(DataContext _dataContext)
-		{
-			dataContext = _dataContext;
-		}
+		//public DataDbManager(DataContext _dataContext)
+		//{
+		//	dataContext = _dataContext;
+		//}
 
 		public static DataDbManager GetInstance()
 		{
@@ -132,7 +132,10 @@ namespace NoName.Data
 		}
 		public string GetBoardName(int boardId)
 		{
-			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId).BoardName;
+			if (dataContext.Board.Count() > 0)
+				return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId).BoardName;
+			else
+				return "There is no Board.";
 		}
 		
 		//////////////////////////////////////////////////Comment
