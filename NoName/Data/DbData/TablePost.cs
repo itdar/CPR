@@ -21,7 +21,10 @@ namespace NoName.Data.DbData
 
         [Key]
         public int PostNumber { get; set; }
-        public string UserId { get; set; }
+        //ForeignKey
+        public int BoardId { get; set; }
+        //ForeignKey
+        public string Id { get; set; }
         public int CategoryNumber { get; set; }
 
         // 제목
@@ -50,8 +53,10 @@ namespace NoName.Data.DbData
         // 삭제 시각 initial value = null
         public DateTime? DeletedTime { get; set; }
 
+
+        [ForeignKey("Id")]
+        public ApplicationUser ApplicationUser { get; set; }
         [ForeignKey("BoardId")]
         public TableBoard Board { get; set; }
-        public int BoardId { get; set; }
     }
 }

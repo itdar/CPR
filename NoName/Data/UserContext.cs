@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data.DbData;
 using NoName.Data.DbUser;
 using System;
 
@@ -20,6 +21,21 @@ namespace NoName.Data
         public UserContext(DbContextOptions<UserContext> options)
             : base(options)
         {
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
+            modelBuilder.Entity<TableUserJob>().ToTable("TableUserJob");
+            modelBuilder.Entity<TableManager>().ToTable("TableManager");
+            //TableUserJob Key 설정해야함
+
+            //Set Two PrimaryKey
+            modelBuilder.Entity<TableUserJob>().HasKey(j => j.Id);
+
+            modelBuilder.Entity<TableUserJob>()
+                .HasOne(j => j.ApplicationUser)
+                .WithMany(u => u.MyJobCodes)
+                .HasForeignKey(j => new { j.Id, j.JobCode });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

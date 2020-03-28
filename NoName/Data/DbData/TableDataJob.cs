@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoName.Data.DbUser;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,18 +18,19 @@ namespace NoName.Data.DbData
             get => boards;
             set => boards = value;
         }
+        public ICollection<TableUserJob> UserJob
+        {
+            get => UserJob;
+            set => UserJob = value;
+        }
 
-        [Key]
+        //PrimaryKey
+        public int Number { get; set; }
+        //PrimaryKey
         public int JobCode { get; set; }
-
-        private TableSalary salary;
-
         public string JobName { get; set; }
 
-        public TableSalary Salary
-        {
-            get => salary;
-            set => salary = value;
-        }
+
+        public TableSalary Salary { get; set; }
     }
 }

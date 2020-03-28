@@ -69,7 +69,7 @@ namespace NoName.Pages
                     _context.Post.Add(new TablePost
                     {
                         //UserId 임시
-                        UserId = "형수" + j.ToString(),
+                        Id = "형수" + j.ToString(),
                         CategoryNumber = 1,
                         Title = j.ToString(),
                         Content = (j + j).ToString(),

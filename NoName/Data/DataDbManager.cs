@@ -74,7 +74,7 @@ namespace NoName.Data
 			// Use LINQ to get list of Job.
 			IQueryable<string> genreQuery = from m in dataContext.Post
 											orderby m.PostNumber
-											select m.UserId;
+											select m.Id;
 
 			var posts = from all in dataContext.Post select all;
 			if (!string.IsNullOrEmpty(searchString))

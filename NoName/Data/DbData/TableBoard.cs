@@ -26,12 +26,14 @@ namespace NoName.Data.DbData
          * 게시판 한글이름
          * 게시판 연결된 JobCode (FK) >> Job 에서 다수 관계
          */
-
+        //PrimaryKey
         public int BoardNumber { get; set; }
-        public int BoardId { get; set; }
-        //핫게=1,실시간 인기글2, 주간 인기글 3, 자유게시판 4, 비밀게시판 5, 정보게시판 6
-        public string BoardName { get; set; }
+        //ForeignKey
         public int JobCode { get; set; }
+        //PrimaryKey & PrincipalKey
+        public int BoardId { get; set; }
+        public string BoardName { get; set; }
+
 
         [ForeignKey("JobCode")]
         public TableDataJob Job { get; set; }

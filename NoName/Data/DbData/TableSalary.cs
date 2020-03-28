@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,8 +14,9 @@ namespace NoName.Data.DbData
      */
     public class TableSalary
     {
+        //ForeignKey
         [Key]
-        public int SalaryNumber { get; set; }
+        public int JobCode { get; set; }
         public int Average { get; set; }
 
         /*
@@ -26,6 +28,8 @@ namespace NoName.Data.DbData
         public int Minimum { get; set; }
         public int Maximum { get; set; }
 
-        public int JobCode { get; set; }
+
+        [ForeignKey("JobCode")]
+        public TableDataJob Job { get; set; }
     }
 }

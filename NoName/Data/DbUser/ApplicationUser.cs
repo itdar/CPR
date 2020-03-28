@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using NoName.Data.DbData;
 using NoName.Data.DbUser;
 
 /**
@@ -24,17 +25,32 @@ namespace NoName.Data
      */
     public class ApplicationUser : IdentityUser
     {
-        private ICollection<TableUserJob> myJobCodes;
-
         /*
          * myJobs property
          * 해당 유저가 갖고 있는 직업들 코드번호
-         */
+        */
         public ICollection<TableUserJob> MyJobCodes
         {
-            get => myJobCodes;
-            set => myJobCodes = value; 
+            get => MyJobCodes;
+            set => MyJobCodes = value;
         }
+        public ICollection<TablePost> MyPosts
+        {
+            get => MyPosts;
+            set => MyPosts = value;
+        }
+        public ICollection<TableComment> MyComments
+        {
+            get => MyComments;
+            set => MyComments = value;
+        }
+        public ICollection<TableMessage> MyMessages
+        {
+            get => MyMessages;
+            set => MyMessages = value;
+        }
+
+
         /*
          * 계정 생성 날짜
          */
@@ -75,9 +91,18 @@ namespace NoName.Data
         /*
          * 해당 직업의 홈에서 접근 가능한 몇번째 게시판의 매니저인지 확인 번호 
          * (요청되어 만들어진 커스텀 게시판)
+         * 매니저 테이블을 만들어서 관리하는것이 나을듯 생각됩니다. -SooHwan 20.03.27
          */
         public int ManagerNumber { get; set; }
 
+        /*
+         * Job을 관리할 컬럼
+         * 
+         * 
+        public int? MainJob { get; set; }
+        public int? SubJob { get; set; }
+        public int? ThirdJob { get; set; }
+        */
 
 
         /*
