@@ -21,7 +21,7 @@
                     @*text타입의 input, data-toggle로 확장-축소 가능, data-target으로 기능 적용할 태그 선택*@
                     <input type="text" id="postTitle" asp-for="TablePost.Title" class="form-control mt-3" placeholder="글을 작성하세요">
                     @*<span asp-validation-for="TablePost.Title" class="text-danger"></span>*@
-
+                    <input type="hidden" asp-for="TablePost.BoardId" value="@Model.CurrentBoard.BoardId" />
                     <div id="collapseArea" class="form-group collapse">
                         <textarea class="form-control" asp-for="TablePost.Content" placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요." rows="7"></textarea>
                         @* <span asp-validation-for="TablePost.Content" class="text-danger"></span>*@
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="col-lg-3 bg-danger">
-                <partial name="Sidebar" />
+                @*<partial name="Sidebar" />*@
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NoName.Data;
+using NoName.BackendClass.Account;
 
 namespace NoName.Pages.Account
 {
@@ -97,6 +98,22 @@ namespace NoName.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.GetUserAsync(HttpContext.User);
+                    List<int> tempJobCodes = new List<int>() { 1, 2 };
+                    //UserInformation.GetInstance().SetInformation(user?.Id, user?.Email, tempJobCodes);
+
+                    UserInformation.GetInstance().SetInformation("test", Input.Email, tempJobCodes);
+
+                    //System.Diagnostics.Debug.WriteLine(user.Id);
+                    //System.Diagnostics.Debug.WriteLine(user.Email);
+                    //System.Diagnostics.Debug.WriteLine(user.ManagerNumber);
+                    //System.Diagnostics.Debug.WriteLine(user.PermissionLevel);
+                    //System.Diagnostics.Debug.WriteLine(user.PhoneNumber);
+                    //System.Diagnostics.Debug.WriteLine(user.ReceiveSMS);
+                    System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().UserId);
+                    System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().Email);
+                    System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().JobCodes.ToString());
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }

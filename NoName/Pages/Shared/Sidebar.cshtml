@@ -2,11 +2,16 @@
     Partial를 이용하여 SideBar 생성
     호출시 <partial name="full path"/>
 *@
-
+@model Pages.IndexModel
 @*need to use icons*@
-<head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-</head>
+@*@if ((string)ViewData["CurrentPage"] == "MainPage")
+    {
+
+    }
+    else
+    {
+
+    }*@
 @* spacing class margin-bottom mb-* *@
 <div class="mb-2">
     <form method="post" asp-page="/Board/FindResult">
@@ -14,21 +19,25 @@
             @*input의 앞에 고정시키는 클래스*@
             <div class="input-group-prepend">
                 @*search icon 사용하여 input의 앞에 고정*@
-                <span class="input-group-text fas fa-search" ></span>
+                <span class="input-group-text fas fa-search"></span>
             </div>
             <input type="search" class="form-control" name="searchString" placeholder="전체 검색" />
         </div>
     </form>
 </div>
-<div class="list-group">
-    <a asp-page="/Board/Index" asp-route-boardCode="1" class="list-group-item list-group-item-action" style="color:white; background-color:blue;">실시간 인기글</a>
-    <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
-</div>
-<div class="list-group">
-    <a asp-page="/Board/Index" asp-route-boardCode="2"class="list-group-item list-group-item-action" style="color:white; background-color:blue; margin-top:10px;">주간 인기글</a>
-    <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
-</div>
-<div class="list-group">
-    <a asp-page="/Board/Index" asp-route-boardCode="3" class="list-group-item list-group-item-action" style="color:white; background-color:blue; margin-top:10px;">HOT 게시글</a>
-    <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
-</div>
+@for (int boardId = 1; boardId < 4; boardId++)
+{
+    <partial name="BoardPreview" model="@Model.PreviewBoards[boardId-1]" />
+}
+@*<div class="list-group">
+        <a asp-page="/Board/Index" asp-route-boardCode="1" class="list-group-item list-group-item-action" style="color:white; background-color:blue;">실시간 인기글</a>
+        <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
+    </div>
+    <div class="list-group">
+        <a asp-page="/Board/Index" asp-route-boardCode="2" class="list-group-item list-group-item-action" style="color:white; background-color:blue; margin-top:10px;">주간 인기글</a>
+        <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
+    </div>
+    <div class="list-group">
+        <a asp-page="/Board/Index" asp-route-boardCode="3" class="list-group-item list-group-item-action" style="color:white; background-color:blue; margin-top:10px;">HOT 게시글</a>
+        <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
+    </div>*@

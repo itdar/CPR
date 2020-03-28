@@ -33,17 +33,17 @@ namespace NoName.Pages.Board
         }
         [BindProperty]
         public TableBoard CurrentBoard { get; set; }
-        public async Task<IActionResult> OnGetAsync(int? boardCode)
+        public async Task<IActionResult> OnGetAsync(int? boardId)
         {
-            if (boardCode == null)
+            if (boardId == null)
             {
                 return NotFound();
 
             }
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
             //System.Diagnostics.Debug.WriteLine(manager.GetPosts(1));
-            CurrentBoard = manager.GetBoard(boardCode);
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardCode), 1);
+            CurrentBoard = manager.GetBoard(boardId);
+            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardId), 1);
             return Page();
         }
         public async Task<IActionResult> OnGetPageAsync(int boardCode ,int pages)
@@ -58,9 +58,8 @@ namespace NoName.Pages.Board
                 return Page();
             }
             TablePost.CreateTime = DateTime.Now;
-            TablePost.BoardId = CurrentBoard.BoardId;
             await manager.AddPostAsync(TablePost);
-            return RedirectToPage("/Board/Index");
+            return RedirectToPage(TablePost.BoardId);
         }
        
     }

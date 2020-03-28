@@ -31,16 +31,16 @@ namespace NoName.Data
 
 		public DataContext dataContext;
 
-		public DataDbManager()
+		private DataDbManager()
 		{
 			if (dataContext == null)
 				dataContext = new DataContext();
 		}
 
-		public DataDbManager(DataContext _dataContext)
-		{
-			dataContext = _dataContext;
-		}
+		//public DataDbManager(DataContext _dataContext)
+		//{
+		//	dataContext = _dataContext;
+		//}
 
 		public static DataDbManager GetInstance()
 		{
@@ -61,12 +61,25 @@ namespace NoName.Data
 
 		public IQueryable<TablePost> GetPosts(int boardId)
 		{
-			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardId == boardId).OrderByDescending(post => post.PostNumber);
+			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardId == boardId).
+				OrderByDescending(post => post.PostNumber);
+		}
+		public IQueryable<TablePost> GetPosts(int? boardId,int listNumber)
+		{
+			var index = dataContext.Post.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
+			return  dataContext.Post.Where(post => post.BoardId == boardId).
+				OrderByDescending(post => post.PostNumber).Take(listNumber);
+			
+		}
+		public int GetPostsCount(int? boardId)
+		{
+			return dataContext.Post.Where(post => post.BoardId == boardId).Count();
 		}
 		public async Task<EntityEntry<TablePost>> AddPostAsync(TablePost post)
 		{
 			var ret = dataContext.Post.Add(post);
 			await dataContext.SaveChangesAsync();
+	
 			return ret;
 		}
 		public IQueryable<TablePost> SearchInTitle(string searchString)
@@ -101,6 +114,7 @@ namespace NoName.Data
 			}
 			return posts;
 		}
+
 		public TablePost GetPostDetail(int postNumber)
 		{
 			return dataContext.Post.FirstOrDefault(post => post.PostNumber == postNumber);
@@ -112,11 +126,18 @@ namespace NoName.Data
 
 
 		////////////////////////////////////////////////////////Board
-		public TableBoard GetBoard(int? boardCode)
+		public TableBoard GetBoard(int? boardId)
 		{
-			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardCode);
-
+			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId);
 		}
+		public string GetBoardName(int boardId)
+		{
+			if (dataContext.Board.Count() > 0)
+				return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId).BoardName;
+			else
+				return "There is no Board.";
+		}
+		
 		//////////////////////////////////////////////////Comment
 		public List<TableComment> GetParentComments(int postNumber)
 		{
