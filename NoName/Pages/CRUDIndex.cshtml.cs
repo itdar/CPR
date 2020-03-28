@@ -2,10 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NoName.Data;
 using NoName.Data.DbData;
+using NoName.Enumerator;
+
+
+//참고 사이트 : https://docs.microsoft.com/ko-kr/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/enumeration-classes-over-enum-types
+
 
 namespace NoName.Pages
 {
@@ -16,6 +22,7 @@ namespace NoName.Pages
         [BindProperty]
         public TableDataJob TableDataJob { get; set; }
         public IList<TablePost> TablePost { get; set; }
+        public IEnumerable<BoardType> TableBoard { get; set; }
         public CRUDIndexModel(DataContext context)
         {
             manager = DataDbManager.GetInstance();
@@ -30,20 +37,29 @@ namespace NoName.Pages
             {
                 return Page();
             }
-            //Create Job
+            //Create a TableJob
             _context.Job.Add(TableDataJob);
             _context.SaveChanges();
-            //Job생성시 기본 게시판 생성
-            //핫게=1,실시간 인기글2, 주간 인기글 3, 자유게시판 4, 비밀게시판 5, 정보게시판 6 자유/홍보/정보/비밀
-            var defaultBoard = new string[] { "HOT게시판", "실시간 인기글", "주간 인기글", "자유게시판", "비밀게시판", "정보게시판", "비밀게시판" };
-            for (var i = 0; i < 6; i++)
+            /***
+             * Job생성시 기본 게시판 생성
+             * 1. HOT게시판
+             * 2. 실시간 인기글
+             * 3. 주간 인기글
+             * 4. 자유게시판
+             * 5. 비밀게시판
+             * 6. 정보게시판
+             * 7. 홍보게시판
+             * 4444. 공지사항
+             * */
+            var TableBoard = Enumerator.Enumerator.GetAll<BoardType>();
+            int length = TableBoard.Count();
+            for (var i = 0; i < length; i++)
             {
-                //Create Default 6 Boards
                 var board = new TableBoard
                 {
-                    //PK값임으로 자동입력 BoardId = i+1,
+                    BoardId = TableBoard.ElementAt(i).Id,
                     JobCode = TableDataJob.JobCode,
-                    BoardName = defaultBoard[i]
+                    BoardName = TableBoard.ElementAt(i).Name
                 };
                 _context.Board.Add(board);
                 _context.SaveChanges();
@@ -70,6 +86,7 @@ namespace NoName.Pages
                     });
                 }
             }
+            
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./CRUD/TablePostCRUD/Index");

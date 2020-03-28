@@ -61,12 +61,25 @@ namespace NoName.Data
 
 		public IQueryable<TablePost> GetPosts(int boardId)
 		{
-			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardId == boardId).OrderByDescending(post => post.PostNumber);
+			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardId == boardId).
+				OrderByDescending(post => post.PostNumber);
+		}
+		public IQueryable<TablePost> GetPosts(int? boardId,int listNumber)
+		{
+			var index = dataContext.Post.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
+			return  dataContext.Post.Where(post => post.BoardId == boardId).
+				OrderByDescending(post => post.PostNumber).Take(listNumber);
+			
+		}
+		public int GetPostsCount(int? boardId)
+		{
+			return dataContext.Post.Where(post => post.BoardId == boardId).Count();
 		}
 		public async Task<EntityEntry<TablePost>> AddPostAsync(TablePost post)
 		{
 			var ret = dataContext.Post.Add(post);
 			await dataContext.SaveChangesAsync();
+	
 			return ret;
 		}
 		public IQueryable<TablePost> SearchInTitle(string searchString)
@@ -100,6 +113,48 @@ namespace NoName.Data
 				posts = posts.Where(post => post.Title.Contains(searchString) || post.Content.Contains(searchString)).OrderByDescending(post => post.PostNumber);
 			}
 			return posts;
+		}
+
+		public TablePost GetPostDetail(int postNumber)
+		{
+			return dataContext.Post.FirstOrDefault(post => post.PostNumber == postNumber);
+		}
+		//public void EditPost(TablePost ModifiedPost)
+		//{
+		//	dataContext.Attach(ModifiedPost).State = EntityState.Modified;
+		//}
+
+
+		////////////////////////////////////////////////////////Board
+		public TableBoard GetBoard(int? boardId)
+		{
+			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId);
+		}
+		public string GetBoardName(int boardId)
+		{
+			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId).BoardName;
+		}
+		
+		//////////////////////////////////////////////////Comment
+		public List<TableComment> GetParentComments(int postNumber)
+		{
+			var parentComments = dataContext.Comment.Where(comment => comment.PostNumber == postNumber && comment.ParentCommentNumber == 0).
+				OrderBy(comment => comment.CreatedTime).ToList();
+
+			return parentComments;
+		}
+		public List<TableComment> GetChildComments(int postNumber)
+		{
+			var childComments = dataContext.Comment.Where(comment => comment.PostNumber == postNumber && comment.ParentCommentNumber != 0).
+				OrderBy(comment => comment.ParentCommentNumber).ThenBy(comment => comment.CreatedTime).ToList();
+
+			return childComments;
+		}
+		public async Task<EntityEntry<TableComment>> AddCommnetAsync(TableComment comment)
+		{
+			var ret = dataContext.Comment.Add(comment);
+			await dataContext.SaveChangesAsync();
+			return ret;
 		}
 	}
 }

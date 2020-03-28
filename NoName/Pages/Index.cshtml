@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">
@@ -16,7 +19,8 @@
                         <h5 class="card-title mb-1" style="text-align:center">내 정보</h5>
                         <p class="card-text mb-0" style="text-align:center">홍길동</p>
                         <p class="card-text mb-1" style="text-align:center">hgd111</p>
-                        <a class="btn btn-outline-dark float-left px-xl-3 px-lg-2 " asp-area="" asp-page="Pages/Account/Manage/Profile">내 정보</a>
+                        <a class="btn btn-outline-dark float-left px-xl-3 px-lg-2 " asp-area="" asp-page="/Account/Manage/Profile"
+                           title="내정보">내 정보</a>
                         <a class="btn btn-outline-dark float-right px-xl-3 px-lg-2" asp-area="" asp-page="/Index">로그아웃</a>
                     </div>
                 </div>
@@ -35,34 +39,39 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
+                        @for (int boardId = 4; boardId < Model.PreviewBoards.Count(); boardId++)
+                        {
+                            var remainder = boardId % 2;
+                            if (remainder == 0)
+                            {
+                                var boardPreview = Model.PreviewBoards[boardId - 1];
+                                <partial name="BoardPreview" model="boardPreview" view-data="ViewData" />
 
-                        <div class="card list-group mt-2">
-                            <a asp-page="/Board/Index" asp-route-boardId="1" class="list-group-item list-group-item-action bg-primary text-white">자유게시판</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        </div>
-                        <div class="card list-group  mt-2">
-                            <a asp-page="/Board/Index"asp-route-boardId="2" class="list-group-item list-group-item-action bg-primary text-white">홍보게시판</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        </div>
+                            }
+                        }
+                        @*<a asp-page="/Board/Index" asp-route-boardCode="4" class="list-group-item list-group-item-action bg-primary text-white">@Model.PreviewBoards[5].BoardName</a>
+                            <a href="#" class="list-group-item list-group-item-action">@Model.PreviewBoards[5].PostList[1].Title</a>
+                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>*@
                     </div>
+
                     <div class="col-lg-6">
-                        <div class="card list-group  mt-2">
-                            <a asp-page="/Board/Index" asp-route-boardId="6" class="list-group-item list-group-item-action bg-primary text-white">정보게시판</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        </div>
-                        <div class="card list-group  mt-2">
-                            <a asp-page="/Board/Index" asp-route-boardId="7" class="list-group-item list-group-item-action bg-primary text-white">비밀게시판</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>
-                        </div>
+                        @for (int boardId = 4; boardId <= Model.PreviewBoards.Count(); boardId++)
+                        {
+                            var remainder = boardId % 2;
+                            if (remainder != 0)
+                            {
+                                var boardPreview = Model.PreviewBoards[boardId - 1];
+                                <partial name="BoardPreview" model="boardPreview" view-data="ViewData" />
+
+                            }
+                        }
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
-                <partial name="Sidebar" />
+                                @{ViewData["CurrentPage"] = "MainPage"; }
+                <partial name="Sidebar" model="@Model" view-data="ViewData" />
             </div>
         </div>
     </div>
+</body>
