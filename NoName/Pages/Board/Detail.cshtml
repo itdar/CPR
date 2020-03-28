@@ -6,7 +6,8 @@
 }
 <head>
     <script type="text/javascript" src="~/js/Board.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>
     <div class="container-fluid">
@@ -15,7 +16,7 @@
                 <div class="card card-body">
                     <h3 class="font-weight-bold">직업게시판</h3>
                 </div>
-                <div class="card" style="margin-top:10px">
+                <div id="likeCount"class="card" style="margin-top:10px">
                     <div class="card-header bg-white">
                         <p>
                             <h5>
@@ -27,17 +28,16 @@
                         @Model.CurrentPost.CreateTime
                     </div>
                     <div class=" card-body" id="post-context" style="height:200px;">
-                        <div id="likeCount" class="card-title ">
-                           
+                        <div  class="card-title ">
                             <h5 class="font-weight-bold">
-                                @{ var o = 1;}
+                                
                                 @Model.CurrentPost.Title
                                 @* 글 상세의 사진,좋아요,댓글 수 ,스크랩 *@
                                 <a href="#bookMarkModal"class="badge badge-light float-right fas fa-bookmark text-warning" data-toggle="modal">0</a>
                                 <span class="badge badge-light float-right fas fa-comment text-info">@(Model.ChildCommentList.Count + Model.ParentCommentList.Count)</span>
                                 
-                                    <a href="#likeModal" class="badge float-right fas fa-heart text-danger" data-toggle="modal">@Model.CurrentPost.LikeCount</a>
-                                    <span class="badge float-right far fa-images text-success">3</span>
+                                <a  id="addLikeCountBtn" class="badge float-right fas fa-heart text-danger" value="${@Model.CurrentPost.LikeCount}" >@Model.CurrentPost.LikeCount</a>
+                                <span class="badge float-right far fa-images text-success">3</span>
                             </h5>
                         </div>
                         <div class="card-text">
@@ -46,8 +46,9 @@
                     </div>
                     @*댓글 작성란 *@
                     <div class="card-footer bg-white">
+                  
                         <form class="input-group m-lg-0" method="post">
-                            <input type="text" asp-for="TableComment.Content" class="form-control" placeholder="댓글을 입력하세요.">
+                            <input type="text"  asp-for="TableComment.Content" class="form-control" placeholder="댓글을 입력하세요.">
                             <input type="hidden" asp-for="TableComment.ParentCommentNumber" value="0" />
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-outline-dark fas fa-pen-fancy text-primary" onclick="@Model.ParentCommentNumber=1;"></button>

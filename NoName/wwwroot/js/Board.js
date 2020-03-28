@@ -14,19 +14,34 @@ $(document).ready(function () {
     });
 
     $("#postBtn").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/Board/Index",
-            contentType: "application/json; charset=utf-8",
-            dataType:"json",
-            success: function () {
-                $("#collapseArea").collapse('hide');
-                $("#collapseBtn").collapse('hide');
-            }
-        });
+        //$.ajax({
+        //    type: "POST",
+        //    url: "/Board/Index",
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType:"json",
+        //    success: function () {
+        //        $("#collapseArea").collapse('hide');
+        //        $("#collapseBtn").collapse('hide');
+        //    }
+        //});
     });
     $("#addLikeCountBtn").click(function () {
-        $("#likeCount").load(window.location.href + "#likeCount");
+
+        //$("#likeCount").load(window.location.href + " #likeCount");
+        $.ajax({
+            type: "post",
+            url: "/Board/Detail",
+            data: $("#addLikeCountBtn").text(),
+            success: function (data) {
+                
+                $("#likecount").load(window.location.href + " #likecount");
+            },
+            error: function () {
+                alert('통신실패!!');
+            }
+            
+            
+        });
         
     });
 });
