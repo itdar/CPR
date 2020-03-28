@@ -22,12 +22,7 @@ namespace NoName.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TableDataJob>().ToTable("TableDataJob");
-            modelBuilder.Entity<TableBoard>().ToTable("TableBoard");
-            modelBuilder.Entity<TablePost>().ToTable("TablePost");
-            modelBuilder.Entity<TableComment>().ToTable("TableComment");
-            modelBuilder.Entity<TableSalary>().ToTable("TableSalary");
-            modelBuilder.Entity<TableMessage>().ToTable("TableMessage");
+            base.OnModelCreating(modelBuilder);
             /*
              * TableBoard의 BoardNumber와 BoardId가 두 컬럼이 주키로 사용되기 때문에 직접설정(키가 두개인 경우는 'Key Attribute'사용 불가 like a [Key])
              * 또한 BoardId는 TablePost의 외래키로 사용되어 설정
@@ -37,35 +32,35 @@ namespace NoName.Data
             //Set Auto-incresement
             modelBuilder.Entity<TableBoard>().Property(b => b.BoardNumber).ValueGeneratedOnAdd();
 
+            //Set Two PrimaryKey
+            modelBuilder.Entity<TableDataJob>().HasKey(j => new { j.Number, j.JobCode });
+            //Set Auto-incresement
+            modelBuilder.Entity<TableDataJob>().Property(j => j.Number).ValueGeneratedOnAdd();
+
+            //Set one of CompositeKey to ForeignKey
             modelBuilder.Entity<TableBoard>()
                 .HasOne(b => b.Job)
                 .WithMany(j => j.Boards)
                 .HasForeignKey(b => b.JobCode)
                 .HasPrincipalKey(j => j.JobCode);
 
-            //Set Alternate Key(BoardId) to ForeignKey And PrincipalKey
+            //Set one of CompositeKey to ForeignKey
             modelBuilder.Entity<TablePost>()
                 .HasOne(p => p.Board)
                 .WithMany(b => b.Posts)
                 .HasForeignKey(p => p.BoardId)
                 .HasPrincipalKey(b => b.BoardId);
 
-            //Set Two PrimaryKey
-            modelBuilder.Entity<TableDataJob>().HasKey(j => new { j.Number, j.JobCode });
-            modelBuilder.Entity<TableDataJob>().Property(j => j.Number).ValueGeneratedOnAdd();
-
-            //Set a ForeignKey
-            modelBuilder.Entity<TableMessage>()
-                .HasOne(m => m.ApplicationUser)
-                .WithMany(u => u.MyMessages)
-                .HasForeignKey(m => m.SenderId)
-                .HasPrincipalKey(u => u.Id);
-
+            /*
+             * Set One-to-One Relationship
+             * Cuz The child/dependent side could not be determined for the one-to-one relationship
+             * that was detected between '<entity1.property2>' and '<entity2.property1>'.
+             */
             modelBuilder.Entity<TableSalary>()
                 .HasOne(s => s.Job)
                 .WithOne(j => j.Salary)
-                .HasForeignKey<TableDataJob>(j => j.JobCode)
-                .HasPrincipalKey<TableSalary>(s => s.JobCode);
+                .HasForeignKey<TableSalary>(s => s.JobCode)
+                .HasPrincipalKey<TableDataJob>(j => j.JobCode);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

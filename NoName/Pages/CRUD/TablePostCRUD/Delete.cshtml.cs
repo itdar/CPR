@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.CRUD.TableDataJobCRUD
+namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace NoName.Pages.CRUD.TableDataJobCRUD
         }
 
         [BindProperty]
-        public TableDataJob TableDataJob { get; set; }
+        public TablePost TablePost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,10 @@ namespace NoName.Pages.CRUD.TableDataJobCRUD
                 return NotFound();
             }
 
-            TableDataJob = await _context.Job.FirstOrDefaultAsync(m => m.Number == id);
+            TablePost = await _context.Post
+                .Include(t => t.Board).FirstOrDefaultAsync(m => m.PostNumber == id);
 
-            if (TableDataJob == null)
+            if (TablePost == null)
             {
                 return NotFound();
             }
@@ -45,11 +46,11 @@ namespace NoName.Pages.CRUD.TableDataJobCRUD
                 return NotFound();
             }
 
-            TableDataJob = await _context.Job.FindAsync(id);
+            TablePost = await _context.Post.FindAsync(id);
 
-            if (TableDataJob != null)
+            if (TablePost != null)
             {
-                _context.Job.Remove(TableDataJob);
+                _context.Post.Remove(TablePost);
                 await _context.SaveChangesAsync();
             }
 

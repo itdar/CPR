@@ -5,6 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
+/*
+ * IEnumerable<T> is read-only
+ * You can add and remove items to an ICollection<T>
+ * You can do random access (by index) to a List<T>
+ */
 namespace NoName.Data.DbData
 {
     /*
@@ -12,13 +17,6 @@ namespace NoName.Data.DbData
      */
     public class TableBoard
     {
-        private ICollection<TablePost> posts;
-
-        public ICollection<TablePost> Posts
-        {
-            get => posts;
-            set => posts = value;
-        }
 
         /*
          * 전체웹에서의 게시판 고유번호?
@@ -26,16 +24,19 @@ namespace NoName.Data.DbData
          * 게시판 한글이름
          * 게시판 연결된 JobCode (FK) >> Job 에서 다수 관계
          */
-        //PrimaryKey
+        [Key]
         public int BoardNumber { get; set; }
-        //ForeignKey
+
+        // TableDataJob to TableBoard => 1:n Relationship
         public int JobCode { get; set; }
-        //PrimaryKey & PrincipalKey
+        public TableDataJob Job { get; set; }
+
+        [Key]
         public int BoardId { get; set; }
         public string BoardName { get; set; }
 
 
-        [ForeignKey("JobCode")]
-        public TableDataJob Job { get; set; }
+        // TableBoard To TablePost => 1:n Relationship
+        public ICollection<TablePost> Posts { get; set; }
     }
 }

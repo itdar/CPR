@@ -12,18 +12,12 @@ namespace NoName.Data.DbData
      */
     public class TablePost
     {
-        private ICollection<TableComment> comments;
-        public ICollection<TableComment> Comments
-        {
-            get => comments;
-            set => comments = value;
-        }
+        // TableBoard to TablePost => 1:n Relationship
+        public int BoardId { get; set; }
+        public TableBoard Board { get; set; }
 
         [Key]
         public int PostNumber { get; set; }
-        //ForeignKey
-        public int BoardId { get; set; }
-        //ForeignKey
         public string Id { get; set; }
         public int CategoryNumber { get; set; }
 
@@ -54,9 +48,12 @@ namespace NoName.Data.DbData
         public DateTime? DeletedTime { get; set; }
 
 
-        [ForeignKey("Id")]
-        public ApplicationUser ApplicationUser { get; set; }
-        [ForeignKey("BoardId")]
-        public TableBoard Board { get; set; }
+        // TablePost to TableCommment => 1:n Relationship
+        private ICollection<TableComment> comments;
+        public ICollection<TableComment> Comments
+        {
+            get => comments;
+            set => comments = value;
+        }
     }
 }

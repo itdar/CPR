@@ -12,16 +12,13 @@ namespace NoName.Data.DbUser
     public class TableManager
     {
         [Key]
-        //ForeignKey
-        public int BaordId { get; set; }
-        //ForeignKey
-        public string Id { get; set; }
-        public DateTime AppointedDate { get; set; }
+        public int Number { get; set; }
 
-
-        [ForeignKey("BoardId")]
-        public TableBoard TableBoard { get; set; }
+        // ApplicationUser to TableManager => 1:1 Relationship
         [ForeignKey("Id")]
         public ApplicationUser ApplicationUser { get; set; }
+
+        public int BaordId { get; set; }
+        public DateTime AppointedDate { get; set; }
     }
 }

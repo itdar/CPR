@@ -17,25 +17,11 @@ namespace NoName.Data
     {
         public DbSet<ApplicationUser> User { get; set; }
         public DbSet<TableUserJob> UserJob { get; set; }
+        public DbSet<TableManager> Manager { get; set; }
 
         public UserContext(DbContextOptions<UserContext> options)
             : base(options)
         {
-        }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
-            modelBuilder.Entity<TableUserJob>().ToTable("TableUserJob");
-            modelBuilder.Entity<TableManager>().ToTable("TableManager");
-            //TableUserJob Key 설정해야함
-
-            //Set Two PrimaryKey
-            modelBuilder.Entity<TableUserJob>().HasKey(j => j.Id);
-
-            modelBuilder.Entity<TableUserJob>()
-                .HasOne(j => j.ApplicationUser)
-                .WithMany(u => u.MyJobCodes)
-                .HasForeignKey(j => new { j.Id, j.JobCode });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.CRUD.TableBoardCRUD
+namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
         }
 
         [BindProperty]
-        public TableBoard TableBoard { get; set; }
+        public TablePost TablePost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,14 +30,14 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                 return NotFound();
             }
 
-            TableBoard = await _context.Board
-                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardNumber == id);
+            TablePost = await _context.Post
+                .Include(t => t.Board).FirstOrDefaultAsync(m => m.PostNumber == id);
 
-            if (TableBoard == null)
+            if (TablePost == null)
             {
                 return NotFound();
             }
-           ViewData["JobCode"] = new SelectList(_context.Job, "JobCode", "JobCode");
+           ViewData["BoardId"] = new SelectList(_context.Board, "BoardId", "BoardId");
             return Page();
         }
 
@@ -50,7 +50,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                 return Page();
             }
 
-            _context.Attach(TableBoard).State = EntityState.Modified;
+            _context.Attach(TablePost).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TableBoardExists(TableBoard.BoardNumber))
+                if (!TablePostExists(TablePost.PostNumber))
                 {
                     return NotFound();
                 }
@@ -71,9 +71,9 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             return RedirectToPage("./Index");
         }
 
-        private bool TableBoardExists(int id)
+        private bool TablePostExists(int id)
         {
-            return _context.Board.Any(e => e.BoardNumber == id);
+            return _context.Post.Any(e => e.PostNumber == id);
         }
     }
 }

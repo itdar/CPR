@@ -15,11 +15,13 @@ namespace NoName.Data.DbData
     {
         [Key]
         public int CommentNumber { get; set; }
-        public int ParentCommentNumber { get; set; }
-        //ForeignKey
-        public string Id { get; set; }
-        //ForeignKey
+
+        // TablePost to TableCommment => 1:n Relationship
+        [ForeignKey("Post")]
         public int PostNumber { get; set; }
+
+        public TablePost Post { get; set; }
+        public int ParentCommentNumber { get; set; }
         public string Content { get; set; }
         public DateTime CreatedTime { get; set; }
         public int LikeCount { get; set; }
@@ -29,11 +31,5 @@ namespace NoName.Data.DbData
          * >> 하위 댓글 번호들
          */
         //public List<int> SeqCommentNumber { get; set; }
-
-
-        [ForeignKey("Id")]
-        public ApplicationUser ApplicationUser { get; set; }
-        [ForeignKey("PostNumber")]
-        public TablePost TablePost { get; set; }
     }
 }

@@ -25,8 +25,5 @@ namespace NoName.Data.DbData
          */
         public DateTime CreateTime { get; set; }
         public bool IsChekced { get; set; }
-
-
-        public ApplicationUser ApplicationUser { get; set; }
     }
 }

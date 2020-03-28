@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.CRUD.TableBoardCRUD
+namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             _context = context;
         }
 
-        public TableBoard TableBoard { get; set; }
+        public TablePost TablePost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,10 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                 return NotFound();
             }
 
-            TableBoard = await _context.Board
-                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardNumber == id);
+            TablePost = await _context.Post
+                .Include(t => t.Board).FirstOrDefaultAsync(m => m.PostNumber == id);
 
-            if (TableBoard == null)
+            if (TablePost == null)
             {
                 return NotFound();
             }

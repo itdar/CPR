@@ -58,8 +58,8 @@ namespace NoName.Pages
                 var board = new TableBoard
                 {
                     BoardId = TableBoard.ElementAt(i).Id,
-                    JobCode = TableDataJob.JobCode,
-                    BoardName = TableBoard.ElementAt(i).Name
+                    BoardName = TableBoard.ElementAt(i).Name,
+                    JobCode = TableDataJob.JobCode
                 };
                 _context.Board.Add(board);
                 _context.SaveChanges();

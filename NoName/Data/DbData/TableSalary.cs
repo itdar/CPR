@@ -14,9 +14,11 @@ namespace NoName.Data.DbData
      */
     public class TableSalary
     {
-        //ForeignKey
+        // TableDataJob to TableSalary => 1:1 Relationship
         [Key]
         public int JobCode { get; set; }
+        public virtual TableDataJob Job { get; set; }
+
         public int Average { get; set; }
 
         /*
@@ -27,9 +29,5 @@ namespace NoName.Data.DbData
 
         public int Minimum { get; set; }
         public int Maximum { get; set; }
-
-
-        [ForeignKey("JobCode")]
-        public TableDataJob Job { get; set; }
     }
 }

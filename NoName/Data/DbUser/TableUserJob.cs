@@ -11,23 +11,14 @@ namespace NoName.Data.DbUser
 {
     public class TableUserJob
     {
-        //ForeignKey
         [Key]
-        public string Id { get; set; }
-        //ForeignKey
-        public int JobCode { get; set; }    
-        public int Salary { get; set; }
+        public int Number { get; set; }
 
-        /*
-         * ApplicationUser 와 FK 연결, 하지만 이건 1:1 이고, 
-         * 1:다수 (ApplicationUser 에서 IEnumeration<MyJob> 써야함)
-         */
-        //public ApplicationUser ApplicationUser { get; set; }
-
-
+        // ApplicationUser to TableUserJob => 1:n Relationship
         [ForeignKey("Id")]
         public ApplicationUser ApplicationUser { get; set; }
-        [ForeignKey("JobCode")]
-        public TableDataJob Job { get; set; }
+
+        public int JobCode { get; set; }
+        public int Salary { get; set; }
     }
 }

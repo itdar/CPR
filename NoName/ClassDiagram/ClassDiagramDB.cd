@@ -3,7 +3,7 @@
   <Class Name="NoName.Data.DbData.TablePost">
     <Position X="10" Y="3.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAgJAAAAgAABEAAABAAAAwAAAGAAAEAAAAAAXAAIAA=</HashCode>
+      <HashCode>AAAiJAAAAgAABEAAAAAAAAQAgAGAAAEAAAAAAXAAIAA=</HashCode>
       <FileName>Data\DbData\TablePost.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -13,7 +13,7 @@
   <Class Name="NoName.Data.DbData.TableSalary">
     <Position X="3.25" Y="0.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>gCIAAACAAAAAAAACAAAAACAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <HashCode>gCIAAACAAAAAAAAAAAAAACAAAAACAABAAAAAAAAAAAA=</HashCode>
       <FileName>Data\DbData\TableSalary.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -27,36 +27,46 @@
   <Class Name="NoName.Data.ApplicationUser">
     <Position X="17.5" Y="2.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>BAAAEAUAACAAgACgAAAAAEAAQAAQAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>BAAAEAUAACAAgACAAAAAAEAAQAAQBAAAAAAAAEAAAAA=</HashCode>
       <FileName>Data\DbUser\ApplicationUser.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Manager" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="MyJobCodes" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="NoName.Data.DbUser.TableUserJob">
-    <Position X="18.25" Y="6.5" Width="1.5" />
+    <Position X="17.5" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAAAAAQAEAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
       <FileName>Data\DbUser\TableUserJob.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NoName.Data.DbData.TableComment">
     <Position X="6" Y="6.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAgAAAAAAAAAAAAwAAAAAAAIAAAAAABCAAAE=</HashCode>
+      <HashCode>AAAAAAAQAgAAAAAAAAAAAAQAAAAAAAIAAAAAABCAAAE=</HashCode>
       <FileName>Data\DbData\TableComment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NoName.Data.DbData.TableDataJob">
     <Position X="8.25" Y="0.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>IAAAACAAAAAgAAAAAAAAAAAAAAAAAABAIAAAACAAAAA=</HashCode>
+      <HashCode>IAAAACAAAAAAAAAAAEAAAAAAAAAAAABAIAAAACAAAAA=</HashCode>
       <FileName>Data\DbData\TableDataJob.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Salary" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="NoName.Data.DbUser.TableManager">
+    <Position X="19.25" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAABCAAAAAAA=</HashCode>
+      <FileName>Data\DbUser\TableManager.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

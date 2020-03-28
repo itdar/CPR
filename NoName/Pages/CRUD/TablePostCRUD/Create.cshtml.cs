@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.CRUD.TableBoardCRUD
+namespace NoName.Pages.CRUD.TablePostCRUD
 {
     public class CreateModel : PageModel
     {
@@ -21,12 +21,12 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 
         public IActionResult OnGet()
         {
-        ViewData["JobCode"] = new SelectList(_context.Job, "JobCode", "JobCode");
+        ViewData["BoardId"] = new SelectList(_context.Board, "BoardId", "BoardId");
             return Page();
         }
 
         [BindProperty]
-        public TableBoard TableBoard { get; set; }
+        public TablePost TablePost { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -37,7 +37,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
                 return Page();
             }
 
-            _context.Board.Add(TableBoard);
+            _context.Post.Add(TablePost);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

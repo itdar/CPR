@@ -12,25 +12,22 @@ namespace NoName.Data.DbData
      */
     public class TableDataJob
     {
+        [Key]
+        public int Number { get; set; }
+        [Key]
+        public int JobCode { get; set; }
+        public string JobName { get; set; }
+
+
+        // TableDataJob to TableBoard => 1:n Relationship
         private ICollection<TableBoard> boards;
         public ICollection<TableBoard> Boards
         {
             get => boards;
             set => boards = value;
         }
-        public ICollection<TableUserJob> UserJob
-        {
-            get => UserJob;
-            set => UserJob = value;
-        }
 
-        //PrimaryKey
-        public int Number { get; set; }
-        //PrimaryKey
-        public int JobCode { get; set; }
-        public string JobName { get; set; }
-
-
-        public TableSalary Salary { get; set; }
+        // TableDataJob to TableSalary => 1:1 Relationship
+        public virtual TableSalary Salary { get; set; }
     }
 }

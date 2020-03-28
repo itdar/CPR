@@ -9,6 +9,11 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="TableDataJob.JobCode" class="control-label"></label>
+                <input asp-for="TableDataJob.JobCode" class="form-control" />
+                <span asp-validation-for="TableDataJob.JobCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="TableDataJob.JobName" class="control-label"></label>
                 <input asp-for="TableDataJob.JobName" class="form-control" />
                 <span asp-validation-for="TableDataJob.JobName" class="text-danger"></span>
