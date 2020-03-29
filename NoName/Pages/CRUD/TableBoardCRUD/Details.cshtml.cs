@@ -12,11 +12,11 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class DetailsModel : PageModel
     {
-        private readonly DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public DetailsModel()
+        public DetailsModel(NoName.Data.DataContext context)
         {
-            _context = DataDbManager.GetInstance().dataContext;
+            _context = context;
         }
 
         public TableBoard TableBoard { get; set; }
@@ -29,7 +29,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             }
 
             TableBoard = await _context.Board
-                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardId == id);
+                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardNumber == id);
 
             if (TableBoard == null)
             {

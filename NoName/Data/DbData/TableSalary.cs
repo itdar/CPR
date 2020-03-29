@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,8 +14,11 @@ namespace NoName.Data.DbData
      */
     public class TableSalary
     {
+        // TableDataJob to TableSalary => 1:1 Relationship
         [Key]
-        public int SalaryNumber { get; set; }
+        public int JobCode { get; set; }
+        public virtual TableDataJob Job { get; set; }
+
         public int Average { get; set; }
 
         /*
@@ -25,7 +29,5 @@ namespace NoName.Data.DbData
 
         public int Minimum { get; set; }
         public int Maximum { get; set; }
-
-        public int JobCode { get; set; }
     }
 }

@@ -12,11 +12,11 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class CreateModel : PageModel
     {
-        private readonly DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public CreateModel(DataContext context)
+        public CreateModel(NoName.Data.DataContext context)
         {
-            _context = DataDbManager.GetInstance().dataContext;
+            _context = context;
         }
 
         public IActionResult OnGet()

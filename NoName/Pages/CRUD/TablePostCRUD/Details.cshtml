@@ -13,10 +13,16 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TablePost.UserId)
+            @Html.DisplayNameFor(model => model.TablePost.Board)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TablePost.UserId)
+            @Html.DisplayFor(model => model.TablePost.Board.BoardId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.Id)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TablePost.CategoryNumber)
@@ -89,12 +95,6 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TablePost.DeletedTime)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TablePost.Board)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TablePost.Board.BoardId)
         </dd>
     </dl>
 </div>

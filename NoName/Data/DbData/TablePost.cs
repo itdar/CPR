@@ -12,16 +12,13 @@ namespace NoName.Data.DbData
      */
     public class TablePost
     {
-        private ICollection<TableComment> comments;
-        public ICollection<TableComment> Comments
-        {
-            get => comments;
-            set => comments = value;
-        }
+        // TableBoard to TablePost => 1:n Relationship
+        public int BoardId { get; set; }
+        public TableBoard Board { get; set; }
 
         [Key]
         public int PostNumber { get; set; }
-        public string UserId { get; set; }
+        public string Id { get; set; }
         public int CategoryNumber { get; set; }
 
         // 제목
@@ -50,8 +47,13 @@ namespace NoName.Data.DbData
         // 삭제 시각 initial value = null
         public DateTime? DeletedTime { get; set; }
 
-        [ForeignKey("BoardId")]
-        public TableBoard Board { get; set; }
-        public int BoardId { get; set; }
+
+        // TablePost to TableCommment => 1:n Relationship
+        private ICollection<TableComment> comments;
+        public ICollection<TableComment> Comments
+        {
+            get => comments;
+            set => comments = value;
+        }
     }
 }

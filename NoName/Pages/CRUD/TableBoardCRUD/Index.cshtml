@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -14,38 +15,29 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TableBoard[0].BoardName)
+                @Html.DisplayNameFor(model => model.TableBoard[0].Job)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TableBoard[0].Job)
+                @Html.DisplayNameFor(model => model.TableBoard[0].BoardName)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.TableBoard)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BoardName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Job.JobCode)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.BoardId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.BoardId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.BoardId">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model.TableBoard) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Job.JobCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoardName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-
-
-<form method="get">
-    <div>
-        <a class="btn btn-outline-dark" asp-page-handler="JobID">JobID 먼저 생성해야댐</a>
-        <a class="btn btn-outline-dark" asp-page-handler="MakeBoard">게시판 생성</a>
-    </div>
-</form>

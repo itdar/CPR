@@ -27,9 +27,9 @@
                 @Html.DisplayFor(modelItem => item.JobName)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.JobCode">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.JobCode">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.JobCode">Delete</a>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

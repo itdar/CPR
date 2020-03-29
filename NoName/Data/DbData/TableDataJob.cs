@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoName.Data.DbUser;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,6 +12,14 @@ namespace NoName.Data.DbData
      */
     public class TableDataJob
     {
+        [Key]
+        public int Number { get; set; }
+        [Key]
+        public int JobCode { get; set; }
+        public string JobName { get; set; }
+
+
+        // TableDataJob to TableBoard => 1:n Relationship
         private ICollection<TableBoard> boards;
         public ICollection<TableBoard> Boards
         {
@@ -18,17 +27,7 @@ namespace NoName.Data.DbData
             set => boards = value;
         }
 
-        [Key]
-        public int JobCode { get; set; }
-
-        private TableSalary salary;
-
-        public string JobName { get; set; }
-
-        public TableSalary Salary
-        {
-            get => salary;
-            set => salary = value;
-        }
+        // TableDataJob to TableSalary => 1:1 Relationship
+        public virtual TableSalary Salary { get; set; }
     }
 }

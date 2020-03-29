@@ -30,7 +30,7 @@ namespace NoName.Pages.CRUD.TableDataJobCRUD
                 return NotFound();
             }
 
-            TableDataJob = await _context.Job.FirstOrDefaultAsync(m => m.JobCode == id);
+            TableDataJob = await _context.Job.FirstOrDefaultAsync(m => m.Number == id);
 
             if (TableDataJob == null)
             {
@@ -56,7 +56,7 @@ namespace NoName.Pages.CRUD.TableDataJobCRUD
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TableDataJobExists(TableDataJob.JobCode))
+                if (!TableDataJobExists(TableDataJob.Number))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace NoName.Pages.CRUD.TableDataJobCRUD
 
         private bool TableDataJobExists(int id)
         {
-            return _context.Job.Any(e => e.JobCode == id);
+            return _context.Job.Any(e => e.Number == id);
         }
     }
 }
