@@ -19,16 +19,13 @@ namespace NoName.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        //private readonly UserManager<ApplicationUser> _userManager;
-        private readonly UserContext _userContext;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserContext userContext)
+            UserManager<ApplicationUser> userManager)
         {
-            _userContext = userContext;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -99,30 +96,42 @@ namespace NoName.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    //_userContext.Add
-                    UserDbManager.GetInstance().GetAllUserJob();
+                                
+                    // Main 이 되는 index page cs 에서,
+            // 페이지 로딩될 때, 최초 로딩 또는 다른데에서 redirection 등
+            // OnGet / OnPost 선택 호출하는 방법 확인해서 로그인 동작 시에만 호출 되는 것 만들어서 옮겨야함
+            //var user = await _userManager.GetUserAsync(User);
+            //if (user != null)
+            //{
+            //    var userId = await _userManager.GetUserIdAsync(user);
+            //    var userName = await _userManager.GetUserNameAsync(user);
+            //    var email = await _userManager.GetEmailAsync(user);
+            //    var jobCodesQuery = UserDbManager.GetInstance().GetUserJobCodes(userId);
+            //    var jobCodes = new List<int>();
 
+            //    System.Diagnostics.Debug.WriteLine(jobCodesQuery.Count());
 
+            //    foreach (var jobCode in jobCodesQuery)
+            //    {
+            //        System.Console.WriteLine("JobCode : " + jobCode.JobCode);
+            //    }
 
-                    //var user = await _userManager.GetUserAsync(HttpContext.User);
-                    //Task<ApplicationUser> appUser = _userManager.FindByNameAsync(Input.Email);
-                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
-                    //System.Diagnostics.Debug.WriteLine(appUser.);
-                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
-                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
-                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
+            //    var userInfo = UserInformation.GetInstance();
+            //    userInfo.SetInformation(userId, userName, email, jobCodes);
 
-                    //UserInformation.GetInstance().SetInformation("test", Input.Email, tempJobCodes);
-
-                    //System.Diagnostics.Debug.WriteLine(user.Id);
-                    //System.Diagnostics.Debug.WriteLine(user.Email);
-                    //System.Diagnostics.Debug.WriteLine(user.ManagerNumber);
-                    //System.Diagnostics.Debug.WriteLine(user.PermissionLevel);
-                    //System.Diagnostics.Debug.WriteLine(user.PhoneNumber);
-                    //System.Diagnostics.Debug.WriteLine(user.ReceiveSMS);
-                    System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().UserId);
-                    System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().Email);
-                    //System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().JobCodes.ToString());
+            //    System.Diagnostics.Debug.WriteLine("UserId : " + userInfo.UserId);
+            //    System.Diagnostics.Debug.WriteLine("UserName : " + userInfo.UserName);
+            //    System.Diagnostics.Debug.WriteLine("Email : " + userInfo.Email);
+            //    for (int i = 0; i < userInfo.JobCodes.Count(); ++i)
+            //    {
+            //        System.Diagnostics.Debug.WriteLine("JobCode : {i}", userInfo.JobCodes.ElementAt(i));
+            //    }
+            //    System.Diagnostics.Debug.WriteLine(userInfo.JobCodes.ToString());
+            //}
+            //else
+            //{
+            //    System.Diagnostics.Debug.WriteLine("user is null (It means 로그인 안되어있음)");
+            //}
 
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

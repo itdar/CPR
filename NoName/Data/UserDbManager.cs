@@ -12,7 +12,7 @@ using NoName.Data.DbUser;
 /// </summary>
 public class UserDbManager
 {
-	private readonly ILogger<UserDbManager> _logger;
+	//private readonly ILogger<UserDbManager> _logger;
 	private static  UserContext userContext;
 
 	public UserDbManager(UserContext _userContext)
@@ -20,11 +20,6 @@ public class UserDbManager
 		userContext = _userContext;
 		//_logger = logger;
 	}
-
-	//public static void SetContext(UserContext _userContext)
-	//{
-	//	userContext = _userContext;
-	//}
 
     private static UserDbManager instance;
 
@@ -43,10 +38,14 @@ public class UserDbManager
 		return instance;
 	}
 
-	public IQueryable<TableUserJob> GetAllUserJob()
+	public IQueryable<TableUserJob> GetUserJobCodes(string userId)
 	{
-		// Service + Manager 둘다 연결 되는지 테스트하려고 만듦
-		return UserDB.UserJob.Include(userJob => userJob.JobCode).OrderByDescending(userJob => userJob.JobCode);
+		return UserDB.UserJob.Where(userJob => userJob.ApplicationUser.Id == userId);
+		//return UserDB.UserJob.Include(userJob => userJob.JobCode).Where(userJob => userJob.ApplicationUser.Id == userId).
+		//		OrderByDescending(userJob => userJob.Number);
+
+		//// Service + Manager 둘다 연결 되는지 테스트하려고 만듦
+		//return UserDB.UserJob.Select.Include(userJob => userJob.JobCode).OrderByDescending(userJob => userJob.JobCode);
 	}
 
 	public IQueryable<ApplicationUser> GetLoggedInUser()
