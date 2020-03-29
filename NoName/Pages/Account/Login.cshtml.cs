@@ -19,15 +19,16 @@ namespace NoName.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserContext _userContext;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager)
+            UserContext userContext)
         {
-            _userManager = userManager;
+            _userContext = userContext;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -98,11 +99,20 @@ namespace NoName.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.GetUserAsync(HttpContext.User);
-                    List<int> tempJobCodes = new List<int>() { 1, 2 };
-                    //UserInformation.GetInstance().SetInformation(user?.Id, user?.Email, tempJobCodes);
+                    //_userContext.Add
+                    UserDbManager.GetInstance().GetAllUserJob();
 
-                    UserInformation.GetInstance().SetInformation("test", Input.Email, tempJobCodes);
+
+
+                    //var user = await _userManager.GetUserAsync(HttpContext.User);
+                    //Task<ApplicationUser> appUser = _userManager.FindByNameAsync(Input.Email);
+                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
+                    //System.Diagnostics.Debug.WriteLine(appUser.);
+                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
+                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
+                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
+
+                    //UserInformation.GetInstance().SetInformation("test", Input.Email, tempJobCodes);
 
                     //System.Diagnostics.Debug.WriteLine(user.Id);
                     //System.Diagnostics.Debug.WriteLine(user.Email);
@@ -112,7 +122,7 @@ namespace NoName.Pages.Account
                     //System.Diagnostics.Debug.WriteLine(user.ReceiveSMS);
                     System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().UserId);
                     System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().Email);
-                    System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().JobCodes.ToString());
+                    //System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().JobCodes.ToString());
 
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
