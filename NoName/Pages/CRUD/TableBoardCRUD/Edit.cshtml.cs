@@ -13,11 +13,11 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 {
     public class EditModel : PageModel
     {
-        private readonly DataContext _context;
+        private readonly NoName.Data.DataContext _context;
 
-        public EditModel()
+        public EditModel(NoName.Data.DataContext context)
         {
-            _context = DataDbManager.GetInstance().dataContext;
+            _context = context;
         }
 
         [BindProperty]
@@ -31,7 +31,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             }
 
             TableBoard = await _context.Board
-                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardId == id);
+                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardNumber == id);
 
             if (TableBoard == null)
             {
@@ -58,7 +58,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TableBoardExists(TableBoard.BoardId))
+                if (!TableBoardExists(TableBoard.BoardNumber))
                 {
                     return NotFound();
                 }
@@ -73,7 +73,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 
         private bool TableBoardExists(int id)
         {
-            return _context.Board.Any(e => e.BoardId == id);
+            return _context.Board.Any(e => e.BoardNumber == id);
         }
     }
 }

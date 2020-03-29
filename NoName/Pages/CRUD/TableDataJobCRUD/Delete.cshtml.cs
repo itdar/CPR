@@ -29,7 +29,7 @@ namespace NoName.Pages.CRUD.TableDataJobCRUD
                 return NotFound();
             }
 
-            TableDataJob = await _context.Job.FirstOrDefaultAsync(m => m.JobCode == id);
+            TableDataJob = await _context.Job.FirstOrDefaultAsync(m => m.Number == id);
 
             if (TableDataJob == null)
             {

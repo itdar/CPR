@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,23 +15,21 @@ namespace NoName.Data.DbData
     {
         [Key]
         public int CommentNumber { get; set; }
-        public int ParentCommentNumber { get; set; }
-        public int PostNumber { get; set; }
-        [ForeignKey("PostNumber")]
-        public TablePost TablePost { get; set; }
-        public string Content { get; set; }
 
+        // TablePost to TableCommment => 1:n Relationship
+        [ForeignKey("Post")]
+        public int PostNumber { get; set; }
+
+        public TablePost Post { get; set; }
+        public int ParentCommentNumber { get; set; }
+        public string Content { get; set; }
         public DateTime CreatedTime { get; set; }
         public int LikeCount { get; set; }
-
-
         /*
          * 대댓글용 속성
          * >> 상위 댓글 번호
          * >> 하위 댓글 번호들
          */
         //public List<int> SeqCommentNumber { get; set; }
-        public string UserId { get; set; }
-
     }
 }

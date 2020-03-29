@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -10,19 +11,14 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<form class="form-inline" method="post">
-    <div class="form-group">
-        @*label의 for와 input의 id를 일치 시켜 포커스를 일치시킴*@
-        <label asp-for="@Model.IdOfBoard" class="mr-sm-2">생성할 데이터의 게시판 번호(Code)</label>
-        <input asp-for="@Model.IdOfBoard" class="form-control mr-sm-2" />
-    </div>
-    <button class="btn btn-outline-dark">Mock 데이터 생성</button>
-</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TablePost[0].UserId)
+                @Html.DisplayNameFor(model => model.TablePost[0].Board)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TablePost[0].Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TablePost[0].CategoryNumber)
@@ -60,64 +56,60 @@
             <th>
                 @Html.DisplayNameFor(model => model.TablePost[0].DeletedTime)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TablePost[0].Board)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.TablePost)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ViewCount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LikeCount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DislikeCount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HasNewComment)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InitialContent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastModifiedTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeletedTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Board.BoardId)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.PostNumber">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.PostNumber">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.PostNumber">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model.TablePost) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Board.BoardId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LikeCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DislikeCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasNewComment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InitialContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedTime)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PostNumber">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PostNumber">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PostNumber">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

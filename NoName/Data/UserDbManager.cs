@@ -15,16 +15,16 @@ public class UserDbManager
 	private readonly ILogger<UserDbManager> _logger;
 	private static  UserContext userContext;
 
-	public UserDbManager(UserContext _userContext, ILogger<UserDbManager> logger)
+	public UserDbManager(UserContext _userContext)
 	{
 		userContext = _userContext;
-		_logger = logger;
+		//_logger = logger;
 	}
 
-	public static void SetContext(UserContext _userContext)
-	{
-		userContext = _userContext;
-	}
+	//public static void SetContext(UserContext _userContext)
+	//{
+	//	userContext = _userContext;
+	//}
 
     private static UserDbManager instance;
 
@@ -47,5 +47,11 @@ public class UserDbManager
 	{
 		// Service + Manager 둘다 연결 되는지 테스트하려고 만듦
 		return UserDB.UserJob.Include(userJob => userJob.JobCode).OrderByDescending(userJob => userJob.JobCode);
+	}
+
+	public IQueryable<ApplicationUser> GetLoggedInUser()
+	{
+
+		return null;
 	}
 }

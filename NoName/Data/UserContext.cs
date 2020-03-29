@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NoName.Data.DbData;
 using NoName.Data.DbUser;
 using System;
 
@@ -16,6 +17,7 @@ namespace NoName.Data
     {
         public DbSet<ApplicationUser> User { get; set; }
         public DbSet<TableUserJob> UserJob { get; set; }
+        public DbSet<TableManager> Manager { get; set; }
 
         public UserContext(DbContextOptions<UserContext> options)
             : base(options)

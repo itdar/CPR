@@ -15,9 +15,13 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="TablePost.UserId" class="control-label"></label>
-                <input asp-for="TablePost.UserId" class="form-control" />
-                <span asp-validation-for="TablePost.UserId" class="text-danger"></span>
+                <label asp-for="TablePost.BoardId" class="control-label"></label>
+                <select asp-for="TablePost.BoardId" class ="form-control" asp-items="ViewBag.BoardId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TablePost.Id" class="control-label"></label>
+                <input asp-for="TablePost.Id" class="form-control" />
+                <span asp-validation-for="TablePost.Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TablePost.CategoryNumber" class="control-label"></label>
@@ -78,10 +82,6 @@
                 <label asp-for="TablePost.DeletedTime" class="control-label"></label>
                 <input asp-for="TablePost.DeletedTime" class="form-control" />
                 <span asp-validation-for="TablePost.DeletedTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TablePost.BoardId" class="control-label"></label>
-                <select asp-for="TablePost.BoardId" class ="form-control" asp-items="ViewBag.BoardId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

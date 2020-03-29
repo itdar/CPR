@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using NoName.Data.DbData;
 using NoName.Data.DbUser;
 
 /**
@@ -24,17 +25,6 @@ namespace NoName.Data
      */
     public class ApplicationUser : IdentityUser
     {
-        private ICollection<TableUserJob> myJobCodes;
-
-        /*
-         * myJobs property
-         * 해당 유저가 갖고 있는 직업들 코드번호
-         */
-        public ICollection<TableUserJob> MyJobCodes
-        {
-            get => myJobCodes;
-            set => myJobCodes = value; 
-        }
         /*
          * 계정 생성 날짜
          */
@@ -44,9 +34,7 @@ namespace NoName.Data
          * 하루에 올라갈 수 있는 방문수 최대는 1
          */
         public int VisitCount { get; set; }
-
         public DateTime DateOfBirth { get; set; }
-
         public int Gender { get; set; }
 
         /*
@@ -73,14 +61,29 @@ namespace NoName.Data
         public int PermissionLevel { get; set; }
 
         /*
-         * 해당 직업의 홈에서 접근 가능한 몇번째 게시판의 매니저인지 확인 번호 
+         * 매니저 테이블에서 관리되는 매니저 번호, 게시판별로 존재
          * (요청되어 만들어진 커스텀 게시판)
          */
-        public int ManagerNumber { get; set; }
-
-
+         public int ManagerNumber { get; set; }
 
         /*
+         * myJobs property
+         * 해당 유저가 갖고 있는 직업들 코드번호
+        */
+        // ApplicationUser to TableUserJob => 1:n Relationship
+        public ICollection<TableUserJob> MyJobCodes { get; set; }
+
+
+        // ApplicationUser to TableManager => 1:1 Relationship
+        public TableManager Manager { get; set; }
+
+
+
+
+
+
+
+        /*************************************************************************************************
          * 위의 IdentityUser 에 이미 있어서 따로 안만들고 사용하는 속성들 및 세부내용
          * EmailAddress, PhoneNumber, EmailConfirmed, Id(PK)
          * 

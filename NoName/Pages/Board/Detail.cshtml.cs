@@ -186,6 +186,5 @@ namespace NoName.Pages.Board
         //{
         //    return manager.dataContext.Board.Any(e => e.BoardNumber == id);
         //}
-
     }
 }
