@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NoName.Data;
 using NoName.Data.DbData;
+using NoName.Pages.Shared;
 
 namespace NoName.Pages.Board
 {
@@ -21,7 +22,8 @@ namespace NoName.Pages.Board
 
         [BindProperty]
         public TablePost TablePost { get; set; }
-
+        [BindProperty]
+        public List<BoardPreview> SidebardLists { get; set; }
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -35,10 +37,18 @@ namespace NoName.Pages.Board
         public TableBoard CurrentBoard { get; set; }
         public async Task<IActionResult> OnGetAsync(int? boardId)
         {
+            
             if (boardId == null)
             {
                 return NotFound();
 
+            }
+            SidebardLists = new List<BoardPreview>();
+            for (int i = 1; i < 4; i++)
+            {
+                var postlist = manager.GetPosts(i, 2);
+                var Preview = BoardPreview.CreatePreviewList(postlist, i, manager.GetBoardName(i));
+                SidebardLists.Add(Preview);
             }
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
             //System.Diagnostics.Debug.WriteLine(manager.GetPosts(1));

@@ -2,7 +2,7 @@
     Partial를 이용하여 SideBar 생성
     호출시 <partial name="full path"/>
 *@
-@model Pages.IndexModel
+@model List<BoardPreview>
 @*need to use icons*@
 @*@if ((string)ViewData["CurrentPage"] == "MainPage")
     {
@@ -27,7 +27,7 @@
 </div>
 @for (int boardId = 1; boardId < 4; boardId++)
 {
-    <partial name="BoardPreview" model="@Model.PreviewBoards[boardId-1]" />
+    <partial name="BoardPreview" model="@Model[boardId-1]" />
 }
 @*<div class="list-group">
         <a asp-page="/Board/Index" asp-route-boardCode="1" class="list-group-item list-group-item-action" style="color:white; background-color:blue;">실시간 인기글</a>
