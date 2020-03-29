@@ -70,7 +70,7 @@
             </div>
             <div class="col-lg-3">
                                 @{ViewData["CurrentPage"] = "MainPage"; }
-                <partial name="Sidebar" model="@Model" view-data="ViewData" />
+                <partial name="Sidebar" model="@Model.PreviewBoards" view-data="ViewData" />
             </div>
         </div>
     </div>
