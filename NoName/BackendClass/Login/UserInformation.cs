@@ -13,19 +13,12 @@ namespace NoName.BackendClass.Account
     public class UserInformation
     {
         private static UserInformation instance;
-        private UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
 
         public string UserId { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
         public List<int> JobCodes { get; set; }
 
-        private UserInformation(SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-        }
         private UserInformation()
         {
             
@@ -38,9 +31,10 @@ namespace NoName.BackendClass.Account
             return instance;
         }
 
-        public void SetInformation(string userId, string email, List<int> jobCodes)
+        public void SetInformation(string userId, string userName, string email, List<int> jobCodes)
         {
             UserId = userId;
+            UserName = userName;
             Email = email;
             JobCodes = jobCodes;
         }
