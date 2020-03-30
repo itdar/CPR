@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NoName.BackendClass.Account;
 using NoName.Data;
 using NoName.Data.DbData;
 using NoName.Data.DbUser;
@@ -12,13 +14,11 @@ using NoName.Data.DbUser;
 /// </summary>
 public class UserDbManager
 {
-	//private readonly ILogger<UserDbManager> _logger;
 	private static  UserContext userContext;
 
 	public UserDbManager(UserContext _userContext)
 	{
 		userContext = _userContext;
-		//_logger = logger;
 	}
 
     private static UserDbManager instance;
@@ -38,19 +38,44 @@ public class UserDbManager
 		return instance;
 	}
 
-	public IQueryable<TableUserJob> GetUserJobCodes(string userId)
+	public void SetLoggedInUserInfoUsingEmail(string _email)
 	{
-		return UserDB.UserJob.Where(userJob => userJob.ApplicationUser.Id == userId);
-		//return UserDB.UserJob.Include(userJob => userJob.JobCode).Where(userJob => userJob.ApplicationUser.Id == userId).
-		//		OrderByDescending(userJob => userJob.Number);
+		var loggedInUser = UserDB.User.Where(user => user.Email == _email);
+		var userId = "";
+		var userName = "";
+		var userEmail = "";
+		var userJobCodes = new List<int>();
+		var jobCodes = UserDB.UserJob.Where(userJob => userJob.ApplicationUser.Email == _email);
+		foreach (var user in loggedInUser)
+		{
+			userId = user.Id;
+			userName = user.UserName;
+			userEmail = user.Email;
+		}
+		foreach (var jobCode in jobCodes)
+		{
+			userJobCodes.Add(jobCode.JobCode);
+		}
 
-		//// Service + Manager 둘다 연결 되는지 테스트하려고 만듦
-		//return UserDB.UserJob.Select.Include(userJob => userJob.JobCode).OrderByDescending(userJob => userJob.JobCode);
+		UserInformation.GetInstance().SetInformation(userId, userName, userEmail, userJobCodes);
 	}
 
 	public IQueryable<ApplicationUser> GetLoggedInUser()
 	{
 
 		return null;
+	}
+
+	internal void CheckLoggedInUserInformation()
+	{
+		var userInfo = UserInformation.GetInstance();
+
+		System.Diagnostics.Debug.WriteLine("UserId : " + userInfo.UserId);
+		System.Diagnostics.Debug.WriteLine("UserName : " + userInfo.UserName);
+		System.Diagnostics.Debug.WriteLine("Email : " + userInfo.Email);
+		for (int i = 0; i < userInfo.JobCodes.Count(); ++i)
+		{
+			System.Diagnostics.Debug.WriteLine("JobCode user have : {0}", userInfo.JobCodes.ElementAt(i));
+		}
 	}
 }

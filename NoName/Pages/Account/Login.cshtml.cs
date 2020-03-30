@@ -23,8 +23,7 @@ namespace NoName.Pages.Account
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, 
-            ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager)
+            ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -96,44 +95,13 @@ namespace NoName.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                                
-                    // Main 이 되는 index page cs 에서,
-            // 페이지 로딩될 때, 최초 로딩 또는 다른데에서 redirection 등
-            // OnGet / OnPost 선택 호출하는 방법 확인해서 로그인 동작 시에만 호출 되는 것 만들어서 옮겨야함
-            //var user = await _userManager.GetUserAsync(User);
-            //if (user != null)
-            //{
-            //    var userId = await _userManager.GetUserIdAsync(user);
-            //    var userName = await _userManager.GetUserNameAsync(user);
-            //    var email = await _userManager.GetEmailAsync(user);
-            //    var jobCodesQuery = UserDbManager.GetInstance().GetUserJobCodes(userId);
-            //    var jobCodes = new List<int>();
-
-            //    System.Diagnostics.Debug.WriteLine(jobCodesQuery.Count());
-
-            //    foreach (var jobCode in jobCodesQuery)
-            //    {
-            //        System.Console.WriteLine("JobCode : " + jobCode.JobCode);
-            //    }
-
-            //    var userInfo = UserInformation.GetInstance();
-            //    userInfo.SetInformation(userId, userName, email, jobCodes);
-
-            //    System.Diagnostics.Debug.WriteLine("UserId : " + userInfo.UserId);
-            //    System.Diagnostics.Debug.WriteLine("UserName : " + userInfo.UserName);
-            //    System.Diagnostics.Debug.WriteLine("Email : " + userInfo.Email);
-            //    for (int i = 0; i < userInfo.JobCodes.Count(); ++i)
-            //    {
-            //        System.Diagnostics.Debug.WriteLine("JobCode : {i}", userInfo.JobCodes.ElementAt(i));
-            //    }
-            //    System.Diagnostics.Debug.WriteLine(userInfo.JobCodes.ToString());
-            //}
-            //else
-            //{
-            //    System.Diagnostics.Debug.WriteLine("user is null (It means 로그인 안되어있음)");
-            //}
-
                     _logger.LogInformation("User logged in.");
+
+                    // After login succeded, make UserInformation
+                    // 근데 자동로그인 되어있으면 이쪽을 통해서 안감 다른 곳(main page) 에 옮기던지 해야함
+                    UserDbManager.GetInstance().SetLoggedInUserInfoUsingEmail(Input.Email);
+                    UserDbManager.GetInstance().CheckLoggedInUserInformation();
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
