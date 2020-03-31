@@ -24,6 +24,7 @@ namespace NoName.Pages
         public BoardPreview Preview { get; set; }
         public void OnGet()
         {
+            //Preview할 게시물 개수
             int listNumber = 4;
             Preview = BoardPreview.CreatePreviewList(listNumber);
         }
