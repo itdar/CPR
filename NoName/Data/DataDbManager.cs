@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NoName.Data.DbData;
 
-/*
+/* PM Console commands
   Drop-Database -Context UserContext
   Add-Migration -Context UserContext -OutputDir Migrations/DbUser/ UserDbMigration
   Update-Database -Context UserContext
@@ -21,27 +21,19 @@ using NoName.Data.DbData;
 
 namespace NoName.Data
 {
-
-	/// <summary>
-	/// Summary description for Class1
-	/// </summary>
 	public class DataDbManager
 	{
 		private static DataDbManager instance;
-
 		public DataContext dataContext;
-
 		private DataDbManager()
 		{
 			if (dataContext == null)
 				dataContext = new DataContext();
 		}
-
 		//public DataDbManager(DataContext _dataContext)
 		//{
 		//	dataContext = _dataContext;
 		//}
-
 		public static DataDbManager GetInstance()
 		{
 			if (instance == null)
@@ -49,7 +41,6 @@ namespace NoName.Data
 
 			return instance;
 		}
-
 		//public Task WriteMessage(string message)
 		//{
 		//	_logger.LogInformation(
@@ -59,6 +50,30 @@ namespace NoName.Data
 		//	return Task.FromResult(0);
 		//}
 
+
+		/************************************BOARD************************************/
+		public TableBoard GetBoard(int? boardId)
+		{
+			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId);
+		}
+		public IQueryable<TableBoard> GetBoards(int jobCode)
+		{
+			return dataContext.Board.Include(board => board.Job).Where(board => board.JobCode == jobCode).
+				OrderByDescending(board => board.BoardId);
+		}
+		public int GetBoardCount(int jobCode)
+		{
+			return dataContext.Board.Include(board => board.Job).Where(board => board.JobCode == jobCode).Count();
+		}
+		public string GetBoardName(int boardId)
+		{
+			if (dataContext.Board.Count() > 0)
+				return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId).BoardName;
+			else
+				return "There is no Board.";
+		}
+
+		/************************************POST************************************/
 		public IQueryable<TablePost> GetPosts(int boardId)
 		{
 			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardId == boardId).
@@ -69,7 +84,11 @@ namespace NoName.Data
 			var index = dataContext.Post.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
 			return  dataContext.Post.Where(post => post.BoardId == boardId).
 				OrderByDescending(post => post.PostNumber).Take(listNumber);
-			
+
+		}
+		public TablePost GetPostDetail(int postNumber)
+		{
+			return dataContext.Post.FirstOrDefault(post => post.PostNumber == postNumber);
 		}
 		public int GetPostsCount(int? boardId)
 		{
@@ -82,6 +101,12 @@ namespace NoName.Data
 	
 			return ret;
 		}
+		//public void EditPost(TablePost ModifiedPost)
+		//{
+		//	dataContext.Attach(ModifiedPost).State = EntityState.Modified;
+		//}
+
+		/************************************POST_SEARCH************************************/
 		public IQueryable<TablePost> SearchInTitle(string searchString)
 		{
 			// Use LINQ to get list of Job.
@@ -115,30 +140,7 @@ namespace NoName.Data
 			return posts;
 		}
 
-		public TablePost GetPostDetail(int postNumber)
-		{
-			return dataContext.Post.FirstOrDefault(post => post.PostNumber == postNumber);
-		}
-		//public void EditPost(TablePost ModifiedPost)
-		//{
-		//	dataContext.Attach(ModifiedPost).State = EntityState.Modified;
-		//}
-
-
-		////////////////////////////////////////////////////////Board
-		public TableBoard GetBoard(int? boardId)
-		{
-			return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId);
-		}
-		public string GetBoardName(int boardId)
-		{
-			if (dataContext.Board.Count() > 0)
-				return dataContext.Board.FirstOrDefault(board => board.BoardId == boardId).BoardName;
-			else
-				return "There is no Board.";
-		}
-		
-		//////////////////////////////////////////////////Comment
+		/************************************COMMENT************************************/
 		public List<TableComment> GetParentComments(int postNumber)
 		{
 			var parentComments = dataContext.Comment.Where(comment => comment.PostNumber == postNumber && comment.ParentCommentNumber == 0).

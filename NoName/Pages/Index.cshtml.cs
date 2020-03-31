@@ -21,23 +21,11 @@ namespace NoName.Pages
             manager= DataDbManager.GetInstance();
         }
         [BindProperty]
-        public  List<BoardPreview> PreviewBoards { get; set; }
-        public void OnGet(int numberOfBoard=7)
+        public BoardPreview Preview { get; set; }
+        public void OnGet()
         {
-            PreviewBoards = new List<BoardPreview>();
-            int boardId;
-            for (boardId = 1; boardId < 4; boardId++)
-            {
-                var postlist = manager.GetPosts(boardId, 2);
-                var Preview = BoardPreview.CreatePreviewList(postlist, boardId, manager.GetBoardName(boardId));
-                PreviewBoards.Add(Preview);
-            }
-            for (int boardid = 4; boardid <= numberOfBoard; boardid++)
-            {
-                var postlist = manager.GetPosts(boardid,4);
-                var Preview= BoardPreview.CreatePreviewList(postlist, boardid, manager.GetBoardName(boardid));
-                PreviewBoards.Add(Preview);
-            }
+            int listNumber = 4;
+            Preview = BoardPreview.CreatePreviewList(listNumber);
         }
         public void OnPost()
         {

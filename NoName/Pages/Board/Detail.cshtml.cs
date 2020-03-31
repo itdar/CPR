@@ -91,8 +91,6 @@ namespace NoName.Pages.Board
 
         [BindProperty]
         public TablePost CurrentPost { get; set; }
-        [BindProperty]
-        public List<BoardPreview> SidebardLists { get; set; }
         public DetailModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -114,13 +112,6 @@ namespace NoName.Pages.Board
                 return NotFound();
             }
 
-            SidebardLists = new List<BoardPreview>();
-            for (int i = 1; i < 4; i++)
-            {
-                var postlist = manager.GetPosts(i, 2);
-                var Preview = BoardPreview.CreatePreviewList(postlist, i, manager.GetBoardName(i));
-                SidebardLists.Add(Preview);
-            }
             CurrentPost = manager.GetPostDetail((int)postNumber);
             //댓글&대댓글 한번에 함수 만드는거 아직 못하겠어서 따로 만들어서 했어요
             ParentCommentList = manager.GetParentComments((int)postNumber);

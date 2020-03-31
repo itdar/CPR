@@ -16,7 +16,7 @@ namespace NoName.Pages
         ****/
         //CurrentBoard
         //Not Used
-        public int BoardId { get; set; }
+        public int Id { get; set; }
         //Current Page => Defualt Index page = 0
         public int CurrentPage { get; private set; }
         //Number of Posting
@@ -48,12 +48,12 @@ namespace NoName.Pages
 
             this.AddRange(items);
         }
-
+        /*
         internal static Task CreateAsync(IList<TablePost> tablePost, int v)
         {
             throw new NotImplementedException();
         }
-
+        */
         //static method => instance member 사용불가
         //IQueryable<T> => 데이터 형식이 지정되지 않은 특정 데이터 소스에 대한 쿼리를 실행하는 기능을 제공합니다.
         public static async Task<Pagination<T>> CreateAsync(IQueryable<T> source, int currentPage = 1, int pageSize = 10)

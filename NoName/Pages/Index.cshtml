@@ -2,6 +2,7 @@
 @model NoName.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
+    int BoardCount = Model.Preview.BoardCount;
 }
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -33,44 +34,42 @@
 
                 <div id="banner"></div>
             </div>
-            <div class="col-lg-6 ">
-                <div class="card card-body h-25 bg-warning">
+            <div class="col-lg-6">
+                <div class="card card-body h-25 bg-warning mb-2">
                     배너
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
-                        @for (int boardId = 4; boardId < Model.PreviewBoards.Count(); boardId++)
+                    <div class="col-lg-6" id="leftList">
+                        @for (int i = 0; i < BoardCount; i += 2)
                         {
-                            var remainder = boardId % 2;
-                            if (remainder == 0)
-                            {
-                                var boardPreview = Model.PreviewBoards[boardId - 1];
-                                <partial name="BoardPreview" model="boardPreview" view-data="ViewData" />
-
-                            }
+                            <div class="card list-group mb-2">
+                                <a class="list-group-item list-group-item-action bg-primary text-white"
+                                   asp-page="/Board/Index" asp-route-boardId="@Model.Preview[i].BoardId">@Model.Preview[i].BoardName</a>
+                                @foreach (var post in Model.Preview[i])
+                                {
+                                    <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+                                }
+                            </div>
                         }
-                        @*<a asp-page="/Board/Index" asp-route-boardCode="4" class="list-group-item list-group-item-action bg-primary text-white">@Model.PreviewBoards[5].BoardName</a>
-                            <a href="#" class="list-group-item list-group-item-action">@Model.PreviewBoards[5].PostList[1].Title</a>
-                            <a href="#" class="list-group-item list-group-item-action">글 목록1</a>*@
                     </div>
-
-                    <div class="col-lg-6">
-                        @for (int boardId = 4; boardId <= Model.PreviewBoards.Count(); boardId++)
+                    <div class="col-lg-6" id="rightList">
+                        @for (int i = 1; i < BoardCount; i += 2)
                         {
-                            var remainder = boardId % 2;
-                            if (remainder != 0)
-                            {
-                                var boardPreview = Model.PreviewBoards[boardId - 1];
-                                <partial name="BoardPreview" model="boardPreview" view-data="ViewData" />
-
-                            }
+                            <div class="card list-group mb-2">
+                                <a class="list-group-item list-group-item-action bg-primary text-white"
+                                   asp-page="/Board/Index" asp-route-boardId="@Model.Preview[i].BoardId">@Model.Preview[i].BoardName</a>
+                                @foreach (var post in Model.Preview[i])
+                                {
+                                    <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+                                }
+                            </div>
                         }
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
-                                @{ViewData["CurrentPage"] = "MainPage"; }
-                <partial name="Sidebar" model="@Model.PreviewBoards" view-data="ViewData" />
+                @{ViewData["CurrentPage"] = "MainPage"; }
+                @*<partial name="Sidebar" model="@Model.Preview" view-data="ViewData" />*@
             </div>
         </div>
     </div>
