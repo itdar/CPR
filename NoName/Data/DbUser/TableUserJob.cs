@@ -12,7 +12,7 @@ namespace NoName.Data.DbUser
     public class TableUserJob
     {
         [Key]
-        public int Number { get; set; }
+        public int UserJobSeq { get; set; }
 
         // ApplicationUser to TableUserJob => 1:n Relationship
         [ForeignKey("Id")]

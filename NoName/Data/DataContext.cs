@@ -28,14 +28,15 @@ namespace NoName.Data
              * 또한 BoardId는 TablePost의 외래키로 사용되어 설정
              */
             //Set Two PrimaryKey
-            modelBuilder.Entity<TableBoard>().HasKey(b => new { b.BoardNumber, b.BoardId });
+            modelBuilder.Entity<TableBoard>().HasKey(b => new { b.BoardSeq, b.BoardId });
             //Set Auto-incresement
-            modelBuilder.Entity<TableBoard>().Property(b => b.BoardNumber).ValueGeneratedOnAdd();
+            modelBuilder.Entity<TableBoard>().Property(b => b.BoardSeq).ValueGeneratedOnAdd();
 
             //Set Two PrimaryKey
-            modelBuilder.Entity<TableDataJob>().HasKey(j => new { j.Number, j.JobCode });
+            modelBuilder.Entity<TableDataJob>().HasKey(j => new { j.DataJobSeq, j.JobCode });
             //Set Auto-incresement
-            modelBuilder.Entity<TableDataJob>().Property(j => j.Number).ValueGeneratedOnAdd();
+            modelBuilder.Entity<TableDataJob>().Property(j => j.DataJobSeq).ValueGeneratedOnAdd();
+
 
             //Set one of CompositeKey to ForeignKey
             modelBuilder.Entity<TableBoard>()
@@ -50,6 +51,14 @@ namespace NoName.Data
                 .WithMany(b => b.Posts)
                 .HasForeignKey(p => p.BoardId)
                 .HasPrincipalKey(b => b.BoardId);
+
+            //Set one of CompositeKey to ForeignKey
+            modelBuilder.Entity<TableHotPost>()
+                .HasOne(h => h.Board)
+                .WithMany(b => b.HotPosts)
+                .HasForeignKey(h => h.BoardId)
+                .HasPrincipalKey(b => b.BoardId);
+
 
             /*
              * Set One-to-One Relationship

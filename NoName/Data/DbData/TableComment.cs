@@ -14,13 +14,13 @@ namespace NoName.Data.DbData
     public class TableComment
     {
         [Key]
-        public int CommentNumber { get; set; }
+        public int CommentSeq { get; set; }
 
         // TablePost to TableCommment => 1:n Relationship
         [ForeignKey("Post")]
         public int PostNumber { get; set; }
-
         public TablePost Post { get; set; }
+
         public int ParentCommentNumber { get; set; }
         public string Content { get; set; }
         public DateTime CreatedTime { get; set; }

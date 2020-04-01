@@ -76,10 +76,10 @@ namespace NoName.Data
 		/************************************POST************************************/
 		public IQueryable<TablePost> GetPosts(int boardId)
 		{
-			return dataContext.Post.Include(post => post.Board).Where(post => post.Board.BoardId == boardId).
+			return dataContext.Post.Where(post => post.Board.BoardId == boardId).
 				OrderByDescending(post => post.PostNumber);
 		}
-		public IQueryable<TablePost> GetPosts(int? boardId,int listNumber)
+		public IQueryable<TablePost> GetPosts(int boardId,int listNumber)
 		{
 			var index = dataContext.Post.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
 			return  dataContext.Post.Where(post => post.BoardId == boardId).

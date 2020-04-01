@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NoName.Data;
 using NoName.Data.DbData;
+using NoName.Enumeration;
 
 namespace NoName.Pages.Shared
 {
@@ -43,7 +44,7 @@ namespace NoName.Pages.Shared
 
             for (int i = 0; i < BoardCount; i++)
             {
-                int id = i + 1;
+                int id = JobCode + i + 1;
                 this.Add(new PostPreview(manager.GetPosts(id, PostCount).ToList(), id, manager.GetBoardName(id)));
             }
         }
@@ -51,9 +52,9 @@ namespace NoName.Pages.Shared
         {
             DataDbManager manager = DataDbManager.GetInstance();
             //usermanager에서 JobCode 가져와야함
-            int jobCode = 1;
-            //공지사항(id=4444)을 제외한 모든 게시판
-            int boardCount = manager.GetBoardCount(jobCode) - 1;
+            int jobCode = 100;
+            // BoardId 1 ~ 50 까지의 게시판 개수
+            int boardCount = Enumeration.Enumerator.GetPart<BoardType>(1, 50).Count();
             return new BoardPreview(jobCode, boardCount, listNumber);
         }
     }

@@ -12,7 +12,7 @@ namespace NoName.Data.DbUser
     public class TableManager
     {
         [Key]
-        public int Number { get; set; }
+        public int ManagerSeq { get; set; }
 
         // ApplicationUser to TableManager => 1:1 Relationship
         [ForeignKey("Id")]

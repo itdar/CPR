@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NoName.Data;
 using NoName.Data.DbData;
-using NoName.Enumerator;
+using NoName.Enumeration;
 
 
 //참고 사이트 : https://docs.microsoft.com/ko-kr/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/enumeration-classes-over-enum-types
@@ -41,23 +41,15 @@ namespace NoName.Pages
             _context.Job.Add(TableDataJob);
             _context.SaveChanges();
             /***
-             * Job생성시 기본 게시판 생성
-             * 1. HOT게시판
-             * 2. 실시간 인기글
-             * 3. 주간 인기글
-             * 4. 자유게시판
-             * 5. 비밀게시판
-             * 6. 정보게시판
-             * 7. 홍보게시판
-             * 4444. 공지사항
-             * */
-            var TableBoard = Enumerator.Enumerator.GetAll<BoardType>();
+             * 기본 게시판 => in BoardType Class
+             ***/
+            var TableBoard = Enumerator.GetAll<BoardType>();
             int length = TableBoard.Count();
             for (var i = 0; i < length; i++)
             {
                 var board = new TableBoard
                 {
-                    BoardId = TableBoard.ElementAt(i).Id,
+                    BoardId = TableBoard.ElementAt(i).GetBoardId(TableDataJob.JobCode),
                     BoardName = TableBoard.ElementAt(i).Name,
                     JobCode = TableDataJob.JobCode
                 };

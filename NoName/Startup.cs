@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NoName.Data.DbData;
 using NoName.Hubs;
+using NoName.Pages.Shared;
 
 namespace NoName
 {
@@ -49,6 +50,7 @@ namespace NoName
             services.AddSignalR();
 
             //DataDbManager Dependency Injection.
+            services.AddTransient<SideBarListService>();
             //services.AddScoped<IDataDbManager, DataDbManager>();
         }
 

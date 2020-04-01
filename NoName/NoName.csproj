@@ -17,11 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migrations\DbData\20200330224254_DataDbMigration.cs" />
-    <Compile Include="Migrations\DbData\20200330224254_DataDbMigration.Designer.cs" />
+    <Compile Include="Migrations\DbData\20200401073022_DataDbMigration.cs" />
+    <Compile Include="Migrations\DbData\20200401073022_DataDbMigration.Designer.cs" />
     <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
-    <Compile Include="Migrations\DbUser\20200330224335_UserDbMigration.cs" />
-    <Compile Include="Migrations\DbUser\20200330224335_UserDbMigration.Designer.cs" />
+    <Compile Include="Migrations\DbUser\20200401065708_UserDbMigration.cs" />
+    <Compile Include="Migrations\DbUser\20200401065708_UserDbMigration.Designer.cs" />
     <Compile Include="Migrations\DbUser\UserContextModelSnapshot.cs" />
   </ItemGroup>
 
@@ -37,6 +37,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\CRUD\TableBoardCRUD\" />
+    <Folder Include="Pages\CRUD\TableDataJobCRUD\" />
+    <Folder Include="Pages\CRUD\TablePostCRUD\" />
   </ItemGroup>
 
 </Project>

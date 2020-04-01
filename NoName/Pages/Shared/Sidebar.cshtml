@@ -1,17 +1,18 @@
-﻿@*
+﻿@namespace NoName.Data.DbData
+@inject NoName.Pages.Shared.SideBarListService sideBar
+@{
+    sideBar.ListNumber = 3;
+    //임시 jobCode
+    int jobCode = 100;
+    List<TablePost> Hot = sideBar.ListHotPosts();
+    List<TablePost> RealTime = sideBar.ListRealTimePosts();
+    List<TablePost> Weekly = sideBar.ListWeeklyPosts();
+}
+@*
     Partial를 이용하여 SideBar 생성
     호출시 <partial name="full path"/>
 *@
-@model List<BoardPreview>
 @*need to use icons*@
-@*@if ((string)ViewData["CurrentPage"] == "MainPage")
-    {
-
-    }
-    else
-    {
-
-    }*@
 @* spacing class margin-bottom mb-* *@
 <div class="mb-2">
     <form method="post" asp-page="/Board/FindResult">
@@ -25,19 +26,25 @@
         </div>
     </form>
 </div>
-@for (int boardId = 1; boardId < 4; boardId++)
-{
-    <partial name="BoardPreview" model="@Model[boardId-1]" />
-}
-@*<div class="list-group">
-        <a asp-page="/Board/Index" asp-route-boardCode="1" class="list-group-item list-group-item-action" style="color:white; background-color:blue;">실시간 인기글</a>
-        <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
-    </div>
-    <div class="list-group">
-        <a asp-page="/Board/Index" asp-route-boardCode="2" class="list-group-item list-group-item-action" style="color:white; background-color:blue; margin-top:10px;">주간 인기글</a>
-        <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
-    </div>
-    <div class="list-group">
-        <a asp-page="/Board/Index" asp-route-boardCode="3" class="list-group-item list-group-item-action" style="color:white; background-color:blue; margin-top:10px;">HOT 게시글</a>
-        <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록1</a>
-    </div>*@
+<div class="card list-group mt-2">
+    <a class="list-group-item list-group-item-action bg-primary text-white"
+       asp-page="/Board/Index" asp-route-boardId="@Enumeration.BoardType.Hot.GetBoardId(jobCode)">@Enumeration.BoardType.Hot.Name</a>
+    @foreach (var post in Hot)
+    {
+        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+    }
+</div>
+<div class="card list-group mt-2">
+    <p class="list-group-item list-group-item-action bg-primary text-white">@Enumeration.BoardType.RealTime.Name</p>
+    @foreach (var post in RealTime)
+    {
+        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+    }
+</div>
+<div class="card list-group mt-2">
+    <p class="list-group-item list-group-item-action bg-primary text-white">@Enumeration.BoardType.Weekly.Name</p>
+    @foreach (var post in Weekly)
+    {
+        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+    }
+</div>

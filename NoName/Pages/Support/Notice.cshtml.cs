@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NoName.Data;
 using NoName.Data.DbData;
-using NoName.Enumerator;
+using NoName.Enumeration;
 
 namespace NoName.Pages.Support
 {
@@ -23,14 +23,15 @@ namespace NoName.Pages.Support
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardType.Notice.Id));
+            int JobCode = 100;
+            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardType.Notice.GetBoardId(JobCode)));
             return Page();
         }
         //Pagination으로 생성된 페이지들 선택시 호출되는 함수
         public async Task<IActionResult> OnGetPageAsync(int pages)
         {
-            //var manager = DataDbManager.GetInstance();
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardType.Notice.Id), pages);
+            int JobCode = 100;
+            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardType.Notice.GetBoardId(JobCode)), pages);
             return Page();
         }
         //Get이나 Post method 호출시 OnGet[Value]()와 OnPost[Value]() 형식으로 호출 됨. Value = Handler Name

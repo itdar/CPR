@@ -13,7 +13,7 @@ namespace NoName.Data.DbData
     public class TableDataJob
     {
         [Key]
-        public int Number { get; set; }
+        public int DataJobSeq { get; set; }
         [Key]
         public int JobCode { get; set; }
         public string JobName { get; set; }
