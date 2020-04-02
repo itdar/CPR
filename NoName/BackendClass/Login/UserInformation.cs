@@ -38,5 +38,14 @@ namespace NoName.BackendClass.Account
             Email = email;
             JobCodes = jobCodes;
         }
+
+        public void ReleaseInformation()
+        {
+            UserId = null;
+            UserName = null;
+            Email = null;
+            JobCodes.Clear();
+            JobCodes = null;
+        }
     }
 }

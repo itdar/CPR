@@ -38,6 +38,11 @@ public class UserDbManager
 		return instance;
 	}
 
+	/*
+	 * email로 해당 유저를 찾아서 UserInformation 에 넣어줌
+	 * 반환값으로 유저정보를 받아서 외부에서 UserInformation 에 넣어줘야 깨끗함
+	 * 바꿔야함
+	 */
 	public void SetLoggedInUserInfoUsingEmail(string _email)
 	{
 		var loggedInUser = UserDB.User.Where(user => user.Email == _email);
@@ -66,7 +71,10 @@ public class UserDbManager
 		return null;
 	}
 
-	internal void CheckLoggedInUserInformation()
+	/*
+	 * 단순 로그인된 유저 정보 확인 디버깅용 함수
+	 */
+	public void CheckLoggedInUserInformation()
 	{
 		var userInfo = UserInformation.GetInstance();
 

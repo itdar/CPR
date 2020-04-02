@@ -97,10 +97,10 @@ namespace NoName.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
 
-                    // After login succeded, make UserInformation
-                    // 근데 자동로그인 되어있으면 이쪽을 통해서 안감 다른 곳(main page) 에 옮기던지 해야함
-                    UserDbManager.GetInstance().SetLoggedInUserInfoUsingEmail(Input.Email);
-                    UserDbManager.GetInstance().CheckLoggedInUserInformation();
+                    //// After login succeded, make UserInformation
+                    //// 근데 자동로그인 되어있으면 이쪽을 통해서 안감 다른 곳(main page) 에 옮기던지 해야함
+                    //UserDbManager.GetInstance().SetLoggedInUserInfoUsingEmail(Input.Email);
+                    //UserDbManager.GetInstance().CheckLoggedInUserInformation();
 
                     return LocalRedirect(returnUrl);
                 }
