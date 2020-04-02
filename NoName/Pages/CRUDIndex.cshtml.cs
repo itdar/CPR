@@ -37,9 +37,18 @@ namespace NoName.Pages
             {
                 return Page();
             }
-            //Create a TableJob
-            _context.Job.Add(TableDataJob);
-            _context.SaveChanges();
+            var  existedJob = _context.Job.Where(j => j.JobCode == TableDataJob.JobCode).FirstOrDefault();
+            //Create a new TableJob
+            if(existedJob == null)
+            {
+                _context.Job.Add(TableDataJob);
+                _context.SaveChanges();
+            }
+            int postNumber;
+            if (_context.Post.Find(1) == null)
+                postNumber = 1;
+            else
+                postNumber = _context.Post.OrderByDescending(p => p.PostNumber).Last().PostNumber + 1;
             /***
              * 기본 게시판 => in BoardType Class
              ***/
@@ -47,24 +56,33 @@ namespace NoName.Pages
             int length = TableBoard.Count();
             for (var i = 0; i < length; i++)
             {
-                var board = new TableBoard
+                TableBoard board;
+                if(existedJob == null)
                 {
-                    BoardId = TableBoard.ElementAt(i).GetBoardId(TableDataJob.JobCode),
-                    BoardName = TableBoard.ElementAt(i).Name,
-                    JobCode = TableDataJob.JobCode
-                };
-                _context.Board.Add(board);
-                _context.SaveChanges();
+                    board = new TableBoard
+                    {
+                        BoardId = TableBoard.ElementAt(i).GetBoardId(TableDataJob.JobCode),
+                        BoardName = TableBoard.ElementAt(i).Name,
+                        JobCode = TableDataJob.JobCode
+                    };
+                    _context.Board.Add(board);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    board = _context.Board.Where(b => b.JobCode == TableDataJob.JobCode).OrderBy(b => b.BoardSeq).ToList()[i];
+                }
                 //Create 100 Posts
-                for (int j = 1; j <= 10; j++)
+                int ten = postNumber + 10;
+                for (int j = postNumber; j < ten; j++)
                 {
                     _context.Post.Add(new TablePost
                     {
                         //UserId 임시
                         Id = "형수" + j.ToString(),
                         CategoryNumber = 1,
-                        Title = j.ToString(),
-                        Content = (j + j).ToString(),
+                        Title = board.BoardName + postNumber.ToString(),
+                        Content = board.BoardName + "의" + postNumber.ToString() + "째 게시물 입니다.",
                         ViewCount = 0,
                         LikeCount = 0,
                         DislikeCount = 0,
@@ -76,6 +94,8 @@ namespace NoName.Pages
                         DeletedTime = DateTime.MinValue,
                         BoardId = board.BoardId
                     });
+                    postNumber++;
+                    _context.SaveChanges();
                 }
             }
             

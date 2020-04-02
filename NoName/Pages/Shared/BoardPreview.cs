@@ -50,7 +50,6 @@ namespace NoName.Pages.Shared
         }
         public static BoardPreview CreatePreviewList(int listNumber) //listNumber=> 나타낼 post 수
         {
-            DataDbManager manager = DataDbManager.GetInstance();
             //usermanager에서 JobCode 가져와야함
             int jobCode = 100;
             // BoardId 1 ~ 50 까지의 게시판 개수
