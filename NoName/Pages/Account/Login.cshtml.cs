@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NoName.Data;
-using NoName.BackendClass.Account;
+using NoName.BackendClass.Login;
 
 namespace NoName.Pages.Account
 {

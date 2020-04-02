@@ -1,7 +1,8 @@
 ﻿@*  20.03.12
     PageModel을 상속받은 모델을 사용하지 않고
     Pagination(페이지관리객체)을 모델로 둠  *@
-@model NoName.Pages.Pagination<NoName.Data.DbData.TablePost>
+@namespace NoName.Data.DbData
+@model NoName.BackendClass.Paging.Pagination<TablePost>
 @{
     ViewData["Title"] = "Pagination";
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";

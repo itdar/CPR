@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NoName.Data.DbData;
 
-namespace NoName.Pages
+namespace NoName.BackendClass.Paging
 {
     public class Pagination<T> : List<T>
     {
@@ -26,7 +26,7 @@ namespace NoName.Pages
         //Paging Count on a View
         public int PageBarSize { get; private set; } = 10;
         //Start Page Number 1,11,21,31,41,51...
-        public int StartPage => CurrentPage - CurrentPage % 10 + 1 - (CurrentPage % 10 ==0 ? 10 : 0);
+        public int StartPage => CurrentPage - CurrentPage % 10 + 1 - (CurrentPage % 10 == 0 ? 10 : 0);
         //Total 'Page' Count => Ceiling(count = 25 / pageSize = 10) = Ceiling(2.5) = 3
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(PostingCount, PageSize));
         //CurrentPage=35 => PreviousPage = 31(CurrentPage = 30)
@@ -54,8 +54,8 @@ namespace NoName.Pages
             throw new NotImplementedException();
         }
         */
-        //static method => instance member »ç¿ëºÒ°¡
-        //IQueryable<T> => µ¥ÀÌÅÍ Çü½ÄÀÌ ÁöÁ¤µÇÁö ¾ÊÀº Æ¯Á¤ µ¥ÀÌÅÍ ¼Ò½º¿¡ ´ëÇÑ Äõ¸®¸¦ ½ÇÇàÇÏ´Â ±â´ÉÀ» Á¦°øÇÕ´Ï´Ù.
+        //static method => instance member ì‚¬ìš©ë¶ˆê°€
+        //IQueryable<T> => ë°ì´í„° í˜•ì‹ì´ ì§€ì •ë˜ì§€ ì•Šì€ íŠ¹ì • ë°ì´í„° ì†ŒìŠ¤ì— ëŒ€í•œ ì¿¼ë¦¬ë¥¼ ì‹¤í–‰í•˜ëŠ” ê¸°ëŠ¥ì„ ì œê³µí•©ë‹ˆë‹¤.
         public static async Task<Pagination<T>> CreateAsync(IQueryable<T> source, int currentPage = 1, int pageSize = 10)
         {
             var postingCount = await source.CountAsync();

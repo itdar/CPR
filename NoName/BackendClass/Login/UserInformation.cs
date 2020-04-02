@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NoName.BackendClass.Account
+namespace NoName.BackendClass.Login
 {
     /*
      * Logged in user information

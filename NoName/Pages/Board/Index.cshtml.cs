@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NoName.BackendClass.Paging;
 using NoName.Data;
 using NoName.Data.DbData;
 using NoName.Pages.Shared;

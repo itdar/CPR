@@ -4,7 +4,7 @@ using NoName.Enumeration;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoName.Pages.Shared
+namespace NoName.Services
 {
     public class SideBarListService
     {

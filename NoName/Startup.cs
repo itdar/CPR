@@ -14,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NoName.Data.DbData;
 using NoName.Hubs;
-using NoName.Pages.Shared;
+using NoName.Services;
 
 namespace NoName
 {
