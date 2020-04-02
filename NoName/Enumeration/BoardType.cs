@@ -47,6 +47,7 @@ namespace NoName.Enumeration
     }
     public class BoardType : Enumerator
     {
+        //반대로 Job을 1~999로 잡고 BoardId를 1000~으로 잡아서 결정해도 됨.
         /*
          * 설명 : 유저 관련 게시판 
          * 번호 : 1 ~ 50
