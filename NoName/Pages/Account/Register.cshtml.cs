@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using NoName.Data;
+using NoName.Data.DbUser;
 
 namespace NoName.Pages.Account
 {
@@ -93,6 +94,13 @@ namespace NoName.Pages.Account
                 {
                     System.Diagnostics.Debug.WriteLine(i);
 
+                    var myJobCodes = new List<TableUserJob>();
+                    var jobCode = new TableUserJob
+                    {
+                        JobCode = i
+                    };
+                    myJobCodes.Add(jobCode);
+
                     var user = new ApplicationUser
                     {
                         UserName = "noname" + i + "@noname.com",
@@ -103,7 +111,12 @@ namespace NoName.Pages.Account
                         ManagerNumber = -1,
                         PermissionLevel = 0,
                         VisitCount = 1,
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        MyJobCodes = myJobCodes,
+                        Manager = new TableManager
+                        {
+                            AppointedDate = DateTime.Now
+                        }
                     };
 
                     var result = await _userManager.CreateAsync(user, "Noname1234!@");
@@ -134,8 +147,16 @@ namespace NoName.Pages.Account
 
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
+                var myJobCodes = new List<TableUserJob>();
+                var jobCode = new TableUserJob
+                {
+                    JobCode = -1
+                };
+                myJobCodes.Add(jobCode);
+
                 var user = new ApplicationUser {
                     UserName = Input.Email,
                     Email = Input.Email,
@@ -143,10 +164,16 @@ namespace NoName.Pages.Account
                     Gender = Input.Gender,
                     ReceiveSMS = Input.ReceiveSMS,
                     ManagerNumber = -1,
-                    PermissionLevel = 0,
-                    VisitCount = 1,
-                    EmailConfirmed = true
+                    PermissionLevel = -1,
+                    VisitCount = 0,
+                    EmailConfirmed = true,
+                    MyJobCodes = myJobCodes,
+                    Manager = new TableManager
+                    {
+                        AppointedDate = DateTime.Now
+                    }
                 };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
