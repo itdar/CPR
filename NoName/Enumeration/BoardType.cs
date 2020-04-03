@@ -68,7 +68,7 @@ namespace NoName.Enumeration
 
         /*
          * 설명 : 관리자 관련 게시판
-         * 번호 : 71 ~ 99
+         * 번호 : 99 ~ 71 (desc)
          */
         public static BoardType Notice = new BoardType(99, "공지사항");
 

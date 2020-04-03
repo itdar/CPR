@@ -33,19 +33,19 @@ namespace NoName.Pages.Shared
         //보드의 개수
         public int BoardCount { get; private set; }
         //Preview할 Post개수
-        public int PostCount { get; private set; }
+        public int ListNumber { get; private set; }
 
-        public BoardPreview(int jobCode, int boardCount, int postCount)
+        public BoardPreview(int jobCode, int boardCount, int listNumber)
         {
             manager = DataDbManager.GetInstance();
             JobCode = jobCode;
             BoardCount = boardCount;
-            PostCount = postCount;
+            ListNumber = listNumber;
 
             for (int i = 0; i < BoardCount; i++)
             {
                 int id = JobCode + i + 1;
-                this.Add(new PostPreview(manager.GetPosts(id, PostCount).ToList(), id, manager.GetBoardName(id)));
+                this.Add(new PostPreview(manager.GetPosts(id, ListNumber).ToList(), id, manager.GetBoardName(id)));
             }
         }
         public static BoardPreview CreatePreviewList(int listNumber) //listNumber=> 나타낼 post 수

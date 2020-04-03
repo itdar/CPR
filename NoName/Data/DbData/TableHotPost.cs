@@ -17,14 +17,14 @@ namespace NoName.Data.DbData
         [Key]
         public int HotPostSeq { get; set; }
 
-        public int JobCode { get; set; }
-        public TableDataJob Job { get; set; }
-
         // TableBoard To TableHotPost => 1:n Relationship
         public int BoardId { get; set; }
         public TableBoard Board { get; set; }
 
+        // Information of Post
         public int PostNumber { get; set; }
-        public TablePost Post { get; set; }
+        public string Title { get; set; }
+        public string UserId { get; set; }
+        public DateTime SelectionTime { get; set; }
     }
 }

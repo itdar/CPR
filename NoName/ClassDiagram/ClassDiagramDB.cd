@@ -3,12 +3,9 @@
   <Class Name="NoName.Data.DbData.TablePost">
     <Position X="10.5" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAiZAAAAgAABEAAAAAAAAQAgAGAAAEAAAAAAXAAIAA=</HashCode>
+      <HashCode>AAAiJAAAAgAABEAAAAAAAAQAgAGAAAEAAAAAAXAAIAA=</HashCode>
       <FileName>Data\DbData\TablePost.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="HotPost" />
-    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Comments" />
     </ShowAsCollectionAssociation>
@@ -94,7 +91,7 @@
   <Class Name="NoName.Data.DbData.TableHotPost">
     <Position X="7.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAEAAAAADAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAEAAAAAgAgAAAAAAEAAAAADAAAAA=</HashCode>
       <FileName>Data\DbData\TableHotPost.cs</FileName>
     </TypeIdentifier>
   </Class>
