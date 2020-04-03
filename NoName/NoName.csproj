@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migrations\DbData\20200402080021_DataDbMigration.cs" />
-    <Compile Include="Migrations\DbData\20200402080021_DataDbMigration.Designer.cs" />
+    <Compile Include="Migrations\DbData\20200403024314_DataDbMigration.cs" />
+    <Compile Include="Migrations\DbData\20200403024314_DataDbMigration.Designer.cs" />
     <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
     <Compile Include="Migrations\DbUser\20200401065708_UserDbMigration.cs" />
     <Compile Include="Migrations\DbUser\20200401065708_UserDbMigration.Designer.cs" />
