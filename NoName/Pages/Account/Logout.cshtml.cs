@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using NoName.BackendClass.Account;
 using NoName.Data;
 
 namespace NoName.Pages.Account
@@ -30,6 +31,9 @@ namespace NoName.Pages.Account
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
+
+            UserInformation.GetInstance().ReleaseInformation();
+
             _logger.LogInformation("User logged out.");
             if (returnUrl != null)
             {

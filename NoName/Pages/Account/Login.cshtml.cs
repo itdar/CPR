@@ -19,16 +19,12 @@ namespace NoName.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        //private readonly UserManager<ApplicationUser> _userManager;
-        private readonly UserContext _userContext;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, 
-            ILogger<LoginModel> logger,
-            UserContext userContext)
+            ILogger<LoginModel> logger)
         {
-            _userContext = userContext;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -99,32 +95,13 @@ namespace NoName.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    //_userContext.Add
-                    UserDbManager.GetInstance().GetAllUserJob();
-
-
-
-                    //var user = await _userManager.GetUserAsync(HttpContext.User);
-                    //Task<ApplicationUser> appUser = _userManager.FindByNameAsync(Input.Email);
-                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
-                    //System.Diagnostics.Debug.WriteLine(appUser.);
-                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
-                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
-                    //System.Diagnostics.Debug.WriteLine(appUser.Id);
-
-                    //UserInformation.GetInstance().SetInformation("test", Input.Email, tempJobCodes);
-
-                    //System.Diagnostics.Debug.WriteLine(user.Id);
-                    //System.Diagnostics.Debug.WriteLine(user.Email);
-                    //System.Diagnostics.Debug.WriteLine(user.ManagerNumber);
-                    //System.Diagnostics.Debug.WriteLine(user.PermissionLevel);
-                    //System.Diagnostics.Debug.WriteLine(user.PhoneNumber);
-                    //System.Diagnostics.Debug.WriteLine(user.ReceiveSMS);
-                    System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().UserId);
-                    System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().Email);
-                    //System.Diagnostics.Debug.WriteLine(UserInformation.GetInstance().JobCodes.ToString());
-
                     _logger.LogInformation("User logged in.");
+
+                    //// After login succeded, make UserInformation
+                    //// 근데 자동로그인 되어있으면 이쪽을 통해서 안감 다른 곳(main page) 에 옮기던지 해야함
+                    //UserDbManager.GetInstance().SetLoggedInUserInfoUsingEmail(Input.Email);
+                    //UserDbManager.GetInstance().CheckLoggedInUserInformation();
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
