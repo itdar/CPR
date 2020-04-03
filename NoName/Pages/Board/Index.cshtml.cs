@@ -60,6 +60,7 @@ namespace NoName.Pages.Board
             {
                 return Page();
             }
+            TablePost.BoardId = CurrentBoard.BoardId;
             TablePost.CreateTime = DateTime.Now;
             await manager.AddPostAsync(TablePost);
             return RedirectToPage(TablePost.BoardId);
