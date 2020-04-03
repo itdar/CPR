@@ -1,0 +1,104 @@
+﻿@page
+@model NoName.Pages.CRUD.TablePostCRUD.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TablePost</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.Board)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.Board.BoardId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.CategoryNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.CategoryNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.Content)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.Content)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.ViewCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.ViewCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.LikeCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.LikeCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.DislikeCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.DislikeCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.HasNewComment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.HasNewComment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.CreateTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.CreateTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.InitialContent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.InitialContent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.LastModifiedTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.LastModifiedTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.IsDeleted)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.IsDeleted)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TablePost.DeletedTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TablePost.DeletedTime)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TablePost.PostNumber">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
