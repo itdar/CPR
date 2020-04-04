@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    int JobCode = 1000;
+    int boardId = Enumeration.BoardType.Notice.GetBoardId(JobCode);
+    string boardName = Enumeration.BoardType.Notice.Name;
+}
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="utf-8" />
@@ -28,10 +33,10 @@
 
                     <partial name="_LoginPartial" />
                     @*<ul class="navbar-nav flex-grow-1">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">홈</a>
-                </li>
-            </ul>*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">홈</a>
+                            </li>
+                        </ul>*@
                 </div>
             </div>
         </nav>
@@ -50,7 +55,7 @@
                 <a class="btn btn-outline-dark" asp-page="/Membership/TermsOfService">이용약관</a>
                 <a class="btn btn-outline-dark" asp-page="/Membership/Privacy">개인정보처리방침</a>
                 <a class="btn btn-outline-dark" asp-page="/Membership/Rules">커뮤니티이용규칙</a>
-                <a class="btn btn-outline-dark" asp-page="/Support/Notice">공지사항</a>
+                <a class="btn btn-outline-dark" asp-page="/Board/Index" asp-route-boardId="@boardId">@boardName</a>
                 <a class="btn btn-outline-dark" asp-page="/Support/FAQ">문의사항</a>
             </form>
         </div>

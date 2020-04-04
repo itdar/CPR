@@ -8,31 +8,29 @@ using NoName.Data;
 using NoName.Data.DbData;
 using NoName.Enumeration;
 
-namespace NoName.Pages.Support
+namespace NoName.Pages.Board
 {
-    public class NoticeModel : PageModel
+    public class PopularBoardModel : PageModel
     {
         private readonly DataDbManager manager;
         //private readonly ILogger<IndexModel> _logger;
 
-        public NoticeModel()
+        public PopularBoardModel()
         {
             manager = DataDbManager.GetInstance();
         }
 
-        public Pagination<TablePost> Pagination { get; set; }
+        public Pagination<TablePopularPost> Pagination { get; set; }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? boardId)
         {
-            int JobCode = 1000;
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardType.Notice.GetBoardId(JobCode)));
+            Pagination = await Pagination<TablePopularPost>.CreateAsync(manager.GetPopularPosts((int)boardId));
             return Page();
         }
         //Pagination으로 생성된 페이지들 선택시 호출되는 함수
-        public async Task<IActionResult> OnGetPageAsync(int pages)
+        public async Task<IActionResult> OnGetPageAsync(int pages, int? boardId)
         {
-            int JobCode = 1000;
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardType.Notice.GetBoardId(JobCode)), pages);
+            Pagination = await Pagination<TablePopularPost>.CreateAsync(manager.GetPopularPosts((int)boardId), pages);
             return Page();
         }
         //Get이나 Post method 호출시 OnGet[Value]()와 OnPost[Value]() 형식으로 호출 됨. Value = Handler Name
