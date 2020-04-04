@@ -2,9 +2,58 @@
 @model NoName.Pages.Account.Manage.JobAuthenticationModel
 @{
     ViewData["Title"] = "직업 인증";
+    ViewData["ActivePage"] = ManageNavPages.JobAuthentication;
 }
-<form method="post">
-    @*<button type="submit" class="btn btn-primary" onclick="@{Model.MakeMockUser(); };">임시계정</button>*@
-    <input asp-for="UserJob.JobCode" class="form-group" />
-    <a class="btn btn-primary" type="submit" asp-page-handler="MakeMockUser">업로드</a>
-</form>
+
+<h4>@ViewData["Title"]</h4>
+
+<div class="row">
+    <div class="col-lg-3">
+        <partial name="_ManageNav" />
+    </div>
+    <div class="col-lg-9">
+        @*로그인한 유저의 직업이 1개라도 인증 되어있는지 없는지 확인해서 다른 화면
+        로그인 유저 정보에서 jobCodes 확인하는 방법 model 연결 방법 확인해야함*@
+        @if (Model.UserJobCodes.Count() == 0 || Model.UserJobCodes.ElementAt(0) == 0)
+        {
+            @*글자들 및 파일 업로드 버튼 사이즈, 간격 같은거 조절해야함*@
+            <form method="post" enctype="multipart/form-data" asp-action="UploadFiles">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <p>인증서류1 을 업로드하세요.</p>
+                        <input type="file" name="UploadFile1"/>
+                    </div>
+                    <div class="col-md-10">
+                        <p>인증서류2 를 업로드하세요.</p>
+                        <input type="file" name="UploadFile2"/>
+                    </div>
+                    <div class="col-md-10">
+                        <p>인증서류3 을 업로드하세요.</p>
+                        <input type="file" name="UploadFile3"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="파일 업로드" />
+                    </div>
+                </div>
+            </form>
+        }
+        @*인증된 직업 파일이 있으면 해당 파일 이름이나 뭐 보여줘야함
+            보여준 인증 직업 삭제 등*@
+        else
+        {
+            <p><strong>There are UserJobCodes</strong></p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@*<form method="post">
+        <button type="submit" class="btn btn-primary" onclick="@{Model.MakeMockUser(); };">임시계정</button>
+        <input asp-for="UserJob.JobCode" class="form-group" />
+        <a class="btn btn-primary" type="submit" asp-page-handler="MakeMockUser">업로드</a>
+    </form>*@

@@ -12,9 +12,6 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-page="/Account/Manage/Profile" title="내정보">내정보</a>
             </li>
-            @*<li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-page="/Account/Logout">로그아웃</a>
-            </li>*@
             <li class="nav-item">
                 @*Url.Page("경로") 설정하면 로그아웃 이후에 찾아갈 페이지 경로 설정 할 수 있음*@
                 <form class="form-inline" asp-area="" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Main")" method="post">

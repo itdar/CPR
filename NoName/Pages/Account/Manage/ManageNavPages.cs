@@ -15,6 +15,8 @@ namespace NoName.Pages.Account.Manage
 
         public static string ChangePassword => "ChangePassword";
 
+        public static string JobAuthentication => "JobAuthentication";
+
         public static string ExternalLogins => "ExternalLogins";
 
         public static string PersonalData => "PersonalData";
@@ -26,6 +28,8 @@ namespace NoName.Pages.Account.Manage
         public static string EmailNavClass(ViewContext viewContext) => PageNavClass(viewContext, Email);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
+
+        public static string JobAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, JobAuthentication);
 
         public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
 
