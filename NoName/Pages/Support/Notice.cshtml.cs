@@ -24,14 +24,14 @@ namespace NoName.Pages.Support
 
         public async Task<IActionResult> OnGetAsync()
         {
-            int JobCode = 100;
+            int JobCode = 1000;
             Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardType.Notice.GetBoardId(JobCode)));
             return Page();
         }
         //Pagination으로 생성된 페이지들 선택시 호출되는 함수
         public async Task<IActionResult> OnGetPageAsync(int pages)
         {
-            int JobCode = 100;
+            int JobCode = 1000;
             Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardType.Notice.GetBoardId(JobCode)), pages);
             return Page();
         }
