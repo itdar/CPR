@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NoName.BackendClass.PostSelection
 {
-    public class WeeklyPostSelection : HotQualification
+    public class WeeklyPostSelection : Qualification
     {
         public WeeklyPostSelection()
         {
