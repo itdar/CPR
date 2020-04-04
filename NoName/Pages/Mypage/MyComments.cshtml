@@ -1,9 +1,8 @@
 ﻿@page
-@model NoName.Pages.Mypage.MyPostsModel
+@model NoName.Pages.Mypage.CommentPostModel
 @{
-    ViewData["BoardPage"] = "/Mypage/MyPosts";
+    
 }
-
 <head>
     <link rel="stylesheet" href="~/css/container.css" />
 </head>
@@ -12,11 +11,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-9">
-
                 <div class="card">
-                    <div class="card-body">내가 쓴 글</div>
+                    <div class="card-body">댓글 단 글</div>
                 </div>
-
                 <div class="card" id="postContents">
 
                     <div class="list-group">
@@ -29,10 +26,13 @@
                                         @Html.DisplayFor(modelItem => item.PostNumber)
                                     </span>
                                     <span class="col-sm-9">
-                                        @Html.DisplayFor(modelItem => item.Title)
+                                        @{ 
+                                            var post = DataDbManager.GetInstance().GetPostDetail(item.PostNumber);
+                                        }
+                                        @post.Title
                                     </span>
                                     <span class="col-sm-2">
-                                        @Html.DisplayFor(modelItem => item.CreateTime)
+                                        @Html.DisplayFor(modelItem => item.Content)
                                     </span>
                                 </div>
                             </a>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="container" id="pagination">
                         @*동기식 Partial TagHelper*@
-                        <partial name="Pagination" model="Model.Pagination" view-data="ViewData" />
+                        <partial name="MyCommentPagination" model="Model.Pagination" view-data="ViewData" />
                         @*비동기식 Partial TagHelper
             @await Html.PartialAsync("Pagination", Model.Pagination)*@
                     </div>
