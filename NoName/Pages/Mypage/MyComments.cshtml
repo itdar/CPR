@@ -1,0 +1,54 @@
+﻿@page
+@model NoName.Pages.Mypage.CommentPostModel
+@{
+    
+}
+<head>
+    <link rel="stylesheet" href="~/css/container.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card-body">댓글 단 글</div>
+                </div>
+                <div class="card" id="postContents">
+
+                    <div class="list-group">
+                        @foreach (var item in Model.Pagination)
+                        {
+                            <a class="list-group-item list-group-item-action"
+                               asp-page="/Board/Detail" asp-route-postNumber="@item.PostNumber">
+                                <div class="row">
+                                    <span class="col-sm-1">
+                                        @Html.DisplayFor(modelItem => item.PostNumber)
+                                    </span>
+                                    <span class="col-sm-9">
+                                        @{ 
+                                            var post = DataDbManager.GetInstance().GetPostDetail(item.PostNumber);
+                                        }
+                                        @post.Title
+                                    </span>
+                                    <span class="col-sm-2">
+                                        @Html.DisplayFor(modelItem => item.Content)
+                                    </span>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="container" id="pagination">
+                        @*동기식 Partial TagHelper*@
+                        <partial name="MyCommentPagination" model="Model.Pagination" view-data="ViewData" />
+                        @*비동기식 Partial TagHelper
+            @await Html.PartialAsync("Pagination", Model.Pagination)*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <partial name="SideBar" />
+            </div>
+        </div>
+    </div>
+</body>

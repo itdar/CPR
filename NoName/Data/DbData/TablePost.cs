@@ -50,10 +50,6 @@ namespace NoName.Data.DbData
 
         // TablePost to TableCommment => 1:n Relationship
         private ICollection<TableComment> comments;
-        public ICollection<TableComment> Comments
-        {
-            get => comments;
-            set => comments = value;
-        }
+        
     }
 }

@@ -13,37 +13,40 @@ using NoName.Data.DbData;
 
 namespace NoName.Pages.Mypage
 {
-    public class MyPostsModel : PageModel
+    public class CommentPostModel : PageModel
     {
-
         private readonly ILogger<IndexModel> _logger;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly DataDbManager manager;
         //private int boardCode;
-        public MyPostsModel(ILogger<IndexModel> logger)
+        public CommentPostModel(ILogger<IndexModel> logger, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
+            _signInManager = signInManager;
 
             manager = DataDbManager.GetInstance();
 
             // UserManager 에서 context 안끊기고 동작하는지 확인하려고 만들어봄 확인 후 지워야함
         }
         [BindProperty]
-        public Pagination<TablePost> Pagination { get; set; }
+        public Pagination<TableComment> Pagination { get; set; }
 
         public async Task OnGetAsync()
         {
-                //현재 id 가 email 로 되어 있어서 email 받아서함
-                //아이디로 할경우 GetInstance의 .Email 만 Id로 바꾸면 댐
-                var userId = UserInformation.GetInstance().Email;
-                var myPosts = manager.GetMyPosts(userId);
-                Pagination = await Pagination<TablePost>.CreateAsync(myPosts, 1);
+            if (_signInManager.IsSignedIn(User))
+            {
+                var comments = manager.GetMyComments(UserInformation.GetInstance().Email);
+                Pagination =await Pagination<TableComment>.CreateAsync(comments, 1);
+            }
         }
 
         public async Task<IActionResult> OnGetPageAsync(int pages)
         {
-                var userId = UserInformation.GetInstance().Email;
-                var myPosts = manager.GetMyPosts(userId);
-                Pagination = await Pagination<TablePost>.CreateAsync(myPosts, pages);
+            if (_signInManager.IsSignedIn(User))
+            {
+                var comments = manager.GetMyComments(UserInformation.GetInstance().Email);
+                Pagination = await Pagination<TableComment>.CreateAsync(comments, pages);
+            }
             return Page();
 
         }

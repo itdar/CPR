@@ -160,6 +160,12 @@ namespace NoName.Data
 
 			return childComments;
 		}
+		public IQueryable<TableComment> GetMyComments(string userId)
+		{
+			return dataContext.Comment.Where(comment => comment.userId == userId).OrderByDescending(comment => comment.CreatedTime); 
+		}
+
+
 		public async Task<EntityEntry<TableComment>> AddCommnetAsync(TableComment comment)
 		{
 			var ret = dataContext.Comment.Add(comment);

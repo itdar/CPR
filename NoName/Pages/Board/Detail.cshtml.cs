@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NoName.BackendClass.Login;
 using NoName.Data;
 using NoName.Data.DbData;
 using NoName.Pages.Shared;
@@ -86,15 +88,17 @@ namespace NoName.Pages.Board
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
         //private int boardCode;
 
 
         [BindProperty]
         public TablePost CurrentPost { get; set; }
-        public DetailModel(ILogger<IndexModel> logger)
+        public DetailModel(ILogger<IndexModel> logger, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
-
+            _signInManager = signInManager;
             manager = DataDbManager.GetInstance();
 
             // UserManager 에서 context 안끊기고 동작하는지 확인하려고 만들어봄 확인 후 지워야함
@@ -136,7 +140,10 @@ namespace NoName.Pages.Board
             {
                 return Page();
             }
-
+            if (_signInManager.IsSignedIn(User))
+            {
+                TableComment.userId = UserInformation.GetInstance().Email;
+            }
             TableComment.CreatedTime = DateTime.Now;
             TableComment.PostNumber = CurrentPost.PostNumber;
             // TableComment.ParentCommentNumber = ParentCommentNumber;

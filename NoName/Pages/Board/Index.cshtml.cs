@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NoName.BackendClass.Login;
 using NoName.BackendClass.Paging;
 using NoName.Data;
 using NoName.Data.DbData;
@@ -17,8 +19,9 @@ namespace NoName.Pages.Board
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
+
         //private int boardCode;
-       
+
         public Pagination<TablePost> Pagination { get; set; }
 
         [BindProperty]
@@ -26,7 +29,7 @@ namespace NoName.Pages.Board
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-
+            
             manager = DataDbManager.GetInstance();
 
             // UserManager 에서 context 안끊기고 동작하는지 확인하려고 만들어봄 확인 후 지워야함
@@ -63,6 +66,9 @@ namespace NoName.Pages.Board
             {
                 return Page();
             }
+            
+                TablePost.Id = UserInformation.GetInstance().Email;
+            
             TablePost.BoardId = CurrentBoard.BoardId;
             TablePost.CreateTime = DateTime.Now;
             await manager.AddPostAsync(TablePost);

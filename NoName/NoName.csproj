@@ -17,11 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migrations\DbData\20200404043457_DataDbMigration.cs" />
-    <Compile Include="Migrations\DbData\20200404043457_DataDbMigration.designer.cs" />
+    <Compile Include="Migrations\DbData\20200404070019_DataDbMigration.cs" />
+    <Compile Include="Migrations\DbData\20200404070019_DataDbMigration.designer.cs" />
     <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
-    <Compile Include="Migrations\DbUser\20200404043506_UserDbMigration.cs" />
-    <Compile Include="Migrations\DbUser\20200404043506_UserDbMigration.designer.cs" />
+    <Compile Include="Migrations\DbUser\20200404070028_UserDbMigration.cs" />
+    <Compile Include="Migrations\DbUser\20200404070028_UserDbMigration.designer.cs" />
     <Compile Include="Migrations\DbUser\UserContextModelSnapshot.cs" />
   </ItemGroup>
 
