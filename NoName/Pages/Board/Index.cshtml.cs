@@ -49,10 +49,13 @@ namespace NoName.Pages.Board
             Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardId), 1);
             return Page();
         }
-        public async Task<IActionResult> OnGetPageAsync(int boardCode ,int pages)
+        public async Task<IActionResult> OnGetPageAsync(int pages,int? boardCode)
         {
-            CurrentBoard = manager.GetBoard(boardCode);
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(boardCode), pages);
+            if (boardCode != null)
+            {
+                CurrentBoard = manager.GetBoard(boardCode);
+                Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardCode), pages);
+            }
             return Page();
         }
         public async Task<IActionResult> OnPostAsync() {

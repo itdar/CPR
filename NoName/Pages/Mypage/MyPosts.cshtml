@@ -1,6 +1,7 @@
 ﻿@page
 @model NoName.Pages.Mypage.MyPostsModel
 @{
+    ViewData["BoardPage"] = "/Mypage/MyPosts";
 }
 
 <head>
@@ -19,10 +20,29 @@
                 <div class="card" id="postContents">
 
                     <div class="list-group">
-                        @for (int i = 0; i < 10; i++)
+                        @foreach (var item in Model.Pagination)
                         {
-                            <a asp-page="/Board/Detail" class="list-group-item list-group-item-action">글 목록 @(i + 1)</a>
+                            <a class="list-group-item list-group-item-action"
+                               asp-page="/Board/Detail" asp-route-postNumber="@item.PostNumber">
+                                <div class="row">
+                                    <span class="col-sm-1">
+                                        @Html.DisplayFor(modelItem => item.PostNumber)
+                                    </span>
+                                    <span class="col-sm-9">
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </span>
+                                    <span class="col-sm-2">
+                                        @Html.DisplayFor(modelItem => item.CreateTime)
+                                    </span>
+                                </div>
+                            </a>
                         }
+                    </div>
+                    <div class="container" id="pagination">
+                        @*동기식 Partial TagHelper*@
+                        <partial name="Pagination" model="Model.Pagination" view-data="ViewData" />
+                        @*비동기식 Partial TagHelper
+            @await Html.PartialAsync("Pagination", Model.Pagination)*@
                     </div>
                 </div>
             </div>

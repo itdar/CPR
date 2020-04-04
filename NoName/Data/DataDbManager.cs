@@ -86,6 +86,11 @@ namespace NoName.Data
 				OrderByDescending(post => post.PostNumber).Take(listNumber);
 
 		}
+		public IQueryable<TablePost> GetMyPosts(string userId)
+		{
+			return dataContext.Post.Where(post => post.Id == userId).OrderByDescending(post => post.CreateTime);
+		}
+
 		public TablePost GetPostDetail(int postNumber)
 		{
 			return dataContext.Post.FirstOrDefault(post => post.PostNumber == postNumber);
