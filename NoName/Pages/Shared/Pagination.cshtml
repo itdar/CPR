@@ -20,7 +20,7 @@
     {
         var currentDisabled = Model.IsCurrentPage(i) ? "disabled" : "";
         <li class="page-item @currentDisabled">
-            <a class="page-link" asp-page="/Board/Index" asp-page-handler="Page" asp-route-boardCode="@ViewData["CurrentBoard"]" asp-route-pages="@i">@i</a>
+            <a class="page-link" asp-page="/Board/Index" asp-page-handler="Page" asp-route-BoardId="@ViewData["CurrentBoard"]" asp-route-pages="@i">@i</a>
         </li>
         i++;
     }

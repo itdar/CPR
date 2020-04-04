@@ -27,6 +27,22 @@ namespace NoName.Data.DbData
             set => boards = value;
         }
 
+        // TableDataJob to TablePopularBoard => 1:n Relationship
+        private ICollection<TablePopularBoard> popularBoards;
+        public ICollection<TablePopularBoard> PopularBoards
+        {
+            get => popularBoards;
+            set => popularBoards = value;
+        }
+
+        // TableDataJob to TableScrapBoard => 1:n Relationship
+        private ICollection<TableMyBoard> myBoards;
+        public ICollection<TableMyBoard> MyBoards
+        {
+            get => myBoards;
+            set => myBoards = value;
+        }
+
         // TableDataJob to TableSalary => 1:1 Relationship
         public virtual TableSalary Salary { get; set; }
     }

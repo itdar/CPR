@@ -16,7 +16,7 @@ namespace NoName.Services
         public DateTime utcDate { get => DateTime.UtcNow; }
         public string[] cultureNames = { "euc-kr", "en-US" };
 
-        public List<HotQualification> Selection { get; set; }
+        public List<Qualification> Selection { get; set; }
         public HotPostSelection HotSelection { get; set; }
         public RealTimePostSelection RealTimeSelection { get; set; }
         public WeeklyPostSelection WeeklySelection { get; set; }

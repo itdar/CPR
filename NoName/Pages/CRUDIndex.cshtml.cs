@@ -20,7 +20,7 @@ namespace NoName.Pages
         private readonly DataContext _context;
         private readonly DataDbManager manager;
         [BindProperty]
-        public TableDataJob TableDataJob { get; set; }
+        public TableDataJob DataJob { get; set; }
         public IList<TablePost> TablePost { get; set; }
         public IEnumerable<BoardType> TableBoard { get; set; }
         public CRUDIndexModel(DataContext context)
@@ -37,13 +37,17 @@ namespace NoName.Pages
             {
                 return Page();
             }
-            var  existedJob = _context.Job.Where(j => j.JobCode == TableDataJob.JobCode).FirstOrDefault();
+            var  existedJob = _context.Job.Where(j => j.JobCode == DataJob.JobCode).FirstOrDefault();
             //Create a new TableJob
             if(existedJob == null)
             {
-                _context.Job.Add(TableDataJob);
+                //JobNumber의 Code화 1000단위
+                DataJob.JobCode *= 1000;
+                _context.Job.Add(DataJob);
                 _context.SaveChanges();
             }
+
+            // 기존에 있는 Job에 Post를 이어 입력하기 위해 Last postNumber 구하기
             int postNumber;
             if (_context.Post.Find(1) == null)
                 postNumber = 1;
@@ -54,23 +58,24 @@ namespace NoName.Pages
              ***/
             var TableBoard = Enumerator.GetAll<BoardType>();
             int length = TableBoard.Count();
-            for (var i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 TableBoard board;
                 if(existedJob == null)
                 {
                     board = new TableBoard
                     {
-                        BoardId = TableBoard.ElementAt(i).GetBoardId(TableDataJob.JobCode),
+                        // BoardId 코드화
+                        BoardId = TableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
                         BoardName = TableBoard.ElementAt(i).Name,
-                        JobCode = TableDataJob.JobCode
+                        JobCode = DataJob.JobCode
                     };
                     _context.Board.Add(board);
                     _context.SaveChanges();
                 }
                 else
                 {
-                    board = _context.Board.Where(b => b.JobCode == TableDataJob.JobCode).OrderBy(b => b.BoardSeq).ToList()[i];
+                    board = _context.Board.Where(b => b.JobCode == DataJob.JobCode).OrderBy(b => b.BoardSeq).ToList()[i];
                 }
                 //Create 100 Posts
                 int ten = postNumber + 10;
@@ -98,8 +103,50 @@ namespace NoName.Pages
                     _context.SaveChanges();
                 }
             }
-            
-            await _context.SaveChangesAsync();
+            /***
+             * 인기 게시판 => in PopularBoardType Class
+             ***/
+            var popularTableBoard = Enumerator.GetAll<PopularBoardType>();
+            int pLength = popularTableBoard.Count();
+            for (int i = 0; i < pLength; i++)
+            {
+                TablePopularBoard board;
+                if (existedJob == null)
+                {
+                    board = new TablePopularBoard
+                    {
+                        BoardId = TableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
+                        BoardName = popularTableBoard.ElementAt(i).Name,
+                        JobCode = DataJob.JobCode
+                    };
+                    _context.PopularBoard.Add(board);
+                    _context.SaveChanges();
+
+                    await _context.SaveChangesAsync();
+                }
+            }
+            /***
+             * 스크랩 게시판 => in MyBoardType Class
+             ***/
+            var myTableBoard = Enumerator.GetAll<MyBoardType>();
+            int mLength = myTableBoard.Count();
+            for (int i = 0; i < mLength; i++)
+            {
+                TableMyBoard board;
+                if (existedJob == null)
+                {
+                    board = new TableMyBoard
+                    {
+                        BoardId = TableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
+                        BoardName = myTableBoard.ElementAt(i).Name,
+                        JobCode = DataJob.JobCode
+                    };
+                    _context.MyBoard.Add(board);
+                    _context.SaveChanges();
+
+                    await _context.SaveChangesAsync();
+                }
+            }
 
             return RedirectToPage("./CRUD/TablePostCRUD/Index");
         }

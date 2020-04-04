@@ -12,11 +12,14 @@ namespace NoName.Data
     {
         public DbSet<TableDataJob> Job { get; set; }
         public DbSet<TableBoard> Board { get; set; }
+        public DbSet<TablePopularBoard> PopularBoard { get; set; }
+        public DbSet<TableMyBoard> MyBoard { get; set; }
         public DbSet<TablePost> Post { get; set; }
+        public DbSet<TablePopularPost> PopularPost { get; set; }
+        public DbSet<TableMyPost> MyPost { get; set; }
         public DbSet<TableComment> Comment { get; set; }
         public DbSet<TableSalary> Salary { get; set; }
         public DbSet<TableMessage> Message { get; set; }
-        public DbSet<TableHotPost> HotPost { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -34,6 +37,16 @@ namespace NoName.Data
             modelBuilder.Entity<TableBoard>().Property(b => b.BoardSeq).ValueGeneratedOnAdd();
 
             //Set Two PrimaryKey
+            modelBuilder.Entity<TablePopularBoard>().HasKey(b => new { b.BoardSeq, b.BoardId });
+            //Set Auto-incresement
+            modelBuilder.Entity<TablePopularBoard>().Property(b => b.BoardSeq).ValueGeneratedOnAdd();
+
+            //Set Two PrimaryKey
+            modelBuilder.Entity<TableMyBoard>().HasKey(b => new { b.BoardSeq, b.BoardId });
+            //Set Auto-incresement
+            modelBuilder.Entity<TableMyBoard>().Property(b => b.BoardSeq).ValueGeneratedOnAdd();
+
+            //Set Two PrimaryKey
             modelBuilder.Entity<TableDataJob>().HasKey(j => new { j.DataJobSeq, j.JobCode });
             //Set Auto-incresement
             modelBuilder.Entity<TableDataJob>().Property(j => j.DataJobSeq).ValueGeneratedOnAdd();
@@ -47,6 +60,21 @@ namespace NoName.Data
                 .HasPrincipalKey(j => j.JobCode);
 
             //Set one of CompositeKey to ForeignKey
+            modelBuilder.Entity<TablePopularBoard>()
+                .HasOne(b => b.Job)
+                .WithMany(j => j.PopularBoards)
+                .HasForeignKey(b => b.JobCode)
+                .HasPrincipalKey(j => j.JobCode);
+
+            //Set one of CompositeKey to ForeignKey
+            modelBuilder.Entity<TableMyBoard>()
+                .HasOne(b => b.Job)
+                .WithMany(j => j.MyBoards)
+                .HasForeignKey(b => b.JobCode)
+                .HasPrincipalKey(j => j.JobCode);
+
+
+            //Set one of CompositeKey to ForeignKey
             modelBuilder.Entity<TablePost>()
                 .HasOne(p => p.Board)
                 .WithMany(b => b.Posts)
@@ -54,9 +82,16 @@ namespace NoName.Data
                 .HasPrincipalKey(b => b.BoardId);
 
             //Set one of CompositeKey to ForeignKey
-            modelBuilder.Entity<TableHotPost>()
-                .HasOne(h => h.Board)
-                .WithMany(b => b.HotPosts)
+            modelBuilder.Entity<TablePopularPost>()
+                .HasOne(p => p.PopularBoard)
+                .WithMany(b => b.PopularPosts)
+                .HasForeignKey(h => h.BoardId)
+                .HasPrincipalKey(b => b.BoardId);
+
+            //Set one of CompositeKey to ForeignKey
+            modelBuilder.Entity<TableMyPost>()
+                .HasOne(p => p.MyBoard)
+                .WithMany(b => b.MyPosts)
                 .HasForeignKey(h => h.BoardId)
                 .HasPrincipalKey(b => b.BoardId);
 

@@ -17,7 +17,7 @@ namespace NoName.Pages.Board
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
-        //private int boardCode;
+        //private int BoardId;
        
         public Pagination<TablePost> Pagination { get; set; }
 
@@ -49,10 +49,10 @@ namespace NoName.Pages.Board
             Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardId), 1);
             return Page();
         }
-        public async Task<IActionResult> OnGetPageAsync(int boardCode ,int pages)
+        public async Task<IActionResult> OnGetPageAsync(int BoardId ,int pages)
         {
-            CurrentBoard = manager.GetBoard(boardCode);
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(boardCode), pages);
+            CurrentBoard = manager.GetBoard(BoardId);
+            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts(BoardId), pages);
             return Page();
         }
         public async Task<IActionResult> OnPostAsync() {

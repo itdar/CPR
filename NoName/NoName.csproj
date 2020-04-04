@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migrations\DbData\20200403035708_DataDbMigration.cs" />
-    <Compile Include="Migrations\DbData\20200403035708_DataDbMigration.Designer.cs" />
+    <Compile Include="Migrations\DbData\20200404061304_DataDbMigration.cs" />
+    <Compile Include="Migrations\DbData\20200404061304_DataDbMigration.Designer.cs" />
     <Compile Include="Migrations\DbData\DataContextModelSnapshot.cs" />
     <Compile Include="Migrations\DbUser\20200403035942_UserDbMigration.cs" />
     <Compile Include="Migrations\DbUser\20200403035942_UserDbMigration.Designer.cs" />
@@ -37,6 +37,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClassDiagram\" />
   </ItemGroup>
 
 </Project>

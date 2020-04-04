@@ -18,17 +18,17 @@ namespace NoName.Services
         public List<TablePost> ListHotPosts()
         {
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<TablePost>(manager.GetPosts(BoardType.Hot.GetBoardId(jobCode), ListNumber).ToList());
+            return new List<TablePost>(manager.GetPosts(PopularBoardType.Hot.GetBoardId(jobCode), ListNumber).ToList());
         }
         public List<TablePost> ListRealTimePosts()
         {
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<TablePost>(manager.GetPosts(BoardType.RealTime.GetBoardId(jobCode), ListNumber).ToList());
+            return new List<TablePost>(manager.GetPosts(PopularBoardType.RealTime.GetBoardId(jobCode), ListNumber).ToList());
         }
         public List<TablePost> ListWeeklyPosts()
         {
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<TablePost>(manager.GetPosts(BoardType.Weekly.GetBoardId(jobCode), ListNumber).ToList());
+            return new List<TablePost>(manager.GetPosts(PopularBoardType.Weekly.GetBoardId(jobCode), ListNumber).ToList());
         }
     }
 }

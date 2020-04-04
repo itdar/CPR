@@ -86,7 +86,7 @@ namespace NoName.Pages.Board
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
-        //private int boardCode;
+        //private int BoardId;
 
 
         [BindProperty]
