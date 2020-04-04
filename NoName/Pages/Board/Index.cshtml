@@ -4,6 +4,7 @@
     ViewData["CurrentBoard"] = Model.CurrentBoard.BoardId;
     int defaultBoardId = Model.CurrentBoard.BoardId % 100;
     var isDefaultBoard = defaultBoardId > 50 ? "d-none" : "";
+    ViewData["BoardPage"] = "/Board/Index";
 }
 <head>
     <link rel="stylesheet" href="~/css/container.css" />
@@ -54,7 +55,7 @@
                 </div>
                 <div class="container" id="pagination">
                     @*동기식 Partial TagHelper*@
-                    <partial name="Pagination" model="Model.Pagination" />
+                    <partial name="Pagination" model="Model.Pagination" view-data="ViewData" />
                     @*비동기식 Partial TagHelper
                         @await Html.PartialAsync("Pagination", Model.Pagination)*@
                 </div>

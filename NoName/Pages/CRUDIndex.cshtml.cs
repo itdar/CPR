@@ -49,6 +49,7 @@ namespace NoName.Pages
                 postNumber = 1;
             else
                 postNumber = _context.Post.OrderByDescending(p => p.PostNumber).Last().PostNumber + 1;
+
             /***
              * 기본 게시판 => in BoardType Class
              ***/
@@ -79,7 +80,7 @@ namespace NoName.Pages
                     _context.Post.Add(new TablePost
                     {
                         //UserId 임시
-                        Id = "형수" + j.ToString(),
+                        Id = "noname0@noname.com",
                         CategoryNumber = 1,
                         Title = board.BoardName + postNumber.ToString(),
                         Content = board.BoardName + "의" + postNumber.ToString() + "째 게시물 입니다.",
@@ -94,6 +95,19 @@ namespace NoName.Pages
                         DeletedTime = DateTime.MinValue,
                         BoardId = board.BoardId
                     });
+                    for(int k=1;k<3;k++)
+                    {
+                        _context.Comment.Add(new TableComment
+                        {
+                            userId = "noname0@noname.com",
+                            Content = board.BoardName+" " + j + "번째 글" + k+" 댓글",
+                            CreatedTime = DateTime.Now,
+                            PostNumber=postNumber,
+                            ParentCommentNumber=0
+                        });
+                        _context.SaveChanges();
+
+                    }
                     postNumber++;
                     _context.SaveChanges();
                 }

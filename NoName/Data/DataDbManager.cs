@@ -86,6 +86,11 @@ namespace NoName.Data
 				OrderByDescending(post => post.PostNumber).Take(listNumber);
 
 		}
+		public IQueryable<TablePost> GetMyPosts(string userId)
+		{
+			return dataContext.Post.Where(post => post.Id == userId).OrderByDescending(post => post.CreateTime);
+		}
+
 		public TablePost GetPostDetail(int postNumber)
 		{
 			return dataContext.Post.FirstOrDefault(post => post.PostNumber == postNumber);
@@ -155,6 +160,12 @@ namespace NoName.Data
 
 			return childComments;
 		}
+		public IQueryable<TableComment> GetMyComments(string userId)
+		{
+			return dataContext.Comment.Where(comment => comment.userId == userId).OrderByDescending(comment => comment.CreatedTime); 
+		}
+
+
 		public async Task<EntityEntry<TableComment>> AddCommnetAsync(TableComment comment)
 		{
 			var ret = dataContext.Comment.Add(comment);

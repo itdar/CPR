@@ -101,24 +101,24 @@
                                 </button>
                             </div>
                         </form>
-                        @*쪽지 modal*@
-                        <div class="modal" id="messageModal">
-                            <partial name="MessageModal" />
-                        </div>
-                        @*신고 modal *@
-                        <div class="modal" id="reportModal">
-                            <partial name="ReportModal" />
-                        </div>
-                        //공감 modal
-                        <div class="modal" id="likeModal">
-                            <partial name="Like" />
-                        </div>
-                        //북마크 Modal
-                        <div class="modal" id="bookMarkModal">
-                            <partial name="BookMark" />
-                        </div>
+                                    //쪽지 modal
+                                    //<div class="modal" id="messageModal">
+                                    //    <partial name="MessageModal" />
+                                    //</div>
+                                    //신고 modal 
+                                    //<div class="modal" id="reportModal">
+                                    //    <partial name="ReportModal" />
+                                    //</div>
+                                    ////공감 modal
+                                    //<div class="modal" id="likeModal">
+                                    //    <partial name="Like" />
+                                    //</div>
+                                    ////북마크 Modal
+                                    //<div class="modal" id="bookMarkModal">
+                                    //    <partial name="BookMark" />
+                                    //</div>
 
-                    }
+                                }
                 </div>
                 </div>
                 <a type="button" class="btn btn-outline-dark" asp-page="/Board/Index" asp-route-boardCode="@Model.CurrentPost.BoardId" style="margin-top:10px;">글 목록</a>

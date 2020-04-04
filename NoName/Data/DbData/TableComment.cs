@@ -17,7 +17,6 @@ namespace NoName.Data.DbData
         public int CommentSeq { get; set; }
 
         // TablePost to TableCommment => 1:n Relationship
-        [ForeignKey("Post")]
         public int PostNumber { get; set; }
         public TablePost Post { get; set; }
 
@@ -25,6 +24,8 @@ namespace NoName.Data.DbData
         public string Content { get; set; }
         public DateTime CreatedTime { get; set; }
         public int LikeCount { get; set; }
+
+        public string userId { get; set; }
         /*
          * 대댓글용 속성
          * >> 상위 댓글 번호
