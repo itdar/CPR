@@ -5,7 +5,11 @@ using System.Threading.Tasks;
 
 namespace NoName.BackendClass.PostSelection
 {
-    public class WeeklyPostSelection
+    public class WeeklyPostSelection : HotQualification
     {
+        public WeeklyPostSelection()
+        {
+
+        }
     }
 }

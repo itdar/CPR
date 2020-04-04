@@ -13,7 +13,7 @@ namespace NoName.BackendClass.PostSelection
         //좋아요
         public int LikeCount { get; set; }
     }
-    public class HotPostSelection
+    public class HotPostSelection : HotQualification
     {
         private readonly DataDbManager manager;
         /*
@@ -26,6 +26,7 @@ namespace NoName.BackendClass.PostSelection
         public DateTime CriterionTime { get; set; }
         public HotPostSelection()
         {
+
         }
         public static int TheTime()
         {
