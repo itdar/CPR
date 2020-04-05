@@ -145,9 +145,10 @@ namespace NoName.Pages
                 {
                     if(item.PostNumber %10 == 1)
                     {
+                        //Copy Post
                         _context.PopularPost.Add(new TablePopularPost
                         {
-                            //UserId юс╫ц
+                            PostNumber = item.PostNumber,
                             Id = item.Id,
                             CategoryNumber = item.CategoryNumber,
                             Title = item.Title,

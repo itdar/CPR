@@ -8,29 +8,34 @@ using NoName.Data;
 using NoName.Data.DbData;
 using NoName.Enumeration;
 
-namespace NoName.Pages.Board
+namespace NoName.Pages.BoardPopular
 {
-    public class PopularBoardModel : PageModel
+    /// <summary>
+    /// TableBoard/TablePost과 다른 테이블에서 데이터를 가져와야 함으로 Index page를 따로 놓음.
+    /// Detail page은 공유함.
+    /// </summary>
+    public class IndexModel : PageModel
     {
         private readonly DataDbManager manager;
         //private readonly ILogger<IndexModel> _logger;
 
-        public PopularBoardModel()
+        public Pagination<PostModel> Pagination { get; set; }
+
+        public IndexModel()
         {
             manager = DataDbManager.GetInstance();
         }
 
-        public Pagination<PostModel> Pagination { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? boardId)
+        //최초 페이지 선택시 호출
+        public async Task<IActionResult> OnGetBoardAsync(int boardId)
         {
-            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPopularPosts((int)boardId));
+            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPopularPosts(boardId));
             return Page();
         }
         //Pagination으로 생성된 페이지들 선택시 호출되는 함수
-        public async Task<IActionResult> OnGetPageAsync(int pages, int? boardId)
+        public async Task<IActionResult> OnGetPageAsync(int pages, int boardId)
         {
-            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPopularPosts((int)boardId), pages);
+            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPopularPosts(boardId), pages);
             return Page();
         }
         //Get이나 Post method 호출시 OnGet[Value]()와 OnPost[Value]() 형식으로 호출 됨. Value = Handler Name

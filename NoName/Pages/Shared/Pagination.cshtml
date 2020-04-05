@@ -1,6 +1,5 @@
 ﻿@*  20.03.12
-    PageModel을 상속받은 모델을 사용하지 않고
-    Pagination(페이지관리객체)을 모델로 둠  *@
+    Pagination.cs를 이용해 화면에 Posting들을 페이지화하여 출력*@
 @namespace NoName.Data.DbData
 @model NoName.BackendClass.Paging.Pagination<PostModel>
 @{
@@ -8,8 +7,6 @@
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
-@* 2페이지 이상부터 pagination 생성.
-    asp-route-page => 경로 생성 안되서 asp-route-pages로 변경 *@
 
 <ul class="pagination justify-content-center">
     <li class="page-item @prevDisabled">

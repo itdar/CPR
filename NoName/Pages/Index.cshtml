@@ -45,10 +45,10 @@
                         {
                             <div class="card list-group mb-2">
                                 <a class="list-group-item list-group-item-action bg-primary text-white"
-                                   asp-page="/Board/Index" asp-route-boardId="@Model.Preview[i].BoardId">@Model.Preview[i].BoardName</a>
+                                   asp-page="/Board/Index" asp-page-handler="Board" asp-route-boardId="@Model.Preview[i].BoardId">@Model.Preview[i].BoardName</a>
                                 @foreach (var post in Model.Preview[i])
                                 {
-                                    <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+                                    <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@post.PostNumber">@post.Title</a>
                                 }
                             </div>
                         }
@@ -58,10 +58,10 @@
                         {
                             <div class="card list-group mb-2">
                                 <a class="list-group-item list-group-item-action bg-primary text-white"
-                                   asp-page="/Board/Index" asp-route-boardId="@Model.Preview[i].BoardId">@Model.Preview[i].BoardName</a>
+                                   asp-page="/Board/Index" asp-page-handler="Board" asp-route-boardId="@Model.Preview[i].BoardId">@Model.Preview[i].BoardName</a>
                                 @foreach (var post in Model.Preview[i])
                                 {
-                                    <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+                                    <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@post.PostNumber">@post.Title</a>
                                 }
                             </div>
                         }
