@@ -17,6 +17,7 @@ namespace NoName.Data.DbData
         public int CommentSeq { get; set; }
 
         // TablePost to TableCommment => 1:n Relationship
+        [ForeignKey("Post")]
         public int PostNumber { get; set; }
         public TablePost Post { get; set; }
 

@@ -27,7 +27,13 @@ namespace NoName.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            /*
+            /*********************************************JOB*********************************************/
+            //Set Two PrimaryKey
+            modelBuilder.Entity<TableDataJob>().HasKey(j => new { j.DataJobSeq, j.JobCode });
+            //Set Auto-incresement
+            modelBuilder.Entity<TableDataJob>().Property(j => j.DataJobSeq).ValueGeneratedOnAdd();
+
+            /*********************************************BOARD*********************************************
              * TableBoard의 BoardNumber와 BoardId가 두 컬럼이 주키로 사용되기 때문에 직접설정(키가 두개인 경우는 'Key Attribute'사용 불가 like a [Key])
              * 또한 BoardId는 TablePost의 외래키로 사용되어 설정
              */
@@ -45,12 +51,6 @@ namespace NoName.Data
             modelBuilder.Entity<TableMyBoard>().HasKey(b => new { b.BoardSeq, b.BoardId });
             //Set Auto-incresement
             modelBuilder.Entity<TableMyBoard>().Property(b => b.BoardSeq).ValueGeneratedOnAdd();
-
-            //Set Two PrimaryKey
-            modelBuilder.Entity<TableDataJob>().HasKey(j => new { j.DataJobSeq, j.JobCode });
-            //Set Auto-incresement
-            modelBuilder.Entity<TableDataJob>().Property(j => j.DataJobSeq).ValueGeneratedOnAdd();
-
 
             //Set one of CompositeKey to ForeignKey
             modelBuilder.Entity<TableBoard>()
@@ -73,6 +73,16 @@ namespace NoName.Data
                 .HasForeignKey(b => b.JobCode)
                 .HasPrincipalKey(j => j.JobCode);
 
+            /*********************************************POST*********************************************/
+            //Set Two PrimaryKey
+            modelBuilder.Entity<TablePopularPost>().HasKey(p => new { p.PostSeq, p.PostNumber });
+            //Set Auto-incresement
+            modelBuilder.Entity<TablePopularPost>().Property(p => p.PostSeq).ValueGeneratedOnAdd();
+
+            //Set Two PrimaryKey
+            modelBuilder.Entity<TableMyPost>().HasKey(p => new { p.PostSeq, p.PostNumber });
+            //Set Auto-incresement
+            modelBuilder.Entity<TableMyPost>().Property(p => p.PostSeq).ValueGeneratedOnAdd();
 
             //Set one of CompositeKey to ForeignKey
             modelBuilder.Entity<TablePost>()
@@ -95,7 +105,20 @@ namespace NoName.Data
                 .HasForeignKey(h => h.BoardId)
                 .HasPrincipalKey(b => b.BoardId);
 
+            /*********************************************COMMENT*********************************************/
+            //Set Two PrimaryKey
+            modelBuilder.Entity<TableComment>().HasKey(c => new { c.CommentSeq, c.PostNumber });
+            //Set Auto-incresement
+            modelBuilder.Entity<TableComment>().Property(c => c.CommentSeq).ValueGeneratedOnAdd();
 
+            //Set one of CompositeKey to ForeignKey
+            modelBuilder.Entity<TableComment>()
+                .HasOne(c => c.Post)
+                .WithMany(p => p.Comments)
+                .HasForeignKey(c => c.PostNumber)
+                .HasPrincipalKey(p => p.PostNumber);
+
+            /*********************************************SALARY*********************************************/
             /*
              * Set One-to-One Relationship
              * Cuz The child/dependent side could not be determined for the one-to-one relationship

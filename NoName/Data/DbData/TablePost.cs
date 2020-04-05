@@ -50,6 +50,6 @@ namespace NoName.Data.DbData
         public TableBoard Board { get; set; }
 
         // TablePost to TableCommment => 1:n Relationship
-        private ICollection<TableComment> comments;
+        public ICollection<TableComment> Comments { get; set; }
     }
 }

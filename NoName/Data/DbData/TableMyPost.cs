@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NoName.Data.DbData
 {
-    public class TableMyPost
+    public class TableMyPost : PostModel
     {
         [Key]
         public int PostSeq { get; set; }
@@ -16,9 +16,6 @@ namespace NoName.Data.DbData
         public TableMyBoard MyBoard { get; set; }
 
         // Information of Post
-        public int PostNumber { get; set; }
-        public string Title { get; set; }
-        public string UserId { get; set; }
         public DateTime SelectionTime { get; set; }
     }
 }

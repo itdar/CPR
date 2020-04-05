@@ -100,7 +100,8 @@ namespace NoName.Pages
                         DeletedTime = DateTime.MinValue,
                         BoardId = board.BoardId
                     });
-                    for(int k=1;k<3;k++)
+                    _context.SaveChanges();
+                    for (int k=1;k<3;k++)
                     {
                         _context.Comment.Add(new TableComment
                         {
