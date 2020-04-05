@@ -90,9 +90,6 @@ namespace NoName.Pages.Board
         private readonly DataDbManager manager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        //private int boardCode;
-
-
         [BindProperty]
         public TablePost CurrentPost { get; set; }
         public DetailModel(ILogger<IndexModel> logger, SignInManager<ApplicationUser> signInManager)

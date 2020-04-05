@@ -18,7 +18,7 @@ namespace NoName.Pages.Mypage
 
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
-        //private int boardCode;
+
         public MyPostsModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -28,7 +28,7 @@ namespace NoName.Pages.Mypage
             // UserManager 에서 context 안끊기고 동작하는지 확인하려고 만들어봄 확인 후 지워야함
         }
         [BindProperty]
-        public Pagination<TablePost> Pagination { get; set; }
+        public Pagination<PostModel> Pagination { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -36,14 +36,14 @@ namespace NoName.Pages.Mypage
                 //아이디로 할경우 GetInstance의 .Email 만 Id로 바꾸면 댐
                 var userId = UserInformation.GetInstance().Email;
                 var myPosts = manager.GetMyPosts(userId);
-                Pagination = await Pagination<TablePost>.CreateAsync(myPosts, 1);
+                Pagination = await Pagination<PostModel>.CreateAsync(myPosts, 1);
         }
 
         public async Task<IActionResult> OnGetPageAsync(int pages)
         {
                 var userId = UserInformation.GetInstance().Email;
                 var myPosts = manager.GetMyPosts(userId);
-                Pagination = await Pagination<TablePost>.CreateAsync(myPosts, pages);
+                Pagination = await Pagination<PostModel>.CreateAsync(myPosts, pages);
             return Page();
 
         }

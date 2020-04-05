@@ -20,17 +20,17 @@ namespace NoName.Pages.Board
             manager = DataDbManager.GetInstance();
         }
 
-        public Pagination<TablePopularPost> Pagination { get; set; }
+        public Pagination<PostModel> Pagination { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? boardId)
         {
-            Pagination = await Pagination<TablePopularPost>.CreateAsync(manager.GetPopularPosts((int)boardId));
+            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPopularPosts((int)boardId));
             return Page();
         }
         //Pagination으로 생성된 페이지들 선택시 호출되는 함수
         public async Task<IActionResult> OnGetPageAsync(int pages, int? boardId)
         {
-            Pagination = await Pagination<TablePopularPost>.CreateAsync(manager.GetPopularPosts((int)boardId), pages);
+            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPopularPosts((int)boardId), pages);
             return Page();
         }
         //Get이나 Post method 호출시 OnGet[Value]()와 OnPost[Value]() 형식으로 호출 됨. Value = Handler Name

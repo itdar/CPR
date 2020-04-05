@@ -13,12 +13,12 @@ namespace NoName.Pages.Shared
     /*
      * List of List => PostPreview of BoardPreview
      */
-    public class PostPreview : List<TablePost>
+    public class PostPreview : List<PostModel>
     {
         public int BoardId { get; private set; }
         public string BoardName { get; private set; }
 
-        public PostPreview(List<TablePost> items, int boardId, string boardName)
+        public PostPreview(List<PostModel> items, int boardId, string boardName)
         {
             BoardId = boardId;
             BoardName = boardName;

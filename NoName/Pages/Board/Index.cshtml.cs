@@ -20,7 +20,7 @@ namespace NoName.Pages.Board
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
 
-        public Pagination<TablePost> Pagination { get; set; }
+        public Pagination<PostModel> Pagination { get; set; }
 
         [BindProperty]
         public TablePost TablePost { get; set; }
@@ -44,7 +44,7 @@ namespace NoName.Pages.Board
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
             //System.Diagnostics.Debug.WriteLine(manager.GetPosts(1));
             CurrentBoard = manager.GetBoard(boardId);
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardId));
+            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPosts((int)boardId));
             return Page();
         }
         public async Task<IActionResult> OnGetPageAsync(int pages, int? boardId)
@@ -52,7 +52,7 @@ namespace NoName.Pages.Board
             if (boardId != null)
             {
                 CurrentBoard = manager.GetBoard(boardId);
-                Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardId), pages);
+                Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPosts((int)boardId), pages);
             }
             return Page();
         }

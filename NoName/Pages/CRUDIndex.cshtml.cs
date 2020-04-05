@@ -130,7 +130,7 @@ namespace NoName.Pages
                 {
                     board = new TablePopularBoard
                     {
-                        BoardId = TableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
+                        BoardId = popularTableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
                         BoardName = popularTableBoard.ElementAt(i).Name,
                         JobCode = DataJob.JobCode
                     };
@@ -138,6 +138,34 @@ namespace NoName.Pages
                     _context.SaveChanges();
 
                     await _context.SaveChangesAsync();
+                }
+                //Add Post to PopularBoard
+                var post = _context.Post.ToList();
+                foreach(var item in post)
+                {
+                    if(item.PostNumber %10 == 1)
+                    {
+                        _context.PopularPost.Add(new TablePopularPost
+                        {
+                            //UserId юс╫ц
+                            Id = item.Id,
+                            CategoryNumber = item.CategoryNumber,
+                            Title = item.Title,
+                            Content = item.Content,
+                            ViewCount = item.ViewCount,
+                            LikeCount = item.LikeCount,
+                            DislikeCount = item.DislikeCount,
+                            HasNewComment = item.HasNewComment,
+                            CreateTime = item.CreateTime,
+                            InitialContent = item.InitialContent,
+                            LastModifiedTime = item.LastModifiedTime,
+                            IsDeleted = item.IsDeleted,
+                            DeletedTime = item.DeletedTime,
+                            BoardId = popularTableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
+                            SelectionTime = DateTime.Now
+                        });
+                        _context.SaveChanges();
+                    }
                 }
             }
             /***

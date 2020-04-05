@@ -2,7 +2,7 @@
     PageModel을 상속받은 모델을 사용하지 않고
     Pagination(페이지관리객체)을 모델로 둠  *@
 @namespace NoName.Data.DbData
-@model NoName.BackendClass.Paging.Pagination<TablePost>
+@model NoName.BackendClass.Paging.Pagination<PostModel>
 @{
     ViewData["Title"] = "Pagination";
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
@@ -13,19 +13,19 @@
 
 <ul class="pagination justify-content-center">
     <li class="page-item @prevDisabled">
-        <a class="page-link" asp-page=@ViewData["BoardPage"] asp-page-handler="Page" asp-route-pages="@Model.Previous" asp-route-boardCode="@ViewData["CurrentBoard"]">이전</a>
+        <a class="page-link" asp-page=@ViewData["BoardPage"] asp-page-handler="Page" asp-route-pages="@Model.Previous" asp-route-boardId="@ViewData["CurrentBoard"]">이전</a>
     </li>
     @{ int i = Model.StartPage;}
     @while (i <= Model.StartPage + Model.PageBarSize && i <= Model.TotalPages)
     {
         var currentDisabled = Model.IsCurrentPage(i) ? "disabled" : "";
         <li class="page-item @currentDisabled">
-            <a class="page-link" asp-page=@ViewData["BoardPage"] asp-page-handler="Page" asp-route-pages="@i" asp-route-boardCode="@ViewData["CurrentBoard"]" >@i</a>
+            <a class="page-link" asp-page=@ViewData["BoardPage"] asp-page-handler="Page" asp-route-pages="@i" asp-route-boardId="@ViewData["CurrentBoard"]" >@i</a>
         </li>
         i++;
     }
 
     <li class="page-item @nextDisabled">
-        <a class="page-link" asp-page=@ViewData["BoardPage"] asp-page-handler="Page" asp-route-pages="@Model.Next" asp-route-boardCode="@ViewData["CurrentBoard"]" >다음</a>
+        <a class="page-link" asp-page=@ViewData["BoardPage"] asp-page-handler="Page" asp-route-pages="@Model.Next" asp-route-boardId="@ViewData["CurrentBoard"]" >다음</a>
     </li>
 </ul>

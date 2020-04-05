@@ -73,20 +73,25 @@ namespace NoName.Data
 				return "There is no Board.";
 		}
 
+		/************************************POPULARBOARD************************************/
+		public TablePopularBoard GetPopularBoard(int? boardId)
+		{
+			return dataContext.PopularBoard.FirstOrDefault(board => board.BoardId == boardId);
+		}
+
 		/************************************POST************************************/
-		public IQueryable<TablePost> GetPosts(int boardId)
+		public IQueryable<PostModel> GetPosts(int boardId)
 		{
 			return dataContext.Post.Where(post => post.Board.BoardId == boardId).
 				OrderByDescending(post => post.PostNumber);
 		}
-		public IQueryable<TablePost> GetPosts(int boardId,int listNumber)
+		public IQueryable<PostModel> GetPosts(int boardId,int listNumber)
 		{
 			var index = dataContext.Post.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
 			return  dataContext.Post.Where(post => post.BoardId == boardId).
 				OrderByDescending(post => post.PostNumber).Take(listNumber);
-
 		}
-		public IQueryable<TablePost> GetMyPosts(string userId)
+		public IQueryable<PostModel> GetMyPosts(string userId)
 		{
 			return dataContext.Post.Where(post => post.Id == userId).OrderByDescending(post => post.CreateTime);
 		}
@@ -108,11 +113,18 @@ namespace NoName.Data
 		}
 
 		/************************************POPULARPOST************************************/
-		public IQueryable<TablePopularPost> GetPopularPosts(int boardId)
+		public IQueryable<PostModel> GetPopularPosts(int boardId)
 		{
 			return dataContext.PopularPost.Where(post => post.PopularBoard.BoardId == boardId).
 				OrderByDescending(post => post.PostNumber);
-		}/*
+		}
+		public IQueryable<PostModel> GetPopularPosts(int boardId, int listNumber)
+		{
+			var index = dataContext.PopularPost.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
+			return dataContext.PopularPost.Where(post => post.BoardId == boardId).
+				OrderByDescending(post => post.PostNumber).Take(listNumber);
+		}
+		/*
 		public IQueryable<TablePost> GetPosts(int boardId, int listNumber)
 		{
 			var index = dataContext.Post.Where(post => post.BoardId == boardId).Count() - listNumber + 1;

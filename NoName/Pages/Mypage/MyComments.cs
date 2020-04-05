@@ -18,7 +18,6 @@ namespace NoName.Pages.Mypage
         private readonly ILogger<IndexModel> _logger;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly DataDbManager manager;
-        //private int boardCode;
         public CommentPostModel(ILogger<IndexModel> logger, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
