@@ -3,10 +3,10 @@
 @{
     sideBar.ListNumber = 3;
     //임시 jobCode
-    int jobCode = 100;
-    List<TablePost> Hot = sideBar.ListHotPosts();
-    List<TablePost> RealTime = sideBar.ListRealTimePosts();
-    List<TablePost> Weekly = sideBar.ListWeeklyPosts();
+    int jobCode = 1000;
+    List<PostModel> Hot = sideBar.ListHotPosts();
+    List<PostModel> RealTime = sideBar.ListRealTimePosts();
+    List<PostModel> Weekly = sideBar.ListWeeklyPosts();
 }
 @*
     Partial를 이용하여 SideBar 생성
@@ -28,23 +28,23 @@
 </div>
 <div class="card list-group mt-2">
     <a class="list-group-item list-group-item-action bg-primary text-white"
-       asp-page="/Board/Index" asp-route-boardId="@Enumeration.BoardType.Hot.GetBoardId(jobCode)">@Enumeration.BoardType.Hot.Name</a>
+       asp-page="/BoardPopular/Index" asp-page-handler="Board" asp-route-boardId="@Enumeration.PopularBoardType.Hot.GetBoardId(jobCode)">@Enumeration.PopularBoardType.Hot.Name</a>
     @foreach (var post in Hot)
     {
-        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@post.PostNumber">@post.Title</a>
     }
 </div>
 <div class="card list-group mt-2">
-    <p class="list-group-item list-group-item-action bg-primary text-white">@Enumeration.BoardType.RealTime.Name</p>
+    <p class="list-group-item list-group-item-action bg-primary text-white">@Enumeration.PopularBoardType.RealTime.Name</p>
     @foreach (var post in RealTime)
     {
-        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@post.PostNumber">@post.Title</a>
     }
 </div>
 <div class="card list-group mt-2">
-    <p class="list-group-item list-group-item-action bg-primary text-white">@Enumeration.BoardType.Weekly.Name</p>
+    <p class="list-group-item list-group-item-action bg-primary text-white">@Enumeration.PopularBoardType.Weekly.Name</p>
     @foreach (var post in Weekly)
     {
-        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-route-postNumber="@post.PostNumber">@post.Title</a>
+        <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@post.PostNumber">@post.Title</a>
     }
 </div>

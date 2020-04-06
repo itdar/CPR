@@ -20,60 +20,54 @@ namespace NoName.Pages.Board
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
 
-        //private int boardCode;
-
-        public Pagination<TablePost> Pagination { get; set; }
-
         [BindProperty]
         public TablePost TablePost { get; set; }
+        [BindProperty]
+        public TableBoard CurrentBoard { get; set; }
+
+        public Pagination<PostModel> Pagination { get; set; }
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            
             manager = DataDbManager.GetInstance();
 
             // UserManager 에서 context 안끊기고 동작하는지 확인하려고 만들어봄 확인 후 지워야함
             UserDbManager.GetInstance();
         }
-        [BindProperty]
-        public TableBoard CurrentBoard { get; set; }
-        public async Task<IActionResult> OnGetAsync(int? boardId)
+
+
+        public void OnGet() { }
+
+        //최초 페이지 선택시 호출
+        public async Task<IActionResult> OnGetBoardAsync(int boardId)
         {
-            
-            if (boardId == null)
-            {
-                return NotFound();
-
-            }
-
             //GetPost시 UserDb에서 Jobname에 맞는 Board에서 BoardNumber 가져와야함
-            //System.Diagnostics.Debug.WriteLine(manager.GetPosts(1));
             CurrentBoard = manager.GetBoard(boardId);
-            Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardId), 1);
+            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPosts(boardId));
             return Page();
         }
-        public async Task<IActionResult> OnGetPageAsync(int pages,int? boardCode)
+
+        //페이지 변경시 호출
+        public async Task<IActionResult> OnGetPageAsync(int pages, int boardId)
         {
-            if (boardCode != null)
-            {
-                CurrentBoard = manager.GetBoard(boardCode);
-                Pagination = await Pagination<TablePost>.CreateAsync(manager.GetPosts((int)boardCode), pages);
-            }
+            CurrentBoard = manager.GetBoard(boardId);
+            Pagination = await Pagination<PostModel>.CreateAsync(manager.GetPosts(boardId), pages);
             return Page();
         }
+
+        //글작성시 호출
         public async Task<IActionResult> OnPostAsync() {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            
-                TablePost.Id = UserInformation.GetInstance().Email;
-            
+
+            TablePost.Id = UserInformation.GetInstance().Email;
             TablePost.BoardId = CurrentBoard.BoardId;
             TablePost.CreateTime = DateTime.Now;
             await manager.AddPostAsync(TablePost);
             return RedirectToPage(TablePost.BoardId);
         }
-       
     }
 }

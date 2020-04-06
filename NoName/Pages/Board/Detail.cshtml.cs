@@ -14,87 +14,23 @@ using NoName.Pages.Shared;
 
 namespace NoName.Pages.Board
 {
-    //public class DetailModel : PageModel
-    //{
-
-    //    private readonly DataContext context;
-
-    //    public DetailModel()
-    //    {
-    //        // context 받아서 쓰던 코드 그대로 사용하려고 dataContext public 으로 바꿔뒀음
-    //        // manager 로 함수 옮기고 private 으로 바꿔야함
-    //        context = DataDbManager.GetInstance().dataContext;
-    //    }
-
-    //    [BindProperty]
-    //    public TablePost TablePost { get; set; }
-
-    //    public List<TableComment> CommentList { get; set; }
-    //    [BindProperty]
-    //    public List<TableComment> ParentCommentList { get; set; }
-    //    [BindProperty]
-    //    public List<TableComment> ChildCommentList { get; set; }
-
-    //    // public int ParentCommentCount { get; set; }
-    //    public async Task<IActionResult> OnGetAsync(int? postNumber)
-    //    {
-    //        if (postNumber == null)
-    //        {
-    //            return NotFound();
-    //        }
-
-    //        TablePost = await context.Post.FirstOrDefaultAsync(m => m.PostNumber == postNumber);
-
-    //        ParentCommentList = context.Comment.Where(comment => comment.PostNumber==postNumber &&comment.ParentCommentNumber==0).
-    //            OrderBy(comment=>comment.CreatedTime).ToList();
-    //        ChildCommentList = context.Comment.Where(comment => comment.PostNumber==postNumber &&comment.ParentCommentNumber!=0).
-    //            OrderBy(comment=>comment.ParentCommentNumber).ThenBy(comment=>comment.CreatedTime).ToList();
-
-    //        //CommentList = _context.Comment.FromSqlRaw("SELECT * FROM dbo.Comment WHERE PostNumber= :postNumber").ToList();
-
-    //        //IF((ParentNumber = 0), CommentNumber, ParentCommentNumber),"ORDER BY CreatedTime")
-    //        if (TablePost == null)
-    //        {
-    //            return NotFound();
-    //        }
-    //        return Page();
-    //    }
-
-    //    [BindProperty]
-    //    public TableComment TableComment { get; set; }
-
-    //    [BindProperty]
-    //    public int ParentCommentNumber { get; set; }
-    //    public async Task<IActionResult> OnPostAsync()
-    //    {
-    //        if (!ModelState.IsValid)
-    //        {
-    //            return Page();
-    //        }
-
-    //        TableComment.CreatedTime = DateTime.Now;
-    //        TableComment.PostNumber = TablePost.PostNumber;
-    //        // TableComment.ParentCommentNumber = ParentCommentNumber;
-
-    //        context.Comment.Add(TableComment);
-    //        await context.SaveChangesAsync();
-    //        return RedirectToPage(TableComment.PostNumber);
-    //    }
-
-
-    //}
-
     public class DetailModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly DataDbManager manager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        //private int boardCode;
-
-
         [BindProperty]
         public TablePost CurrentPost { get; set; }
+        [BindProperty]
+        public List<TableComment> ParentCommentList { get; set; }
+        [BindProperty]
+        public List<TableComment> ChildCommentList { get; set; }
+        [BindProperty]
+        public TableComment TableComment { get; set; }
+        [BindProperty]
+        public int ParentCommentNumber { get; set; }
+
         public DetailModel(ILogger<IndexModel> logger, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
@@ -104,22 +40,16 @@ namespace NoName.Pages.Board
             // UserManager 에서 context 안끊기고 동작하는지 확인하려고 만들어봄 확인 후 지워야함
             UserDbManager.GetInstance();
         }
-        [BindProperty]
-        public List<TableComment> ParentCommentList { get; set; }
-        [BindProperty]
-        public List<TableComment> ChildCommentList { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? postNumber)
+
+        public void OnGet() { }
+
+        public IActionResult OnGetPost(int postNumber)
         {
-            if (postNumber == null)
-            {
-                return NotFound();
-            }
-
-            CurrentPost = manager.GetPostDetail((int)postNumber);
+            CurrentPost = manager.GetPostDetail(postNumber);
             //댓글&대댓글 한번에 함수 만드는거 아직 못하겠어서 따로 만들어서 했어요
-            ParentCommentList = manager.GetParentComments((int)postNumber);
-            ChildCommentList = manager.GetChildComments((int)postNumber);
+            ParentCommentList = manager.GetParentComments(postNumber);
+            ChildCommentList = manager.GetChildComments(postNumber);
             //CommentList = _context.Comment.FromSqlRaw("SELECT * FROM dbo.Comment WHERE PostNumber= :postNumber").ToList();
 
             //IF((ParentNumber = 0), CommentNumber, ParentCommentNumber),"ORDER BY CreatedTime")
@@ -129,11 +59,6 @@ namespace NoName.Pages.Board
             }
             return Page();
         }
-        [BindProperty]
-        public TableComment TableComment { get; set; }
-
-        [BindProperty]
-        public int ParentCommentNumber { get; set; }
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -151,38 +76,5 @@ namespace NoName.Pages.Board
             await manager.AddCommnetAsync(TableComment);
             return RedirectToPage(TableComment.PostNumber);
         }
-
-        //public async Task<IActionResult> OnPostModifyPostAsync()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
-
-        //    manager.EditPost(CurrentPost);
-
-        //    try
-        //    {
-        //        await manager.dataContext.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!TableBoardExists(CurrentPost.PostNumber))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return RedirectToPage("./Detail");
-        //}
-
-        //private bool TableBoardExists(int id)
-        //{
-        //    return manager.dataContext.Board.Any(e => e.BoardNumber == id);
-        //}
     }
 }

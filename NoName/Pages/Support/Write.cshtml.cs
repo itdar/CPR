@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using NoName.Data;
 using NoName.Data.DbData;
 
-namespace NoName.Pages.Support
+namespace NoName.Pages.Board
 {
     public class WriteModel : PageModel
     {

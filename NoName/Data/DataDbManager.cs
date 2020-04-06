@@ -73,16 +73,62 @@ namespace NoName.Data
 				return "There is no Board.";
 		}
 
+		/************************************POPULARBOARD************************************/
+		public TablePopularBoard GetPopularBoard(int? boardId)
+		{
+			return dataContext.PopularBoard.FirstOrDefault(board => board.BoardId == boardId);
+		}
+
 		/************************************POST************************************/
-		public IQueryable<TablePost> GetPosts(int boardId)
+		public IQueryable<PostModel> GetPosts(int boardId)
 		{
 			return dataContext.Post.Where(post => post.Board.BoardId == boardId).
 				OrderByDescending(post => post.PostNumber);
 		}
-		public IQueryable<TablePost> GetPosts(int boardId,int listNumber)
+		public IQueryable<PostModel> GetPosts(int boardId,int listNumber)
 		{
 			var index = dataContext.Post.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
 			return  dataContext.Post.Where(post => post.BoardId == boardId).
+				OrderByDescending(post => post.PostNumber).Take(listNumber);
+		}
+		public IQueryable<PostModel> GetMyPosts(string userId)
+		{
+			return dataContext.Post.Where(post => post.Id == userId).OrderByDescending(post => post.CreateTime);
+		}
+
+		public TablePost GetPostDetail(int postNumber)
+		{
+			return dataContext.Post.FirstOrDefault(post => post.PostNumber == postNumber);
+		}
+		public int GetPostsCount(int? boardId)
+		{
+			return dataContext.Post.Where(post => post.BoardId == boardId).Count();
+		}
+		public async Task<EntityEntry<TablePost>> AddPostAsync(TablePost post)
+		{
+			var ret = dataContext.Post.Add(post);
+			await dataContext.SaveChangesAsync();
+	
+			return ret;
+		}
+
+		/************************************POPULARPOST************************************/
+		public IQueryable<PostModel> GetPopularPosts(int boardId)
+		{
+			return dataContext.PopularPost.Where(post => post.PopularBoard.BoardId == boardId).
+				OrderByDescending(post => post.PostNumber);
+		}
+		public IQueryable<PostModel> GetPopularPosts(int boardId, int listNumber)
+		{
+			var index = dataContext.PopularPost.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
+			return dataContext.PopularPost.Where(post => post.BoardId == boardId).
+				OrderByDescending(post => post.PostNumber).Take(listNumber);
+		}
+		/*
+		public IQueryable<TablePost> GetPosts(int boardId, int listNumber)
+		{
+			var index = dataContext.Post.Where(post => post.BoardId == boardId).Count() - listNumber + 1;
+			return dataContext.Post.Where(post => post.BoardId == boardId).
 				OrderByDescending(post => post.PostNumber).Take(listNumber);
 
 		}
@@ -103,9 +149,9 @@ namespace NoName.Data
 		{
 			var ret = dataContext.Post.Add(post);
 			await dataContext.SaveChangesAsync();
-	
+
 			return ret;
-		}
+		}*/
 		//public void EditPost(TablePost ModifiedPost)
 		//{
 		//	dataContext.Attach(ModifiedPost).State = EntityState.Modified;

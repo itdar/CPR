@@ -10,12 +10,8 @@ namespace NoName.Data.DbData
     /*
      * 게시물
      */
-    public class TablePost
+     public abstract class PostModel
     {
-        // TableBoard to TablePost => 1:n Relationship
-        public int BoardId { get; set; }
-        public TableBoard Board { get; set; }
-
         [Key]
         public int PostNumber { get; set; }
         public string Id { get; set; }
@@ -46,10 +42,14 @@ namespace NoName.Data.DbData
         public bool? IsDeleted { get; set; } = false;
         // 삭제 시각 initial value = null
         public DateTime? DeletedTime { get; set; }
-
+    }
+    public class TablePost : PostModel
+    {
+        // TableBoard to TablePost => 1:n Relationship
+        public int BoardId { get; set; }
+        public TableBoard Board { get; set; }
 
         // TablePost to TableCommment => 1:n Relationship
-        private ICollection<TableComment> comments;
-        
+        public ICollection<TableComment> Comments { get; set; }
     }
 }

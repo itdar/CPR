@@ -1,9 +1,9 @@
-﻿@page "{boardId:int?}"
+﻿@page "{handler?}/{id?}"
 @model NoName.Pages.Board.IndexModel
 @{
     ViewData["CurrentBoard"] = Model.CurrentBoard.BoardId;
-    int defaultBoardId = Model.CurrentBoard.BoardId % 100;
-    var isDefaultBoard = defaultBoardId > 50 ? "d-none" : "";
+    int boardId = Model.CurrentBoard.BoardId % 100;
+    var isUserBoard = !(boardId < 80) ? "d-none" : "";
     ViewData["BoardPage"] = "/Board/Index";
 }
 <head>
@@ -19,26 +19,23 @@
                 <div class="card card-body">
                     <h3 class="font-weight-bold">@Model.CurrentBoard.BoardName</h3>
                 </div>
-                @*text, textarea, button 세가지 input을 하나의 구조로 묶기위한 form-group*@
-                    <form class="form-group @isDefaultBoard" method="post">
-                        @*text타입의 input, data-toggle로 확장-축소 가능, data-target으로 기능 적용할 태그 선택*@
-                        <input type="text" id="postTitle" asp-for="TablePost.Title" class="form-control mt-3 mb-1" placeholder="글을 작성하세요">
-                        @*<span asp-validation-for="TablePost.Title" class="text-danger"></span>*@
-                        <div id="collapseArea" class="form-group collapse">
-                            <textarea class="form-control" asp-for="TablePost.Content" placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요." rows="7"></textarea>
-                            @* <span asp-validation-for="TablePost.Content" class="text-danger"></span>*@
-                        </div>
-                        <div id="collapseBtn" class="form-group collapse">
-                            <row>
-                                <input type="submit" class="btn col-sm-12 btn-light" value="게시" @*data-toggle="collapse" data-target="#collapseNote"*@>
-                            </row>
-                        </div>
-                    </form>
-                <div class="list-group" id="postContents">
+                @*공지사항 류의 게시판에서 숨김*@
+                <form class="form-group @isUserBoard" method="post">
+                    <input type="text" id="postTitle" asp-for="TablePost.Title" class="form-control mt-3 mb-1" placeholder="글을 작성하세요">
+                    <div id="collapseArea" class="form-group collapse">
+                        <textarea class="form-control" asp-for="TablePost.Content" placeholder="1. 에티켓을 지켜주세요.&#13;&#10;2. 비방을 삼가해 주세요." rows="7"></textarea>
+                    </div>
+                    <div id="collapseBtn" class="form-group collapse">
+                        <row>
+                            <input type="submit" class="btn col-sm-12 btn-light" value="게시">
+                        </row>
+                    </div>
+                </form>
+                <div class="list-group mb-2" id="postContents">
                     @foreach (var item in Model.Pagination)
                     {
                         <a class="list-group-item list-group-item-action"
-                           asp-page="/Board/Detail" asp-route-postNumber="@item.PostNumber">
+                           asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@item.PostNumber">
                             <div class="row">
                                 <span class="col-sm-1">
                                     @Html.DisplayFor(modelItem => item.PostNumber)
@@ -57,7 +54,7 @@
                     @*동기식 Partial TagHelper*@
                     <partial name="Pagination" model="Model.Pagination" view-data="ViewData" />
                     @*비동기식 Partial TagHelper
-                        @await Html.PartialAsync("Pagination", Model.Pagination)*@
+                    @await Html.PartialAsync("Pagination", Model.Pagination)*@
                 </div>
             </div>
             <div class="col-lg-3 bg-danger">

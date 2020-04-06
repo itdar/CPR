@@ -13,12 +13,12 @@ namespace NoName.Pages.Shared
     /*
      * List of List => PostPreview of BoardPreview
      */
-    public class PostPreview : List<TablePost>
+    public class PostPreview : List<PostModel>
     {
         public int BoardId { get; private set; }
         public string BoardName { get; private set; }
 
-        public PostPreview(List<TablePost> items, int boardId, string boardName)
+        public PostPreview(List<PostModel> items, int boardId, string boardName)
         {
             BoardId = boardId;
             BoardName = boardName;
@@ -44,16 +44,15 @@ namespace NoName.Pages.Shared
 
             for (int i = 0; i < BoardCount; i++)
             {
-                int id = JobCode + i + 1;
-                this.Add(new PostPreview(manager.GetPosts(id, ListNumber).ToList(), id, manager.GetBoardName(id)));
+                var board = BoardType.GetAll<BoardType>().ElementAt(i);
+                this.Add(new PostPreview(manager.GetPosts(board.GetBoardId(JobCode), ListNumber).ToList(), board.GetBoardId(JobCode), board.Name));
             }
         }
         public static BoardPreview CreatePreviewList(int listNumber) //listNumber=> 나타낼 post 수
         {
             //usermanager에서 JobCode 가져와야함
-            int jobCode = 100;
-            // BoardId 1 ~ 50 까지의 게시판 개수
-            int boardCount = Enumeration.Enumerator.GetPart<BoardType>(1, 50).Count();
+            int jobCode = 1000;
+            int boardCount = Enumeration.Enumerator.GetUserBoardsCount<BoardType>();
             return new BoardPreview(jobCode, boardCount, listNumber);
         }
     }

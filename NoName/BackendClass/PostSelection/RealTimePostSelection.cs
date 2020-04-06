@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NoName.BackendClass.PostSelection
 {
-    public class RealTimePostSelection : HotQualification
+    public class RealTimePostSelection : Qualification
     {
         public RealTimePostSelection()
         {

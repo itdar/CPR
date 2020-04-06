@@ -6,14 +6,7 @@ using System.Threading.Tasks;
 
 namespace NoName.BackendClass.PostSelection
 {
-    public class HotQualification
-    {
-        //조회수
-        public int ViewCount { get; set; }
-        //좋아요
-        public int LikeCount { get; set; }
-    }
-    public class HotPostSelection : HotQualification
+    public class HotPostSelection : Qualification
     {
         private readonly DataDbManager manager;
         /*

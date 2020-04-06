@@ -12,12 +12,8 @@ using System.Threading.Tasks;
  */
 namespace NoName.Data.DbData
 {
-    /*
-     * 게시판
-     */
-    public class TableBoard
+    public abstract class BoardModel
     {
-
         /*
          * 전체웹에서의 게시판 고유번호?
          * 직업홈에서의 게시판 코드?
@@ -39,12 +35,10 @@ namespace NoName.Data.DbData
         [Key]
         public int BoardId { get; set; }
         public string BoardName { get; set; }
-
-
+    }
+    public class TableBoard : BoardModel
+    {
         // TableBoard To TablePost => 1:n Relationship
         public ICollection<TablePost> Posts { get; set; }
-        
-        // TableBoard To TableHotPost => 1:n Relationship
-        public ICollection<TableHotPost> HotPosts { get; set; }
     }
 }

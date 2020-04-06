@@ -8,27 +8,27 @@ namespace NoName.Services
 {
     public class SideBarListService
     {
-        int jobCode = 100;
+        int jobCode = 1000;
         private int listNumber;
         public int ListNumber
         {
             get => listNumber;
             set => listNumber = value;
         }
-        public List<TablePost> ListHotPosts()
+        public List<PostModel> ListHotPosts()
         {
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<TablePost>(manager.GetPosts(BoardType.Hot.GetBoardId(jobCode), ListNumber).ToList());
+            return new List<PostModel>(manager.GetPopularPosts(PopularBoardType.Hot.GetBoardId(jobCode), ListNumber).ToList());
         }
-        public List<TablePost> ListRealTimePosts()
+        public List<PostModel> ListRealTimePosts()
         {
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<TablePost>(manager.GetPosts(BoardType.RealTime.GetBoardId(jobCode), ListNumber).ToList());
+            return new List<PostModel>(manager.GetPopularPosts(PopularBoardType.RealTime.GetBoardId(jobCode), ListNumber).ToList());
         }
-        public List<TablePost> ListWeeklyPosts()
+        public List<PostModel> ListWeeklyPosts()
         {
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<TablePost>(manager.GetPosts(BoardType.Weekly.GetBoardId(jobCode), ListNumber).ToList());
+            return new List<PostModel>(manager.GetPopularPosts(PopularBoardType.Weekly.GetBoardId(jobCode), ListNumber).ToList());
         }
     }
 }

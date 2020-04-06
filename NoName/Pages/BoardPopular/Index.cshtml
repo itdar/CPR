@@ -1,10 +1,10 @@
 ﻿@page "{handler?}/{id?}"
-@model NoName.Pages.Support.NoticeModel
+@model NoName.Pages.BoardPopular.IndexModel
 @{
-    ViewData["Title"] = "공지사항";
+    ViewData["Title"] = "Hot게시판";
 }
 <body>
-    <div class="notice">
+    <div class="hot">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-9 bg-warning">
@@ -29,11 +29,6 @@
                                 </div>
                             </a>
                         }
-                    </div>
-                    <div class="card-body text-right">
-                        <form method="get">
-                            <button class="btn btn-outline-dark" asp-page="/Support/Write">글쓰기</button>
-                        </form>
                     </div>
                     <div class="container" id="pagination">
                         @*동기식 Partial TagHelper*@

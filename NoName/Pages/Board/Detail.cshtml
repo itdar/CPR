@@ -1,5 +1,5 @@
 ﻿@*asp-page-handler 앵커태그 사용시 handler와 id가 addressbar에 드러나는것을 숨기고 '/'로 대체*@
-@page "{postNumber:int?}"
+@page "{handler?}/{id?}"
 @model NoName.Pages.Board.DetailModel
 @{
     ViewData["CurrentPost"] = Model.CurrentPost.BoardId;
@@ -121,7 +121,7 @@
                                 }
                 </div>
                 </div>
-                <a type="button" class="btn btn-outline-dark" asp-page="/Board/Index" asp-route-boardCode="@Model.CurrentPost.BoardId" style="margin-top:10px;">글 목록</a>
+                <a type="button" class="btn btn-outline-dark" asp-page="/Board/Index" asp-page-handler="Board" asp-route-boardId="@Model.CurrentPost.BoardId" style="margin-top:10px;">글 목록</a>
             </div>
             <div class="col-lg-3">
                 <partial name="SideBar"/>
