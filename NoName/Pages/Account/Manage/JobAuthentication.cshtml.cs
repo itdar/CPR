@@ -9,14 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NoName.BackendClass.Login;
-using NoName.Data.DbUser;
 
 namespace NoName.Pages.Account.Manage
 {
     public class JobAuthenticationModel : PageModel
     {
-        private readonly Data.UserContext _context;
-
         [BindProperty]
         public IFormFile UploadFile1 { get; set; }
         [BindProperty]
@@ -26,9 +23,8 @@ namespace NoName.Pages.Account.Manage
 
         public List<int> UserJobCodes { get; set; }
 
-        public JobAuthenticationModel(Data.UserContext context)
+        public JobAuthenticationModel()
         {
-            _context = context;
             UserJobCodes = UserInformation.GetInstance().JobCodes;
         }
 
@@ -68,6 +64,14 @@ namespace NoName.Pages.Account.Manage
         public void OnGet()
         {
             System.Diagnostics.Debug.WriteLine("Called JobAuthentication OnGet().");
+            if (UserJobCodes != null && UserJobCodes.Count() > 0)
+            {
+                System.Diagnostics.Debug.WriteLine($"UserJobCodes{0}", UserJobCodes.Count());
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("UserJobCodes = null");
+            }
         }
         public void OnPost()
         {

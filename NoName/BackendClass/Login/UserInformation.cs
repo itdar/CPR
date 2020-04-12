@@ -41,11 +41,17 @@ namespace NoName.BackendClass.Login
 
         public void ReleaseInformation()
         {
-            UserId = null;
-            UserName = null;
-            Email = null;
-            JobCodes.Clear();
-            JobCodes = null;
+if (UserId == null)
+                UserId = null;
+            if (UserName == null)
+                UserName = null;
+            if (Email == null)
+                Email = null;
+            if (JobCodes != null)
+            {
+                JobCodes.Clear();
+                JobCodes = null;
+            }
         }
     }
 }

@@ -151,11 +151,11 @@ namespace NoName.Pages.Account
             if (ModelState.IsValid)
             {
                 var myJobCodes = new List<TableUserJob>();
-                var jobCode = new TableUserJob
-                {
-                    JobCode = -1
-                };
-                myJobCodes.Add(jobCode);
+                var jobCode = new TableUserJob();
+                //{
+                //    JobCode = -1
+                //};
+                //myJobCodes.Add(jobCode);
 
                 var user = new ApplicationUser {
                     UserName = Input.Email,
