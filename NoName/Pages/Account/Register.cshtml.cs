@@ -95,11 +95,11 @@ namespace NoName.Pages.Account
                     System.Diagnostics.Debug.WriteLine(i);
 
                     var myJobCodes = new List<TableUserJob>();
-                    var jobCode = new TableUserJob
-                    {
-                        JobCode = i
-                    };
-                    myJobCodes.Add(jobCode);
+                    //var jobCode = new TableUserJob
+                    //{
+                    //    JobCode = i
+                    //};
+                    //myJobCodes.Add(jobCode);
 
                     var user = new ApplicationUser
                     {

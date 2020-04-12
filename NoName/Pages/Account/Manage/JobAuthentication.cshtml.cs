@@ -39,6 +39,9 @@ namespace NoName.Pages.Account.Manage
             //4. 저장하는 경로 폴더 만들어서 서버 위치에 설정/연결
             //5. DB table 에서 저장한 경로 저장해두고, 다른 페이지에서 혹은 직업인증 있는 경우 로드해서 이미지 띄우는 것 확인해야함
 
+            var userInfo = UserInformation.GetInstance();
+
+            // 각 파일 형식 및 사이즈 등 체크해야함
             if (UploadFile1 != null)
             {
                 System.Diagnostics.Debug.WriteLine("file1 is not null");
@@ -50,23 +53,29 @@ namespace NoName.Pages.Account.Manage
                 System.Diagnostics.Debug.WriteLine("ToString() : " + UploadFile1.ToString()); // ToString() : Microsoft.AspNetCore.Http.FormFile
                 System.Diagnostics.Debug.WriteLine("Headers : " + UploadFile1.Headers); // Headers : Microsoft.AspNetCore.Http.HeaderDictionary
                 System.Diagnostics.Debug.WriteLine("ContentDisposition: " + UploadFile1.ContentDisposition); // ContentDisposition: form-data; name="UploadFile1"; filename="매크로설정 (2007).jpg"
+
+                UserJobCodes.Add(1);
             }
             if (UploadFile2 != null)
             {
                 System.Diagnostics.Debug.WriteLine("file2 is not null");
+
+                UserJobCodes.Add(2);
             }
             if (UploadFile3 != null)
             {
                 System.Diagnostics.Debug.WriteLine("file3 is not null");
+
+                UserJobCodes.Add(3);
             }
         }
 
         public void OnGet()
         {
             System.Diagnostics.Debug.WriteLine("Called JobAuthentication OnGet().");
-            if (UserJobCodes != null && UserJobCodes.Count() > 0)
+            if (UserJobCodes != null)
             {
-                System.Diagnostics.Debug.WriteLine($"UserJobCodes{0}", UserJobCodes.Count());
+                System.Diagnostics.Debug.WriteLine($"UserJobCodes {0} ", UserJobCodes.Count());
             }
             else
             {

@@ -15,7 +15,7 @@ namespace NoName.Data.DbUser
         public int UserJobSeq { get; set; }
 
         // ApplicationUser to TableUserJob => 1:n Relationship
-        [ForeignKey("Id")]
+        [ForeignKey("UserId")]
         public ApplicationUser ApplicationUser { get; set; }
 
         public int JobCode { get; set; }

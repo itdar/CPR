@@ -3,7 +3,7 @@
   <Class Name="NoName.Data.DbData.TableBoard">
     <Position X="5.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAABAAAAAAAgAAKAABAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\DbData\TableBoard.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -11,9 +11,9 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="NoName.Data.DbData.TableComment">
-    <Position X="12" Y="1.5" Width="1.5" />
+    <Position X="12" Y="1.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAAAAAAAAAAAQACABAAAAAAAAAABCAAAE=</HashCode>
+      <HashCode>AAAAAAAAAgAAAAAACAAAAAQACABAAAAAAAAAABCAAAE=</HashCode>
       <FileName>Data\DbData\TableComment.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -27,9 +27,9 @@
       <Property Name="Salary" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
+      <Property Name="Boards" />
       <Property Name="PopularBoards" />
       <Property Name="MyBoards" />
-      <Property Name="Boards" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="NoName.Data.DbData.TableMessage">
@@ -42,7 +42,7 @@
   <Class Name="NoName.Data.DbData.TableMyBoard">
     <Position X="5.75" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAgAAAAAAgAAKAABAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\DbData\TableMyBoard.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -52,14 +52,14 @@
   <Class Name="NoName.Data.DbData.TableMyPost">
     <Position X="9" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAEAAAAAgggAAAAAAAAAAAABAQAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAggAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Data\DbData\TableMyPost.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NoName.Data.DbData.TablePopularBoard">
-    <Position X="5.75" Y="7" Width="1.5" />
+    <Position X="5.75" Y="7" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAgAAKAABAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\DbData\TablePopularBoard.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -69,14 +69,14 @@
   <Class Name="NoName.Data.DbData.TablePopularPost">
     <Position X="9" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAAEAAEAAAAAgggAAAAAAAAAAAABIAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAggAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Data\DbData\TablePopularPost.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NoName.Data.DbData.TablePost">
     <Position X="9" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAiJAAAAgAABEAAAAAAAAQAgAGAAAEAAAAAAXAAIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAACAAIAA=</HashCode>
       <FileName>Data\DbData\TablePost.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -91,7 +91,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="NoName.Data.ApplicationUser">
-    <Position X="12.5" Y="6.5" Width="1.5" />
+    <Position X="11.75" Y="6.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>BAAAEAUAACAAgACAAAAAAEAAQAAQBAAAAAAAAEAAAAA=</HashCode>
       <FileName>Data\DbUser\ApplicationUser.cs</FileName>

@@ -13,38 +13,87 @@
     </div>
     <div class="col-lg-9">
         @*로그인한 유저의 직업이 1개라도 인증 되어있는지 없는지 확인해서 다른 화면
-        로그인 유저 정보에서 jobCodes 확인하는 방법 model 연결 방법 확인해야함*@
-        @if (Model.UserJobCodes.Count() == 0 || Model.UserJobCodes.ElementAt(0) == 0)
-        {
-            @*글자들 및 파일 업로드 버튼 사이즈, 간격 같은거 조절해야함*@
-            <form method="post" enctype="multipart/form-data" asp-action="UploadFiles">
+            로그인 유저 정보에서 jobCodes 확인하는 방법 model 연결 방법 확인해야함
+            Count 로 하면 서류 종류에 상관 없이 인증레벨 정해지도록 기준 잡아야함 *@
+        @*글자들 및 파일 업로드 버튼 사이즈, 간격 같은거 조절해야함*@
+        <form method="post" enctype="multipart/form-data" asp-action="UploadFiles">
+            @if (Model.UserJobCodes != null)
+            {
                 <div class="form-group">
-                    <div class="col-md-10">
-                        <p>인증서류1 을 업로드하세요.</p>
-                        <input type="file" name="UploadFile1"/>
-                    </div>
-                    <div class="col-md-10">
-                        <p>인증서류2 를 업로드하세요.</p>
-                        <input type="file" name="UploadFile2"/>
-                    </div>
-                    <div class="col-md-10">
-                        <p>인증서류3 을 업로드하세요.</p>
-                        <input type="file" name="UploadFile3"/>
-                    </div>
+                    @if (Model.UserJobCodes.Count() < 1)
+                    {
+                        <div class="col-md-10">
+                            <p>인증서류1 (보험득실확인서) 를 업로드하세요.</p>
+                            <input type="file" name="UploadFile2" />
+                        </div>
+                        <div class="col-md-10">
+                            <p>인증서류2 (재직증명서) 를 업로드하세요.</p>
+                            <input type="file" name="UploadFile2" />
+                        </div>
+                        <div class="col-md-10">
+                            <p>인증서류3 (원천징수영수증) 을 업로드하세요.</p>
+                            <input type="file" name="UploadFile3" />
+                        </div>
+                    }
+                    else if (Model.UserJobCodes.Count == 1)
+                    {
+                        <div class="col-md-10">
+                            <p>인증서류1 (보험득실확인서) 인증되었습니다.</p>
+                        </div>
+                        <div class="col-md-10">
+                            <p>인증서류2 (재직증명서) 를 업로드하세요.</p>
+                            <input type="file" name="UploadFile2" />
+                        </div>
+                        <div class="col-md-10">
+                            <p>인증서류3 (원천징수영수증) 을 업로드하세요.</p>
+                            <input type="file" name="UploadFile3" />
+                        </div>
+                    }
+                    else if (Model.UserJobCodes.Count == 2)
+                    {
+                        <div class="col-md-10">
+                            <p>인증서류1 (보험득실확인서) 인증되었습니다.</p>
+                        </div>
+                        <div class="col-md-10">
+                            <p>인증서류2 (재직증명서) 인증되었습니다.</p>
+                        </div>
+                        <div class="col-md-10">
+                            <p>인증서류3 (원천징수영수증) 을 업로드하세요.</p>
+                            <input type="file" name="UploadFile3" />
+                        </div>
+                    }
+                    else if (Model.UserJobCodes.Count == 3)
+                    {
+                        <div class="col-md-10">
+                            <p>인증서류1 (보험득실확인서) 인증되었습니다.</p>
+                        </div>
+                        <div class="col-md-10">
+                            <p>인증서류2 (재직증명서) 인증되었습니다.</p>
+                        </div>
+                        <div class="col-md-10">
+                            <p>인증서류3 (원천징수영수증) 인증되었습니다.</p>
+                        </div>
+                    }
                 </div>
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <input type="submit" value="파일 업로드" />
-                    </div>
+            }
+            else
+            {
+                @* UserInformation 에서 Set 해줄 때, List 만들어서 넣어주기 때문에, JobCodes 에서 Null 나올 수 없음 *@
+            }
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="파일 업로드" />
                 </div>
-            </form>
-        }
+            </div>
+        </form>
+
         @*인증된 직업 파일이 있으면 해당 파일 이름이나 뭐 보여줘야함
             보여준 인증 직업 삭제 등*@
-        else
-        {
-            <p><strong>There are UserJobCodes</strong></p>
-        }
+        @*else
+            {
+                <p><strong>There are UserJobCodes</strong></p>
+            }*@
     </div>
 </div>
 

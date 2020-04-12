@@ -21,7 +21,7 @@ namespace NoName.BackendClass.Login
 
         private UserInformation()
         {
-            
+
         }
 
         public static UserInformation GetInstance()
@@ -41,7 +41,7 @@ namespace NoName.BackendClass.Login
 
         public void ReleaseInformation()
         {
-if (UserId == null)
+            if (UserId == null)
                 UserId = null;
             if (UserName == null)
                 UserName = null;
