@@ -23,9 +23,12 @@ namespace NoName.Pages.Board
         [BindProperty]
         public TablePost CurrentPost { get; set; }
         [BindProperty]
-        public List<TableComment> ParentCommentList { get; set; }
+        public List<List<TableComment>> CommentList { get; set; }
         [BindProperty]
-        public List<TableComment> ChildCommentList { get; set; }
+        public int CommentCount { get; set; }
+        //public List<TableComment> ParentCommentList { get; set; }
+        //[BindProperty]
+        //public List<TableComment> ChildCommentList { get; set; }
         [BindProperty]
         public TableComment TableComment { get; set; }
         [BindProperty]
@@ -42,14 +45,30 @@ namespace NoName.Pages.Board
         }
 
 
-        public void OnGet() { }
+        
 
-        public IActionResult OnGetPost(int postNumber)
+        public IActionResult OnGet(int postNumber)
         {
             CurrentPost = manager.GetPostDetail(postNumber);
-            //댓글&대댓글 한번에 함수 만드는거 아직 못하겠어서 따로 만들어서 했어요
-            ParentCommentList = manager.GetParentComments(postNumber);
-            ChildCommentList = manager.GetChildComments(postNumber);
+
+            //댓글
+            var tempList = manager.GetCommentList(postNumber);
+            CommentCount = tempList.Count();
+
+            CommentList = new List<List<TableComment>>();
+            foreach(var comment in tempList)
+            {
+                if (comment.ParentCommentNumber == 0)
+                {
+                    var parentComment = new List<TableComment>();
+                    parentComment.Add(comment);
+                    CommentList.Add(parentComment);
+                }
+                else
+                {
+                    CommentList[comment.ParentCommentNumber - 1].Add(comment);
+                }
+            }
             //CommentList = _context.Comment.FromSqlRaw("SELECT * FROM dbo.Comment WHERE PostNumber= :postNumber").ToList();
 
             //IF((ParentNumber = 0), CommentNumber, ParentCommentNumber),"ORDER BY CreatedTime")
