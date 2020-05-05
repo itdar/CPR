@@ -1,9 +1,8 @@
 ﻿@page "{handler?}/{id?}"
 @model NoName.Pages.Board.IndexModel
 @{
-    ViewData["CurrentBoard"] = Model.CurrentBoard.BoardId;
-    int boardId = Model.CurrentBoard.BoardId % 100;
-    var isUserBoard = !(boardId < 80) ? "d-none" : "";
+    int boardCode = Model.CurrentBoard.BoardCode;
+    var isUserBoard = !(boardCode < 80) ? "d-none" : "";
     ViewData["BoardPage"] = "/Board/Index";
 }
 <head>

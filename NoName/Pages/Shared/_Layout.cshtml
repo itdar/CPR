@@ -54,7 +54,7 @@
                 <a class="btn btn-outline-dark" asp-page="/Membership/TermsOfService">이용약관</a>
                 <a class="btn btn-outline-dark" asp-page="/Membership/Privacy">개인정보처리방침</a>
                 <a class="btn btn-outline-dark" asp-page="/Membership/Rules">커뮤니티이용규칙</a>
-                <a class="btn btn-outline-dark" asp-page="/Board/Index" asp-route-boardId="@boardId">@boardName</a>
+                <a class="btn btn-outline-dark" asp-page="/Board/Index" asp-page-handler="Board" asp-route-boardId="@boardId">@boardName</a>
                 <a class="btn btn-outline-dark" asp-page="/Support/FAQ">자주묻는질문</a>
             </form>
         </div>
