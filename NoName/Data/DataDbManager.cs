@@ -200,6 +200,11 @@ namespace NoName.Data
 		}
 
 		/************************************COMMENT************************************/
+		public IQueryable<TableComment> GetCommentList(int postNumber)
+		{
+			return dataContext.Comment.Where(comment => comment.PostNumber == postNumber).
+				OrderBy(comment => comment.ParentCommentNumber).ThenBy(comment => comment.CreatedTime);
+		}
 		public List<TableComment> GetParentComments(int postNumber)
 		{
 			var parentComments = dataContext.Comment.Where(comment => comment.PostNumber == postNumber && comment.ParentCommentNumber == 0).
