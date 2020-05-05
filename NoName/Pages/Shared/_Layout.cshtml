@@ -1,6 +1,5 @@
 ﻿@{
-    int JobCode = 1000;
-    int boardId = Enumeration.BoardType.Notice.GetBoardId(JobCode);
+    int boardId = Enumeration.BoardType.Notice.Id;
     string boardName = Enumeration.BoardType.Notice.Name;
 }
 <!DOCTYPE html>
@@ -56,7 +55,7 @@
                 <a class="btn btn-outline-dark" asp-page="/Membership/Privacy">개인정보처리방침</a>
                 <a class="btn btn-outline-dark" asp-page="/Membership/Rules">커뮤니티이용규칙</a>
                 <a class="btn btn-outline-dark" asp-page="/Board/Index" asp-route-boardId="@boardId">@boardName</a>
-                <a class="btn btn-outline-dark" asp-page="/Support/FAQ">문의사항</a>
+                <a class="btn btn-outline-dark" asp-page="/Support/FAQ">자주묻는질문</a>
             </form>
         </div>
     </footer>

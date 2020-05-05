@@ -8,7 +8,12 @@ namespace NoName.Services
 {
     public class SideBarListService
     {
-        int jobCode = 1000;
+        //임시
+        int jobCode = 1;
+        public int HotBoardId { get; private set; }
+        //public int RealTimeBoardId { get; private set; }
+        public int WeeklyBoardId { get; private set; }
+
         private int listNumber;
         public int ListNumber
         {
@@ -18,17 +23,21 @@ namespace NoName.Services
         public List<PostModel> ListHotPosts()
         {
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<PostModel>(manager.GetPopularPosts(PopularBoardType.Hot.GetBoardId(jobCode), ListNumber).ToList());
+            HotBoardId = manager.GetPopularBoardId(jobCode, PopularBoardType.Hot.Code);
+            return new List<PostModel>(manager.GetPopularPosts(HotBoardId, ListNumber).ToList());
         }
         public List<PostModel> ListRealTimePosts()
         {
+            //실시간 인기글은 DB에 두지 않기 때문에 DB에서 가져오지 않고 사이클마다 실시간으로 구해서 입력해주는 형식으로 변경
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<PostModel>(manager.GetPopularPosts(PopularBoardType.RealTime.GetBoardId(jobCode), ListNumber).ToList());
+            HotBoardId = manager.GetPopularBoardId(jobCode, PopularBoardType.Hot.Code);
+            return new List<PostModel>(manager.GetPopularPosts(HotBoardId, ListNumber).ToList());
         }
         public List<PostModel> ListWeeklyPosts()
         {
             DataDbManager manager = DataDbManager.GetInstance();
-            return new List<PostModel>(manager.GetPopularPosts(PopularBoardType.Weekly.GetBoardId(jobCode), ListNumber).ToList());
+            WeeklyBoardId = manager.GetPopularBoardId(jobCode, PopularBoardType.Weekly.Code);
+            return new List<PostModel>(manager.GetPopularPosts(WeeklyBoardId, ListNumber).ToList());
         }
     }
 }

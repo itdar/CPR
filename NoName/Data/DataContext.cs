@@ -37,21 +37,6 @@ namespace NoName.Data
              * TableBoard의 BoardNumber와 BoardId가 두 컬럼이 주키로 사용되기 때문에 직접설정(키가 두개인 경우는 'Key Attribute'사용 불가 like a [Key])
              * 또한 BoardId는 TablePost의 외래키로 사용되어 설정
              */
-            //Set Two PrimaryKey
-            modelBuilder.Entity<TableBoard>().HasKey(b => new { b.BoardSeq, b.BoardId });
-            //Set Auto-incresement
-            modelBuilder.Entity<TableBoard>().Property(b => b.BoardSeq).ValueGeneratedOnAdd();
-
-            //Set Two PrimaryKey
-            modelBuilder.Entity<TablePopularBoard>().HasKey(b => new { b.BoardSeq, b.BoardId });
-            //Set Auto-incresement
-            modelBuilder.Entity<TablePopularBoard>().Property(b => b.BoardSeq).ValueGeneratedOnAdd();
-
-            //Set Two PrimaryKey
-            modelBuilder.Entity<TableMyBoard>().HasKey(b => new { b.BoardSeq, b.BoardId });
-            //Set Auto-incresement
-            modelBuilder.Entity<TableMyBoard>().Property(b => b.BoardSeq).ValueGeneratedOnAdd();
-
             //Set one of CompositeKey to ForeignKey
             modelBuilder.Entity<TableBoard>()
                 .HasOne(b => b.Job)

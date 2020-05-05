@@ -41,8 +41,6 @@ namespace NoName.Pages
             //Create a new TableJob
             if(existedJob == null)
             {
-                //JobNumber의 Code화 1000단위
-                DataJob.JobCode *= 1000;
                 _context.Job.Add(DataJob);
                 _context.SaveChanges();
             }
@@ -66,8 +64,7 @@ namespace NoName.Pages
                 {
                     board = new TableBoard
                     {
-                        // BoardId 코드화
-                        BoardId = TableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
+                        BoardCode = TableBoard.ElementAt(i).Code,
                         BoardName = TableBoard.ElementAt(i).Name,
                         JobCode = DataJob.JobCode
                     };
@@ -76,7 +73,7 @@ namespace NoName.Pages
                 }
                 else
                 {
-                    board = _context.Board.Where(b => b.JobCode == DataJob.JobCode).OrderBy(b => b.BoardSeq).ToList()[i];
+                    board = _context.Board.Where(b => b.JobCode == DataJob.JobCode).OrderBy(b => b.BoardId).ToList()[i];
                 }
                 //Create 100 Posts
                 int ten = postNumber + 10;
@@ -130,7 +127,7 @@ namespace NoName.Pages
                 {
                     board = new TablePopularBoard
                     {
-                        BoardId = popularTableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
+                        BoardId = popularTableBoard.ElementAt(i).Code,
                         BoardName = popularTableBoard.ElementAt(i).Name,
                         JobCode = DataJob.JobCode
                     };
@@ -162,7 +159,7 @@ namespace NoName.Pages
                             LastModifiedTime = item.LastModifiedTime,
                             IsDeleted = item.IsDeleted,
                             DeletedTime = item.DeletedTime,
-                            BoardId = popularTableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
+                            BoardId = popularTableBoard.ElementAt(i).Code,
                             SelectionTime = DateTime.Now
                         });
                         _context.SaveChanges();
@@ -181,7 +178,7 @@ namespace NoName.Pages
                 {
                     board = new TableMyBoard
                     {
-                        BoardId = TableBoard.ElementAt(i).GetBoardId(DataJob.JobCode),
+                        BoardId = TableBoard.ElementAt(i).Code,
                         BoardName = myTableBoard.ElementAt(i).Name,
                         JobCode = DataJob.JobCode
                     };

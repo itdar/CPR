@@ -72,11 +72,19 @@ namespace NoName.Data
 			else
 				return "There is no Board.";
 		}
+		public int GetBoardId(int jobCode, int boardCode)
+		{
+			return dataContext.Board.Where(board => board.JobCode == jobCode).Where(board => board.BoardCode == boardCode).FirstOrDefault().BoardId;
+		}
 
 		/************************************POPULARBOARD************************************/
 		public TablePopularBoard GetPopularBoard(int? boardId)
 		{
 			return dataContext.PopularBoard.FirstOrDefault(board => board.BoardId == boardId);
+		}
+		public int GetPopularBoardId(int jobCode, int boardCode)
+		{
+			return dataContext.Board.Where(board => board.JobCode == jobCode).Where(board => board.BoardCode == boardCode).FirstOrDefault().BoardId;
 		}
 
 		/************************************POST************************************/

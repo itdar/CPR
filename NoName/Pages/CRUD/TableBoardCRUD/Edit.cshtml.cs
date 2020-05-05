@@ -31,7 +31,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             }
 
             TableBoard = await _context.Board
-                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardSeq == id);
+                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardId == id);
 
             if (TableBoard == null)
             {
@@ -41,8 +41,8 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             return Page();
         }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -58,7 +58,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TableBoardExists(TableBoard.BoardSeq))
+                if (!TableBoardExists(TableBoard.BoardId))
                 {
                     return NotFound();
                 }
@@ -73,7 +73,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
 
         private bool TableBoardExists(int id)
         {
-            return _context.Board.Any(e => e.BoardSeq == id);
+            return _context.Board.Any(e => e.BoardId == id);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace NoName.Pages.CRUD.TableBoardCRUD
             }
 
             TableBoard = await _context.Board
-                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardSeq == id);
+                .Include(t => t.Job).FirstOrDefaultAsync(m => m.BoardId == id);
 
             if (TableBoard == null)
             {

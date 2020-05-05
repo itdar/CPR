@@ -3,7 +3,12 @@
 @using NoName.BackendClass.Login
 @{
     ViewData["Title"] = "Home page";
-    int BoardCount = Model.Preview.BoardCount;
+    int BoardCount = 0;
+    //Preview할 게시판이 하나도 없을 경우 예외처리
+    if (Model.Preview.Count > 0)
+    {
+        BoardCount = Model.Preview.BoardCount;
+    }
 }
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">

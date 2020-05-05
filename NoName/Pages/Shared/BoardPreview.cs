@@ -43,16 +43,20 @@ namespace NoName.Pages.Shared
             ListNumber = listNumber;
 
             for (int i = 0; i < BoardCount; i++)
-            {
+            {   
                 var board = BoardType.GetAll<BoardType>().ElementAt(i);
-                this.Add(new PostPreview(manager.GetPosts(board.GetBoardId(JobCode), ListNumber).ToList(), board.GetBoardId(JobCode), board.Name));
+                int boardId = manager.GetBoardId(JobCode, board.Code);
+                this.Add(new PostPreview(manager.GetPosts(boardId, ListNumber).ToList(), boardId, board.Name));
             }
         }
         public static BoardPreview CreatePreviewList(int listNumber) //listNumber=> 나타낼 post 수
         {
             //usermanager에서 JobCode 가져와야함
-            int jobCode = 1000;
-            int boardCount = Enumeration.Enumerator.GetUserBoardsCount<BoardType>();
+            int jobCode = 1;
+            //BoardType에서 정해진 Board들의 개수
+            int boardCount = BoardType.GetUserBoardsCount<BoardType>();
+            //JobCode에 따라 보드의 개수가 다른경우 DB에서 가져옴 (사이드바의 핫게가 포함됨)
+            //int boardCount = DataDbManager.GetInstance().GetBoardCount(jobCode);
             return new BoardPreview(jobCode, boardCount, listNumber);
         }
     }

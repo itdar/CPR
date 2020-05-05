@@ -18,7 +18,7 @@
                 @Html.DisplayNameFor(model => model.TableBoard[0].Job)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TableBoard[0].BoardId)
+                @Html.DisplayNameFor(model => model.TableBoard[0].BoardCode)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TableBoard[0].BoardName)
@@ -33,12 +33,15 @@
                 @Html.DisplayFor(modelItem => item.Job.JobCode)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.BoardCode)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.BoardName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a asp-page="./Edit" asp-route-id="@item.BoardId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BoardId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BoardId">Delete</a>
             </td>
         </tr>
 }

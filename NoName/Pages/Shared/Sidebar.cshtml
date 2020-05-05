@@ -2,10 +2,7 @@
 @inject NoName.Services.SideBarListService sideBar
 @{
     sideBar.ListNumber = 3;
-    //임시 jobCode
-    int jobCode = 1000;
     List<PostModel> Hot = sideBar.ListHotPosts();
-    List<PostModel> RealTime = sideBar.ListRealTimePosts();
     List<PostModel> Weekly = sideBar.ListWeeklyPosts();
 }
 @*
@@ -28,15 +25,15 @@
 </div>
 <div class="card list-group mt-2">
     <a class="list-group-item list-group-item-action bg-primary text-white"
-       asp-page="/BoardPopular/Index" asp-page-handler="Board" asp-route-boardId="@Enumeration.PopularBoardType.Hot.GetBoardId(jobCode)">@Enumeration.PopularBoardType.Hot.Name</a>
+       asp-page="/BoardPopular/Index" asp-page-handler="Board" asp-route-boardId="@sideBar.HotBoardId">@Enumeration.PopularBoardType.Hot.Name</a>
     @foreach (var post in Hot)
     {
         <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@post.PostNumber">@post.Title</a>
     }
 </div>
 <div class="card list-group mt-2">
-    <p class="list-group-item list-group-item-action bg-primary text-white">@Enumeration.PopularBoardType.RealTime.Name</p>
-    @foreach (var post in RealTime)
+    <p class="list-group-item list-group-item-action bg-primary text-white">실시간 인기글</p>
+    @foreach (var post in Hot)
     {
         <a class="list-group-item list-group-item-action" asp-page="/Board/Detail" asp-page-handler="Post" asp-route-postNumber="@post.PostNumber">@post.Title</a>
     }
