@@ -31,7 +31,10 @@ namespace NoName.Pages
             //Preview할 게시물 개수
             int listNumber = 4;
             Preview = BoardPreview.CreatePreviewList(listNumber);
-
+            if(Preview.Count == 0)
+            {
+                RedirectToPage("./CRUDIndex");
+            }
             // Main 이 되는 index page cs 에서,
             // 페이지 로딩될 때, 최초 로딩 또는 다른데에서 redirection 등
             // OnGet / OnPost 선택 호출하는 방법 확인해서 로그인 동작 시에만 호출 되는 것 만들어서 옮기던지 해야함

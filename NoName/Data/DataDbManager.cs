@@ -74,7 +74,11 @@ namespace NoName.Data
 		}
 		public int GetBoardId(int jobCode, int boardCode)
 		{
-			return dataContext.Board.Where(board => board.JobCode == jobCode).Where(board => board.BoardCode == boardCode).FirstOrDefault().BoardId;
+			var ret = dataContext.Board.Where(board => board.JobCode == jobCode).Where(board => board.BoardCode == boardCode).FirstOrDefault();
+			if (ret != null)
+				return ret.BoardId;
+			else
+				return -1;
 		}
 
 		/************************************POPULARBOARD************************************/
@@ -84,7 +88,11 @@ namespace NoName.Data
 		}
 		public int GetPopularBoardId(int jobCode, int boardCode)
 		{
-			return dataContext.Board.Where(board => board.JobCode == jobCode).Where(board => board.BoardCode == boardCode).FirstOrDefault().BoardId;
+			var ret = dataContext.Board.Where(board => board.JobCode == jobCode).Where(board => board.BoardCode == boardCode).FirstOrDefault();
+			if (ret != null)
+				return ret.BoardId;
+			else
+				return -1;
 		}
 
 		/************************************POST************************************/

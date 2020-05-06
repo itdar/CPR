@@ -54,9 +54,9 @@ namespace NoName.Pages.Shared
             //usermanager에서 JobCode 가져와야함
             int jobCode = 1;
             //BoardType에서 정해진 Board들의 개수
-            int boardCount = BoardType.GetUserBoardsCount<BoardType>();
+            //int boardCount = BoardType.GetUserBoardsCount<BoardType>();
             //JobCode에 따라 보드의 개수가 다른경우 DB에서 가져옴 (사이드바의 핫게가 포함됨)
-            //int boardCount = DataDbManager.GetInstance().GetBoardCount(jobCode);
+            int boardCount = DataDbManager.GetInstance().GetBoardCount(jobCode);
             return new BoardPreview(jobCode, boardCount, listNumber);
         }
     }
